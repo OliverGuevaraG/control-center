@@ -1,0 +1,3704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c1c1e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Centro de Mando">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link id="manifest-link" rel="manifest">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADr0lEQVR42u3cuXIUOxSAYVrlzClLYsY2UGUbeCMgYnkJYr8ES8LyRkDEUkDEkpITOKAALzMedbfO0fdH9xJ5pM+n1aoaD1tbiwvScRVLIDgEh+AQHIJDcAgOwSE4BIf0bxvDMFgFmRyCQ3AIDsEhOASH4BAcgkP6K9fnMjkEh+AQHJr3QBr05/756FOsH/jik91wizwsFjtAgBIVRxoT4ZS0iyOxiShKWsTRFYuWiRQyfPYTJ8f2ditafzz86O3xqEtPr5kcZDS9GvNPDiyaHSGFDCOkRRxkNL5KhQw+2sJBRogVK2Tw0QoOMgKtXiGDj0ZfZdVyw87ORNcs3x98sNy1uvzsep7JQUbE9fRY0aw4jI2gq1rI4MNjRY3hMDZCDw+TQ3CoKRyeKdGfLCaH4NDqDbu7o9zSf7v/3uJO2ZXnN0wOeawIDnWHw4Fj+sZYc5NDcAgOwSE4NGsblqB6vx7/+e/Nw8g4/GH88WQc/e9kPqpvpcfKiDJO+UdnDjJi+4BDcMw3NuAQHDrX2Aj6QguHBwoc88mIew8GBxlwkLF6rs/znDNcn4eREX1swDFWCWTA4agBBxlwkAEHGXCQAUeOF9eUwVFBRsqxAUeFssq4kOD6fLzvAYQ7arg+P23/Kp4Puj2EJsEx3vcAyIiNY7zvAZDhQEpGrzjONzx6vtLoa3KsutOdX2mkwrHMJlWfBF3JyH/mWNKHo0Y2HEvu1pkbT0bOybG+DzIyP1bW8UHGGTiGEQrhI5+M6vuY5EC6qg9XGn29rSzvw5VGj6+yFbeTjIT3HFU2lYycONbfWjIy41hng8nIj+N820xGLzhW3Wwy+sJhy+Go4IOhY+viL/tsHnZxJeqrCfXnh7HRO46TEJABx/EUyDjjzNHbBwbC5BAcCodj68WBlZ24Mdbc5BAcgkMVG/b2xjoffL33zvpO09WXN00OeawoPY6RZp0mW2eTQ3CoNRyeLHGfKSaHZsVheMRd25LgM5DhsaKpG/b3J/q1/nL3reWu1eLVrVSvstN8HjI8VpQOh+ERaw1L4s9GRrzHCh9R1q108jnJiHQg5aP9tSodfmYyYrzK8tHy+kx3Q3p67k8b/LUp1oKMEyfHwUFbu/L5zpueWWy/vt3OD1Osjs8eZnL0OULa/JVoF0cPShofkwFw5FMS5dEZCUdoKBHPUlFxqMe3FcEhOASHUtbFH8aXySE4BIfgEByCQ3AIDsEhwaHVcn0uk0NwCA7BITgEh+AQHIJDcEj/9RtzmgihLPAoewAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADwElEQVR42u3duXITQRCAYe+WM6WQCQlIbANvBEQcL0Hsl4CM442AiKOAiCMlJyCiXIWtkXZ3uvv7MxxJM596Z1kLhvV6cyS1NloCASSABJAAkgASQAJIAEkACSD12/EwDFZBJpAAEkACSAJIAAkgASQBJIAEkDLmWZhMIAEkgASQBJBmvQvL8TZ+Pf0c8WVfe34r+soPm81NYniqAiilm9CSwgAqQiccowCACtIJxKhrQMXphGA0bLc9vrKfTz5Bc7HrL2739pJGegLV4cr0NYHQCTeKRnqMogyA6Am6YqO1YCg2IHpCr95ID0NRAdGTYCVHehiKB4ieNKs60sPQPvleWLZm3tC5J9CPxx/tcaYVHulhKOptvBI0pvxYaLbVNoEUAZDxk3UImUDqHpDxk3gImUDqG5Dxk3sImUDaK8/C8jfpFk87gb4/+mD/Fm/SXXAJE0ACSAAJICdo52gTSC5hAkgASZd2bAnm6fezf/64Os8CyLOw+fX8/cnMhibaaJewBfT8/+fOQLqqkgSGAFpMj7swCSDjByB6ACqqJ8HfBgFED0D0AFSqNHoAWmD8ZNJz5FlYHT2ehdHjEkYPQCp+agZomft2gOTiBRA9ANEDkIMzQMaPAHLxAoiehUv1LGzSL+9F1+NZ2M4bfMDDitmTHFDuL+8BtOTRZH9Dxk/1Q/Q+hugBqN0QPQC1G6IHoMnP1MX1JAG00y5e0ZDbt1oT6LCGXLwqXsIOZYieumeg1fm++0rPzoCGyep8FDWfcoLqmWiXc96FtRlycHYb327IxQugdkP0ADT5ltNTEdChNp6euoAE0MLzw/gxgdoR0ANQOwV6AGoHQQ9A7SzouWIV/43E1XnFpxa+FyaXsCAXMtcvgNoN0QNQuyF6dj5EF3//xJhASgpo/fLM+nbSdHthAgkgASSAVLHh5GTao+63h++t8rLdeHXHBJJLmADqbX5q8fU3gdQ9IEMo6/gxgRQEkCGUcvyYQIoDyBDKN35MIIUCZAjlW+fh9HTuTf364J09nq7N67tpJ5BcwuJ9RIyfhBOIoTSrOpZ6t/SkOgMxlGAlx7LvnJ4kd2EMhV690SrQEx4QQ3FXbLQi9OzTAo8yLs2zjkAfs+HsrMfP/Zf7b1m52PbNvd5eUqeAMOqfTgBAGPVMJwygsow6pxMMUClGIeiEBJRbUiA34QHl8BRRTE5AWiq/0iqABJAAUsUq/n9hMoEEkACSABJAAkgACSAJIAEkgFQjz8JkAgkgASSAJIAEkAASQBJAAkgAKWt/ADnZHeP820RBAAAAAElFTkSuQmCC">
+<title>Centro de Mando Personal</title>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+<style>
+  :root{
+    --bg: #1c1c1e;
+    --bg-elevated: #2c2c2e;
+    --bg-elevated-2: #3a3a3c;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.14);
+    --text: #ffffff;
+    --text-secondary: rgba(235,235,245,0.6);
+    --text-tertiary: rgba(235,235,245,0.35);
+    --accent: #0a84ff;
+    --accent-soft: rgba(10,132,255,0.16);
+    --accent-border: rgba(10,132,255,0.4);
+    --accent-light: #6cb6ff;
+    --success: #30d158;
+    --warning: #ff9f0a;
+    --danger: #ff453a;
+    --radius: 14px;
+    --radius-sm: 9px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #progress-track {
+    position: sticky;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    z-index: 50;
+  }
+  #progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ---------- Auth gate ---------- */
+  #auth-gate {
+    position: fixed; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    background:
+      radial-gradient(circle at 50% 0%, var(--accent-soft) 0%, transparent 55%),
+      var(--bg);
+    z-index: 500;
+    padding: 24px;
+  }
+  #auth-gate.active { display: flex; }
+  .auth-logo {
+    width: 52px; height: 52px;
+    margin: 0 auto 18px;
+    border-radius: 15px;
+    background: linear-gradient(160deg, var(--accent), var(--accent-light));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px var(--accent-soft);
+  }
+  .auth-logo svg { width: 26px; height: 26px; }
+  .auth-card {
+    width: min(380px, 100%);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-strong);
+    border-radius: 18px;
+    padding: 36px 30px 28px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    text-align: center;
+  }
+  .auth-card h1 { font-size: 20px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .auth-card .subtitle { font-size: 13px; color: var(--text-tertiary); margin: 0 0 26px; line-height: 1.5; }
+  .auth-google-btn {
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-bottom: 18px;
+    background: var(--bg-elevated-2);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    font-weight: 600;
+    padding: 11px 16px;
+  }
+  .auth-google-btn:hover { background: rgba(255,255,255,0.08); }
+  .auth-google-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+  .auth-divider {
+    font-size: 11px; color: var(--text-tertiary); margin: 6px 0 18px;
+    display: flex; align-items: center; gap: 10px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .auth-divider::before, .auth-divider::after {
+    content: ""; flex: 1; height: 1px; background: var(--border);
+  }
+  .auth-tabs {
+    display: flex; gap: 4px; margin-bottom: 18px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 10px; padding: 3px;
+  }
+  .auth-tab {
+    flex: 1; padding: 8px; border-radius: 8px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+    background: transparent; border: none; color: var(--text-tertiary);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .auth-tab.active { background: var(--bg-elevated-2); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
+  .auth-card input {
+    width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
+    font-family: inherit; font-size: 13.5px; padding: 11px 13px; border-radius: 10px;
+    outline: none; margin-bottom: 10px; transition: border-color 0.15s ease;
+  }
+  .auth-card input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  #auth-submit-btn { width: 100%; margin-top: 4px; padding: 11px 16px; font-weight: 650; }
+  .auth-error {
+    color: var(--danger); font-size: 12px; margin-top: 14px; min-height: 14px; line-height: 1.4;
+  }
+  .auth-loading { color: var(--text-tertiary); font-size: 12.5px; }
+  .auth-footnote {
+    margin-top: 22px; font-size: 11px; color: var(--text-tertiary);
+  }
+  #app-shell { display: none; }
+  #app-shell.active { display: block; }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+  .title-block h1 { font-size: 22px; font-weight: 650; margin: 0 0 4px; letter-spacing: -0.02em; }
+  .title-block .date-line { font-size: 13px; color: var(--text-secondary); text-transform: capitalize; }
+  .quote-line {
+    font-size: 16.5px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: 7px;
+    font-style: italic;
+    max-width: 560px;
+    line-height: 1.45;
+  }
+  .quote-line[data-font="serif"] { font-family: Georgia, "Times New Roman", serif; }
+  .quote-line[data-font="mono"] { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-style: normal; }
+  .quote-line[data-font="rounded"] { font-family: Verdana, "Trebuchet MS", system-ui, sans-serif; font-style: normal; }
+
+  .missed-day-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: rgba(255,159,10,0.12);
+    border: 1px solid rgba(255,159,10,0.3);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 12.5px;
+    margin-bottom: 16px;
+  }
+  .missed-day-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .missed-day-dismiss {
+    background: none; border: none; color: var(--text-tertiary);
+    font-size: 16px; line-height: 1; cursor: pointer; padding: 2px 4px; border-radius: 6px;
+  }
+  .missed-day-dismiss:hover { color: var(--text); }
+
+  .day-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .day-nav-btn {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 15px; cursor: pointer; line-height: 1;
+  }
+  .day-nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+  #day-nav-picker {
+    background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text);
+    font-family: inherit; font-size: 12.5px; padding: 6px 8px; border-radius: 8px; outline: none;
+  }
+  .day-nav-flag {
+    display: none;
+    font-size: 12px; color: var(--warning);
+    background: rgba(255,159,10,0.1); border: 1px solid rgba(255,159,10,0.25);
+    padding: 5px 10px; border-radius: 999px;
+  }
+  .day-nav.past .day-nav-flag { display: inline-block; }
+  .day-nav.past #day-nav-today { display: inline-flex; }
+  #day-nav-today { display: none; }
+
+  .header-right { display: flex; align-items: center; gap: 14px; }
+  .progress-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .progress-pill b { color: var(--text); font-variant-numeric: tabular-nums; font-size: 14px; }
+  .streak-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,159,10,0.12);
+    border: 1px solid rgba(255,159,10,0.28);
+    padding: 8px 12px;
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .streak-pill b { color: var(--warning); font-variant-numeric: tabular-nums; font-size: 14px; }
+  .threshold-control {
+    display: flex; align-items: center; gap: 6px;
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+  .threshold-control input {
+    width: 52px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 6px 7px;
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    outline: none;
+  }
+
+  .btn {
+    border: none; cursor: pointer; font-family: inherit; font-weight: 600;
+    border-radius: var(--radius-sm); padding: 9px 16px; font-size: 13px;
+    transition: transform 0.12s ease, background 0.15s ease, opacity 0.15s ease;
+  }
+  .btn:active { transform: scale(0.96); }
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-accent:hover { background: #2a95ff; }
+  .btn-ghost { background: var(--bg-elevated); color: var(--text); border: 1px solid var(--border-strong); }
+  .btn-ghost:hover { background: var(--bg-elevated-2); }
+  .btn-danger-ghost { background: transparent; color: var(--danger); border: 1px solid rgba(255,69,58,0.35); }
+  .btn-danger-ghost:hover { background: rgba(255,69,58,0.1); }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } header { flex-direction: column; } }
+
+  .card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    margin-bottom: 18px;
+  }
+  .card h2 { font-size: 14px; font-weight: 650; margin: 0 0 4px; display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em; }
+  .card h2 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .card .subtitle { font-size: 12px; color: var(--text-tertiary); margin: 0 0 14px; }
+
+  /* ---------- Item rows (habits / diet / gym / todos) ---------- */
+  .item-row { display: flex; align-items: center; gap: 10px; padding: 8px 4px; border-bottom: 1px solid var(--border); }
+  .item-row:last-of-type { border-bottom: none; }
+
+  input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 19px; height: 19px; min-width: 19px;
+    border-radius: 6px; border: 1.5px solid var(--border-strong);
+    background: rgba(255,255,255,0.03); cursor: pointer; position: relative;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+  input[type="checkbox"]:checked::after {
+    content: ""; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
+    border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+  }
+
+  .item-name, .item-detail, .item-meta {
+    background: transparent; border: none; color: var(--text); font-family: inherit;
+    font-size: 13.5px; padding: 4px 2px; outline: none; border-radius: 6px;
+  }
+  .item-name { flex: 1.3; font-weight: 500; }
+  .item-detail { flex: 2; color: var(--text-secondary); }
+  .item-meta { width: 70px; color: var(--text-secondary); text-align: right; }
+  .item-name:focus, .item-detail:focus, .item-meta:focus { background: rgba(255,255,255,0.05); }
+  .item-row.done .item-name { color: var(--text-tertiary); text-decoration: line-through; }
+  .item-row.off-schedule { opacity: 0.45; }
+  .item-row.off-schedule .item-name { color: var(--text-secondary); }
+  .schedule-select {
+    width: 108px;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    padding: 5px 6px;
+    font: inherit;
+    font-size: 11.5px;
+    outline: none;
+  }
+  .schedule-select:focus { border-color: var(--accent); color: var(--text); }
+
+  .schedule-btn {
+    width: 92px;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    padding: 6px 8px;
+    font: inherit;
+    font-size: 11.5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .schedule-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  #schedule-popover {
+    position: absolute;
+    z-index: 200;
+    background: var(--bg-elevated-2);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+    display: none;
+    width: 248px;
+  }
+  #schedule-popover.open { display: block; }
+  .sp-title { font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+  .sp-day-row { display: flex; gap: 5px; justify-content: space-between; margin-bottom: 12px; }
+  .sp-day-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+    font-size: 11.5px; font-weight: 700;
+    cursor: pointer; flex-shrink: 0;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  }
+  .sp-day-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .sp-preset-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .sp-preset-chip {
+    font-size: 11px; padding: 5px 9px; border-radius: 999px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    color: var(--text-secondary); cursor: pointer;
+  }
+  .sp-preset-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .sp-close-btn { width: 100%; }
+
+  #personalize-popover {
+    position: absolute;
+    z-index: 200;
+    background: var(--bg-elevated-2);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+    display: none;
+    width: 240px;
+  }
+  #personalize-popover.open { display: block; }
+  .theme-toggle-row { display: flex; gap: 6px; margin-bottom: 14px; }
+  .theme-toggle-btn {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 8px 6px;
+    border-radius: 9px;
+    border: 1px solid var(--border-strong);
+    background: rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+    font-size: 12px; font-family: inherit;
+    cursor: pointer;
+  }
+  .theme-toggle-btn.active { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
+  .accent-swatch-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .accent-swatch {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+  }
+  .accent-swatch.active { border-color: var(--text); }
+
+  .weight-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 2px; border-bottom: 1px solid var(--border);
+  }
+  .weight-row:last-of-type { border-bottom: none; }
+  .weight-row .weight-label { flex: 1; font-size: 13px; }
+  .weight-row input[type="range"] { flex: 1.4; accent-color: var(--accent); }
+  .weight-row .weight-value {
+    width: 34px; text-align: right; font-size: 12.5px; font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+  }
+
+  .weekly-summary-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-bottom: 14px;
+  }
+  .weekly-stat {
+    background: rgba(255,255,255,0.035); border: 1px solid var(--border); border-radius: 10px; padding: 12px;
+  }
+  .weekly-stat .metric-label { color: var(--text-tertiary); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .weekly-stat .metric-value { margin-top: 5px; font-size: 16px; font-weight: 700; }
+  .weekly-stat .metric-sub { margin-top: 2px; font-size: 11.5px; color: var(--text-tertiary); }
+  .weekly-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .weekly-measurements-list { font-size: 12.5px; color: var(--text-secondary); line-height: 1.8; }
+
+  /* ---------- Goal images carousel ---------- */
+  .carousel {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16 / 8;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+  }
+  .carousel .slide {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end;
+    opacity: 0; transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .carousel .slide.active { opacity: 1; pointer-events: auto; }
+  .carousel .slide .fallback-bg { position: absolute; inset: 0; }
+  .carousel .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .carousel .slide .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.72) 100%);
+  }
+  .carousel .slide .caption {
+    position: relative; padding: 14px 16px; font-size: 13.5px; font-weight: 600; color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .carousel .slide.empty-slide {
+    align-items: center; justify-content: center;
+  }
+  .carousel .slide.empty-slide .empty-msg {
+    color: var(--text-tertiary); font-size: 13px; text-align: center; padding: 0 20px;
+  }
+  .carousel-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 15px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+  }
+  .carousel-arrow:hover { background: rgba(0,0,0,0.65); }
+  .carousel-arrow.prev { left: 10px; }
+  .carousel-arrow.next { right: 10px; }
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 6px; margin-top: 10px;
+  }
+  .carousel-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border-strong); border: none; cursor: pointer; padding: 0;
+    transition: background 0.15s ease, width 0.15s ease;
+  }
+  .carousel-dot.active { background: var(--accent); width: 16px; border-radius: 3px; }
+  .carousel-footer {
+    display: flex; align-items: center; justify-content: space-between; margin-top: 10px;
+  }
+  .carousel-count { font-size: 11.5px; color: var(--text-tertiary); }
+  .delete-current-btn {
+    background: none; border: none; color: var(--text-tertiary);
+    font-size: 12px; cursor: pointer; padding: 6px 8px;
+  }
+  .delete-current-btn:hover { color: var(--danger); }
+
+
+  [data-theme="light"] {
+    --bg: #f2f2f5;
+    --bg-elevated: #ffffff;
+    --bg-elevated-2: #e9e9ec;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.14);
+    --text: #1c1c1e;
+    --text-secondary: rgba(28,28,30,0.62);
+    --text-tertiary: rgba(28,28,30,0.4);
+  }
+  [data-theme="light"] #progress-track { background: rgba(0,0,0,0.06); }
+  [data-theme="light"] .day-detail-overlay { background: rgba(0,0,0,0.5); }
+  [data-theme="light"] .cal-cell { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.04); }
+  [data-theme="light"] input[type="checkbox"] { background: rgba(0,0,0,0.03); }
+  [data-theme="light"] .step-order-btn,
+  [data-theme="light"] .sp-day-btn,
+  [data-theme="light"] .cal-nav-btn { background: rgba(0,0,0,0.03); }
+
+  .delete-btn {
+    background: none; border: none; color: var(--text-tertiary); font-size: 17px; line-height: 1;
+    cursor: pointer; padding: 2px 6px; border-radius: 6px; flex-shrink: 0;
+  }
+  .delete-btn:hover { color: var(--danger); background: rgba(255,69,58,0.1); }
+
+  .add-row-btn {
+    width: 100%; text-align: left; background: none; border: 1px dashed var(--border-strong);
+    color: var(--text-secondary); font-family: inherit; font-size: 13px; padding: 8px 10px;
+    border-radius: var(--radius-sm); cursor: pointer; margin-top: 10px;
+  }
+  .add-row-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  .routine-name {
+    width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
+    font-family: inherit; font-size: 13.5px; font-weight: 600; padding: 8px 10px;
+    border-radius: var(--radius-sm); margin-bottom: 10px; outline: none;
+  }
+  .routine-name:focus { border-color: var(--accent); }
+  .embedded-section {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .embedded-section h3 {
+    font-size: 13px;
+    margin: 0 0 4px;
+    font-weight: 650;
+  }
+  .section-check-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 10px;
+    color: var(--text-secondary);
+    font-size: 12.5px;
+  }
+  .section-check-row input[type="checkbox"] { cursor: default; }
+
+  /* ---------- To-do ---------- */
+  .todo-tag {
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+    background: rgba(255,255,255,0.05);
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .todo-add-row { display: flex; gap: 8px; margin-top: 10px; }
+  .todo-add-row input {
+    flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
+    font-family: inherit; font-size: 13px; padding: 8px 10px; border-radius: var(--radius-sm); outline: none;
+  }
+  .todo-add-row input:focus { border-color: var(--accent); }
+
+  /* ---------- Expenses ---------- */
+  .expense-budgets { display: flex; gap: 10px; margin-bottom: 12px; }
+  .expense-budget-field {
+    flex: 1; display: flex; flex-direction: column; gap: 4px;
+    font-size: 11px; color: var(--text-tertiary);
+  }
+  .expense-budget-field input {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
+    font-family: inherit; font-size: 13px; padding: 7px 9px; border-radius: 8px; outline: none;
+  }
+  .expense-budget-field input:focus { border-color: var(--accent); }
+  .expense-summary { margin-bottom: 10px; }
+  .expense-total-line { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+  .expense-total-line b { font-variant-numeric: tabular-nums; }
+  .expense-status { font-size: 11.5px; margin-top: 4px; }
+  .expense-ok { color: var(--success); }
+  .expense-over { color: var(--danger); }
+  .expense-month-line { font-size: 11.5px; color: var(--text-tertiary); margin-top: 8px; }
+  .expense-bar-track {
+    height: 5px; border-radius: 999px; background: rgba(255,255,255,0.06);
+    margin-top: 4px; overflow: hidden;
+  }
+  .expense-bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+  .expense-row {
+    display: flex; align-items: center; gap: 8px; padding: 7px 4px; border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+  }
+  .expense-row:last-of-type { border-bottom: none; }
+  .expense-cat-tag {
+    background: rgba(255,255,255,0.06); color: var(--text-secondary); font-size: 10.5px;
+    padding: 3px 8px; border-radius: 999px; flex-shrink: 0;
+  }
+  .expense-amount { font-weight: 700; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .expense-note-text { flex: 1; color: var(--text-tertiary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .expense-add-row { flex-wrap: wrap; }
+  .expense-category-select {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
+    font-family: inherit; font-size: 12.5px; padding: 8px 6px; border-radius: var(--radius-sm); outline: none;
+  }
+  .expense-add-row input[type="number"] { max-width: 90px; }
+  .expense-add-row #add-expense-btn { flex: 0 0 auto; padding: 8px 14px; }
+
+  /* ---------- Routine builder/player ---------- */
+  .routine-run-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .routine-toolbar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .routine-select {
+    flex: 1;
+    min-width: 180px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    outline: none;
+  }
+  .routine-step-row {
+    display: grid;
+    grid-template-columns: 26px 1fr 92px 30px;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .routine-step-row:last-of-type { border-bottom: none; }
+  .step-order-btns { display: flex; flex-direction: column; gap: 2px; }
+  .step-order-btn {
+    width: 24px; height: 15px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text-tertiary);
+    font-size: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+  }
+  .step-order-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .step-order-btn:disabled { opacity: 0.25; cursor: default; }
+  .routine-step-name,
+  .routine-step-minutes {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 9px;
+    border-radius: 8px;
+    outline: none;
+  }
+  .routine-step-minutes {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .routine-step-name:focus,
+  .routine-step-minutes:focus { border-color: var(--accent); }
+  .day-detail-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0,0,0,0.86);
+    backdrop-filter: blur(18px);
+    z-index: 120;
+  }
+  .day-detail-overlay.active { display: flex; }
+  .day-detail-panel {
+    width: min(640px, 100%);
+    background: rgba(44,44,46,0.92);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 16px 50px rgba(0,0,0,0.45);
+  }
+
+  /* Routine player: floating widget, never blocks the rest of the page */
+  .routine-overlay {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    width: min(320px, calc(100vw - 32px));
+    display: none;
+    z-index: 130;
+  }
+  .routine-overlay.active { display: block; }
+  .routine-player {
+    width: 100%;
+    text-align: left;
+    background: rgba(28,28,30,0.98);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 14px 16px 14px;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+  }
+  .routine-player.overtime .focus-time { color: var(--warning); }
+  .routine-mini-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .routine-mini-close {
+    background: none; border: none; color: var(--text-tertiary);
+    font-size: 16px; line-height: 1; cursor: pointer; padding: 2px 4px; border-radius: 6px;
+  }
+  .routine-mini-close:hover { color: var(--danger); background: rgba(255,69,58,0.1); }
+  .routine-player .focus-title { font-size: 16px; margin: 4px 0 2px; font-weight: 650; line-height: 1.15; }
+  .routine-player .focus-time { font-size: 34px; margin: 0 0 2px; }
+  .routine-player-status {
+    margin: 0 0 12px;
+    color: var(--text-secondary);
+    font-size: 11.5px;
+  }
+  .routine-player .focus-actions { justify-content: flex-start; gap: 6px; flex-wrap: wrap; }
+  .routine-player .focus-actions .btn { padding: 7px 10px; font-size: 12px; flex: 1 1 auto; }
+
+  @media (max-width: 760px) {
+    .routine-overlay { left: 12px; right: 12px; bottom: 12px; width: auto; }
+  }
+  .day-detail-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .day-detail-head h2 {
+    margin: 4px 0 0;
+    font-size: 20px;
+  }
+  .day-detail-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .day-detail-section {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+  .day-detail-section h3 {
+    margin: 0 0 8px;
+    font-size: 13px;
+  }
+  .detail-expense-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 0;
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .detail-expense-row:last-child { border-bottom: none; }
+
+  /* ---------- Measurements ---------- */
+  .measurement-card-row { padding: 10px 2px; border-bottom: 1px solid var(--border); }
+  .measurement-card-row:last-of-type { border-bottom: none; }
+  .measurement-top-line { display: flex; align-items: center; gap: 8px; }
+  .measurement-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); flex-shrink: 0; }
+  .measurement-status-dot.logged { background: var(--success); }
+  .measurement-unit-input { width: 46px; flex: 0 0 auto; text-align: center; }
+  .measurement-bottom-line { display: flex; align-items: center; gap: 8px; padding-left: 16px; margin-top: 6px; flex-wrap: wrap; }
+  .measurement-value-input {
+    width: 100px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
+    font-family: inherit; font-size: 13px; padding: 6px 9px; border-radius: 8px; outline: none;
+  }
+  .measurement-value-input:focus { border-color: var(--accent); }
+  .measurement-value-input:disabled { opacity: 0.4; }
+  .measurement-trend { font-size: 11.5px; color: var(--text-tertiary); }
+  .measurements-divider {
+    font-size: 10.5px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;
+    margin: 12px 0 4px; padding-top: 10px; border-top: 1px solid var(--border);
+  }
+
+  /* ---------- Journal ---------- */
+  textarea#journal-notes {
+    width: 100%; min-height: 140px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--text); font-family: inherit; font-size: 13.5px; line-height: 1.5; padding: 12px;
+    border-radius: var(--radius-sm); resize: vertical; outline: none;
+  }
+  textarea#journal-notes:focus { border-color: var(--accent); }
+  .save-indicator { font-size: 11px; color: var(--text-tertiary); margin-top: 6px; height: 14px; }
+
+  /* ---------- Analytics ---------- */
+  .analytics-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .analytics-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .metric {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 0;
+  }
+  .metric-label {
+    color: var(--text-tertiary);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .metric-value {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .calendar-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .cal-nav-btn {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 15px; cursor: pointer; line-height: 1;
+  }
+  .cal-nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .cal-nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .cal-nav-btn:disabled:hover { border-color: var(--border); color: var(--text-secondary); }
+  .cal-month-label { font-size: 13px; font-weight: 650; text-transform: capitalize; }
+  .calendar-weekdays, .calendar-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;
+  }
+  .calendar-weekdays { margin-bottom: 5px; }
+  .cal-weekday {
+    text-align: center; font-size: 10px; color: var(--text-tertiary);
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .cal-cell {
+    aspect-ratio: 1 / 1;
+    border-radius: 9px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.04);
+    font-size: 11px; color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .cal-cell.cal-pad { background: transparent; border-color: transparent; }
+  .cal-cell .cal-day-num { font-weight: 600; }
+  .cal-cell .cal-day-pct { font-size: 9px; opacity: 0.85; }
+  .cal-cell.cal-empty { opacity: 0.55; }
+  .cal-cell.cal-low { background: rgba(255,69,58,0.55); border-color: rgba(255,69,58,0.2); color: #fff; }
+  .cal-cell.cal-mid { background: rgba(255,159,10,0.55); border-color: rgba(255,159,10,0.2); color: #fff; }
+  .cal-cell.cal-good { background: rgba(48,209,88,0.6); border-color: rgba(48,209,88,0.25); color: #fff; }
+  .cal-cell.cal-today { box-shadow: 0 0 0 1.5px var(--accent) inset; }
+  .cal-legend {
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: 7px; margin-top: 10px; color: var(--text-tertiary); font-size: 11px;
+  }
+  .legend-swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+  .trend-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 20px 0 10px;
+  }
+  .trend-toolbar .card-subtitle-inline { font-size: 12.5px; font-weight: 650; color: var(--text-secondary); }
+  .trend-range-toggle { display: flex; gap: 4px; }
+  .trend-range-btn {
+    font-size: 11px; padding: 4px 10px; border-radius: 999px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    color: var(--text-secondary); cursor: pointer;
+  }
+  .trend-range-btn.active { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
+  #trend-chart svg { width: 100%; height: auto; display: block; }
+
+  /* ---------- History ---------- */
+  .history-list { display: flex; flex-direction: column; gap: 8px; }
+  .history-row {
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: var(--radius-sm);
+  }
+  .history-row-top { display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+  .history-row .h-date { color: var(--text-secondary); text-transform: capitalize; }
+  .history-row .h-percent { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .history-row .h-notes { font-size: 12px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.4; }
+  .history-actions { display: flex; align-items: center; gap: 8px; }
+  .history-date-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-tertiary);
+    border-radius: 7px;
+    padding: 3px 7px;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .history-date-btn:hover { color: var(--text); border-color: var(--border-strong); }
+  .h-good { color: var(--success); }
+  .h-mid { color: var(--warning); }
+  .h-low { color: var(--danger); }
+  .empty-hint { font-size: 12.5px; color: var(--text-tertiary); padding: 10px 2px; }
+
+  .footer-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+  .footer-note { text-align: center; font-size: 11.5px; color: var(--text-tertiary); margin-top: 12px; }
+
+  /* ---------- Focus mode (shared with Routine player) ---------- */
+  .focus-kicker {
+    color: var(--text-tertiary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .focus-title {
+    margin: 12px 0 18px;
+    font-size: clamp(24px, 6vw, 44px);
+    font-weight: 750;
+    line-height: 1.05;
+  }
+  .focus-time {
+    font-size: clamp(54px, 16vw, 116px);
+    font-weight: 760;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+    line-height: 0.95;
+  }
+  .focus-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (max-width: 760px) {
+    .header-right { width: 100%; flex-wrap: wrap; gap: 8px; }
+    .progress-pill, .streak-pill { flex: 1; justify-content: center; min-width: 128px; }
+    .threshold-control { width: 100%; }
+    .analytics-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .item-row { flex-wrap: wrap; }
+    .schedule-btn { width: calc(100% - 39px); margin-left: 29px; }
+    .routine-run-head { flex-direction: column; }
+    .routine-run-head .btn { width: 100%; }
+    .routine-step-row { grid-template-columns: 22px 1fr 70px 26px; }
+    .day-detail-metrics { grid-template-columns: 1fr; }
+    .day-nav { gap: 6px; }
+    #day-nav-picker { flex: 1; min-width: 0; }
+    .day-nav-flag { width: 100%; text-align: center; }
+    .carousel { aspect-ratio: 4 / 3; }
+    .carousel-arrow { width: 26px; height: 26px; font-size: 13px; }
+    .carousel-footer { flex-wrap: wrap; gap: 8px; }
+    .weekly-summary-grid { grid-template-columns: 1fr; }
+    .weekly-nav { flex-wrap: wrap; gap: 8px; }
+    .measurement-top-line { flex-wrap: wrap; }
+    .weight-row { flex-wrap: wrap; }
+    .weight-row .weight-label { flex: 1 1 100%; }
+    #goal-add-fields { flex-wrap: wrap; }
+    #goal-add-fields input { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div id="auth-gate">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17.5L19 7" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>Centro de Mando Personal</h1>
+    <p class="subtitle">Inicia sesión para ver tu progreso, sincronizado en todos tus dispositivos.</p>
+    <button class="btn auth-google-btn" id="google-signin-btn" type="button">
+      <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 5.1 29.5 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.8-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 6.1 29.5 3 24 3 16.3 3 9.7 7.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.4 0 10.3-2 14-5.4l-6.5-5.4C29.4 35.7 26.8 36.6 24 36.6c-5.3 0-9.7-3.4-11.3-8.1l-6.5 5C9.5 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.5 5.4C41.2 35.9 45 30.5 45 24c0-1.4-.1-2.8-.4-3.5z"/></svg>
+      Continuar con Google
+    </button>
+    <div class="auth-divider">o con tu correo</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-signin" data-mode="signin" type="button">Iniciar sesión</button>
+      <button class="auth-tab" id="auth-tab-signup" data-mode="signup" type="button">Crear cuenta</button>
+    </div>
+    <input type="email" id="auth-email" placeholder="Correo" autocomplete="email">
+    <input type="password" id="auth-password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="btn btn-accent" id="auth-submit-btn" type="button">Iniciar sesión</button>
+    <div class="auth-error" id="auth-error"></div>
+    <div class="auth-footnote">Tus datos se sincronizan de forma privada a tu cuenta.</div>
+  </div>
+</div>
+
+<div id="app-shell">
+<div id="progress-track"><div id="progress-fill"></div></div>
+
+<div class="wrap">
+  <div class="missed-day-banner" id="missed-day-banner" style="display:none;">
+    <span id="missed-day-text"></span>
+    <div class="missed-day-actions">
+      <button class="btn btn-ghost" id="missed-day-review-btn" type="button">Revisar</button>
+      <button class="missed-day-dismiss" id="missed-day-dismiss-btn" type="button" title="Cerrar">×</button>
+    </div>
+  </div>
+
+  <header>
+    <div class="title-block">
+      <h1>Centro de Mando Personal</h1>
+      <div class="date-line" id="today-date"></div>
+      <div class="quote-line" id="quote-line"></div>
+    </div>
+    <div class="header-right">
+      <div class="streak-pill">Racha <b id="streak-label">0</b></div>
+      <div class="progress-pill"><span id="progress-pill-label">Hoy</span> <b id="progress-label">0%</b></div>
+      <label class="threshold-control">Meta racha
+        <input type="number" id="streak-threshold" min="1" max="100" step="1" value="80">%
+      </label>
+      <button class="btn btn-ghost" id="personalize-btn" type="button" title="Personalizar apariencia">🎨</button>
+      <button class="btn btn-accent" id="finish-day-btn">Terminar día</button>
+    </div>
+  </header>
+
+  <div class="day-nav" id="day-nav">
+    <button class="day-nav-btn" id="day-nav-prev" type="button" title="Día anterior">‹</button>
+    <input type="date" id="day-nav-picker">
+    <button class="day-nav-btn" id="day-nav-next" type="button" title="Día siguiente">›</button>
+    <button class="btn btn-ghost day-nav-today" id="day-nav-today" type="button">Hoy</button>
+    <span class="day-nav-flag" id="day-nav-flag">Viendo un día pasado — lo que edites se guarda para esa fecha</span>
+  </div>
+
+  <div class="grid">
+    <!-- LEFT COLUMN -->
+    <div>
+      <div class="card">
+        <h2><span class="dot"></span>Hábitos</h2>
+        <p class="subtitle">Marca, edita o agrega los que quieras rastrear.</p>
+        <div id="habits-list"></div>
+        <button class="add-row-btn" id="add-habit-btn">+ Agregar hábito</button>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span>Pendientes de hoy</h2>
+        <p class="subtitle">Lo que no marques como hecho pasa solo al día siguiente.</p>
+        <div id="todos-list"></div>
+        <div class="todo-add-row">
+          <input type="text" id="new-todo-input" placeholder="Nuevo pendiente y Enter...">
+        </div>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span>Notas / Diario</h2>
+        <p class="subtitle">Cuenta en tu meta cuando escribes algo.</p>
+        <label class="section-check-row">
+          <input type="checkbox" id="notes-done-check" disabled>
+          <span>Nota registrada para la jornada</span>
+        </label>
+        <textarea id="journal-notes" placeholder="¿Cómo te fue hoy? ¿Qué aprendiste?"></textarea>
+        <div class="save-indicator" id="save-indicator"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div>
+      <div class="card">
+        <h2><span class="dot"></span>Dieta</h2>
+        <p class="subtitle">Comidas del día y su detalle.</p>
+        <div id="diet-list"></div>
+        <button class="add-row-btn" id="add-diet-btn">+ Agregar comida</button>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span>Gimnasio</h2>
+        <input type="text" class="routine-name" id="routine-name" placeholder="Nombre de la rutina de hoy (ej. Push day)">
+        <div id="gym-list"></div>
+        <button class="add-row-btn" id="add-gym-btn">+ Agregar ejercicio</button>
+        <div class="embedded-section">
+          <h3>Medidas corporales</h3>
+          <p class="subtitle">Registro de medidas dentro de tu entrenamiento. No cuenta en la racha.</p>
+          <div id="primary-measurements-list"></div>
+          <div class="measurements-divider">Otras medidas (bíceps, pierna, cintura...)</div>
+          <div id="measurements-list"></div>
+          <button class="add-row-btn" id="add-measurement-btn">+ Agregar medida</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span>Gastos</h2>
+        <p class="subtitle">Cuenta en tu meta cuando registras al menos un gasto.</p>
+        <label class="section-check-row">
+          <input type="checkbox" id="expenses-done-check" disabled>
+          <span>Gastos registrados para la jornada</span>
+        </label>
+        <div class="expense-budgets">
+          <label class="expense-budget-field">
+            <span>Presupuesto diario</span>
+            <input type="number" id="expense-daily-budget" placeholder="$ opcional" min="0" step="1">
+          </label>
+          <label class="expense-budget-field">
+            <span>Presupuesto mensual</span>
+            <input type="number" id="expense-monthly-budget" placeholder="$ opcional" min="0" step="1">
+          </label>
+        </div>
+        <div class="expense-summary" id="expense-summary"></div>
+        <div id="expense-list"></div>
+        <div class="todo-add-row expense-add-row">
+          <select id="new-expense-category" class="expense-category-select">
+            <option>Comida</option>
+            <option>Transporte</option>
+            <option>Entretenimiento</option>
+            <option>Servicios</option>
+            <option>Salud</option>
+            <option>Otros</option>
+          </select>
+          <input type="number" id="new-expense-amount" placeholder="Monto" min="0" step="1">
+          <input type="text" id="new-expense-note" placeholder="Nota (opcional)">
+          <button class="btn btn-ghost" id="add-expense-btn">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="dot"></span>Hazlo por ellos</h2>
+    <p class="subtitle">Tus metas y las personas que amas — un recordatorio antes de empezar el día.</p>
+    <div class="carousel" id="goal-carousel">
+      <button class="carousel-arrow prev" id="goal-prev-btn" type="button">‹</button>
+      <button class="carousel-arrow next" id="goal-next-btn" type="button">›</button>
+    </div>
+    <div class="carousel-dots" id="goal-dots"></div>
+    <div class="carousel-footer">
+      <span class="carousel-count" id="goal-count"></span>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button class="add-row-btn" id="add-goal-toggle-btn" type="button" style="width:auto; margin:0; padding:6px 14px;">+</button>
+        <button class="delete-current-btn" id="delete-goal-btn" type="button">Eliminar esta imagen</button>
+      </div>
+    </div>
+    <div class="todo-add-row" id="goal-add-fields" style="margin-top:10px; display:none;">
+      <input type="text" id="new-goal-url" placeholder="Link de la imagen (opcional)">
+      <input type="text" id="new-goal-caption" placeholder="Texto corto, ej. 'Mi hija' o 'Correr un maratón'">
+      <button class="btn btn-accent" id="add-goal-btn" type="button">Agregar</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="routine-run-head">
+      <div>
+        <h2><span class="dot"></span>Rutinas</h2>
+        <p class="subtitle">Crea secuencias tipo Routinery y ejecútalas actividad por actividad.</p>
+      </div>
+      <button class="btn btn-accent" id="start-routine-btn">Comenzar rutina</button>
+    </div>
+    <label class="section-check-row">
+      <input type="checkbox" id="routine-done-check" disabled>
+      <span>Rutina completada hoy</span>
+    </label>
+    <div class="routine-toolbar">
+      <select id="routine-select" class="routine-select"></select>
+      <button class="btn btn-ghost" id="add-routine-btn">Nueva rutina</button>
+      <button class="btn btn-danger-ghost" id="delete-routine-btn">Eliminar rutina</button>
+    </div>
+    <input type="text" class="routine-name" id="custom-routine-name" placeholder="Nombre de la rutina">
+    <div id="routine-steps-list"></div>
+    <button class="add-row-btn" id="add-routine-step-btn">+ Agregar actividad</button>
+  </div>
+
+  <div class="card">
+    <div class="analytics-head">
+      <div>
+        <h2><span class="dot"></span>Analíticas</h2>
+        <p class="subtitle">Calendario mensual, tendencia y racha.</p>
+      </div>
+    </div>
+    <div class="analytics-metrics">
+      <div class="metric">
+        <div class="metric-label">Racha actual</div>
+        <div class="metric-value" id="metric-streak">0 días</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Promedio 7 días</div>
+        <div class="metric-value" id="metric-avg7">0%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Días arriba meta</div>
+        <div class="metric-value" id="metric-wins">0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Mejor día</div>
+        <div class="metric-value" id="metric-best">0%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Racha récord</div>
+        <div class="metric-value" id="metric-best-streak">0 días</div>
+      </div>
+    </div>
+    <div class="calendar-toolbar">
+      <button class="cal-nav-btn" id="cal-prev" type="button">‹</button>
+      <div class="cal-month-label" id="cal-month-label">—</div>
+      <button class="cal-nav-btn" id="cal-next" type="button">›</button>
+    </div>
+    <div class="calendar-weekdays" id="calendar-weekdays"></div>
+    <div class="calendar-grid" id="calendar-grid"></div>
+    <div class="cal-legend">
+      <span>Sin dato</span><span class="legend-swatch cal-empty"></span>
+      <span>Bajo</span><span class="legend-swatch cal-low"></span>
+      <span>Medio</span><span class="legend-swatch cal-mid"></span>
+      <span>Meta</span><span class="legend-swatch cal-good"></span>
+    </div>
+
+    <div class="trend-toolbar">
+      <div class="card-subtitle-inline">Tendencia</div>
+      <div class="trend-range-toggle">
+        <button class="trend-range-btn active" data-range="30" type="button">30 días</button>
+        <button class="trend-range-btn" data-range="90" type="button">90 días</button>
+      </div>
+    </div>
+    <div id="trend-chart"></div>
+  </div>
+
+  <div class="card">
+    <div class="weekly-nav">
+      <div>
+        <h2 style="margin:0;"><span class="dot"></span>Resumen semanal</h2>
+        <p class="subtitle" style="margin:4px 0 0;">Tu semana en un vistazo.</p>
+      </div>
+      <div style="display:flex; gap:6px;">
+        <button class="cal-nav-btn" id="weekly-prev" type="button">‹</button>
+        <button class="cal-nav-btn" id="weekly-next" type="button">›</button>
+      </div>
+    </div>
+    <div id="weekly-summary-body"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="dot"></span>Historial reciente</h2>
+    <div class="history-list" id="history-list"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="dot"></span>Cuenta y respaldo</h2>
+    <p class="subtitle" id="account-email-line">Tu progreso se sincroniza automáticamente en la nube.</p>
+    <div class="footer-actions">
+      <button class="btn btn-ghost" id="export-btn">Exportar respaldo (.json)</button>
+      <button class="btn btn-ghost" id="import-btn">Importar respaldo</button>
+      <button class="btn btn-danger-ghost" id="reset-btn">Borrar todo</button>
+    </div>
+    <input type="file" id="import-file" accept="application/json" style="display:none">
+    <div class="footer-actions" style="margin-top:10px;">
+      <button class="btn btn-ghost" id="signout-btn">Cerrar sesión</button>
+    </div>
+    <div class="footer-note">Sincronizado con tu cuenta · funciona sin internet y se pone al día al reconectar</div>
+  </div>
+</div>
+
+<div class="day-detail-overlay" id="day-detail-overlay" aria-hidden="true">
+  <div class="day-detail-panel">
+    <div class="day-detail-head">
+      <div>
+        <div class="focus-kicker">Detalle del día</div>
+        <h2 id="day-detail-title">Día</h2>
+      </div>
+      <button class="delete-btn" id="day-detail-close" type="button">×</button>
+    </div>
+    <div id="day-detail-body"></div>
+    <button class="btn btn-accent" id="day-detail-edit-btn" type="button" style="width:100%; margin-top:14px;">Editar este día</button>
+  </div>
+</div>
+
+<div id="schedule-popover">
+  <div class="sp-title">¿Qué días toca?</div>
+  <div class="sp-day-row" id="sp-day-row"></div>
+  <div class="sp-preset-row" id="sp-preset-row"></div>
+  <button class="btn btn-ghost sp-close-btn" id="sp-close-btn">Listo</button>
+</div>
+
+<div id="personalize-popover">
+  <div class="sp-title">Apariencia</div>
+  <div class="theme-toggle-row">
+    <button class="theme-toggle-btn" data-theme="dark" type="button">🌙 Oscuro</button>
+    <button class="theme-toggle-btn" data-theme="light" type="button">☀️ Claro</button>
+  </div>
+  <div class="sp-title">Color de acento</div>
+  <div class="accent-swatch-row" id="accent-swatch-row"></div>
+  <div class="sp-title">Frase del encabezado</div>
+  <label class="section-check-row" style="margin:0 0 8px;">
+    <input type="checkbox" id="quotes-enabled-toggle">
+    <span>Mostrar frase inspiradora</span>
+  </label>
+  <select id="quote-font-select" class="expense-category-select" style="width:100%; margin-bottom:8px;">
+    <option value="system">Fuente: Sistema</option>
+    <option value="serif">Fuente: Serif elegante</option>
+    <option value="mono">Fuente: Monoespaciada</option>
+    <option value="rounded">Fuente: Redondeada</option>
+  </select>
+  <button class="btn btn-ghost" id="manage-quotes-btn" type="button" style="width:100%; margin-bottom:8px;">✍️ Administrar frases</button>
+  <button class="btn btn-ghost" id="manage-weights-btn" type="button" style="width:100%; margin-bottom:10px;">⚖️ Ponderar categorías</button>
+  <button class="btn btn-ghost sp-close-btn" id="personalize-close-btn" type="button">Listo</button>
+</div>
+
+<div class="day-detail-overlay" id="quotes-modal" aria-hidden="true">
+  <div class="day-detail-panel">
+    <div class="day-detail-head">
+      <div>
+        <div class="focus-kicker">Frases</div>
+        <h2>Administrar frases</h2>
+      </div>
+      <button class="delete-btn" id="quotes-modal-close" type="button">×</button>
+    </div>
+    <p class="subtitle">Una frase por línea. Se combinan con las frases por default si las dejas activadas arriba.</p>
+    <textarea id="custom-quotes-textarea" placeholder="Escribe tus propias frases, una por línea..." style="width:100%; min-height:160px; background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text); font-family:inherit; font-size:13px; padding:10px; border-radius:8px; outline:none;"></textarea>
+    <button class="btn btn-accent" id="save-quotes-btn" type="button" style="width:100%; margin-top:12px;">Guardar frases</button>
+  </div>
+</div>
+
+<div class="day-detail-overlay" id="weights-modal" aria-hidden="true">
+  <div class="day-detail-panel">
+    <div class="day-detail-head">
+      <div>
+        <div class="focus-kicker">Ponderación</div>
+        <h2>¿Qué pesa más en tu %?</h2>
+      </div>
+      <button class="delete-btn" id="weights-modal-close" type="button">×</button>
+    </div>
+    <p class="subtitle">Cada categoría cuenta como un bloque completo, sin importar cuántos checkboxes tenga adentro. Ajusta qué tanto pesa cada una — 0 la excluye del cálculo.</p>
+    <div id="weights-list"></div>
+    <button class="btn btn-accent" id="save-weights-btn" type="button" style="width:100%; margin-top:14px;">Guardar ponderación</button>
+  </div>
+</div>
+
+<div class="day-detail-overlay" id="weekly-summary-modal" aria-hidden="true">
+  <div class="day-detail-panel">
+    <div class="day-detail-head">
+      <div>
+        <div class="focus-kicker">Resumen semanal</div>
+        <h2 id="weekly-summary-modal-title">Tu semana</h2>
+      </div>
+      <button class="delete-btn" id="weekly-summary-modal-close" type="button">×</button>
+    </div>
+    <div id="weekly-summary-modal-body"></div>
+  </div>
+</div>
+
+<div class="routine-overlay" id="routine-overlay" aria-hidden="true">
+  <div class="routine-player">
+    <div class="routine-mini-head">
+      <span class="focus-kicker" id="routine-player-name">Rutina</span>
+      <button class="routine-mini-close" id="routine-mini-close" type="button" title="Cerrar">×</button>
+    </div>
+    <div class="focus-title" id="routine-step-title">Actividad</div>
+    <div class="focus-time" id="routine-step-time">00:00</div>
+    <div class="routine-player-status" id="routine-player-status">Actividad 1 de 1</div>
+    <div class="focus-actions">
+      <button class="btn btn-ghost" id="routine-pause-btn">Pausar</button>
+      <button class="btn btn-accent" id="routine-next-btn">Siguiente</button>
+      <button class="btn btn-danger-ghost" id="routine-stop-btn">Salir</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "centroDeMando_v2"; // clave vieja de localStorage, usada solo para migrar datos previos
+  var ALL_DAYS = [0, 1, 2, 3, 4, 5, 6];
+  var SCHEDULE_PRESETS = [
+    { label: "Diario", days: [0, 1, 2, 3, 4, 5, 6] },
+    { label: "L-V", days: [1, 2, 3, 4, 5] },
+    { label: "L-M-V", days: [1, 3, 5] },
+    { label: "M-J-S", days: [2, 4, 6] },
+    { label: "Fin de semana", days: [0, 6] },
+    { label: "Domingo", days: [0] }
+  ];
+
+  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+  function localISO(date){
+    var d = date || new Date();
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, "0");
+    var day = String(d.getDate()).padStart(2, "0");
+    return y + "-" + m + "-" + day;
+  }
+  function todayISO(){ return localISO(new Date()); }
+  function dateFromISO(iso){ return new Date(iso + "T00:00:00"); }
+  function shiftISO(iso, delta){
+    var d = dateFromISO(iso);
+    d.setDate(d.getDate() + delta);
+    return localISO(d);
+  }
+  function sameDays(a, b){
+    if (!a || !b || a.length !== b.length) return false;
+    var aa = a.slice().sort().join(",");
+    var bb = b.slice().sort().join(",");
+    return aa === bb;
+  }
+  function sanitizeDays(days){
+    if (!Array.isArray(days) || !days.length) return ALL_DAYS.slice();
+    return days.map(function(d){ return Number(d); }).filter(function(d){ return d >= 0 && d <= 6; });
+  }
+  function scheduleLabel(days){
+    var clean = sanitizeDays(days);
+    var preset = SCHEDULE_PRESETS.find(function(p){ return sameDays(p.days, clean); });
+    if (preset) return preset.label;
+    var short = ["D", "L", "M", "M", "J", "V", "S"];
+    return clean.map(function(d){ return short[d]; }).join("-");
+  }
+  function activeISO(){ return state.activeDate || todayISO(); }
+  function activeDate(){ return dateFromISO(activeISO()); }
+  function isScheduledToday(item){
+    return sanitizeDays(item.days).indexOf(activeDate().getDay()) !== -1;
+  }
+
+  function defaultState(){
+    return {
+      settings: {
+        streakThreshold: 80, theme: "dark", accentColor: "#0a84ff", quoteFont: "system", quotesEnabled: true,
+        categoryWeights: { habitos: 1, dieta: 1, gimnasio: 1, notas: 1, gastos: 1, rutina: 1 },
+        lastWeeklySummaryWeek: null
+      },
+      bestStreak: 0,
+      activeDate: todayISO(),
+      habits: [
+        { id: uid(), name: "Ejercicio", doneLog: {}, days: [1, 3, 5] },
+        { id: uid(), name: "Tomar agua (2L)", doneLog: {}, days: ALL_DAYS.slice() },
+        { id: uid(), name: "Leer 20 min", doneLog: {}, days: ALL_DAYS.slice() },
+        { id: uid(), name: "Meditar", doneLog: {}, days: ALL_DAYS.slice() },
+        { id: uid(), name: "Dormir 7h+", doneLog: {}, days: ALL_DAYS.slice() }
+      ],
+      diet: [
+        { id: uid(), name: "Desayuno", detail: "", doneLog: {}, days: ALL_DAYS.slice() },
+        { id: uid(), name: "Comida", detail: "", doneLog: {}, days: ALL_DAYS.slice() },
+        { id: uid(), name: "Cena", detail: "", doneLog: {}, days: ALL_DAYS.slice() }
+      ],
+      gym: {
+        routine: "",
+        exercises: [ { id: uid(), name: "Ejercicio 1", meta: "3x10", doneLog: {}, days: [1, 3, 5] } ]
+      },
+      todos: [
+        { id: uid(), text: "Planear la semana", done: false, addedDate: todayISO() }
+      ],
+      measurements: [
+        { id: uid(), name: "Peso", unit: "kg", days: [0], log: [], primary: true }
+      ],
+      expenses: { dailyBudget: null, monthlyBudget: null },
+      expensesLog: {},
+      routines: [
+        {
+          id: uid(),
+          name: "Mañana",
+          steps: [
+            { id: uid(), name: "Prepararme", minutes: 15 },
+            { id: uid(), name: "Planear el día", minutes: 10 },
+            { id: uid(), name: "Primer bloque profundo", minutes: 45 }
+          ]
+        }
+      ],
+      activeRoutineId: null,
+      routineCompletionLog: [],
+      notesLog: {},
+      customQuotes: [],
+      goalImages: [],
+      history: []
+    };
+  }
+
+  function normalizeState(parsed){
+    if (!parsed.settings) parsed.settings = {};
+    var threshold = Number(parsed.settings.streakThreshold);
+    parsed.settings.streakThreshold = Math.min(100, Math.max(1, threshold || 80));
+    if (parsed.settings.theme !== "light" && parsed.settings.theme !== "dark") parsed.settings.theme = "dark";
+    if (typeof parsed.settings.accentColor !== "string" || !/^#[0-9a-fA-F]{6}$/.test(parsed.settings.accentColor)){
+      parsed.settings.accentColor = "#0a84ff";
+    }
+    if (!["system", "serif", "mono", "rounded"].includes(parsed.settings.quoteFont)) parsed.settings.quoteFont = "system";
+    if (typeof parsed.settings.quotesEnabled !== "boolean") parsed.settings.quotesEnabled = true;
+    if (!Array.isArray(parsed.customQuotes)) parsed.customQuotes = [];
+    if (!Array.isArray(parsed.goalImages)) parsed.goalImages = [];
+    parsed.goalImages.forEach(function(g){
+      if (!g.id) g.id = uid();
+      if (typeof g.url !== "string") g.url = "";
+      if (typeof g.caption !== "string") g.caption = "";
+    });
+    if (typeof parsed.settings.categoryWeights !== "object" || !parsed.settings.categoryWeights){
+      parsed.settings.categoryWeights = {};
+    }
+    ["habitos", "dieta", "gimnasio", "notas", "gastos", "rutina"].forEach(function(key){
+      var w = Number(parsed.settings.categoryWeights[key]);
+      parsed.settings.categoryWeights[key] = (w >= 0 && w <= 5) ? w : 1;
+    });
+    if (typeof parsed.settings.lastWeeklySummaryWeek !== "string") parsed.settings.lastWeeklySummaryWeek = null;
+
+    // The date the person last had open before saving — used only to migrate old single-day fields below.
+    var lastKnownDate = parsed.activeDate || todayISO();
+    // The viewing cursor always reopens on real today; the day-navigator is how you look at other days.
+    parsed.activeDate = todayISO();
+
+    parsed.bestStreak = Number(parsed.bestStreak) || 0;
+    if (!parsed.history) parsed.history = [];
+    if (!parsed.todos) parsed.todos = [];
+    if (!parsed.measurements) parsed.measurements = [];
+    parsed.measurements.forEach(function(m){
+      m.days = sanitizeDays(m.days);
+      if (!Array.isArray(m.log)) m.log = [];
+      if (typeof m.unit !== "string") m.unit = "";
+      m.primary = !!m.primary;
+    });
+    if (!parsed.measurements.some(function(m){ return m.primary; })){
+      var pesoMatch = parsed.measurements.find(function(m){ return m.name.trim().toLowerCase() === "peso"; });
+      if (pesoMatch) pesoMatch.primary = true;
+      else parsed.measurements.unshift({ id: uid(), name: "Peso", unit: "kg", days: [0], log: [], primary: true });
+    }
+
+    // ---- Expenses: migrate old single-array + expenseHistory into a per-date log ----
+    if (!parsed.expenses) parsed.expenses = {};
+    if (!(parsed.expenses.dailyBudget > 0)) parsed.expenses.dailyBudget = null;
+    if (!(parsed.expenses.monthlyBudget > 0)) parsed.expenses.monthlyBudget = null;
+    if (!parsed.expensesLog) parsed.expensesLog = {};
+    if (Array.isArray(parsed.expenses.entries) && parsed.expenses.entries.length){
+      parsed.expensesLog[lastKnownDate] = (parsed.expensesLog[lastKnownDate] || []).concat(parsed.expenses.entries);
+    }
+    delete parsed.expenses.entries;
+    if (Array.isArray(parsed.expenseHistory)){
+      parsed.expenseHistory.forEach(function(h){
+        if (h.iso && Array.isArray(h.entries) && h.entries.length && !parsed.expensesLog[h.iso]){
+          parsed.expensesLog[h.iso] = h.entries;
+        }
+      });
+    }
+    delete parsed.expenseHistory;
+    Object.keys(parsed.expensesLog).forEach(function(iso){
+      if (!Array.isArray(parsed.expensesLog[iso])) parsed.expensesLog[iso] = [];
+    });
+
+    if (!Array.isArray(parsed.routines) || !parsed.routines.length){
+      parsed.routines = defaultState().routines;
+    }
+    parsed.routines.forEach(function(r){
+      if (!r.id) r.id = uid();
+      if (typeof r.name !== "string" || !r.name.trim()) r.name = "Rutina";
+      if (!Array.isArray(r.steps)) r.steps = [];
+      r.steps.forEach(function(s){
+        if (!s.id) s.id = uid();
+        if (typeof s.name !== "string") s.name = "Actividad";
+        s.minutes = Math.max(1, Number(s.minutes) || 5);
+      });
+    });
+    if (!parsed.activeRoutineId || !parsed.routines.some(function(r){ return r.id === parsed.activeRoutineId; })){
+      parsed.activeRoutineId = parsed.routines[0].id;
+    }
+    if (!Array.isArray(parsed.routineCompletionLog)) parsed.routineCompletionLog = [];
+
+    // ---- Notes: migrate old single string into a per-date log ----
+    if (!parsed.notesLog) parsed.notesLog = {};
+    if (typeof parsed.notes === "string" && parsed.notes.trim() && !parsed.notesLog[lastKnownDate]){
+      parsed.notesLog[lastKnownDate] = parsed.notes;
+    }
+    delete parsed.notes;
+
+    // ---- Habits/diet/gym: migrate old single "done" boolean into a per-date log ----
+    function migrateDoneLog(item){
+      if (!item.doneLog) item.doneLog = {};
+      if (item.done === true) item.doneLog[lastKnownDate] = true;
+      delete item.done;
+      item.days = sanitizeDays(item.days);
+    }
+    parsed.habits.forEach(migrateDoneLog);
+    parsed.diet.forEach(function(d){ if (typeof d.detail !== "string") d.detail = ""; migrateDoneLog(d); });
+    if (!parsed.gym.exercises) parsed.gym.exercises = [];
+    parsed.gym.exercises.forEach(migrateDoneLog);
+
+    parsed.history.forEach(function(entry){
+      entry.percent = Number(entry.percent) || 0;
+      if (!Array.isArray(entry.expenses)) entry.expenses = [];
+      if (!(entry.expenseTotal >= 0)) entry.expenseTotal = entry.expenses.reduce(function(s, e){ return s + (Number(e.amount) || 0); }, 0);
+      if (!entry.date && entry.iso){
+        entry.date = formatDateLabel(entry.iso);
+      }
+    });
+    return parsed;
+  }
+
+  function isDoneOn(item, iso){ return !!(item.doneLog && item.doneLog[iso]); }
+  function setDoneOn(item, iso, val){
+    if (!item.doneLog) item.doneLog = {};
+    if (val) item.doneLog[iso] = true;
+    else delete item.doneLog[iso];
+  }
+  function getActiveNote(){ return state.notesLog[activeISO()] || ""; }
+  function setActiveNote(val){
+    if (val && val.trim()) state.notesLog[activeISO()] = val;
+    else delete state.notesLog[activeISO()];
+  }
+  function getActiveExpenses(){
+    var iso = activeISO();
+    if (!state.expensesLog[iso]) state.expensesLog[iso] = [];
+    return state.expensesLog[iso];
+  }
+
+  // ---------- Firebase config ----------
+  var firebaseConfig = {
+    apiKey: "AIzaSyAr6Z3POeKtCc-qlHy0Y3X__jWoSZSUEFY",
+    authDomain: "control-personal-cfdd4.firebaseapp.com",
+    projectId: "control-personal-cfdd4",
+    storageBucket: "control-personal-cfdd4.firebasestorage.app",
+    messagingSenderId: "873568404673",
+    appId: "1:873568404673:web:210ad0cd769cc6e86dc040"
+  };
+
+  var firebaseReady = firebaseConfig.apiKey !== "TU_API_KEY";
+  var auth = null, db = null, currentUid = null;
+  var saveTimer = null;
+
+  if (firebaseReady){
+    firebase.initializeApp(firebaseConfig);
+    auth = firebase.auth();
+    db = firebase.firestore();
+    db.enablePersistence().catch(function(err){
+      console.warn("Persistencia offline no disponible (puede ser por pestañas múltiples).", err);
+    });
+  }
+
+  var state = defaultState();
+
+  function loadUserState(uid){
+    var docRef = db.collection("users").doc(uid);
+    return docRef.get().then(function(doc){
+      if (doc.exists){
+        return normalizeState(doc.data());
+      }
+      var legacy = null;
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) legacy = JSON.parse(raw);
+      } catch (e){ /* sin datos viejos, sin problema */ }
+      var initial = (legacy && legacy.habits) ? normalizeState(legacy) : defaultState();
+      return docRef.set(initial).then(function(){ return initial; });
+    });
+  }
+
+  function saveState(){
+    if (!currentUid || !db) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      db.collection("users").doc(currentUid).set(state).catch(function(err){
+        console.error("No se pudo guardar en la nube.", err);
+      });
+    }, 400);
+  }
+
+  function flashSaved(){
+    var indEl = document.getElementById("save-indicator");
+    indEl.textContent = "Guardado";
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){ indEl.textContent = ""; }, 1200);
+  }
+
+  function el(tag, cls){
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  function escapeHtml(value){
+    return String(value == null ? "" : value).replace(/[<>&"]/g, function(c){
+      return ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" })[c];
+    });
+  }
+
+  var DAY_ORDER = [1, 2, 3, 4, 5, 6, 0]; // Monday-first for a natural week strip
+  var DAY_SHORT = { 0: "D", 1: "L", 2: "M", 3: "M", 4: "J", 5: "V", 6: "S" };
+  var DAY_FULL = { 0: "Domingo", 1: "Lunes", 2: "Martes", 3: "Miércoles", 4: "Jueves", 5: "Viernes", 6: "Sábado" };
+
+  var schedulePopoverState = { item: null, afterChange: null };
+
+  function buildSchedulePopoverOnce(){
+    var dayRow = document.getElementById("sp-day-row");
+    if (dayRow.childElementCount) return; // already built
+    DAY_ORDER.forEach(function(dayNum){
+      var btn = el("button", "sp-day-btn");
+      btn.type = "button";
+      btn.textContent = DAY_SHORT[dayNum];
+      btn.title = DAY_FULL[dayNum];
+      btn.dataset.day = dayNum;
+      btn.addEventListener("click", function(){
+        var item = schedulePopoverState.item;
+        if (!item) return;
+        var days = sanitizeDays(item.days).slice();
+        var idx = days.indexOf(dayNum);
+        if (idx !== -1){
+          if (days.length === 1) return; // keep at least one day scheduled
+          days.splice(idx, 1);
+        } else {
+          days.push(dayNum);
+        }
+        item.days = sanitizeDays(days);
+        saveState();
+        refreshSchedulePopoverUI();
+        if (schedulePopoverState.afterChange) schedulePopoverState.afterChange();
+      });
+      dayRow.appendChild(btn);
+    });
+
+    var presetRow = document.getElementById("sp-preset-row");
+    SCHEDULE_PRESETS.forEach(function(p){
+      var chip = el("button", "sp-preset-chip");
+      chip.type = "button";
+      chip.textContent = p.label;
+      chip.addEventListener("click", function(){
+        var item = schedulePopoverState.item;
+        if (!item) return;
+        item.days = sanitizeDays(p.days);
+        saveState();
+        refreshSchedulePopoverUI();
+        if (schedulePopoverState.afterChange) schedulePopoverState.afterChange();
+      });
+      presetRow.appendChild(chip);
+    });
+  }
+
+  function refreshSchedulePopoverUI(){
+    var item = schedulePopoverState.item;
+    if (!item) return;
+    var days = sanitizeDays(item.days);
+    document.querySelectorAll("#sp-day-row .sp-day-btn").forEach(function(btn){
+      var dayNum = Number(btn.dataset.day);
+      btn.classList.toggle("active", days.indexOf(dayNum) !== -1);
+    });
+  }
+
+  function closeSchedulePopover(){
+    document.getElementById("schedule-popover").classList.remove("open");
+    if (schedulePopoverState.afterChange) schedulePopoverState.afterChange();
+    schedulePopoverState.item = null;
+    schedulePopoverState.afterChange = null;
+  }
+
+  function openSchedulePopover(item, anchorBtn, afterChange){
+    buildSchedulePopoverOnce();
+    schedulePopoverState.item = item;
+    schedulePopoverState.afterChange = afterChange;
+    refreshSchedulePopoverUI();
+    var pop = document.getElementById("schedule-popover");
+    pop.classList.add("open");
+    var rect = anchorBtn.getBoundingClientRect();
+    var top = rect.bottom + window.scrollY + 6;
+    var left = rect.left + window.scrollX;
+    var maxLeft = window.scrollX + document.documentElement.clientWidth - 260;
+    if (left > maxLeft) left = Math.max(8, maxLeft);
+    pop.style.top = top + "px";
+    pop.style.left = left + "px";
+  }
+
+  document.getElementById("sp-close-btn").addEventListener("click", closeSchedulePopover);
+  document.addEventListener("click", function(e){
+    var pop = document.getElementById("schedule-popover");
+    if (!pop.classList.contains("open")) return;
+    if (pop.contains(e.target) || e.target.classList.contains("schedule-btn")) return;
+    closeSchedulePopover();
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && document.getElementById("schedule-popover").classList.contains("open")){
+      closeSchedulePopover();
+    }
+  });
+
+  // ---------- Appearance: theme + accent color ----------
+  var ACCENT_PRESETS = ["#0a84ff", "#bf5af2", "#30d158", "#ff9f0a", "#ff375f", "#64d2ff"];
+
+  function hexToRgb(hex){
+    var h = hex.replace("#", "");
+    var num = parseInt(h, 16);
+    return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+  }
+
+  function mixWithWhite(rgb, amount){
+    return rgb.map(function(c){ return Math.round(c + (255 - c) * amount); });
+  }
+
+  function applyAccent(hex){
+    var rgb = hexToRgb(hex);
+    var root = document.documentElement;
+    root.style.setProperty("--accent", hex);
+    root.style.setProperty("--accent-soft", "rgba(" + rgb.join(",") + ",0.16)");
+    root.style.setProperty("--accent-border", "rgba(" + rgb.join(",") + ",0.4)");
+    root.style.setProperty("--accent-light", "rgb(" + mixWithWhite(rgb, 0.42).join(",") + ")");
+  }
+
+  function applyTheme(theme){
+    document.documentElement.setAttribute("data-theme", theme === "light" ? "light" : "dark");
+  }
+
+  // ---------- Inspirational quotes ----------
+  var DEFAULT_QUOTES = [
+    "La disciplina es elegir entre lo que quieres ahora y lo que quieres más.",
+    "Un día a la vez.",
+    "Pequeños pasos, grandes cambios.",
+    "No cuentes los días, haz que los días cuenten.",
+    "El progreso, no la perfección.",
+    "Lo que se mide, mejora.",
+    "Hoy es una nueva oportunidad para ser un poco mejor.",
+    "La consistencia le gana al talento cuando el talento no es consistente.",
+    "No tienes que ser extremo, solo constante.",
+    "Cada hábito que cumples hoy es un voto por quién quieres ser.",
+    "El mejor momento para empezar fue ayer. El segundo mejor es ahora.",
+    "Motivación te hace empezar. El hábito te hace continuar.",
+    "Menos perfecto, más presente.",
+    "Una racha se construye un día a la vez, no de golpe.",
+    "Lo simple, sostenido, gana."
+  ];
+
+  function activeQuotePool(){
+    var pool = [];
+    if (state.settings.quotesEnabled) pool = pool.concat(DEFAULT_QUOTES);
+    pool = pool.concat(state.customQuotes.filter(function(q){ return q.trim(); }));
+    return pool;
+  }
+
+  function dayOfYear(d){
+    var start = new Date(d.getFullYear(), 0, 0);
+    var diff = d - start;
+    return Math.floor(diff / 86400000);
+  }
+
+  function renderQuote(){
+    var el2 = document.getElementById("quote-line");
+    var pool = activeQuotePool();
+    if (!pool.length){
+      el2.textContent = "";
+      el2.style.display = "none";
+      return;
+    }
+    el2.style.display = "block";
+    var idx = dayOfYear(new Date()) % pool.length;
+    el2.textContent = "“" + pool[idx] + "”";
+  }
+
+  function applyQuoteFont(font){
+    document.getElementById("quote-line").setAttribute("data-font", font);
+  }
+
+  // ---------- Goal images carousel ("Hazlo por ellos") ----------
+  var GOAL_PALETTE = [
+    "linear-gradient(140deg,#d9a441,#7a4a1e)",
+    "linear-gradient(140deg,#4a7ab5,#1c2f45)",
+    "linear-gradient(140deg,#7a4a8e,#2e1c3a)",
+    "linear-gradient(140deg,#3f8f6c,#1c3a2c)",
+    "linear-gradient(140deg,#b5544a,#3a1c1c)",
+    "linear-gradient(140deg,#8a8a3f,#2e2e1c)"
+  ];
+  var goalCarouselIndex = 0;
+  var goalCarouselTimer = null;
+
+  function renderGoalCarousel(){
+    var carousel = document.getElementById("goal-carousel");
+    Array.prototype.slice.call(carousel.querySelectorAll(".slide")).forEach(function(s){ s.remove(); });
+
+    var images = state.goalImages;
+    var hasImages = images.length > 0;
+    document.getElementById("goal-prev-btn").style.display = hasImages ? "flex" : "none";
+    document.getElementById("goal-next-btn").style.display = hasImages ? "flex" : "none";
+    document.getElementById("delete-goal-btn").style.display = hasImages ? "inline-block" : "none";
+    document.getElementById("goal-count").textContent = hasImages ? (goalCarouselIndex + 1) + " / " + images.length : "";
+
+    if (!hasImages){
+      var empty = el("div", "slide empty-slide active");
+      var msg = el("div", "empty-msg");
+      msg.textContent = "Agrega la primera imagen de tu meta o de alguien que amas.";
+      empty.appendChild(msg);
+      carousel.insertBefore(empty, document.getElementById("goal-prev-btn"));
+      document.getElementById("goal-dots").innerHTML = "";
+      return;
+    }
+
+    if (goalCarouselIndex >= images.length) goalCarouselIndex = images.length - 1;
+    if (goalCarouselIndex < 0) goalCarouselIndex = 0;
+
+    images.forEach(function(g, i){
+      var slide = el("div", "slide" + (i === goalCarouselIndex ? " active" : ""));
+      if (g.url){
+        var img = el("img"); img.src = g.url; img.alt = g.caption || "";
+        slide.appendChild(img);
+      } else {
+        var bg = el("div", "fallback-bg");
+        bg.style.background = GOAL_PALETTE[i % GOAL_PALETTE.length];
+        slide.appendChild(bg);
+      }
+      var scrim = el("div", "scrim");
+      slide.appendChild(scrim);
+      if (g.caption){
+        var caption = el("div", "caption");
+        caption.textContent = g.caption;
+        slide.appendChild(caption);
+      }
+      carousel.insertBefore(slide, document.getElementById("goal-prev-btn"));
+    });
+
+    var dotsEl = document.getElementById("goal-dots");
+    dotsEl.innerHTML = "";
+    images.forEach(function(_, i){
+      var dot = el("button", "carousel-dot" + (i === goalCarouselIndex ? " active" : ""));
+      dot.type = "button";
+      dot.addEventListener("click", function(){ goToGoalSlide(i); });
+      dotsEl.appendChild(dot);
+    });
+  }
+
+  function goToGoalSlide(i){
+    if (!state.goalImages.length) return;
+    goalCarouselIndex = (i + state.goalImages.length) % state.goalImages.length;
+    renderGoalCarousel();
+    resetGoalCarouselTimer();
+  }
+
+  function resetGoalCarouselTimer(){
+    clearInterval(goalCarouselTimer);
+    goalCarouselTimer = setInterval(function(){
+      if (state.goalImages.length > 1) goToGoalSlide(goalCarouselIndex + 1);
+    }, 4500);
+  }
+
+  document.getElementById("goal-prev-btn").addEventListener("click", function(){ goToGoalSlide(goalCarouselIndex - 1); });
+  document.getElementById("goal-next-btn").addEventListener("click", function(){ goToGoalSlide(goalCarouselIndex + 1); });
+
+  document.getElementById("add-goal-toggle-btn").addEventListener("click", function(){
+    var fields = document.getElementById("goal-add-fields");
+    var opening = fields.style.display === "none";
+    fields.style.display = opening ? "flex" : "none";
+    if (opening) document.getElementById("new-goal-url").focus();
+  });
+
+  document.getElementById("add-goal-btn").addEventListener("click", function(){
+    var urlInput = document.getElementById("new-goal-url");
+    var captionInput = document.getElementById("new-goal-caption");
+    var url = urlInput.value.trim();
+    var caption = captionInput.value.trim();
+    if (!url && !caption) return;
+    state.goalImages.push({ id: uid(), url: url, caption: caption });
+    urlInput.value = ""; captionInput.value = "";
+    document.getElementById("goal-add-fields").style.display = "none";
+    saveState();
+    goToGoalSlide(state.goalImages.length - 1);
+  });
+  document.getElementById("new-goal-caption").addEventListener("keydown", function(e){
+    if (e.key === "Enter") document.getElementById("add-goal-btn").click();
+  });
+
+  document.getElementById("delete-goal-btn").addEventListener("click", function(){
+    if (!state.goalImages.length) return;
+    state.goalImages.splice(goalCarouselIndex, 1);
+    saveState();
+    goToGoalSlide(goalCarouselIndex);
+    renderGoalCarousel();
+  });
+
+  function refreshPersonalizeUI(){
+    document.querySelectorAll(".theme-toggle-btn").forEach(function(btn){
+      btn.classList.toggle("active", btn.dataset.theme === state.settings.theme);
+    });
+    document.querySelectorAll(".accent-swatch").forEach(function(sw){
+      sw.classList.toggle("active", sw.dataset.color.toLowerCase() === state.settings.accentColor.toLowerCase());
+    });
+    document.getElementById("quotes-enabled-toggle").checked = state.settings.quotesEnabled;
+    document.getElementById("quote-font-select").value = state.settings.quoteFont;
+  }
+
+  document.getElementById("quotes-enabled-toggle").addEventListener("change", function(e){
+    state.settings.quotesEnabled = e.target.checked;
+    saveState();
+    renderQuote();
+  });
+  document.getElementById("quote-font-select").addEventListener("change", function(e){
+    state.settings.quoteFont = e.target.value;
+    applyQuoteFont(e.target.value);
+    saveState();
+  });
+  document.getElementById("manage-quotes-btn").addEventListener("click", function(){
+    document.getElementById("custom-quotes-textarea").value = state.customQuotes.join("\n");
+    document.getElementById("quotes-modal").classList.add("active");
+    document.getElementById("quotes-modal").setAttribute("aria-hidden", "false");
+  });
+  document.getElementById("quotes-modal-close").addEventListener("click", function(){
+    document.getElementById("quotes-modal").classList.remove("active");
+    document.getElementById("quotes-modal").setAttribute("aria-hidden", "true");
+  });
+  document.getElementById("quotes-modal").addEventListener("click", function(e){
+    if (e.target.id === "quotes-modal") {
+      document.getElementById("quotes-modal").classList.remove("active");
+      document.getElementById("quotes-modal").setAttribute("aria-hidden", "true");
+    }
+  });
+  document.getElementById("save-quotes-btn").addEventListener("click", function(){
+    var lines = document.getElementById("custom-quotes-textarea").value
+      .split("\n").map(function(l){ return l.trim(); }).filter(function(l){ return l; });
+    state.customQuotes = lines;
+    saveState();
+    renderQuote();
+    document.getElementById("quotes-modal").classList.remove("active");
+    document.getElementById("quotes-modal").setAttribute("aria-hidden", "true");
+  });
+
+  function buildPersonalizePopoverOnce(){
+    var row = document.getElementById("accent-swatch-row");
+    if (row.childElementCount) return;
+    ACCENT_PRESETS.forEach(function(hex){
+      var sw = el("button", "accent-swatch");
+      sw.type = "button";
+      sw.style.background = hex;
+      sw.dataset.color = hex;
+      sw.title = hex;
+      sw.addEventListener("click", function(){
+        state.settings.accentColor = hex;
+        applyAccent(hex);
+        saveState();
+        refreshPersonalizeUI();
+        renderTrendChart();
+      });
+      row.appendChild(sw);
+    });
+    document.querySelectorAll(".theme-toggle-btn").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        state.settings.theme = btn.dataset.theme;
+        applyTheme(state.settings.theme);
+        saveState();
+        refreshPersonalizeUI();
+      });
+    });
+  }
+
+  function closePersonalizePopover(){
+    document.getElementById("personalize-popover").classList.remove("open");
+  }
+
+  document.getElementById("personalize-btn").addEventListener("click", function(e){
+    e.stopPropagation();
+    buildPersonalizePopoverOnce();
+    refreshPersonalizeUI();
+    var pop = document.getElementById("personalize-popover");
+    pop.classList.add("open");
+    var rect = e.currentTarget.getBoundingClientRect();
+    var top = rect.bottom + window.scrollY + 6;
+    var left = rect.left + window.scrollX;
+    var maxLeft = window.scrollX + document.documentElement.clientWidth - 252;
+    if (left > maxLeft) left = Math.max(8, maxLeft);
+    pop.style.top = top + "px";
+    pop.style.left = left + "px";
+  });
+  document.getElementById("personalize-close-btn").addEventListener("click", closePersonalizePopover);
+  document.addEventListener("click", function(e){
+    var pop = document.getElementById("personalize-popover");
+    if (!pop.classList.contains("open")) return;
+    if (pop.contains(e.target) || e.target.id === "personalize-btn") return;
+    closePersonalizePopover();
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && document.getElementById("personalize-popover").classList.contains("open")){
+      closePersonalizePopover();
+    }
+  });
+
+  function makeScheduleButton(item, afterChange){
+    var btn = el("button", "schedule-btn");
+    btn.type = "button";
+    function refreshLabel(){ btn.textContent = scheduleLabel(item.days); }
+    refreshLabel();
+    btn.addEventListener("click", function(e){
+      e.stopPropagation();
+      openSchedulePopover(item, btn, function(){ refreshLabel(); afterChange(); });
+    });
+    return btn;
+  }
+
+  // ---------- Habits ----------
+  function renderHabits(){
+    var list = document.getElementById("habits-list");
+    list.innerHTML = "";
+    state.habits.forEach(function(h){
+      var scheduled = isScheduledToday(h);
+      var done = isDoneOn(h, activeISO());
+      var row = el("div", "item-row" + (done ? " done" : "") + (scheduled ? "" : " off-schedule"));
+
+      var cb = el("input"); cb.type = "checkbox"; cb.checked = done;
+      cb.disabled = !scheduled;
+      cb.title = scheduled ? "Marcar como hecho" : "No toca ese día";
+      cb.addEventListener("change", function(){
+        setDoneOn(h, activeISO(), cb.checked); row.classList.toggle("done", cb.checked); saveState(); updateProgress();
+      });
+
+      var name = el("input", "item-name"); name.type = "text"; name.value = h.name;
+      name.addEventListener("input", function(){ h.name = name.value; });
+      name.addEventListener("blur", saveState);
+
+      var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Eliminar hábito";
+      del.addEventListener("click", function(){
+        state.habits = state.habits.filter(function(x){ return x.id !== h.id; });
+        saveState(); renderHabits(); updateProgress();
+      });
+
+      row.appendChild(cb);
+      row.appendChild(name);
+      row.appendChild(makeScheduleButton(h, function(){ renderHabits(); updateProgress(); }));
+      row.appendChild(del);
+      list.appendChild(row);
+    });
+  }
+
+  // ---------- Diet ----------
+  function renderDiet(){
+    var list = document.getElementById("diet-list");
+    list.innerHTML = "";
+    state.diet.forEach(function(d){
+      var scheduled = isScheduledToday(d);
+      var done = isDoneOn(d, activeISO());
+      var row = el("div", "item-row" + (done ? " done" : "") + (scheduled ? "" : " off-schedule"));
+
+      var cb = el("input"); cb.type = "checkbox"; cb.checked = done;
+      cb.disabled = !scheduled;
+      cb.title = scheduled ? "Marcar como hecho" : "No toca ese día";
+      cb.addEventListener("change", function(){
+        setDoneOn(d, activeISO(), cb.checked); row.classList.toggle("done", cb.checked); saveState(); updateProgress();
+      });
+
+      var name = el("input", "item-name"); name.type = "text"; name.value = d.name; name.placeholder = "Comida";
+      name.addEventListener("input", function(){ d.name = name.value; });
+      name.addEventListener("blur", saveState);
+
+      var detail = el("input", "item-detail"); detail.type = "text"; detail.value = d.detail || "";
+      detail.placeholder = "Qué comiste / plan...";
+      detail.addEventListener("input", function(){ d.detail = detail.value; });
+      detail.addEventListener("blur", saveState);
+
+      var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Eliminar comida";
+      del.addEventListener("click", function(){
+        state.diet = state.diet.filter(function(x){ return x.id !== d.id; });
+        saveState(); renderDiet(); updateProgress();
+      });
+
+      row.appendChild(cb); row.appendChild(name); row.appendChild(detail);
+      row.appendChild(makeScheduleButton(d, function(){ renderDiet(); updateProgress(); }));
+      row.appendChild(del);
+      list.appendChild(row);
+    });
+  }
+
+  // ---------- Gym ----------
+  function renderGym(){
+    var routineInput = document.getElementById("routine-name");
+    routineInput.value = state.gym.routine || "";
+    routineInput.oninput = function(){ state.gym.routine = routineInput.value; };
+    routineInput.onblur = saveState;
+
+    var list = document.getElementById("gym-list");
+    list.innerHTML = "";
+    state.gym.exercises.forEach(function(x){
+      var scheduled = isScheduledToday(x);
+      var done = isDoneOn(x, activeISO());
+      var row = el("div", "item-row" + (done ? " done" : "") + (scheduled ? "" : " off-schedule"));
+
+      var cb = el("input"); cb.type = "checkbox"; cb.checked = done;
+      cb.disabled = !scheduled;
+      cb.title = scheduled ? "Marcar como hecho" : "No toca ese día";
+      cb.addEventListener("change", function(){
+        setDoneOn(x, activeISO(), cb.checked); row.classList.toggle("done", cb.checked); saveState(); updateProgress();
+      });
+
+      var name = el("input", "item-name"); name.type = "text"; name.value = x.name; name.placeholder = "Ejercicio";
+      name.addEventListener("input", function(){ x.name = name.value; });
+      name.addEventListener("blur", saveState);
+
+      var meta = el("input", "item-meta"); meta.type = "text"; meta.value = x.meta || ""; meta.placeholder = "3x10";
+      meta.addEventListener("input", function(){ x.meta = meta.value; });
+      meta.addEventListener("blur", saveState);
+
+      var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Eliminar ejercicio";
+      del.addEventListener("click", function(){
+        state.gym.exercises = state.gym.exercises.filter(function(e){ return e.id !== x.id; });
+        saveState(); renderGym(); updateProgress();
+      });
+
+      row.appendChild(cb); row.appendChild(name); row.appendChild(meta); row.appendChild(del);
+      row.insertBefore(makeScheduleButton(x, function(){ renderGym(); updateProgress(); }), del);
+      list.appendChild(row);
+    });
+  }
+
+  // ---------- To-do (with memory) ----------
+  function renderTodos(){
+    var list = document.getElementById("todos-list");
+    list.innerHTML = "";
+    if (!state.todos.length){
+      var hint = el("div", "empty-hint");
+      hint.textContent = "Sin pendientes. Agrega uno abajo.";
+      list.appendChild(hint);
+      return;
+    }
+    state.todos.forEach(function(t){
+      var row = el("div", "item-row" + (t.done ? " done" : ""));
+
+      var cb = el("input"); cb.type = "checkbox"; cb.checked = t.done;
+      cb.addEventListener("change", function(){
+        t.done = cb.checked; row.classList.toggle("done", t.done); saveState(); updateProgress();
+      });
+
+      var name = el("input", "item-name"); name.type = "text"; name.value = t.text;
+      name.addEventListener("input", function(){ t.text = name.value; });
+      name.addEventListener("blur", saveState);
+
+      row.appendChild(cb);
+      row.appendChild(name);
+
+      if (t.addedDate && t.addedDate !== activeISO()){
+        var tag = el("span", "todo-tag");
+        var d = new Date(t.addedDate + "T00:00:00");
+        tag.textContent = "desde " + d.toLocaleDateString("es-MX", { day: "numeric", month: "short" });
+        row.appendChild(tag);
+      }
+
+      var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Eliminar pendiente";
+      del.addEventListener("click", function(){
+        state.todos = state.todos.filter(function(x){ return x.id !== t.id; });
+        saveState(); renderTodos(); updateProgress();
+      });
+      row.appendChild(del);
+
+      list.appendChild(row);
+    });
+  }
+
+  document.getElementById("new-todo-input").addEventListener("keydown", function(e){
+    if (e.key !== "Enter") return;
+    var val = e.target.value.trim();
+    if (!val) return;
+    state.todos.push({ id: uid(), text: val, done: false, addedDate: activeISO() });
+    e.target.value = "";
+    saveState();
+    renderTodos();
+  });
+
+  // ---------- Body measurements ----------
+  function lastMeasurementEntry(m){
+    if (!m.log.length) return null;
+    var sorted = m.log.slice().sort(function(a, b){ return a.iso < b.iso ? 1 : -1; });
+    return sorted[0];
+  }
+
+  function buildMeasurementRow(m, allowDelete){
+    var scheduled = isScheduledToday(m);
+    var todayEntry = measurementEntryForToday(m);
+    var row = el("div", "measurement-card-row");
+
+    var topLine = el("div", "measurement-top-line");
+    var dot = el("div", "measurement-status-dot" + (todayEntry ? " logged" : ""));
+
+    var nameInput = el("input", "item-name");
+    nameInput.type = "text"; nameInput.value = m.name; nameInput.placeholder = "Nombre";
+    nameInput.disabled = !!m.primary;
+    nameInput.addEventListener("input", function(){ m.name = nameInput.value; });
+    nameInput.addEventListener("blur", saveState);
+
+    var unitInput = el("input", "item-meta measurement-unit-input");
+    unitInput.type = "text"; unitInput.value = m.unit || ""; unitInput.placeholder = "kg";
+    unitInput.addEventListener("input", function(){ m.unit = unitInput.value; });
+    unitInput.addEventListener("blur", function(){ saveState(); renderMeasurements(); });
+
+    topLine.appendChild(dot);
+    topLine.appendChild(nameInput);
+    topLine.appendChild(unitInput);
+    topLine.appendChild(makeScheduleButton(m, function(){ renderMeasurements(); updateProgress(); }));
+
+    if (allowDelete){
+      var del = el("button", "delete-btn");
+      del.textContent = "×"; del.title = "Eliminar medida";
+      del.addEventListener("click", function(){
+        state.measurements = state.measurements.filter(function(x){ return x.id !== m.id; });
+        saveState(); renderMeasurements(); updateProgress();
+      });
+      topLine.appendChild(del);
+    }
+
+    var bottomLine = el("div", "measurement-bottom-line");
+    var valueInput = el("input", "measurement-value-input");
+    valueInput.type = "number"; valueInput.step = "0.1";
+    valueInput.disabled = !scheduled;
+    valueInput.placeholder = scheduled ? "Valor de hoy" : "No toca hoy";
+    if (todayEntry) valueInput.value = todayEntry.value;
+    valueInput.addEventListener("change", function(){
+      var raw = valueInput.value;
+      if (raw === ""){
+        m.log = m.log.filter(function(e){ return e.iso !== activeISO(); });
+      } else {
+        var val = Number(raw);
+        var existing = measurementEntryForToday(m);
+        if (existing){ existing.value = val; }
+        else { m.log.push({ iso: activeISO(), value: val }); }
+      }
+      saveState();
+      renderMeasurements();
+      updateProgress();
+    });
+
+    var trend = el("div", "measurement-trend");
+    var last = lastMeasurementEntry(m);
+    if (last && last.iso !== activeISO()){
+      trend.textContent = "Última: " + last.value + (m.unit ? " " + m.unit : "") + " (" + formatDateLabel(last.iso) + ")";
+    } else if (!last){
+      trend.textContent = "Sin registros aún";
+    }
+
+    bottomLine.appendChild(valueInput);
+    bottomLine.appendChild(trend);
+
+    row.appendChild(topLine);
+    row.appendChild(bottomLine);
+    return row;
+  }
+
+  function renderMeasurements(){
+    var primaryList = document.getElementById("primary-measurements-list");
+    var list = document.getElementById("measurements-list");
+    primaryList.innerHTML = "";
+    list.innerHTML = "";
+
+    state.measurements.filter(function(m){ return m.primary; }).forEach(function(m){
+      primaryList.appendChild(buildMeasurementRow(m, false));
+    });
+
+    var secondary = state.measurements.filter(function(m){ return !m.primary; });
+    if (!secondary.length){
+      var hint = el("div", "empty-hint");
+      hint.textContent = "Sin otras medidas todavía. Agrega bíceps, pierna, cintura...";
+      list.appendChild(hint);
+    } else {
+      secondary.forEach(function(m){
+        list.appendChild(buildMeasurementRow(m, true));
+      });
+    }
+  }
+
+  document.getElementById("add-measurement-btn").addEventListener("click", function(){
+    state.measurements.push({ id: uid(), name: "Nueva medida", unit: "", days: [0], log: [] });
+    saveState(); renderMeasurements(); updateProgress();
+  });
+
+  // ---------- Expenses ----------
+  function monthlyExpenseTotal(){
+    var d = activeDate();
+    var ym = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+    var total = 0;
+    Object.keys(state.expensesLog).forEach(function(iso){
+      if (iso.slice(0, 7) === ym){
+        total += state.expensesLog[iso].reduce(function(s, e){ return s + (Number(e.amount) || 0); }, 0);
+      }
+    });
+    return total;
+  }
+
+  function renderExpenseSummary(){
+    var total = activeExpenseTotal();
+    var daily = state.expenses.dailyBudget;
+    var monthly = state.expenses.monthlyBudget;
+    var label = activeISO() === todayISO() ? "Gastado hoy" : "Gastado ese día";
+    var html = '<div class="expense-total-line"><span>' + label + '</span><b>$' + total.toFixed(0) + (daily ? " / $" + daily : "") + "</b></div>";
+    if (daily){
+      var within = total <= daily;
+      html += '<div class="expense-status ' + (within ? "expense-ok" : "expense-over") + '">' + (within ? "✅ Dentro del presupuesto" : "⚠️ Te pasaste del presupuesto") + "</div>";
+    }
+    if (monthly){
+      var monthTotal = monthlyExpenseTotal();
+      var pct = Math.min(100, Math.round((monthTotal / monthly) * 100));
+      html += '<div class="expense-month-line">Este mes: $' + monthTotal.toFixed(0) + " / $" + monthly + "</div>";
+      html += '<div class="expense-bar-track"><div class="expense-bar-fill" style="width:' + pct + '%"></div></div>';
+    }
+    document.getElementById("expense-summary").innerHTML = html;
+  }
+
+  function renderExpenses(){
+    document.getElementById("expense-daily-budget").value = state.expenses.dailyBudget != null ? state.expenses.dailyBudget : "";
+    document.getElementById("expense-monthly-budget").value = state.expenses.monthlyBudget != null ? state.expenses.monthlyBudget : "";
+    document.getElementById("expenses-done-check").checked = expenseDoneToday();
+
+    var entries = getActiveExpenses();
+    var list = document.getElementById("expense-list");
+    list.innerHTML = "";
+    if (!entries.length){
+      var hint = el("div", "empty-hint");
+      hint.textContent = "Sin gastos registrados para este día.";
+      list.appendChild(hint);
+    } else {
+      entries.forEach(function(entry){
+        var row = el("div", "expense-row");
+        var cat = el("span", "expense-cat-tag"); cat.textContent = entry.category;
+        var amount = el("span", "expense-amount"); amount.textContent = "$" + Number(entry.amount).toFixed(0);
+        var note = el("span", "expense-note-text"); note.textContent = entry.note || "";
+        var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Eliminar gasto";
+        del.addEventListener("click", function(){
+          var arr = getActiveExpenses();
+          state.expensesLog[activeISO()] = arr.filter(function(x){ return x.id !== entry.id; });
+          saveState(); renderExpenses(); updateProgress();
+        });
+        row.appendChild(cat); row.appendChild(amount); row.appendChild(note); row.appendChild(del);
+        list.appendChild(row);
+      });
+    }
+    renderExpenseSummary();
+  }
+
+  function addExpenseFromForm(){
+    var amountInput = document.getElementById("new-expense-amount");
+    var categorySelect = document.getElementById("new-expense-category");
+    var noteInput = document.getElementById("new-expense-note");
+    var amount = Number(amountInput.value);
+    if (!amount || amount <= 0) return;
+    getActiveExpenses().push({ id: uid(), amount: amount, category: categorySelect.value, note: noteInput.value.trim() });
+    amountInput.value = ""; noteInput.value = "";
+    saveState();
+    renderExpenses();
+    updateProgress();
+  }
+
+  document.getElementById("add-expense-btn").addEventListener("click", addExpenseFromForm);
+  document.getElementById("new-expense-amount").addEventListener("keydown", function(e){ if (e.key === "Enter") addExpenseFromForm(); });
+  document.getElementById("new-expense-note").addEventListener("keydown", function(e){ if (e.key === "Enter") addExpenseFromForm(); });
+
+  document.getElementById("expense-daily-budget").addEventListener("change", function(e){
+    var v = e.target.value === "" ? null : Number(e.target.value);
+    state.expenses.dailyBudget = (v && v > 0) ? v : null;
+    saveState(); renderExpenseSummary(); updateProgress();
+  });
+  document.getElementById("expense-monthly-budget").addEventListener("change", function(e){
+    var v = e.target.value === "" ? null : Number(e.target.value);
+    state.expenses.monthlyBudget = (v && v > 0) ? v : null;
+    saveState(); renderExpenseSummary();
+  });
+
+  // ---------- History ----------
+  function formatDateLabel(iso){
+    var d = dateFromISO(iso);
+    return d.toLocaleDateString("es-MX", { weekday: "short", day: "numeric", month: "short" });
+  }
+
+  function renderHistory(){
+    var list = document.getElementById("history-list");
+    list.innerHTML = "";
+    if (!state.history.length){
+      var hint = el("div", "empty-hint");
+      hint.textContent = "Aún no hay días registrados. Pulsa \"Terminar día\" cuando cierres tu jornada.";
+      list.appendChild(hint);
+      return;
+    }
+    state.history.slice(0, 15).forEach(function(entry){
+      var row = el("div", "history-row");
+      var top = el("div", "history-row-top");
+      var dateSpan = el("span", "h-date"); dateSpan.textContent = entry.date || (entry.iso ? formatDateLabel(entry.iso) : "Sin fecha");
+      var pctClass = entry.percent >= state.settings.streakThreshold ? "h-good" : (entry.percent >= 50 ? "h-mid" : "h-low");
+      var pctSpan = el("span", "h-percent " + pctClass); pctSpan.textContent = entry.percent + "%";
+      var actions = el("div", "history-actions");
+      var editDate = el("button", "history-date-btn");
+      editDate.type = "button";
+      editDate.textContent = "Fecha";
+      editDate.title = "Corregir fecha del registro";
+      editDate.addEventListener("click", function(){
+        var current = entry.iso || todayISO();
+        var next = prompt("Nueva fecha para este registro (AAAA-MM-DD):", current);
+        if (next === null) return;
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(next)){
+          alert("Usa el formato AAAA-MM-DD, por ejemplo 2026-07-04.");
+          return;
+        }
+        entry.iso = next;
+        entry.date = formatDateLabel(next);
+        saveState();
+        renderHistory();
+        renderAnalytics();
+      });
+      actions.appendChild(pctSpan);
+      actions.appendChild(editDate);
+      top.appendChild(dateSpan); top.appendChild(actions);
+      row.appendChild(top);
+      if (entry.notes){
+        var notesEl = el("div", "h-notes");
+        var trimmed = entry.notes.length > 160 ? entry.notes.slice(0, 160) + "…" : entry.notes;
+        notesEl.textContent = trimmed;
+        row.appendChild(notesEl);
+      }
+      list.appendChild(row);
+    });
+  }
+
+  function measurementEntryForToday(m){
+    var todayIsoVal = activeISO();
+    return m.log.find(function(e){ return e.iso === todayIsoVal; }) || null;
+  }
+
+  function activeExpenseTotal(){
+    return getActiveExpenses().reduce(function(s, e){ return s + (Number(e.amount) || 0); }, 0);
+  }
+
+  function expenseDoneToday(){
+    return getActiveExpenses().length > 0;
+  }
+
+  function routineCompletedToday(){
+    var iso = activeISO();
+    return state.routineCompletionLog.some(function(r){ return r.iso === iso; });
+  }
+
+  var CATEGORY_LABELS = { habitos: "Hábitos", dieta: "Dieta", gimnasio: "Gimnasio", pendientes: "Pendientes", notas: "Notas", gastos: "Gastos", rutina: "Rutina" };
+  var CATEGORY_ORDER = ["habitos", "dieta", "gimnasio", "pendientes", "notas", "gastos", "rutina"];
+
+  function getCategorizedCheckable(iso){
+    iso = iso || activeISO();
+    var dayOfWeek = dateFromISO(iso).getDay();
+    function scheduledOn(item){ return sanitizeDays(item.days).indexOf(dayOfWeek) !== -1; }
+    var cats = {
+      habitos: state.habits.filter(scheduledOn).map(function(h){ return { done: isDoneOn(h, iso) }; }),
+      dieta: state.diet.filter(scheduledOn).map(function(d){ return { done: isDoneOn(d, iso) }; }),
+      gimnasio: state.gym.exercises.filter(scheduledOn).map(function(x){ return { done: isDoneOn(x, iso) }; }),
+      pendientes: state.todos.map(function(t){ return { done: !!t.done }; }),
+      notas: [{ done: !!((state.notesLog[iso] || "").trim()) }],
+      gastos: [{ done: (state.expensesLog[iso] || []).length > 0 }],
+      rutina: state.routines.some(function(r){ return r.steps.length > 0; })
+        ? [{ done: state.routineCompletionLog.some(function(r){ return r.iso === iso; }) }]
+        : []
+    };
+    return cats;
+  }
+
+  function categoryRate(items){
+    if (!items.length) return null;
+    var done = items.filter(function(i){ return i.done; }).length;
+    return done / items.length;
+  }
+
+  function getAllCheckable(iso){
+    var cats = getCategorizedCheckable(iso);
+    var items = [];
+    CATEGORY_ORDER.forEach(function(key){ items = items.concat(cats[key]); });
+    return items;
+  }
+
+  function computeWeightedPercent(iso){
+    var cats = getCategorizedCheckable(iso);
+    var weights = state.settings.categoryWeights;
+    var totalWeight = 0, weightedSum = 0;
+    CATEGORY_ORDER.forEach(function(key){
+      var rate = categoryRate(cats[key]);
+      if (rate === null) return;
+      var w = weights[key] != null ? weights[key] : 1;
+      totalWeight += w;
+      weightedSum += w * rate;
+    });
+    if (!totalWeight) return 0;
+    return Math.round((weightedSum / totalWeight) * 100);
+  }
+
+  function liveProgressFor(iso){
+    return computeWeightedPercent(iso);
+  }
+
+  function historyByISO(){
+    var map = {};
+    state.history.forEach(function(entry){
+      if (entry.iso) map[entry.iso] = entry;
+    });
+    return map;
+  }
+
+  function expenseArchiveForISO(iso){
+    var entries = state.expensesLog[iso] || [];
+    var total = entries.reduce(function(s, e){ return s + (Number(e.amount) || 0); }, 0);
+    return { total: total, entries: entries };
+  }
+
+  function showDayDetail(iso){
+    var entry = historyByISO()[iso];
+    var expenses = expenseArchiveForISO(iso);
+    var title = document.getElementById("day-detail-title");
+    var body = document.getElementById("day-detail-body");
+    title.textContent = formatDateLabel(iso);
+    var pct = entry ? entry.percent : (iso === todayISO() ? updateProgress(true) : 0);
+    var done = entry ? (entry.done || 0) : 0;
+    var scheduled = entry ? (entry.scheduled || 0) : 0;
+    var notes = state.notesLog[iso] || (entry && entry.notes) || "";
+    var expenseRows = expenses.entries.length ? expenses.entries.map(function(e){
+      return '<div class="detail-expense-row"><span>' + escapeHtml(e.category || "Gasto") + (e.note ? " · " + escapeHtml(e.note) : "") + '</span><b>$' + Number(e.amount || 0).toFixed(0) + '</b></div>';
+    }).join("") : '<div class="empty-hint">Sin gastos registrados para este día.</div>';
+    body.innerHTML = '' +
+      '<div class="day-detail-metrics">' +
+        '<div class="metric"><div class="metric-label">Cumplimiento</div><div class="metric-value">' + pct + '%</div></div>' +
+        '<div class="metric"><div class="metric-label">Completado</div><div class="metric-value">' + done + '/' + scheduled + '</div></div>' +
+        '<div class="metric"><div class="metric-label">Gastado</div><div class="metric-value">$' + expenses.total.toFixed(0) + '</div></div>' +
+      '</div>' +
+      '<div class="day-detail-section"><h3>Gastos</h3>' + expenseRows + '</div>' +
+      '<div class="day-detail-section"><h3>Notas</h3><div class="h-notes">' + (notes ? escapeHtml(notes) : "Sin notas guardadas.") + '</div></div>';
+    document.getElementById("day-detail-edit-btn").onclick = function(){
+      closeDayDetail();
+      goToDay(iso);
+    };
+    document.getElementById("day-detail-overlay").classList.add("active");
+    document.getElementById("day-detail-overlay").setAttribute("aria-hidden", "false");
+  }
+
+  function closeDayDetail(){
+    document.getElementById("day-detail-overlay").classList.remove("active");
+    document.getElementById("day-detail-overlay").setAttribute("aria-hidden", "true");
+  }
+
+  function calculateStreak(){
+    var threshold = state.settings.streakThreshold;
+    var map = historyByISO();
+    var count = 0;
+    var todayIsoVal = todayISO();
+    var todayLiveEntry = map[todayIsoVal];
+    var todayLivePct = todayLiveEntry ? todayLiveEntry.percent : liveProgressFor(todayIsoVal);
+    var cursor = todayIsoVal;
+    if (todayLivePct >= threshold) {
+      count += 1;
+    }
+    cursor = shiftISO(cursor, -1);
+    while (map[cursor] && map[cursor].percent >= threshold){
+      count += 1;
+      cursor = shiftISO(cursor, -1);
+    }
+    return count;
+  }
+
+  var calendarViewDate = new Date();
+  var trendRange = 30;
+
+  function renderCalendar(){
+    var map = historyByISO();
+    var threshold = state.settings.streakThreshold;
+    var year = calendarViewDate.getFullYear();
+    var month = calendarViewDate.getMonth();
+    var monthLabel = calendarViewDate.toLocaleDateString("es-MX", { month: "long", year: "numeric" });
+    document.getElementById("cal-month-label").textContent = monthLabel;
+
+    var weekdaysEl = document.getElementById("calendar-weekdays");
+    if (!weekdaysEl.childElementCount){
+      ["L", "M", "M", "J", "V", "S", "D"].forEach(function(d){
+        var w = el("div", "cal-weekday"); w.textContent = d; weekdaysEl.appendChild(w);
+      });
+    }
+
+    var grid = document.getElementById("calendar-grid");
+    grid.innerHTML = "";
+    var firstOfMonth = new Date(year, month, 1);
+    var leadingPad = (firstOfMonth.getDay() + 6) % 7; // Monday-first offset
+    var totalDays = new Date(year, month + 1, 0).getDate();
+    var todayIsoVal = todayISO();
+
+    for (var i = 0; i < leadingPad; i++){
+      grid.appendChild(el("div", "cal-cell cal-pad"));
+    }
+    for (var day = 1; day <= totalDays; day++){
+      var iso = localISO(new Date(year, month, day));
+      var entry = map[iso];
+      var cls = "cal-cell";
+      if (entry){
+        cls += entry.percent >= threshold ? " cal-good" : (entry.percent >= 50 ? " cal-mid" : " cal-low");
+      } else {
+        cls += " cal-empty";
+      }
+      if (iso === todayIsoVal) cls += " cal-today";
+      var cell = el("div", cls);
+      var num = el("div", "cal-day-num"); num.textContent = String(day);
+      cell.appendChild(num);
+      if (entry){
+        var pct = el("div", "cal-day-pct"); pct.textContent = entry.percent + "%";
+        cell.appendChild(pct);
+        cell.title = formatDateLabel(iso) + ": " + entry.percent + "%";
+      } else {
+        cell.title = formatDateLabel(iso) + ": sin registro";
+      }
+      cell.addEventListener("click", function(dayIso){
+        return function(){ showDayDetail(dayIso); };
+      }(iso));
+      grid.appendChild(cell);
+    }
+
+    var now = new Date();
+    document.getElementById("cal-next").disabled = (year === now.getFullYear() && month === now.getMonth());
+  }
+
+  function renderTrendChart(){
+    var container = document.getElementById("trend-chart");
+    var dated = state.history.filter(function(e){ return e.iso; }).slice().sort(function(a, b){ return a.iso < b.iso ? -1 : 1; });
+    var cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - (trendRange - 1));
+    var cutoffIso = localISO(cutoffDate);
+    var points = dated.filter(function(e){ return e.iso >= cutoffIso; });
+
+    if (points.length < 2){
+      container.innerHTML = '<div class="empty-hint">Aún no hay suficientes días registrados para ver la tendencia.</div>';
+      return;
+    }
+
+    var w = 600, h = 160, padL = 30, padR = 8, padT = 12, padB = 20;
+    var innerW = w - padL - padR, innerH = h - padT - padB;
+    var n = points.length;
+    var accentHex = state.settings.accentColor || "#0a84ff";
+    function xAt(i){ return padL + (n === 1 ? 0 : (innerW * i / (n - 1))); }
+    function yAt(pct){ return padT + innerH - (innerH * pct / 100); }
+
+    var linePts = points.map(function(p, i){ return xAt(i) + "," + yAt(p.percent); }).join(" ");
+    var areaPts = linePts + " " + xAt(n - 1) + "," + (padT + innerH) + " " + xAt(0) + "," + (padT + innerH);
+
+    var gridLines = [0, 50, 100].map(function(v){
+      var y = yAt(v);
+      return '<line x1="' + padL + '" y1="' + y + '" x2="' + (w - padR) + '" y2="' + y + '" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>' +
+             '<text x="2" y="' + (y + 3) + '" font-size="9" fill="rgba(235,235,245,0.4)">' + v + '%</text>';
+    }).join("");
+
+    var dots = n <= 31 ? points.map(function(p, i){
+      return '<circle cx="' + xAt(i) + '" cy="' + yAt(p.percent) + '" r="2.2" fill="' + accentHex + '" />';
+    }).join("") : "";
+
+    var firstLabel = formatDateLabel(points[0].iso);
+    var lastLabel = formatDateLabel(points[n - 1].iso);
+
+    var svg = '' +
+      '<svg viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs><linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="' + accentHex + '" stop-opacity="0.35"/>' +
+          '<stop offset="100%" stop-color="' + accentHex + '" stop-opacity="0"/>' +
+        '</linearGradient></defs>' +
+        gridLines +
+        '<polygon points="' + areaPts + '" fill="url(#trendFill)" />' +
+        '<polyline points="' + linePts + '" fill="none" stroke="' + accentHex + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />' +
+        dots +
+        '<text x="' + padL + '" y="' + (h - 4) + '" font-size="9" fill="rgba(235,235,245,0.4)">' + firstLabel + '</text>' +
+        '<text x="' + (w - padR) + '" y="' + (h - 4) + '" font-size="9" fill="rgba(235,235,245,0.4)" text-anchor="end">' + lastLabel + '</text>' +
+      '</svg>';
+
+    container.innerHTML = svg;
+  }
+
+  document.getElementById("cal-prev").addEventListener("click", function(){
+    calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() - 1, 1);
+    renderCalendar();
+  });
+  document.getElementById("cal-next").addEventListener("click", function(e){
+    if (e.currentTarget.disabled) return;
+    calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + 1, 1);
+    renderCalendar();
+  });
+  document.querySelectorAll(".trend-range-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".trend-range-btn").forEach(function(b){ b.classList.remove("active"); });
+      btn.classList.add("active");
+      trendRange = Number(btn.dataset.range) || 30;
+      renderTrendChart();
+    });
+  });
+
+  document.getElementById("day-detail-close").addEventListener("click", closeDayDetail);
+  document.getElementById("day-detail-overlay").addEventListener("click", function(e){
+    if (e.target.id === "day-detail-overlay") closeDayDetail();
+  });
+
+  function renderAnalytics(){
+    var threshold = state.settings.streakThreshold;
+    var streak = calculateStreak();
+    var dated = state.history.filter(function(entry){ return entry.iso; });
+    var last7 = dated.slice(0, 7);
+    var avg7 = last7.length ? Math.round(last7.reduce(function(sum, e){ return sum + e.percent; }, 0) / last7.length) : 0;
+    var wins = dated.filter(function(e){ return e.percent >= threshold; }).length;
+    var best = dated.length ? Math.max.apply(null, dated.map(function(e){ return e.percent; })) : 0;
+    if (streak > state.bestStreak){
+      state.bestStreak = streak;
+      saveState();
+    }
+    document.getElementById("streak-label").textContent = streak;
+    document.getElementById("metric-streak").textContent = streak + (streak === 1 ? " día" : " días");
+    document.getElementById("metric-avg7").textContent = avg7 + "%";
+    document.getElementById("metric-wins").textContent = wins;
+    document.getElementById("metric-best").textContent = best + "%";
+    document.getElementById("metric-best-streak").textContent = state.bestStreak + (state.bestStreak === 1 ? " día" : " días");
+    renderCalendar();
+    renderTrendChart();
+    renderWeeklySummary();
+  }
+
+  // ---------- Weekly summary ----------
+  function computeWeeklySummary(endIso){
+    var isos = [];
+    for (var i = 6; i >= 0; i--) isos.push(shiftISO(endIso, -i));
+    var map = historyByISO();
+    var todayIsoVal = todayISO();
+
+    var dayRows = isos.map(function(iso){
+      if (map[iso]) return { iso: iso, percent: map[iso].percent };
+      if (iso <= todayIsoVal) return { iso: iso, percent: computeWeightedPercent(iso) };
+      return null;
+    }).filter(Boolean);
+
+    var best = null;
+    dayRows.forEach(function(r){ if (!best || r.percent > best.percent) best = r; });
+    var avg = dayRows.length ? Math.round(dayRows.reduce(function(s, r){ return s + r.percent; }, 0) / dayRows.length) : 0;
+
+    var catSums = {}, catCounts = {};
+    isos.forEach(function(iso){
+      if (iso > todayIsoVal) return;
+      var cats = getCategorizedCheckable(iso);
+      CATEGORY_ORDER.forEach(function(key){
+        var rate = categoryRate(cats[key]);
+        if (rate === null) return;
+        catSums[key] = (catSums[key] || 0) + rate;
+        catCounts[key] = (catCounts[key] || 0) + 1;
+      });
+    });
+    var worstCategory = null, worstRate = 2;
+    Object.keys(catSums).forEach(function(key){
+      var avgRate = catSums[key] / catCounts[key];
+      if (avgRate < worstRate){ worstRate = avgRate; worstCategory = key; }
+    });
+
+    var totalSpent = 0;
+    isos.forEach(function(iso){
+      totalSpent += (state.expensesLog[iso] || []).reduce(function(s, e){ return s + (Number(e.amount) || 0); }, 0);
+    });
+
+    var bestHabit = null, bestHabitRate = -1;
+    state.habits.forEach(function(h){
+      var scheduledDays = isos.filter(function(iso){
+        return iso <= todayIsoVal && sanitizeDays(h.days).indexOf(dateFromISO(iso).getDay()) !== -1;
+      });
+      if (!scheduledDays.length) return;
+      var doneCount = scheduledDays.filter(function(iso){ return isDoneOn(h, iso); }).length;
+      var rate = doneCount / scheduledDays.length;
+      if (rate > bestHabitRate){ bestHabitRate = rate; bestHabit = { name: h.name, doneCount: doneCount, total: scheduledDays.length }; }
+    });
+
+    var measurementAverages = state.measurements.map(function(m){
+      var vals = m.log.filter(function(e){ return isos.indexOf(e.iso) !== -1; }).map(function(e){ return Number(e.value); });
+      if (!vals.length) return null;
+      var avgVal = vals.reduce(function(s, v){ return s + v; }, 0) / vals.length;
+      return { name: m.name, unit: m.unit, avg: avgVal };
+    }).filter(Boolean);
+
+    return {
+      startIso: isos[0], endIso: isos[isos.length - 1],
+      best: best, avg: avg, daysLogged: dayRows.length,
+      worstCategory: worstCategory, worstRate: worstRate,
+      totalSpent: totalSpent, bestHabit: bestHabit,
+      measurementAverages: measurementAverages
+    };
+  }
+
+  function weeklySummaryHTML(summary){
+    var rangeLabel = formatDateLabel(summary.startIso) + " – " + formatDateLabel(summary.endIso);
+    var bestHtml = summary.best
+      ? summary.best.percent + "% <span class=\"metric-sub\">(" + formatDateLabel(summary.best.iso) + ")</span>"
+      : "—";
+    var worstCatHtml = summary.worstCategory
+      ? CATEGORY_LABELS[summary.worstCategory] + " <span class=\"metric-sub\">(" + Math.round(summary.worstRate * 100) + "% en promedio)</span>"
+      : "—";
+    var bestHabitHtml = summary.bestHabit
+      ? escapeHtml(summary.bestHabit.name) + " <span class=\"metric-sub\">(" + summary.bestHabit.doneCount + "/" + summary.bestHabit.total + " días)</span>"
+      : "—";
+    var measurementsHtml = summary.measurementAverages.length
+      ? '<div class="weekly-measurements-list">' + summary.measurementAverages.map(function(m){
+          return escapeHtml(m.name) + ": <b>" + m.avg.toFixed(1) + (m.unit ? " " + escapeHtml(m.unit) : "") + "</b> promedio";
+        }).join("<br>") + '</div>'
+      : '<div class="empty-hint">Sin medidas registradas esta semana.</div>';
+
+    return '' +
+      '<p class="subtitle" style="margin-bottom:12px;">' + rangeLabel + ' · ' + summary.daysLogged + '/7 días con datos</p>' +
+      '<div class="weekly-summary-grid">' +
+        '<div class="weekly-stat"><div class="metric-label">Mejor día</div><div class="metric-value">' + bestHtml + '</div></div>' +
+        '<div class="weekly-stat"><div class="metric-label">Promedio semanal</div><div class="metric-value">' + summary.avg + '%</div></div>' +
+        '<div class="weekly-stat"><div class="metric-label">Fallaste más en</div><div class="metric-value">' + worstCatHtml + '</div></div>' +
+        '<div class="weekly-stat"><div class="metric-label">Total gastado</div><div class="metric-value">$' + summary.totalSpent.toFixed(0) + '</div></div>' +
+        '<div class="weekly-stat"><div class="metric-label">Mejor hábito</div><div class="metric-value">' + bestHabitHtml + '</div></div>' +
+        '<div class="weekly-stat"><div class="metric-label">Medidas corporales</div>' + measurementsHtml + '</div>' +
+      '</div>';
+  }
+
+  var weeklySummaryEndDate = todayISO();
+
+  function renderWeeklySummary(){
+    var summary = computeWeeklySummary(weeklySummaryEndDate);
+    document.getElementById("weekly-summary-body").innerHTML = weeklySummaryHTML(summary);
+    document.getElementById("weekly-next").disabled = weeklySummaryEndDate >= todayISO();
+  }
+
+  document.getElementById("weekly-prev").addEventListener("click", function(){
+    weeklySummaryEndDate = shiftISO(weeklySummaryEndDate, -7);
+    renderWeeklySummary();
+  });
+  document.getElementById("weekly-next").addEventListener("click", function(e){
+    if (e.currentTarget.disabled) return;
+    weeklySummaryEndDate = shiftISO(weeklySummaryEndDate, 7);
+    renderWeeklySummary();
+  });
+
+  function weekKeyFor(iso){ return iso; } // the Sunday's own iso uniquely identifies its week
+
+  function maybeShowWeeklySummaryPopup(){
+    var todayIsoVal = todayISO();
+    if (dateFromISO(todayIsoVal).getDay() !== 0) return; // only on Sundays
+    var key = weekKeyFor(todayIsoVal);
+    if (state.settings.lastWeeklySummaryWeek === key) return; // already shown this week
+    var summary = computeWeeklySummary(todayIsoVal);
+    document.getElementById("weekly-summary-modal-body").innerHTML = weeklySummaryHTML(summary);
+    document.getElementById("weekly-summary-modal").classList.add("active");
+    document.getElementById("weekly-summary-modal").setAttribute("aria-hidden", "false");
+    state.settings.lastWeeklySummaryWeek = key;
+    saveState();
+  }
+
+  document.getElementById("weekly-summary-modal-close").addEventListener("click", function(){
+    document.getElementById("weekly-summary-modal").classList.remove("active");
+    document.getElementById("weekly-summary-modal").setAttribute("aria-hidden", "true");
+  });
+  document.getElementById("weekly-summary-modal").addEventListener("click", function(e){
+    if (e.target.id === "weekly-summary-modal"){
+      document.getElementById("weekly-summary-modal").classList.remove("active");
+      document.getElementById("weekly-summary-modal").setAttribute("aria-hidden", "true");
+    }
+  });
+
+  // ---------- Category weights ----------
+  function buildWeightsModal(){
+    var list = document.getElementById("weights-list");
+    list.innerHTML = "";
+    CATEGORY_ORDER.forEach(function(key){
+      var row = el("div", "weight-row");
+      var label = el("span", "weight-label"); label.textContent = CATEGORY_LABELS[key];
+      var range = el("input"); range.type = "range"; range.min = "0"; range.max = "3"; range.step = "0.5";
+      range.value = state.settings.categoryWeights[key];
+      var valueLabel = el("span", "weight-value"); valueLabel.textContent = "x" + state.settings.categoryWeights[key];
+      range.addEventListener("input", function(){
+        valueLabel.textContent = "x" + range.value;
+      });
+      range.dataset.key = key;
+      row.appendChild(label); row.appendChild(range); row.appendChild(valueLabel);
+      list.appendChild(row);
+    });
+  }
+
+  document.getElementById("manage-weights-btn").addEventListener("click", function(){
+    buildWeightsModal();
+    document.getElementById("weights-modal").classList.add("active");
+    document.getElementById("weights-modal").setAttribute("aria-hidden", "false");
+  });
+  document.getElementById("weights-modal-close").addEventListener("click", function(){
+    document.getElementById("weights-modal").classList.remove("active");
+    document.getElementById("weights-modal").setAttribute("aria-hidden", "true");
+  });
+  document.getElementById("weights-modal").addEventListener("click", function(e){
+    if (e.target.id === "weights-modal"){
+      document.getElementById("weights-modal").classList.remove("active");
+      document.getElementById("weights-modal").setAttribute("aria-hidden", "true");
+    }
+  });
+  document.getElementById("save-weights-btn").addEventListener("click", function(){
+    document.querySelectorAll("#weights-list input[type=range]").forEach(function(range){
+      state.settings.categoryWeights[range.dataset.key] = Number(range.value);
+    });
+    saveState();
+    updateProgress();
+    document.getElementById("weights-modal").classList.remove("active");
+    document.getElementById("weights-modal").setAttribute("aria-hidden", "true");
+  });
+
+  function updateProgress(){
+    var silent = arguments[0] === true;
+    var pct = computeWeightedPercent(activeISO());
+    if (!silent){
+      document.getElementById("progress-fill").style.width = pct + "%";
+      document.getElementById("progress-label").textContent = pct + "%";
+      renderAnalytics();
+    }
+    return pct;
+  }
+
+  // ---------- Routine sequences ----------
+  function currentRoutine(){
+    return state.routines.find(function(r){ return r.id === state.activeRoutineId; }) || state.routines[0];
+  }
+
+  function renderRoutines(){
+    document.getElementById("routine-done-check").checked = routineCompletedToday();
+    var select = document.getElementById("routine-select");
+    select.innerHTML = "";
+    state.routines.forEach(function(r){
+      var option = el("option");
+      option.value = r.id;
+      option.textContent = r.name;
+      select.appendChild(option);
+    });
+    var routine = currentRoutine();
+    if (!routine) return;
+    state.activeRoutineId = routine.id;
+    select.value = routine.id;
+    document.getElementById("custom-routine-name").value = routine.name;
+
+    var list = document.getElementById("routine-steps-list");
+    list.innerHTML = "";
+    if (!routine.steps.length){
+      var hint = el("div", "empty-hint");
+      hint.textContent = "Agrega una actividad para poder iniciar esta rutina.";
+      list.appendChild(hint);
+      return;
+    }
+    routine.steps.forEach(function(step, index){
+      var row = el("div", "routine-step-row");
+
+      var orderBtns = el("div", "step-order-btns");
+      var upBtn = el("button", "step-order-btn");
+      upBtn.type = "button"; upBtn.textContent = "▲"; upBtn.title = "Mover arriba";
+      upBtn.disabled = index === 0;
+      upBtn.addEventListener("click", function(){
+        if (index === 0) return;
+        var tmp = routine.steps[index - 1];
+        routine.steps[index - 1] = routine.steps[index];
+        routine.steps[index] = tmp;
+        saveState();
+        renderRoutines();
+      });
+      var downBtn = el("button", "step-order-btn");
+      downBtn.type = "button"; downBtn.textContent = "▼"; downBtn.title = "Mover abajo";
+      downBtn.disabled = index === routine.steps.length - 1;
+      downBtn.addEventListener("click", function(){
+        if (index === routine.steps.length - 1) return;
+        var tmp = routine.steps[index + 1];
+        routine.steps[index + 1] = routine.steps[index];
+        routine.steps[index] = tmp;
+        saveState();
+        renderRoutines();
+      });
+      orderBtns.appendChild(upBtn);
+      orderBtns.appendChild(downBtn);
+
+      var name = el("input", "routine-step-name");
+      name.type = "text";
+      name.value = step.name;
+      name.placeholder = "Actividad";
+      name.addEventListener("input", function(){ step.name = name.value; });
+      name.addEventListener("blur", saveState);
+
+      var minutes = el("input", "routine-step-minutes");
+      minutes.type = "number";
+      minutes.min = "1";
+      minutes.step = "1";
+      minutes.value = step.minutes;
+      minutes.title = "Minutos";
+      minutes.addEventListener("change", function(){
+        step.minutes = Math.max(1, Number(minutes.value) || 1);
+        minutes.value = step.minutes;
+        saveState();
+      });
+
+      var del = el("button", "delete-btn");
+      del.type = "button";
+      del.textContent = "×";
+      del.title = "Eliminar actividad";
+      del.addEventListener("click", function(){
+        routine.steps = routine.steps.filter(function(s){ return s.id !== step.id; });
+        saveState();
+        renderRoutines();
+      });
+
+      row.appendChild(orderBtns);
+      row.appendChild(name);
+      row.appendChild(minutes);
+      row.appendChild(del);
+      list.appendChild(row);
+    });
+  }
+
+  document.getElementById("routine-select").addEventListener("change", function(e){
+    state.activeRoutineId = e.target.value;
+    saveState();
+    renderRoutines();
+  });
+
+  document.getElementById("custom-routine-name").addEventListener("input", function(e){
+    var routine = currentRoutine();
+    if (!routine) return;
+    routine.name = e.target.value || "Rutina";
+    saveState();
+    var option = document.querySelector('#routine-select option[value="' + routine.id + '"]');
+    if (option) option.textContent = routine.name;
+  });
+
+  document.getElementById("add-routine-btn").addEventListener("click", function(){
+    var routine = { id: uid(), name: "Nueva rutina", steps: [ { id: uid(), name: "Nueva actividad", minutes: 10 } ] };
+    state.routines.push(routine);
+    state.activeRoutineId = routine.id;
+    saveState();
+    renderRoutines();
+  });
+
+  document.getElementById("delete-routine-btn").addEventListener("click", function(){
+    if (state.routines.length <= 1){
+      alert("Deja al menos una rutina.");
+      return;
+    }
+    var routine = currentRoutine();
+    if (!routine || !confirm("¿Eliminar la rutina \"" + routine.name + "\"?")) return;
+    state.routines = state.routines.filter(function(r){ return r.id !== routine.id; });
+    state.activeRoutineId = state.routines[0].id;
+    saveState();
+    renderRoutines();
+  });
+
+  document.getElementById("add-routine-step-btn").addEventListener("click", function(){
+    var routine = currentRoutine();
+    if (!routine) return;
+    routine.steps.push({ id: uid(), name: "Nueva actividad", minutes: 10 });
+    saveState();
+    renderRoutines();
+  });
+
+  var routinePlayer = {
+    routine: null,
+    index: 0,
+    remaining: 0,
+    overtime: 0,
+    running: false,
+    timer: null,
+    alarm: null
+  };
+
+  function clearRoutineAlarm(){
+    if (routinePlayer.alarm){
+      clearInterval(routinePlayer.alarm);
+      routinePlayer.alarm = null;
+    }
+  }
+
+  function startRoutineAlarm(){
+    clearRoutineAlarm();
+    var count = 0;
+    playFocusTone();
+    routinePlayer.alarm = setInterval(function(){
+      count += 1;
+      if (count >= 4){
+        clearRoutineAlarm();
+        return;
+      }
+      playFocusTone();
+    }, 900);
+  }
+
+  function renderRoutinePlayer(){
+    var step = routinePlayer.routine && routinePlayer.routine.steps[routinePlayer.index];
+    if (!step) return;
+    var overtime = routinePlayer.remaining <= 0;
+    document.querySelector(".routine-player").classList.toggle("overtime", overtime);
+    document.getElementById("routine-player-name").textContent = routinePlayer.routine.name;
+    document.getElementById("routine-step-title").textContent = step.name || "Actividad";
+    document.getElementById("routine-step-time").textContent = overtime ? "+" + formatFocusTime(routinePlayer.overtime) : formatFocusTime(routinePlayer.remaining);
+    document.getElementById("routine-player-status").textContent = "Actividad " + (routinePlayer.index + 1) + " de " + routinePlayer.routine.steps.length + (overtime ? " · tiempo extra" : "");
+    document.getElementById("routine-pause-btn").textContent = routinePlayer.running ? "Pausar" : "Continuar";
+    document.getElementById("routine-next-btn").textContent = routinePlayer.index === routinePlayer.routine.steps.length - 1 ? "Terminar" : "Siguiente";
+  }
+
+  function routineTick(){
+    if (!routinePlayer.running) return;
+    if (routinePlayer.remaining > 0){
+      routinePlayer.remaining -= 1;
+      if (routinePlayer.remaining === 0) startRoutineAlarm();
+    } else {
+      routinePlayer.overtime += 1;
+    }
+    renderRoutinePlayer();
+  }
+
+  function loadRoutineStep(index){
+    var step = routinePlayer.routine.steps[index];
+    routinePlayer.index = index;
+    routinePlayer.remaining = Math.max(1, Number(step.minutes) || 1) * 60;
+    routinePlayer.overtime = 0;
+    clearRoutineAlarm();
+    renderRoutinePlayer();
+  }
+
+  function startRoutinePlayer(){
+    var routine = currentRoutine();
+    if (!routine || !routine.steps.length){
+      alert("Agrega al menos una actividad a la rutina.");
+      return;
+    }
+    routinePlayer.routine = JSON.parse(JSON.stringify(routine));
+    routinePlayer.running = true;
+    clearInterval(routinePlayer.timer);
+    routinePlayer.timer = setInterval(routineTick, 1000);
+    loadRoutineStep(0);
+    document.getElementById("routine-overlay").classList.add("active");
+    document.getElementById("routine-overlay").setAttribute("aria-hidden", "false");
+  }
+
+  function stopRoutinePlayer(){
+    clearInterval(routinePlayer.timer);
+    routinePlayer.timer = null;
+    routinePlayer.running = false;
+    clearRoutineAlarm();
+    document.getElementById("routine-overlay").classList.remove("active");
+    document.getElementById("routine-overlay").setAttribute("aria-hidden", "true");
+  }
+
+  function completeRoutinePlayer(){
+    if (routinePlayer.routine){
+      var iso = activeISO();
+      var already = state.routineCompletionLog.some(function(r){ return r.iso === iso && r.routineId === routinePlayer.routine.id; });
+      if (!already){
+        state.routineCompletionLog.unshift({ iso: iso, routineId: routinePlayer.routine.id, routineName: routinePlayer.routine.name });
+        state.routineCompletionLog = state.routineCompletionLog.slice(0, 420);
+        saveState();
+      }
+      updateProgress();
+      renderRoutines();
+    }
+    stopRoutinePlayer();
+  }
+
+  document.getElementById("start-routine-btn").addEventListener("click", startRoutinePlayer);
+  document.getElementById("routine-pause-btn").addEventListener("click", function(){
+    routinePlayer.running = !routinePlayer.running;
+    renderRoutinePlayer();
+  });
+  document.getElementById("routine-next-btn").addEventListener("click", function(){
+    clearRoutineAlarm();
+    if (!routinePlayer.routine) return;
+    if (routinePlayer.index >= routinePlayer.routine.steps.length - 1){
+      completeRoutinePlayer();
+      return;
+    }
+    loadRoutineStep(routinePlayer.index + 1);
+  });
+  document.getElementById("routine-stop-btn").addEventListener("click", stopRoutinePlayer);
+  document.getElementById("routine-mini-close").addEventListener("click", stopRoutinePlayer);
+
+  function renderAll(){
+    renderHabits();
+    renderDiet();
+    renderGym();
+    renderTodos();
+    renderMeasurements();
+    renderExpenses();
+    renderHistory();
+    document.getElementById("journal-notes").value = getActiveNote();
+    document.getElementById("notes-done-check").checked = !!getActiveNote().trim();
+    document.getElementById("streak-threshold").value = state.settings.streakThreshold;
+    renderRoutines();
+    renderDayNav();
+    updateProgress();
+  }
+
+  function renderDate(){
+    var d = activeDate();
+    var formatted = d.toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    document.getElementById("today-date").textContent = "Jornada de " + formatted;
+  }
+
+  // ---------- Day navigator ----------
+  function goToDay(iso){
+    state.activeDate = iso;
+    renderDate();
+    renderAll();
+  }
+
+  function renderDayNav(){
+    var iso = activeISO();
+    var isToday = iso === todayISO();
+    document.getElementById("day-nav-picker").value = iso;
+    document.getElementById("day-nav-picker").max = todayISO();
+    document.getElementById("day-nav").classList.toggle("past", !isToday);
+    document.getElementById("day-nav-next").disabled = isToday;
+    document.getElementById("progress-pill-label").textContent = isToday ? "Hoy" : "Ese día";
+    document.getElementById("finish-day-btn").textContent = isToday ? "Terminar día" : "Guardar cambios";
+  }
+
+  document.getElementById("day-nav-prev").addEventListener("click", function(){
+    goToDay(shiftISO(activeISO(), -1));
+  });
+  document.getElementById("day-nav-next").addEventListener("click", function(e){
+    if (e.currentTarget.disabled) return;
+    goToDay(shiftISO(activeISO(), 1));
+  });
+  document.getElementById("day-nav-today").addEventListener("click", function(){
+    goToDay(todayISO());
+  });
+  document.getElementById("day-nav-picker").addEventListener("change", function(e){
+    if (!e.target.value) return;
+    var todayIsoVal = todayISO();
+    goToDay(e.target.value > todayIsoVal ? todayIsoVal : e.target.value);
+  });
+
+  // ---------- Missed-day banner ----------
+  function checkMissedDay(){
+    var yIso = shiftISO(todayISO(), -1);
+    var map = historyByISO();
+    if (map[yIso]) return; // already saved
+    var touched = state.habits.some(function(h){ return isDoneOn(h, yIso); })
+      || state.diet.some(function(d){ return isDoneOn(d, yIso); })
+      || state.gym.exercises.some(function(x){ return isDoneOn(x, yIso); })
+      || !!(state.notesLog[yIso] || "").trim()
+      || (state.expensesLog[yIso] || []).length > 0;
+    if (!touched) return;
+    var banner = document.getElementById("missed-day-banner");
+    document.getElementById("missed-day-text").textContent =
+      "📌 Parece que no cerraste tu jornada de " + formatDateLabel(yIso) + ".";
+    banner.style.display = "flex";
+    document.getElementById("missed-day-review-btn").onclick = function(){
+      banner.style.display = "none";
+      goToDay(yIso);
+    };
+    document.getElementById("missed-day-dismiss-btn").onclick = function(){
+      banner.style.display = "none";
+    };
+  }
+
+  // ---------- Add buttons ----------
+  document.getElementById("add-habit-btn").addEventListener("click", function(){
+    state.habits.push({ id: uid(), name: "Nuevo hábito", doneLog: {}, days: ALL_DAYS.slice() });
+    saveState(); renderHabits(); updateProgress();
+  });
+  document.getElementById("add-diet-btn").addEventListener("click", function(){
+    state.diet.push({ id: uid(), name: "Nueva comida", detail: "", doneLog: {}, days: ALL_DAYS.slice() });
+    saveState(); renderDiet(); updateProgress();
+  });
+  document.getElementById("add-gym-btn").addEventListener("click", function(){
+    state.gym.exercises.push({ id: uid(), name: "Nuevo ejercicio", meta: "", doneLog: {}, days: ALL_DAYS.slice() });
+    saveState(); renderGym(); updateProgress();
+  });
+
+  document.getElementById("streak-threshold").addEventListener("change", function(e){
+    var value = Math.min(100, Math.max(1, Number(e.target.value) || 80));
+    state.settings.streakThreshold = value;
+    e.target.value = value;
+    saveState();
+    updateProgress();
+  });
+
+  // ---------- Journal autosave ----------
+  document.getElementById("journal-notes").addEventListener("input", function(e){
+    setActiveNote(e.target.value);
+    saveState();
+    document.getElementById("notes-done-check").checked = !!e.target.value.trim();
+    updateProgress();
+    flashSaved();
+  });
+
+  // ---------- Terminar día ----------
+  document.getElementById("finish-day-btn").addEventListener("click", function(){
+    var items = getAllCheckable();
+    if (!items.length){
+      alert("Agrega al menos un hábito, comida o ejercicio antes de guardar el día.");
+      return;
+    }
+    var iso = activeISO();
+    var isToday = iso === todayISO();
+    var pct = updateProgress();
+    var dateLabel = formatDateLabel(iso);
+    var expenseTotal = activeExpenseTotal();
+
+    var confirmMsg = isToday
+      ? "¿Terminar la jornada de " + dateLabel + " con " + pct + "% completado?\nSe guardará en tu historial. Los pendientes sin marcar pasarán a mañana."
+      : "¿Guardar los cambios de " + dateLabel + " con " + pct + "% completado?\nEsto actualiza el registro histórico de ese día.";
+    if (!confirm(confirmMsg)) return;
+
+    var entry = {
+      iso: iso, date: dateLabel, percent: pct, notes: getActiveNote(),
+      scheduled: items.length, done: items.filter(function(i){ return i.done; }).length,
+      expenseTotal: expenseTotal, expenses: getActiveExpenses().slice()
+    };
+    state.history = state.history.filter(function(h){ return h.iso !== iso; });
+    state.history.push(entry);
+    state.history.sort(function(a, b){ return b.iso < a.iso ? 1 : (b.iso > a.iso ? -1 : 0); });
+    state.history = state.history.slice(0, 420);
+
+    if (isToday){
+      // Todos: completed ones are cleared, pending ones roll over automatically (untouched)
+      state.todos = state.todos.filter(function(t){ return !t.done; });
+      }
+
+    saveState();
+    renderAll();
+  });
+
+  // ---------- Export ----------
+  document.getElementById("export-btn").addEventListener("click", function(){
+    var dataStr = JSON.stringify(state, null, 2);
+    var blob = new Blob([dataStr], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var today = todayISO();
+    a.href = url;
+    a.download = "respaldo_centro_de_mando_" + today + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  // ---------- Import ----------
+  document.getElementById("import-btn").addEventListener("click", function(){
+    document.getElementById("import-file").click();
+  });
+
+  document.getElementById("import-file").addEventListener("change", function(e){
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      try {
+        var parsed = JSON.parse(ev.target.result);
+        if (!parsed.habits || !parsed.diet || !parsed.gym){
+          alert("Ese archivo no tiene el formato esperado de un respaldo de Centro de Mando.");
+          return;
+        }
+        if (!confirm("Esto reemplazará todos tus datos actuales con los del respaldo. ¿Continuar?")) return;
+        state = normalizeState(parsed);
+        applyTheme(state.settings.theme);
+        applyAccent(state.settings.accentColor);
+        applyQuoteFont(state.settings.quoteFont);
+        saveState();
+        renderAll();
+        renderQuote();
+        checkMissedDay();
+        alert("Respaldo importado correctamente.");
+      } catch (err){
+        alert("No se pudo leer el archivo. Asegúrate de que sea un .json válido exportado desde aquí.");
+      }
+      e.target.value = "";
+    };
+    reader.readAsText(file);
+  });
+
+  // ---------- Reset ----------
+  document.getElementById("reset-btn").addEventListener("click", function(){
+    if (!confirm("Esto borrará TODOS tus datos (hábitos, dieta, gym, pendientes, time-blocking, notas e historial) de este navegador. ¿Seguro?")) return;
+    state = defaultState();
+    applyTheme(state.settings.theme);
+    applyAccent(state.settings.accentColor);
+    applyQuoteFont(state.settings.quoteFont);
+    saveState();
+    renderAll();
+    renderQuote();
+  });
+
+  // ---------- Focus mode audio helpers (shared with Routine player) ----------
+  function formatFocusTime(seconds){
+    var mins = Math.floor(seconds / 60);
+    var secs = seconds % 60;
+    return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+  }
+
+  function playFocusTone(){
+    try {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      var ctx = new AudioContext();
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.value = 740;
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.55);
+    } catch (e) {
+      console.warn("No se pudo reproducir el sonido de focus.", e);
+    }
+  }
+
+  function playFocusWarningTone(){
+    try {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      var ctx = new AudioContext();
+      [0, 0.18].forEach(function(delay){
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = 520;
+        var t0 = ctx.currentTime + delay;
+        gain.gain.setValueAtTime(0.001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.1, t0 + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.13);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t0);
+        osc.stop(t0 + 0.15);
+      });
+    } catch (e) {
+      console.warn("No se pudo reproducir el aviso de focus.", e);
+    }
+  }
+
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && document.getElementById("routine-overlay").classList.contains("active")){
+      stopRoutinePlayer();
+    }
+    if (e.key === "Escape" && document.getElementById("day-detail-overlay").classList.contains("active")){
+      closeDayDetail();
+    }
+    if (e.key === "Escape" && document.getElementById("quotes-modal").classList.contains("active")){
+      document.getElementById("quotes-modal").classList.remove("active");
+      document.getElementById("quotes-modal").setAttribute("aria-hidden", "true");
+    }
+    if (e.key === "Escape" && document.getElementById("weights-modal").classList.contains("active")){
+      document.getElementById("weights-modal").classList.remove("active");
+      document.getElementById("weights-modal").setAttribute("aria-hidden", "true");
+    }
+    if (e.key === "Escape" && document.getElementById("weekly-summary-modal").classList.contains("active")){
+      document.getElementById("weekly-summary-modal").classList.remove("active");
+      document.getElementById("weekly-summary-modal").setAttribute("aria-hidden", "true");
+    }
+  });
+
+  // ---------- PWA: manifest + service worker ----------
+  function setupPWA(){
+    try {
+      var manifest = {
+        name: "Centro de Mando Personal",
+        short_name: "Cmd Center",
+        start_url: ".",
+        display: "standalone",
+        background_color: "#1c1c1e",
+        theme_color: "#1c1c1e",
+        icons: [
+          { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADwElEQVR42u3duXITQRCAYe+WM6WQCQlIbANvBEQcL0Hsl4CM442AiKOAiCMlJyCiXIWtkXZ3uvv7MxxJM596Z1kLhvV6cyS1NloCASSABJAAkgASQAJIAEkACSD12/EwDFZBJpAAEkACSAJIAAkgASQBJIAEkDLmWZhMIAEkgASQBJBmvQvL8TZ+Pf0c8WVfe34r+soPm81NYniqAiilm9CSwgAqQiccowCACtIJxKhrQMXphGA0bLc9vrKfTz5Bc7HrL2739pJGegLV4cr0NYHQCTeKRnqMogyA6Am6YqO1YCg2IHpCr95ID0NRAdGTYCVHehiKB4ieNKs60sPQPvleWLZm3tC5J9CPxx/tcaYVHulhKOptvBI0pvxYaLbVNoEUAZDxk3UImUDqHpDxk3gImUDqG5Dxk3sImUDaK8/C8jfpFk87gb4/+mD/Fm/SXXAJE0ACSAAJICdo52gTSC5hAkgASZd2bAnm6fezf/64Os8CyLOw+fX8/cnMhibaaJewBfT8/+fOQLqqkgSGAFpMj7swCSDjByB6ACqqJ8HfBgFED0D0AFSqNHoAWmD8ZNJz5FlYHT2ehdHjEkYPQCp+agZomft2gOTiBRA9ANEDkIMzQMaPAHLxAoiehUv1LGzSL+9F1+NZ2M4bfMDDitmTHFDuL+8BtOTRZH9Dxk/1Q/Q+hugBqN0QPQC1G6IHoMnP1MX1JAG00y5e0ZDbt1oT6LCGXLwqXsIOZYieumeg1fm++0rPzoCGyep8FDWfcoLqmWiXc96FtRlycHYb327IxQugdkP0ADT5ltNTEdChNp6euoAE0MLzw/gxgdoR0ANQOwV6AGoHQQ9A7SzouWIV/43E1XnFpxa+FyaXsCAXMtcvgNoN0QNQuyF6dj5EF3//xJhASgpo/fLM+nbSdHthAgkgASSAVLHh5GTao+63h++t8rLdeHXHBJJLmADqbX5q8fU3gdQ9IEMo6/gxgRQEkCGUcvyYQIoDyBDKN35MIIUCZAjlW+fh9HTuTf364J09nq7N67tpJ5BcwuJ9RIyfhBOIoTSrOpZ6t/SkOgMxlGAlx7LvnJ4kd2EMhV690SrQEx4QQ3FXbLQi9OzTAo8yLs2zjkAfs+HsrMfP/Zf7b1m52PbNvd5eUqeAMOqfTgBAGPVMJwygsow6pxMMUClGIeiEBJRbUiA34QHl8BRRTE5AWiq/0iqABJAAUsUq/n9hMoEEkACSABJAAkgACSAJIAEkgFQjz8JkAgkgASSAJIAEkAASQBJAAkgAKWt/ADnZHeP820RBAAAAAElFTkSuQmCC", sizes: "192x192", type: "image/png" },
+          { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAKZUlEQVR42u3du1aUSxeGUZfjy0zVCAE1adA7kszDTRB7E2rk4Y4k8zAk85CSmxkgg7aR7q5vvXOG//4Ndlm1nqpu3NbOzu4NAPLctAQAAgCAAAAgAAAIAAACAIAAACAAAAgAAAIAgAAAIAAACAAAAgCAAAAgAAAIAAACAIAAACAAAAgAAAIAgAAAIAAAAgCAAAAgAAAIAAACAIAAACAAAMzLVFVWAcALAAABAEAAABAAAAQAAAEAQAAAEAAABAAAAQBAAAAQAAAEAAABAEAAABAAAAQAAAEAQAAAEAAABAAAAQBAAAAEAAABAEAAABAAAAQAAAEAQAAAEAAARjdVlVUA8AIAQAAAEAAABAAAAQBAAAAQAAAEAAABAEAAABAAAAQAAAEAQAAAEAAABACAazBZApb69eKrRZij26/uWwQuUbu7+1YBg14YEABMfPQAAcDQRwwQAAx9xAABwNxHCRAAzH2UAAHA3EcJEACMfmQAAcDcRwkQAIx+ZAABwOhHBhAAjH5kAAHA6EcGEACMfmSAjQRgb8/vzaB+Pv9iEejhzusHFkEAMPqRAQQAox8ZYKv8lZCmP9jnXgA4EuAp4AWA6Q92vgDgDID935OPgGx92D4fB3kBmP7gRCAA9jo4F6yZj4BscRiLj4O8AEx/cFIQAHsanBcEwG4GpwYBsI/B2UEA7GBwghAAexecIwTArgWnCQGwX8GZQgDsVHCyEAB7FJwvAcDuBKdMALAvwVkTAOxIcOIEAHsRnDsBwC4Ep08AsP/AGRQAAATA1QNwEgXAngOcRwGw2wCnUgAAGEHt7z+wCiv58eyzRYAx3X3z0CJ4AZj+4IQiAPYWOKcIAAAC4FoBTqsAYD+BMysAAAgArhLg5AoAAALgEgE4vwJg9wBOsQAAIAAuDoCzLAAACIArA+BECwAAAuCyADjXAgCAALgmAE63AAAgAC4IgDMuAAAIAAAC4G0IOOkCAIAAuBQAzrsAACAAAAiA9yA49QIAgAAAIABegoCz39ZUVfYBkCl8AHoBAAhApO9PP9kEYAIIAAACAIAAACAA3fgCAEieA14AAAIAgAAAIABt+QIACJ8GXgAAXgAACAAAAgCAADTiG2DATPACAPACAEAAABAAAAQAAAEAQAAAEICZ8IcAAJPBCwDACwAAAQBAAAAQAAAEAIAGJksAPZwdX/A/3nppYRAASJr7f/9TJeCCAFSVVYCW0//c/1MDlkqbh14A0Hz0n/slMsAfvgSGiOl/Lb8WAQDmOv01AAEAQAAg7PrvEYAAQO701wAEAHKnPwgAgAAAedd/rwoBABKnPwgAmP4IAGD6IwCA6Y8AACAAgOs/AgA0mP7+09ACALj7IwCA6Y8AAL2nv89/EABIZPojABB6/QcBgMTp7/qPAIDpT7TJEkDI9Df68QKA0Ls/CAAkcv1HACDx+m/6IwBg+oMAgOmPAFgCMP0RAKDP9IelpqqyCtBv+rv+X0HaPPQCgIZMfwQAEq//pj8CAKY/CACY/iAA0HX6gwBA6PR3/UcAIJHpjwBA4vXf9EcAwPQHAQDTHwQAuk5/EAAInf6u/wgAJDL9EQBIvP6b/ggAmP4gAGD6gwCA6Q8CAH2mPwgAhE5/138EABKZ/ggAJF7/TX8EAEx/EAAw/UEAoOv0BwGA0Onv+o8AQCLTHwGAxOu/6Y8AgOkPAgCmPwgAdJ3+IAAQOv1d/9mwqaqsAmyd6T+CtHk4+S3nahfh9gPLR/8IAOb+kn/acniZ/iTwHQD/OwH7fU1q+uMFgNG/2i/pMctMf7wAMP2HHp0Npj8IAK3GnwHq+o8AgOu/6Y8AEDb+ZvoIMP0RAEz/xAaY/ggAJDbA9EcAILEBvrVGADCpE8er/9YbAgCu2KY/AgAxDfDRPwgAiQ0w/UEASGyA6Q8CQGIDfCcBAkDi/PVjPyAAbHNOhdzBTX8EAEZpgI/+QQBIbIDpDwLAQDNrY0PZ9AcBILEBfuwHBIBBrXVA+7EfEACGnl89LummPwKAKTZKA3z0DwLAyrOswfcBpj8IAHMaanP8e4lNfwQADRhldpv+IAAkNsAPfYIAkNgAP/QJK5mqyiqwdNJt/mZ9djz0hDX9W0qbh14ANHkH+OgfBIDEBpj+IAAkNsD0BwEgsQF+7AcEgMQG+LEfEADS3wGmPwgAQQ3w0T8IAIkNMP1BAEh/B5j+IABkNQAQADTAvxcIAGalfyMQAExM/y4gAJibpj8IAKan6Q8CgBlq+oMAYJKCAEB2A0QLAYDEkWr6IwCQOFhNfwQAEser6Y8AQOKQNf0RADBqQQAgpgGahABA4sw1/UEASJy8pj8IAInz1/QHASBxCpv+IACkvwMAASCoAZIDAkBiA0x/OGeqKqvA1htwdmz6s31p89ALgP7vANMfBIDEBpj+IACkvwMAASCoAYoCAkBiA0x/EAAABICYR4DrPwgAiQ0w/eFfTJaAwRuw0p8RM/rBC+AyO28P/Ma3fAqY/pgMXgC0bcCFrwFzHwQArwFgBb4EBhAAAAQAAAEAQAAAEIC580cBADPBCwDACwAAAQBAAAAQgF58DwyETwMvAAAvAAAEAAAB6MzXAEDyHPACABAAAAQAAAFoztcAYALEmqrKJgAyhQ9AHwEBCECqe+8OLQI4+wIAgAAAIABegoBTLwAACAAAAuA9CDjvAgCAALgUAE66AAAgAAAIgLch4IwLAAAC4IIAON0CAIAAuCYAzrUAACAALguAEy0AAAiAKwPgLAsAAALg4gBOMQJg94DziwAACAAuEeDkCgAAAoCrBDizAmA/WQRwWgUAAAFwrQCc03mqxcJireb06MQiwJh23z+yCF4Adhg4mwgAAALgogFOJQJgt4HzKADYc+AkCgAAAoCrBziDAoD9B06fAGAXgnMnANiL4MQJAHYkOGsCYF9aBHDKBMDuBJwvAbBHASdLAOxUwJkSAPsVcJoEwK4FnCMBsHcBJ0gA7GBwdhAA+xicGgTAbgbnBQGwp8FJ4epqsTi0Cht2enRiEcDo9wKwywHnQgDsdXAi2CAfAW2Zj4Mw+i2CF4DdD/Y/AuAMgJ3P+vkIaCA+DsLoxwvAqQD7HC8ATwEw+llTAA4O/JYM6tuTjxaBHvY+PLYIA/IRkDMDdrIXAJ4CYPQLADIARr8AIANg9AsAMgBGvwAgA2D0CwBKgLmPACADGP0IAEqAuY8AoASY+wgASoC5jwAgBhj6CABigKGPAKAHmPgIAMKAQY8AAHD9/H0AAAIAgAAAIAAACAAAAgCAAAAgAAAIAAACAIAAACAAAAgAAAIAgAAAsFZTVVkFAC8AAAQAAAEAQAAAEAAABAAAAQBAAAAQAAAEAAABAEAAABAAAAQAAAEAQAAAEAAABAAAAQBAAAAQAAAEAAABABAAAAQAAAEAQAAAEAAABAAAAQBAAAAY3VRVVgHACwAAAQBAAAAQAAAEAAABAEAAABAAAAQAAAEAQAAAEAAABAAAAQBAAAAQAAAEAAABAEAAABAAAAQAAAEAQAAABAAAAQBAAAAQAAAEAAABAEAAABAAAEb3G6/A4R6dqLltAAAAAElFTkSuQmCC", sizes: "512x512", type: "image/png" }
+        ]
+      };
+      var manifestBlob = new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" });
+      var manifestLink = document.getElementById("manifest-link");
+      if (manifestLink) manifestLink.href = URL.createObjectURL(manifestBlob);
+    } catch (e) {
+      console.warn("No se pudo preparar el manifest.", e);
+    }
+
+    var isSecure = location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    if (!("serviceWorker" in navigator) || !isSecure) return; // file:// no soporta Service Workers
+
+    try {
+      var swSource = [
+        "var CACHE_NAME = 'centro-mando-v1';",
+        "self.addEventListener('install', function(e){ self.skipWaiting(); });",
+        "self.addEventListener('activate', function(e){ e.waitUntil(self.clients.claim()); });",
+        "self.addEventListener('fetch', function(e){",
+        "  if (e.request.method !== 'GET') return;",
+        "  if (new URL(e.request.url).origin !== self.location.origin) return;", // let Firebase/Google network calls pass through
+        "  e.respondWith(",
+        "    caches.open(CACHE_NAME).then(function(cache){",
+        "      return cache.match(e.request).then(function(cached){",
+        "        var fetchPromise = fetch(e.request).then(function(networkResponse){",
+        "          cache.put(e.request, networkResponse.clone());",
+        "          return networkResponse;",
+        "        }).catch(function(){ return cached; });",
+        "        return cached || fetchPromise;",
+        "      });",
+        "    })",
+        "  );",
+        "});"
+      ].join("\n");
+      var swBlob = new Blob([swSource], { type: "application/javascript" });
+      var swUrl = URL.createObjectURL(swBlob);
+      navigator.serviceWorker.register(swUrl).catch(function(err){
+        console.warn("No se pudo registrar el Service Worker.", err);
+      });
+    } catch (e) {
+      console.warn("Service Worker no disponible en este contexto.", e);
+    }
+  }
+
+  // ---------- Auth gate wiring ----------
+  function showAuthGate(){
+    document.getElementById("auth-gate").classList.add("active");
+    document.getElementById("app-shell").classList.remove("active");
+  }
+  function showApp(){
+    document.getElementById("auth-gate").classList.remove("active");
+    document.getElementById("app-shell").classList.add("active");
+  }
+
+  function initApp(loadedState){
+    state = loadedState;
+    applyTheme(state.settings.theme);
+    applyAccent(state.settings.accentColor);
+    applyQuoteFont(state.settings.quoteFont);
+    renderDate();
+    renderAll();
+    renderQuote();
+    renderGoalCarousel();
+    resetGoalCarouselTimer();
+    checkMissedDay();
+    maybeShowWeeklySummaryPopup();
+  }
+
+  function translateAuthError(err){
+    var map = {
+      "auth/wrong-password": "Contraseña incorrecta.",
+      "auth/user-not-found": "No hay cuenta con ese correo. Prueba \"Crear cuenta\".",
+      "auth/email-already-in-use": "Ya existe una cuenta con ese correo. Prueba \"Iniciar sesión\".",
+      "auth/weak-password": "La contraseña debe tener al menos 6 caracteres.",
+      "auth/invalid-email": "Ese correo no es válido.",
+      "auth/popup-closed-by-user": "Cerraste la ventana antes de terminar.",
+      "auth/network-request-failed": "Sin conexión a internet.",
+      "auth/invalid-credential": "Correo o contraseña incorrectos."
+    };
+    return map[err.code] || ("No se pudo continuar: " + (err.message || "intenta de nuevo."));
+  }
+
+  var authMode = "signin";
+  function setAuthMode(mode){
+    authMode = mode;
+    document.getElementById("auth-tab-signin").classList.toggle("active", mode === "signin");
+    document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
+    document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Iniciar sesión" : "Crear cuenta";
+    document.getElementById("auth-error").textContent = "";
+  }
+  document.getElementById("auth-tab-signin").addEventListener("click", function(){ setAuthMode("signin"); });
+  document.getElementById("auth-tab-signup").addEventListener("click", function(){ setAuthMode("signup"); });
+
+  function submitEmailAuth(){
+    var errEl = document.getElementById("auth-error");
+    errEl.textContent = "";
+    if (!firebaseReady){
+      errEl.textContent = "Falta configurar Firebase en el código (busca firebaseConfig).";
+      return;
+    }
+    var email = document.getElementById("auth-email").value.trim();
+    var pass = document.getElementById("auth-password").value;
+    if (!email || !pass){ errEl.textContent = "Ingresa correo y contraseña."; return; }
+    var action = authMode === "signin"
+      ? auth.signInWithEmailAndPassword(email, pass)
+      : auth.createUserWithEmailAndPassword(email, pass);
+    action.catch(function(err){ errEl.textContent = translateAuthError(err); });
+  }
+  document.getElementById("auth-submit-btn").addEventListener("click", submitEmailAuth);
+  document.getElementById("auth-password").addEventListener("keydown", function(e){
+    if (e.key === "Enter") submitEmailAuth();
+  });
+
+  document.getElementById("google-signin-btn").addEventListener("click", function(){
+    var errEl = document.getElementById("auth-error");
+    errEl.textContent = "";
+    if (!firebaseReady){
+      errEl.textContent = "Falta configurar Firebase en el código (busca firebaseConfig).";
+      return;
+    }
+    var provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).catch(function(err){ errEl.textContent = translateAuthError(err); });
+  });
+
+  document.getElementById("signout-btn").addEventListener("click", function(){
+    if (auth) auth.signOut();
+  });
+
+  // ---------- Init ----------
+  if (firebaseReady){
+    auth.onAuthStateChanged(function(user){
+      if (user){
+        currentUid = user.uid;
+        document.getElementById("account-email-line").textContent =
+          "Conectado como " + (user.email || "cuenta de Google") + " · se sincroniza automáticamente.";
+        loadUserState(user.uid).then(function(loaded){
+          initApp(loaded);
+          showApp();
+        }).catch(function(err){
+          console.error("Error cargando datos de la nube.", err);
+          document.getElementById("auth-error").textContent = "No se pudo cargar tu progreso. Revisa tu conexión e intenta de nuevo.";
+        });
+      } else {
+        currentUid = null;
+        showAuthGate();
+      }
+    });
+  } else {
+    document.getElementById("auth-error").textContent = "Falta configurar Firebase: edita firebaseConfig en el código antes de usar la app.";
+    showAuthGate();
+  }
+  setupPWA();
+})();
+</script>
+
+</body>
+</html>
