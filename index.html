@@ -552,6 +552,14 @@
   }
   .section-check-row input[type="checkbox"] { cursor: default; }
 
+  .gym-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; flex-wrap: wrap; gap: 6px; }
+  .rest-day-banner {
+    background: rgba(255,159,10,0.1); border: 1px solid rgba(255,159,10,0.25);
+    color: var(--warning); font-size: 12.5px; padding: 9px 12px; border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+  }
+  .gym-list.resting { opacity: 0.4; pointer-events: none; }
+
   /* ---------- To-do ---------- */
   .todo-tag {
     font-size: 10.5px;
@@ -981,6 +989,11 @@
     .weight-row .weight-label { flex: 1 1 100%; }
     #goal-add-fields { flex-wrap: wrap; }
     #goal-add-fields input { flex: 1 1 100%; }
+    .gym-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+    #gym-schedule-slot .schedule-btn { width: auto; }
+    #new-measurement-name { flex: 1 1 100%; }
+    #new-measurement-unit { flex: 1 1 auto; }
+    #new-measurement-value { flex: 1 1 auto; }
   }
 </style>
 </head>
@@ -1088,9 +1101,14 @@
       </div>
 
       <div class="card">
-        <h2><span class="dot"></span>Gimnasio</h2>
+        <div class="gym-head">
+          <h2 style="margin:0;"><span class="dot"></span>Gimnasio</h2>
+          <span class="sp-title" style="margin:0 8px 0 0;">Días de entreno:</span>
+        </div>
+        <div id="gym-schedule-slot" style="margin-bottom:10px;"></div>
+        <div class="rest-day-banner" id="rest-day-banner" style="display:none;">😌 Hoy no toca entrenar — el gimnasio no cuenta en tu % de hoy.</div>
         <input type="text" class="routine-name" id="routine-name" placeholder="Nombre de la rutina de hoy (ej. Push day)">
-        <div id="gym-list"></div>
+        <div id="gym-list" class="gym-list"></div>
         <button class="add-row-btn" id="add-gym-btn">+ Agregar ejercicio</button>
         <div class="embedded-section">
           <h3>Medidas corporales</h3>
@@ -1098,7 +1116,12 @@
           <div id="primary-measurements-list"></div>
           <div class="measurements-divider">Otras medidas (bíceps, pierna, cintura...)</div>
           <div id="measurements-list"></div>
-          <button class="add-row-btn" id="add-measurement-btn">+ Agregar medida</button>
+          <div class="todo-add-row" style="margin-top:8px;">
+            <input type="text" id="new-measurement-name" placeholder="Parte del cuerpo (ej. Bíceps)">
+            <input type="text" id="new-measurement-unit" placeholder="cm" style="max-width:64px;">
+            <input type="number" id="new-measurement-value" placeholder="Valor de hoy" step="0.1" style="max-width:110px;">
+            <button class="btn btn-ghost" id="add-measurement-btn" type="button">+</button>
+          </div>
         </div>
       </div>
 
@@ -1453,6 +1476,7 @@
       ],
       gym: {
         routine: "",
+        days: [1, 3, 5],
         exercises: [ { id: uid(), name: "Ejercicio 1", meta: "3x10", doneLog: {}, days: [1, 3, 5] } ]
       },
       todos: [
@@ -1587,6 +1611,7 @@
     parsed.diet.forEach(function(d){ if (typeof d.detail !== "string") d.detail = ""; migrateDoneLog(d); });
     if (!parsed.gym.exercises) parsed.gym.exercises = [];
     parsed.gym.exercises.forEach(migrateDoneLog);
+    parsed.gym.days = sanitizeDays(parsed.gym.days);
 
     parsed.history.forEach(function(entry){
       entry.percent = Number(entry.percent) || 0;
@@ -2163,6 +2188,14 @@
 
   // ---------- Gym ----------
   function renderGym(){
+    var gymSlot = document.getElementById("gym-schedule-slot");
+    gymSlot.innerHTML = "";
+    gymSlot.appendChild(makeScheduleButton(state.gym, function(){ renderGym(); updateProgress(); }));
+
+    var isGymDay = isGymScheduledOn(activeISO());
+    document.getElementById("rest-day-banner").style.display = isGymDay ? "none" : "block";
+    document.getElementById("gym-list").classList.toggle("resting", !isGymDay);
+
     var routineInput = document.getElementById("routine-name");
     routineInput.value = state.gym.routine || "";
     routineInput.oninput = function(){ state.gym.routine = routineInput.value; };
@@ -2171,7 +2204,7 @@
     var list = document.getElementById("gym-list");
     list.innerHTML = "";
     state.gym.exercises.forEach(function(x){
-      var scheduled = isScheduledToday(x);
+      var scheduled = isScheduledToday(x) && isGymDay;
       var done = isDoneOn(x, activeISO());
       var row = el("div", "item-row" + (done ? " done" : "") + (scheduled ? "" : " off-schedule"));
 
@@ -2355,9 +2388,23 @@
     }
   }
 
-  document.getElementById("add-measurement-btn").addEventListener("click", function(){
-    state.measurements.push({ id: uid(), name: "Nueva medida", unit: "", days: [0], log: [] });
+  function addMeasurementFromForm(){
+    var nameInput = document.getElementById("new-measurement-name");
+    var unitInput = document.getElementById("new-measurement-unit");
+    var valueInput = document.getElementById("new-measurement-value");
+    var name = nameInput.value.trim();
+    if (!name) { nameInput.focus(); return; }
+    var m = { id: uid(), name: name, unit: unitInput.value.trim() || "cm", days: ALL_DAYS.slice(), log: [] };
+    if (valueInput.value !== ""){
+      m.log.push({ iso: activeISO(), value: Number(valueInput.value) });
+    }
+    state.measurements.push(m);
+    nameInput.value = ""; unitInput.value = ""; valueInput.value = "";
     saveState(); renderMeasurements(); updateProgress();
+  }
+  document.getElementById("add-measurement-btn").addEventListener("click", addMeasurementFromForm);
+  document.getElementById("new-measurement-value").addEventListener("keydown", function(e){
+    if (e.key === "Enter") addMeasurementFromForm();
   });
 
   // ---------- Expenses ----------
@@ -2526,14 +2573,19 @@
   var CATEGORY_LABELS = { habitos: "Hábitos", dieta: "Dieta", gimnasio: "Gimnasio", pendientes: "Pendientes", notas: "Notas", gastos: "Gastos", rutina: "Rutina" };
   var CATEGORY_ORDER = ["habitos", "dieta", "gimnasio", "pendientes", "notas", "gastos", "rutina"];
 
+  function isGymScheduledOn(iso){
+    return sanitizeDays(state.gym.days).indexOf(dateFromISO(iso).getDay()) !== -1;
+  }
+
   function getCategorizedCheckable(iso){
     iso = iso || activeISO();
     var dayOfWeek = dateFromISO(iso).getDay();
     function scheduledOn(item){ return sanitizeDays(item.days).indexOf(dayOfWeek) !== -1; }
+    var gymDay = isGymScheduledOn(iso);
     var cats = {
       habitos: state.habits.filter(scheduledOn).map(function(h){ return { done: isDoneOn(h, iso) }; }),
       dieta: state.diet.filter(scheduledOn).map(function(d){ return { done: isDoneOn(d, iso) }; }),
-      gimnasio: state.gym.exercises.filter(scheduledOn).map(function(x){ return { done: isDoneOn(x, iso) }; }),
+      gimnasio: gymDay ? state.gym.exercises.filter(scheduledOn).map(function(x){ return { done: isDoneOn(x, iso) }; }) : [],
       pendientes: state.todos.map(function(t){ return { done: !!t.done }; }),
       notas: [{ done: !!((state.notesLog[iso] || "").trim()) }],
       gastos: [{ done: (state.expensesLog[iso] || []).length > 0 }],
@@ -2603,6 +2655,15 @@
     var expenseRows = expenses.entries.length ? expenses.entries.map(function(e){
       return '<div class="detail-expense-row"><span>' + escapeHtml(e.category || "Gasto") + (e.note ? " · " + escapeHtml(e.note) : "") + '</span><b>$' + Number(e.amount || 0).toFixed(0) + '</b></div>';
     }).join("") : '<div class="empty-hint">Sin gastos registrados para este día.</div>';
+    var measurementsForDay = state.measurements
+      .map(function(m){
+        var log = m.log.find(function(e){ return e.iso === iso; });
+        return log ? { name: m.name, unit: m.unit, value: log.value } : null;
+      })
+      .filter(Boolean);
+    var measurementRows = measurementsForDay.length ? measurementsForDay.map(function(m){
+      return '<div class="detail-expense-row"><span>' + escapeHtml(m.name) + '</span><b>' + m.value + (m.unit ? " " + escapeHtml(m.unit) : "") + '</b></div>';
+    }).join("") : '<div class="empty-hint">Sin medidas registradas para este día.</div>';
     body.innerHTML = '' +
       '<div class="day-detail-metrics">' +
         '<div class="metric"><div class="metric-label">Cumplimiento</div><div class="metric-value">' + pct + '%</div></div>' +
@@ -2610,6 +2671,7 @@
         '<div class="metric"><div class="metric-label">Gastado</div><div class="metric-value">$' + expenses.total.toFixed(0) + '</div></div>' +
       '</div>' +
       '<div class="day-detail-section"><h3>Gastos</h3>' + expenseRows + '</div>' +
+      '<div class="day-detail-section"><h3>Medidas corporales</h3>' + measurementRows + '</div>' +
       '<div class="day-detail-section"><h3>Notas</h3><div class="h-notes">' + (notes ? escapeHtml(notes) : "Sin notas guardadas.") + '</div></div>';
     document.getElementById("day-detail-edit-btn").onclick = function(){
       closeDayDetail();
@@ -2840,6 +2902,7 @@
     });
 
     var bestHabit = null, bestHabitRate = -1;
+    var worstHabit = null, worstHabitRate = 2;
     state.habits.forEach(function(h){
       var scheduledDays = isos.filter(function(iso){
         return iso <= todayIsoVal && sanitizeDays(h.days).indexOf(dateFromISO(iso).getDay()) !== -1;
@@ -2848,7 +2911,23 @@
       var doneCount = scheduledDays.filter(function(iso){ return isDoneOn(h, iso); }).length;
       var rate = doneCount / scheduledDays.length;
       if (rate > bestHabitRate){ bestHabitRate = rate; bestHabit = { name: h.name, doneCount: doneCount, total: scheduledDays.length }; }
+      if (rate < worstHabitRate){ worstHabitRate = rate; worstHabit = { name: h.name, doneCount: doneCount, total: scheduledDays.length }; }
     });
+
+    var trainedDaysSet = {};
+    var routineNameCounts = {};
+    isos.forEach(function(iso){
+      if (iso > todayIsoVal) return;
+      state.routineCompletionLog.filter(function(r){ return r.iso === iso; }).forEach(function(r){
+        trainedDaysSet[iso] = true;
+        var label = r.routineName || "Rutina";
+        routineNameCounts[label] = (routineNameCounts[label] || 0) + 1;
+      });
+    });
+    var trainedDays = Object.keys(trainedDaysSet).length;
+    var routineBreakdown = Object.keys(routineNameCounts)
+      .map(function(name){ return { name: name, count: routineNameCounts[name] }; })
+      .sort(function(a, b){ return b.count - a.count; });
 
     var measurementAverages = state.measurements.map(function(m){
       var vals = m.log.filter(function(e){ return isos.indexOf(e.iso) !== -1; }).map(function(e){ return Number(e.value); });
@@ -2861,7 +2940,8 @@
       startIso: isos[0], endIso: isos[isos.length - 1],
       best: best, avg: avg, daysLogged: dayRows.length,
       worstCategory: worstCategory, worstRate: worstRate,
-      totalSpent: totalSpent, bestHabit: bestHabit,
+      totalSpent: totalSpent, bestHabit: bestHabit, worstHabit: worstHabit,
+      trainedDays: trainedDays, routineBreakdown: routineBreakdown,
       measurementAverages: measurementAverages
     };
   }
@@ -2877,6 +2957,12 @@
     var bestHabitHtml = summary.bestHabit
       ? escapeHtml(summary.bestHabit.name) + " <span class=\"metric-sub\">(" + summary.bestHabit.doneCount + "/" + summary.bestHabit.total + " días)</span>"
       : "—";
+    var worstHabitHtml = summary.worstHabit
+      ? escapeHtml(summary.worstHabit.name) + " <span class=\"metric-sub\">(" + summary.worstHabit.doneCount + "/" + summary.worstHabit.total + " días)</span>"
+      : "—";
+    var routineHtml = summary.routineBreakdown.length
+      ? summary.routineBreakdown.map(function(r){ return escapeHtml(r.name) + " ×" + r.count; }).join(", ")
+      : "Sin rutinas completadas";
     var measurementsHtml = summary.measurementAverages.length
       ? '<div class="weekly-measurements-list">' + summary.measurementAverages.map(function(m){
           return escapeHtml(m.name) + ": <b>" + m.avg.toFixed(1) + (m.unit ? " " + escapeHtml(m.unit) : "") + "</b> promedio";
@@ -2891,7 +2977,10 @@
         '<div class="weekly-stat"><div class="metric-label">Fallaste más en</div><div class="metric-value">' + worstCatHtml + '</div></div>' +
         '<div class="weekly-stat"><div class="metric-label">Total gastado</div><div class="metric-value">$' + summary.totalSpent.toFixed(0) + '</div></div>' +
         '<div class="weekly-stat"><div class="metric-label">Mejor hábito</div><div class="metric-value">' + bestHabitHtml + '</div></div>' +
-        '<div class="weekly-stat"><div class="metric-label">Medidas corporales</div>' + measurementsHtml + '</div>' +
+        '<div class="weekly-stat"><div class="metric-label">Peor hábito</div><div class="metric-value">' + worstHabitHtml + '</div></div>' +
+        '<div class="weekly-stat"><div class="metric-label">Días entrenados</div><div class="metric-value">' + summary.trainedDays + '/7</div></div>' +
+        '<div class="weekly-stat"><div class="metric-label">Rutinas de la semana</div><div class="metric-value" style="font-size:13px;">' + routineHtml + '</div></div>' +
+        '<div class="weekly-stat" style="grid-column:1/-1;"><div class="metric-label">Medidas corporales</div>' + measurementsHtml + '</div>' +
       '</div>';
   }
 
