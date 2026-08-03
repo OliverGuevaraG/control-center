@@ -14,6 +14,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage-compat.js"></script>
 <style>
   :root{
     --bg: #1c1c1e;
@@ -266,6 +267,12 @@
   .btn-ghost:hover { background: var(--bg-elevated-2); }
   .btn-danger-ghost { background: transparent; color: var(--danger); border: 1px solid rgba(255,69,58,0.35); }
   .btn-danger-ghost:hover { background: rgba(255,69,58,0.1); }
+  .icon-btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px; }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .icon-text-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .icon-text-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .inline-icon { width: 14px; height: 14px; vertical-align: -2px; margin-right: 2px; }
+  .banner-icon { width: 15px; height: 15px; vertical-align: -3px; margin-right: 3px; }
 
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
   @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } header { flex-direction: column; } }
@@ -281,6 +288,15 @@
   .card h2 { font-size: 14px; font-weight: 650; margin: 0 0 4px; display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em; }
   .card h2 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
   .card .subtitle { font-size: 12px; color: var(--text-tertiary); margin: 0 0 14px; }
+  .card h2.collapsible-h2 { cursor: pointer; user-select: none; }
+  .card-collapse-chevron {
+    margin-left: auto; display: flex; align-items: center; color: var(--text-tertiary);
+    transition: transform 0.2s ease, color 0.15s ease; flex-shrink: 0;
+  }
+  .card-collapse-chevron svg { width: 16px; height: 16px; }
+  .card h2.collapsible-h2:hover .card-collapse-chevron { color: var(--accent); }
+  .card h2.is-collapsed .card-collapse-chevron { transform: rotate(-90deg); }
+  .card.collapsed { padding-bottom: 16px; }
 
   /* ---------- Item rows (habits / diet / gym / todos) ---------- */
   .item-row { display: flex; align-items: center; gap: 10px; padding: 8px 4px; border-bottom: 1px solid var(--border); }
@@ -431,6 +447,21 @@
   .weekly-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .weekly-measurements-list { font-size: 12.5px; color: var(--text-secondary); line-height: 1.8; }
 
+  .habit-streak-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 4px; border-bottom: 1px solid var(--border);
+  }
+  .habit-streak-row:last-of-type { border-bottom: none; }
+  .habit-streak-name { flex: 1; font-size: 13.5px; font-weight: 500; }
+  .habit-streak-current {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 700; color: var(--warning);
+    font-variant-numeric: tabular-nums; flex-shrink: 0;
+  }
+  .habit-streak-current svg { width: 14px; height: 14px; }
+  .habit-streak-current.zero { color: var(--text-tertiary); }
+  .habit-streak-best { font-size: 11px; color: var(--text-tertiary); flex-shrink: 0; min-width: 78px; text-align: right; }
+
   /* ---------- Goal images carousel ---------- */
   .carousel {
     position: relative;
@@ -493,6 +524,10 @@
     font-size: 12px; cursor: pointer; padding: 6px 8px;
   }
   .delete-current-btn:hover { color: var(--danger); }
+  .goal-file-name { font-size: 11.5px; color: var(--text-tertiary); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .goal-upload-status { font-size: 11.5px; color: var(--text-tertiary); margin-top: 8px; min-height: 14px; }
+  .goal-upload-status.uploading { color: var(--accent); }
+  .goal-upload-status.error { color: var(--danger); }
 
 
   [data-theme="light"] {
@@ -989,6 +1024,7 @@
     .weight-row .weight-label { flex: 1 1 100%; }
     #goal-add-fields { flex-wrap: wrap; }
     #goal-add-fields input { flex: 1 1 100%; }
+    .goal-file-name { flex: 1 1 100%; order: 1; }
     .gym-head { flex-direction: column; align-items: flex-start; gap: 4px; }
     #gym-schedule-slot .schedule-btn { width: auto; }
     #new-measurement-name { flex: 1 1 100%; }
@@ -1047,7 +1083,7 @@
       <label class="threshold-control">Meta racha
         <input type="number" id="streak-threshold" min="1" max="100" step="1" value="80">%
       </label>
-      <button class="btn btn-ghost" id="personalize-btn" type="button" title="Personalizar apariencia">🎨</button>
+      <button class="btn btn-ghost icon-btn" id="personalize-btn" type="button" title="Personalizar apariencia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="7" cy="18" r="2" fill="currentColor" stroke="none"/></svg></button>
       <button class="btn btn-accent" id="finish-day-btn">Terminar día</button>
     </div>
   </header>
@@ -1106,7 +1142,7 @@
           <span class="sp-title" style="margin:0 8px 0 0;">Días de entreno:</span>
         </div>
         <div id="gym-schedule-slot" style="margin-bottom:10px;"></div>
-        <div class="rest-day-banner" id="rest-day-banner" style="display:none;">😌 Hoy no toca entrenar — el gimnasio no cuenta en tu % de hoy.</div>
+        <div class="rest-day-banner" id="rest-day-banner" style="display:none;"><svg viewBox="0 0 24 24" fill="currentColor" class="banner-icon"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 9 9 0 1 0 20.5 14.5Z"/></svg> Hoy no toca entrenar — el gimnasio no cuenta en tu % de hoy.</div>
         <input type="text" class="routine-name" id="routine-name" placeholder="Nombre de la rutina de hoy (ej. Push day)">
         <div id="gym-list" class="gym-list"></div>
         <button class="add-row-btn" id="add-gym-btn">+ Agregar ejercicio</button>
@@ -1177,10 +1213,13 @@
       </div>
     </div>
     <div class="todo-add-row" id="goal-add-fields" style="margin-top:10px; display:none;">
-      <input type="text" id="new-goal-url" placeholder="Link de la imagen (opcional)">
+      <input type="file" id="new-goal-file" accept="image/*" style="display:none;">
+      <button class="btn btn-ghost" id="new-goal-file-btn" type="button" style="display:flex; align-items:center; gap:6px;">Elegir foto</button>
+      <span class="goal-file-name" id="goal-file-name"></span>
       <input type="text" id="new-goal-caption" placeholder="Texto corto, ej. 'Mi hija' o 'Correr un maratón'">
       <button class="btn btn-accent" id="add-goal-btn" type="button">Agregar</button>
     </div>
+    <div class="goal-upload-status" id="goal-upload-status"></div>
   </div>
 
   <div class="card">
@@ -1259,6 +1298,12 @@
   </div>
 
   <div class="card">
+    <h2><span class="dot"></span>Continuidad de hábitos</h2>
+    <p class="subtitle">Cuántos días seguidos llevas con cada hábito.</p>
+    <div id="habit-streaks-list"></div>
+  </div>
+
+  <div class="card">
     <div class="weekly-nav">
       <div>
         <h2 style="margin:0;"><span class="dot"></span>Resumen semanal</h2>
@@ -1333,8 +1378,8 @@
     <option value="mono">Fuente: Monoespaciada</option>
     <option value="rounded">Fuente: Redondeada</option>
   </select>
-  <button class="btn btn-ghost" id="manage-quotes-btn" type="button" style="width:100%; margin-bottom:8px;">✍️ Administrar frases</button>
-  <button class="btn btn-ghost" id="manage-weights-btn" type="button" style="width:100%; margin-bottom:10px;">⚖️ Ponderar categorías</button>
+  <button class="btn btn-ghost icon-text-btn" id="manage-quotes-btn" type="button" style="width:100%; margin-bottom:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Administrar frases</button>
+  <button class="btn btn-ghost icon-text-btn" id="manage-weights-btn" type="button" style="width:100%; margin-bottom:10px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><line x1="5" y1="7" x2="19" y2="7"/><path d="M5 7l-3 7a3 3 0 0 0 6 0z"/><path d="M19 7l-3 7a3 3 0 0 0 6 0z"/></svg> Ponderar categorías</button>
   <button class="btn btn-ghost sp-close-btn" id="personalize-close-btn" type="button">Listo</button>
 </div>
 
@@ -1458,7 +1503,8 @@
       settings: {
         streakThreshold: 80, theme: "dark", accentColor: "#0a84ff", quoteFont: "system", quotesEnabled: true,
         categoryWeights: { habitos: 1, dieta: 1, gimnasio: 1, notas: 1, gastos: 1, rutina: 1 },
-        lastWeeklySummaryWeek: null
+        lastWeeklySummaryWeek: null,
+        collapsedCards: {}
       },
       bestStreak: 0,
       activeDate: todayISO(),
@@ -1523,6 +1569,7 @@
       if (!g.id) g.id = uid();
       if (typeof g.url !== "string") g.url = "";
       if (typeof g.caption !== "string") g.caption = "";
+      if (typeof g.storagePath !== "string") g.storagePath = "";
     });
     if (typeof parsed.settings.categoryWeights !== "object" || !parsed.settings.categoryWeights){
       parsed.settings.categoryWeights = {};
@@ -1532,6 +1579,9 @@
       parsed.settings.categoryWeights[key] = (w >= 0 && w <= 5) ? w : 1;
     });
     if (typeof parsed.settings.lastWeeklySummaryWeek !== "string") parsed.settings.lastWeeklySummaryWeek = null;
+    if (typeof parsed.settings.collapsedCards !== "object" || !parsed.settings.collapsedCards){
+      parsed.settings.collapsedCards = {};
+    }
 
     // The date the person last had open before saving — used only to migrate old single-day fields below.
     var lastKnownDate = parsed.activeDate || todayISO();
@@ -1652,13 +1702,14 @@
   };
 
   var firebaseReady = firebaseConfig.apiKey !== "TU_API_KEY";
-  var auth = null, db = null, currentUid = null;
+  var auth = null, db = null, storage = null, currentUid = null;
   var saveTimer = null;
 
   if (firebaseReady){
     firebase.initializeApp(firebaseConfig);
     auth = firebase.auth();
     db = firebase.firestore();
+    storage = firebase.storage();
     db.enablePersistence().catch(function(err){
       console.warn("Persistencia offline no disponible (puede ser por pestañas múltiples).", err);
     });
@@ -1704,6 +1755,16 @@
     if (cls) e.className = cls;
     return e;
   }
+
+  var ICONS = {
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/></svg>',
+    warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M12 3l10 18H2Z"/><line x1="12" y1="9" x2="12" y2="14"/><line x1="12" y1="17.2" x2="12.01" y2="17.2"/></svg>',
+    bell: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
+    flame: '<svg viewBox="0 0 24 24" fill="currentColor" class="inline-icon"><path d="M12 2c.7 2.8-1.8 4.2-1.8 6.8a1.8 1.8 0 0 0 3.6 0c0-.7-.2-1.3-.5-1.9 2 1.3 3.7 3.9 3.7 6.6a5 5 0 0 1-10 0C7 9.5 10 6.3 12 2z"/></svg>',
+    chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
+    camera: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13.5" r="3.5"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 20 7"/><path d="M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/><path d="M10 7V4h4v3"/></svg>'
+  };
 
   function escapeHtml(value){
     return String(value == null ? "" : value).replace(/[<>&"]/g, function(c){
@@ -1970,20 +2031,84 @@
     var fields = document.getElementById("goal-add-fields");
     var opening = fields.style.display === "none";
     fields.style.display = opening ? "flex" : "none";
-    if (opening) document.getElementById("new-goal-url").focus();
+    if (opening) document.getElementById("new-goal-file-btn").focus();
   });
 
+  document.getElementById("new-goal-file-btn").addEventListener("click", function(){
+    document.getElementById("new-goal-file").click();
+  });
+  document.getElementById("new-goal-file").addEventListener("change", function(e){
+    var file = e.target.files[0];
+    document.getElementById("goal-file-name").textContent = file ? file.name : "";
+  });
+
+  function compressImageFile(file, maxDim){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      var reader = new FileReader();
+      reader.onerror = function(){ reject(new Error("No se pudo leer el archivo.")); };
+      reader.onload = function(){
+        img.onerror = function(){ reject(new Error("No se pudo procesar la imagen.")); };
+        img.onload = function(){
+          var w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim){
+            if (w > h){ h = Math.round(h * (maxDim / w)); w = maxDim; }
+            else { w = Math.round(w * (maxDim / h)); h = maxDim; }
+          }
+          var canvas = document.createElement("canvas");
+          canvas.width = w; canvas.height = h;
+          canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+          canvas.toBlob(function(blob){
+            if (!blob) { reject(new Error("No se pudo comprimir la imagen.")); return; }
+            resolve(blob);
+          }, "image/jpeg", 0.82);
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function setGoalUploadStatus(text, cls){
+    var el2 = document.getElementById("goal-upload-status");
+    el2.textContent = text || "";
+    el2.className = "goal-upload-status" + (cls ? " " + cls : "");
+  }
+
   document.getElementById("add-goal-btn").addEventListener("click", function(){
-    var urlInput = document.getElementById("new-goal-url");
+    var fileInput = document.getElementById("new-goal-file");
     var captionInput = document.getElementById("new-goal-caption");
-    var url = urlInput.value.trim();
+    var file = fileInput.files[0];
     var caption = captionInput.value.trim();
-    if (!url && !caption) return;
-    state.goalImages.push({ id: uid(), url: url, caption: caption });
-    urlInput.value = ""; captionInput.value = "";
-    document.getElementById("goal-add-fields").style.display = "none";
-    saveState();
-    goToGoalSlide(state.goalImages.length - 1);
+    if (!file){ setGoalUploadStatus("Elige una foto primero.", "error"); return; }
+    if (!storage || !currentUid){ setGoalUploadStatus("Sin conexión con la nube todavía, intenta de nuevo.", "error"); return; }
+
+    var addBtn = document.getElementById("add-goal-btn");
+    addBtn.disabled = true;
+    setGoalUploadStatus("Comprimiendo y subiendo...", "uploading");
+
+    compressImageFile(file, 1200).then(function(blob){
+      var imageId = uid();
+      var path = "users/" + currentUid + "/goalImages/" + imageId + ".jpg";
+      var ref = storage.ref(path);
+      return ref.put(blob, { contentType: "image/jpeg" }).then(function(){
+        return ref.getDownloadURL();
+      }).then(function(url){
+        state.goalImages.push({ id: imageId, url: url, caption: caption, storagePath: path });
+        fileInput.value = "";
+        document.getElementById("goal-file-name").textContent = "";
+        captionInput.value = "";
+        document.getElementById("goal-add-fields").style.display = "none";
+        setGoalUploadStatus("", "");
+        saveState();
+        goToGoalSlide(state.goalImages.length - 1);
+      });
+    }).catch(function(err){
+      console.error("Error subiendo imagen.", err);
+      setGoalUploadStatus("No se pudo subir la imagen. Intenta de nuevo.", "error");
+    }).finally(function(){
+      addBtn.disabled = false;
+    });
   });
   document.getElementById("new-goal-caption").addEventListener("keydown", function(e){
     if (e.key === "Enter") document.getElementById("add-goal-btn").click();
@@ -1991,10 +2116,15 @@
 
   document.getElementById("delete-goal-btn").addEventListener("click", function(){
     if (!state.goalImages.length) return;
-    state.goalImages.splice(goalCarouselIndex, 1);
+    var removed = state.goalImages.splice(goalCarouselIndex, 1)[0];
     saveState();
     goToGoalSlide(goalCarouselIndex);
     renderGoalCarousel();
+    if (removed && removed.storagePath && storage){
+      storage.ref(removed.storagePath).delete().catch(function(err){
+        console.warn("No se pudo borrar el archivo de Storage (puede que ya no existiera).", err);
+      });
+    }
   });
 
   function refreshPersonalizeUI(){
@@ -2428,7 +2558,7 @@
     var html = '<div class="expense-total-line"><span>' + label + '</span><b>$' + total.toFixed(0) + (daily ? " / $" + daily : "") + "</b></div>";
     if (daily){
       var within = total <= daily;
-      html += '<div class="expense-status ' + (within ? "expense-ok" : "expense-over") + '">' + (within ? "✅ Dentro del presupuesto" : "⚠️ Te pasaste del presupuesto") + "</div>";
+      html += '<div class="expense-status ' + (within ? "expense-ok" : "expense-over") + '">' + (within ? ICONS.check + " Dentro del presupuesto" : ICONS.warning + " Te pasaste del presupuesto") + "</div>";
     }
     if (monthly){
       var monthTotal = monthlyExpenseTotal();
@@ -2859,7 +2989,72 @@
     document.getElementById("metric-best-streak").textContent = state.bestStreak + (state.bestStreak === 1 ? " día" : " días");
     renderCalendar();
     renderTrendChart();
+    renderHabitStreaks();
     renderWeeklySummary();
+  }
+
+  // ---------- Habit continuity ----------
+  function calculateHabitStreak(h){
+    var todayIsoVal = todayISO();
+    var count = 0;
+    var todayScheduled = sanitizeDays(h.days).indexOf(dateFromISO(todayIsoVal).getDay()) !== -1;
+    if (todayScheduled && isDoneOn(h, todayIsoVal)) count++;
+    var cursor = shiftISO(todayIsoVal, -1);
+    var guard = 0;
+    while (guard < 3650){
+      guard++;
+      var scheduled = sanitizeDays(h.days).indexOf(dateFromISO(cursor).getDay()) !== -1;
+      if (scheduled){
+        if (isDoneOn(h, cursor)) count++;
+        else break;
+      }
+      cursor = shiftISO(cursor, -1);
+    }
+    return count;
+  }
+
+  function calculateHabitBestStreak(h){
+    var keys = Object.keys(h.doneLog || {}).filter(function(k){ return h.doneLog[k]; });
+    if (!keys.length) return 0;
+    keys.sort();
+    var best = 0, current = 0;
+    var cursor = keys[0];
+    var end = todayISO();
+    var guard = 0;
+    while (cursor <= end && guard < 3650){
+      guard++;
+      var scheduled = sanitizeDays(h.days).indexOf(dateFromISO(cursor).getDay()) !== -1;
+      if (scheduled){
+        if (isDoneOn(h, cursor)){ current++; if (current > best) best = current; }
+        else { current = 0; }
+      }
+      cursor = shiftISO(cursor, 1);
+    }
+    return best;
+  }
+
+  function renderHabitStreaks(){
+    var list = document.getElementById("habit-streaks-list");
+    list.innerHTML = "";
+    if (!state.habits.length){
+      var hint = el("div", "empty-hint");
+      hint.textContent = "Agrega hábitos para ver su continuidad aquí.";
+      list.appendChild(hint);
+      return;
+    }
+    var rows = state.habits.map(function(h){
+      return { name: h.name, current: calculateHabitStreak(h), best: calculateHabitBestStreak(h) };
+    }).sort(function(a, b){ return b.current - a.current; });
+
+    rows.forEach(function(r){
+      var row = el("div", "habit-streak-row");
+      var name = el("span", "habit-streak-name"); name.textContent = r.name;
+      var current = el("span", "habit-streak-current" + (r.current === 0 ? " zero" : ""));
+      current.innerHTML = ICONS.flame + " " + r.current + (r.current === 1 ? " día" : " días");
+      var best = el("span", "habit-streak-best"); best.textContent = "Récord: " + r.best + (r.best === 1 ? " día" : " días");
+      row.appendChild(name); row.appendChild(current); row.appendChild(best);
+      list.appendChild(row);
+    });
   }
 
   // ---------- Weekly summary ----------
@@ -3410,8 +3605,8 @@
       || (state.expensesLog[yIso] || []).length > 0;
     if (!touched) return;
     var banner = document.getElementById("missed-day-banner");
-    document.getElementById("missed-day-text").textContent =
-      "📌 Parece que no cerraste tu jornada de " + formatDateLabel(yIso) + ".";
+    document.getElementById("missed-day-text").innerHTML =
+      ICONS.bell + " Parece que no cerraste tu jornada de " + formatDateLabel(yIso) + ".";
     banner.style.display = "flex";
     document.getElementById("missed-day-review-btn").onclick = function(){
       banner.style.display = "none";
@@ -3688,6 +3883,49 @@
     document.getElementById("app-shell").classList.add("active");
   }
 
+  // ---------- Collapsible cards ----------
+  function setupCollapsibleCards(){
+    document.querySelectorAll(".card").forEach(function(card, index){
+      if (card.dataset.collapseReady) return; // already wired once
+      var h2 = card.querySelector("h2");
+      if (!h2) return;
+      var headerEl = h2;
+      while (headerEl.parentElement !== card) headerEl = headerEl.parentElement;
+
+      var key = (h2.textContent || "").trim() || ("card-" + index);
+
+      var bodyDiv = el("div", "card-body");
+      var node = headerEl.nextSibling;
+      var toMove = [];
+      while (node){ toMove.push(node); node = node.nextSibling; }
+      toMove.forEach(function(n){ bodyDiv.appendChild(n); });
+      card.appendChild(bodyDiv);
+
+      var chevron = el("span", "card-collapse-chevron");
+      chevron.innerHTML = ICONS.chevron;
+      h2.appendChild(chevron);
+      h2.classList.add("collapsible-h2");
+      h2.title = "Toca para colapsar / expandir";
+
+      var collapsed = !!state.settings.collapsedCards[key];
+      function apply(){
+        card.classList.toggle("collapsed", collapsed);
+        bodyDiv.style.display = collapsed ? "none" : "";
+        h2.classList.toggle("is-collapsed", collapsed);
+      }
+      apply();
+
+      h2.addEventListener("click", function(){
+        collapsed = !collapsed;
+        state.settings.collapsedCards[key] = collapsed;
+        saveState();
+        apply();
+      });
+
+      card.dataset.collapseReady = "1";
+    });
+  }
+
   function initApp(loadedState){
     state = loadedState;
     applyTheme(state.settings.theme);
@@ -3700,6 +3938,7 @@
     resetGoalCarouselTimer();
     checkMissedDay();
     maybeShowWeeklySummaryPopup();
+    setupCollapsibleCards();
   }
 
   function translateAuthError(err){
