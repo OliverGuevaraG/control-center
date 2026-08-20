@@ -1143,11 +1143,31 @@
         </div>
         <div id="gym-schedule-slot" style="margin-bottom:10px;"></div>
         <div class="rest-day-banner" id="rest-day-banner" style="display:none;"><svg viewBox="0 0 24 24" fill="currentColor" class="banner-icon"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 9 9 0 1 0 20.5 14.5Z"/></svg> Hoy no toca entrenar — el gimnasio no cuenta en tu % de hoy.</div>
-        <input type="text" class="routine-name" id="routine-name" placeholder="Nombre de la rutina de hoy (ej. Push day)">
-        <div id="gym-list" class="gym-list"></div>
-        <button class="add-row-btn" id="add-gym-btn">+ Agregar ejercicio</button>
+        <div class="routine-toolbar" style="margin-bottom:10px;">
+          <select id="gym-template-select" class="routine-select"></select>
+          <button class="btn btn-ghost" id="add-gym-template-btn" type="button">Nueva plantilla</button>
+          <button class="btn btn-danger-ghost" id="delete-gym-template-btn" type="button">Eliminar</button>
+        </div>
+        <div class="todo-add-row" style="margin-bottom:12px;">
+          <button class="btn btn-accent" id="apply-gym-template-btn" type="button">Cargar plantilla de hoy</button>
+          <button class="btn btn-ghost" id="save-gym-template-btn" type="button">Guardar hoy como plantilla</button>
+        </div>
+        <input type="text" class="routine-name" id="gym-template-name" placeholder="Nombre de la plantilla">
+        <div id="gym-template-steps-list"></div>
+        <button class="add-row-btn" id="add-gym-template-step-btn" type="button">+ Agregar ejercicio a la plantilla</button>
+
         <div class="embedded-section">
-          <h3>Medidas corporales</h3>
+          <h3>Registro de hoy</h3>
+          <input type="text" class="routine-name" id="routine-name" placeholder="Nombre de la rutina de hoy (ej. Push day)">
+          <div id="gym-list" class="gym-list"></div>
+          <button class="add-row-btn" id="add-gym-btn">+ Agregar ejercicio</button>
+        </div>
+
+        <div class="embedded-section">
+          <h3 style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <span>Medidas corporales</span>
+            <span class="todo-tag" id="measurement-reminder-badge" style="display:none; background:rgba(255,159,10,0.16); color:var(--warning);">Pendiente esta semana</span>
+          </h3>
           <p class="subtitle">Registro de medidas dentro de tu entrenamiento. No cuenta en la racha.</p>
           <div id="primary-measurements-list"></div>
           <div class="measurements-divider">Otras medidas (bíceps, pierna, cintura...)</div>
@@ -1179,6 +1199,7 @@
           </label>
         </div>
         <div class="expense-summary" id="expense-summary"></div>
+        <div id="expense-category-breakdown"></div>
         <div id="expense-list"></div>
         <div class="todo-add-row expense-add-row">
           <select id="new-expense-category" class="expense-category-select">
@@ -1299,7 +1320,7 @@
 
   <div class="card">
     <h2><span class="dot"></span>Continuidad de hábitos</h2>
-    <p class="subtitle">Cuántos días seguidos llevas con cada hábito.</p>
+    <p class="subtitle">Cuántos días seguidos llevas con cada hábito. Los hábitos "evitar" muestran días sin recaída.</p>
     <div id="habit-streaks-list"></div>
   </div>
 
@@ -1444,7 +1465,6 @@
 </div>
 
 </div>
-
 <script>
 (function(){
   "use strict";
@@ -1509,11 +1529,11 @@
       bestStreak: 0,
       activeDate: todayISO(),
       habits: [
-        { id: uid(), name: "Ejercicio", doneLog: {}, days: [1, 3, 5] },
-        { id: uid(), name: "Tomar agua (2L)", doneLog: {}, days: ALL_DAYS.slice() },
-        { id: uid(), name: "Leer 20 min", doneLog: {}, days: ALL_DAYS.slice() },
-        { id: uid(), name: "Meditar", doneLog: {}, days: ALL_DAYS.slice() },
-        { id: uid(), name: "Dormir 7h+", doneLog: {}, days: ALL_DAYS.slice() }
+        { id: uid(), name: "Ejercicio", doneLog: {}, days: [1, 3, 5], type: "build" },
+        { id: uid(), name: "Tomar agua (2L)", doneLog: {}, days: ALL_DAYS.slice(), type: "build" },
+        { id: uid(), name: "Leer 20 min", doneLog: {}, days: ALL_DAYS.slice(), type: "build" },
+        { id: uid(), name: "Meditar", doneLog: {}, days: ALL_DAYS.slice(), type: "build" },
+        { id: uid(), name: "Dormir 7h+", doneLog: {}, days: ALL_DAYS.slice(), type: "build" }
       ],
       diet: [
         { id: uid(), name: "Desayuno", detail: "", doneLog: {}, days: ALL_DAYS.slice() },
@@ -1523,15 +1543,19 @@
       gym: {
         routine: "",
         days: [1, 3, 5],
-        exercises: [ { id: uid(), name: "Ejercicio 1", meta: "3x10", doneLog: {}, days: [1, 3, 5] } ]
+        exercises: [ { id: uid(), name: "Ejercicio 1", meta: "3x10", doneLog: {}, weightLog: {}, days: [1, 3, 5] } ]
       },
+      gymTemplates: [
+        { id: uid(), name: "Mi rutina", exercises: [ { id: uid(), name: "Ejercicio 1", meta: "3x10" } ] }
+      ],
+      activeGymTemplateId: null,
       todos: [
         { id: uid(), text: "Planear la semana", done: false, addedDate: todayISO() }
       ],
       measurements: [
         { id: uid(), name: "Peso", unit: "kg", days: [0], log: [], primary: true }
       ],
-      expenses: { dailyBudget: null, monthlyBudget: null },
+      expenses: { dailyBudget: 500, monthlyBudget: null },
       expensesLog: {},
       routines: [
         {
@@ -1606,7 +1630,24 @@
 
     // ---- Expenses: migrate old single-array + expenseHistory into a per-date log ----
     if (!parsed.expenses) parsed.expenses = {};
-    if (!(parsed.expenses.dailyBudget > 0)) parsed.expenses.dailyBudget = null;
+    if (!(parsed.expenses.dailyBudget > 0)){
+      // Sin presupuesto configurado: lo activamos por default con base en tu gasto reciente,
+      // o $500 si todavía no hay suficiente historial de gastos.
+      var recentTotals = [];
+      var todayIsoVal = todayISO();
+      Object.keys(parsed.expensesLog || {}).forEach(function(iso){
+        if (iso <= todayIsoVal){
+          var t = (parsed.expensesLog[iso] || []).reduce(function(s, e){ return s + (Number(e.amount) || 0); }, 0);
+          if (t > 0) recentTotals.push(t);
+        }
+      });
+      if (recentTotals.length){
+        var avgSpend = recentTotals.reduce(function(s, v){ return s + v; }, 0) / recentTotals.length;
+        parsed.expenses.dailyBudget = Math.max(50, Math.round(avgSpend / 50) * 50);
+      } else {
+        parsed.expenses.dailyBudget = 500;
+      }
+    }
     if (!(parsed.expenses.monthlyBudget > 0)) parsed.expenses.monthlyBudget = null;
     if (!parsed.expensesLog) parsed.expensesLog = {};
     if (Array.isArray(parsed.expenses.entries) && parsed.expenses.entries.length){
@@ -1658,10 +1699,37 @@
       item.days = sanitizeDays(item.days);
     }
     parsed.habits.forEach(migrateDoneLog);
+    parsed.habits.forEach(function(h){ if (h.type !== "avoid") h.type = "build"; });
     parsed.diet.forEach(function(d){ if (typeof d.detail !== "string") d.detail = ""; migrateDoneLog(d); });
     if (!parsed.gym.exercises) parsed.gym.exercises = [];
     parsed.gym.exercises.forEach(migrateDoneLog);
     parsed.gym.days = sanitizeDays(parsed.gym.days);
+    parsed.gym.exercises.forEach(function(x){ if (!x.weightLog) x.weightLog = {}; });
+
+    // ---- Plantillas de gimnasio: auto-genera tu primera plantilla desde tu rutina actual ----
+    if (!Array.isArray(parsed.gymTemplates)) parsed.gymTemplates = [];
+    if (!parsed.gymTemplates.length && parsed.gym.exercises.length){
+      parsed.gymTemplates.push({
+        id: uid(),
+        name: parsed.gym.routine || "Mi rutina",
+        exercises: parsed.gym.exercises.map(function(x){
+          return { id: uid(), name: x.name, meta: x.meta || "" };
+        })
+      });
+    }
+    parsed.gymTemplates.forEach(function(t){
+      if (!t.id) t.id = uid();
+      if (typeof t.name !== "string" || !t.name.trim()) t.name = "Rutina";
+      if (!Array.isArray(t.exercises)) t.exercises = [];
+      t.exercises.forEach(function(x){
+        if (!x.id) x.id = uid();
+        if (typeof x.name !== "string") x.name = "Ejercicio";
+        if (typeof x.meta !== "string") x.meta = "";
+      });
+    });
+    if (!parsed.activeGymTemplateId || !parsed.gymTemplates.some(function(t){ return t.id === parsed.activeGymTemplateId; })){
+      parsed.activeGymTemplateId = parsed.gymTemplates.length ? parsed.gymTemplates[0].id : null;
+    }
 
     parsed.history.forEach(function(entry){
       entry.percent = Number(entry.percent) || 0;
@@ -2255,7 +2323,7 @@
 
       var cb = el("input"); cb.type = "checkbox"; cb.checked = done;
       cb.disabled = !scheduled;
-      cb.title = scheduled ? "Marcar como hecho" : "No toca ese día";
+      cb.title = scheduled ? (h.type === "avoid" ? "Marcar como sin recaída" : "Marcar como hecho") : "No toca ese día";
       cb.addEventListener("change", function(){
         setDoneOn(h, activeISO(), cb.checked); row.classList.toggle("done", cb.checked); saveState(); updateProgress();
       });
@@ -2263,6 +2331,16 @@
       var name = el("input", "item-name"); name.type = "text"; name.value = h.name;
       name.addEventListener("input", function(){ h.name = name.value; });
       name.addEventListener("blur", saveState);
+
+      var typeBtn = el("button", "schedule-btn");
+      typeBtn.type = "button";
+      typeBtn.style.width = "78px";
+      typeBtn.textContent = h.type === "avoid" ? "Evitar" : "Construir";
+      typeBtn.title = "Cambiar tipo: construir (hacer algo) o evitar (no recaer)";
+      typeBtn.addEventListener("click", function(){
+        h.type = h.type === "avoid" ? "build" : "avoid";
+        saveState(); renderHabits(); renderAnalytics();
+      });
 
       var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Eliminar hábito";
       del.addEventListener("click", function(){
@@ -2272,6 +2350,7 @@
 
       row.appendChild(cb);
       row.appendChild(name);
+      row.appendChild(typeBtn);
       row.appendChild(makeScheduleButton(h, function(){ renderHabits(); updateProgress(); }));
       row.appendChild(del);
       list.appendChild(row);
@@ -2353,17 +2432,143 @@
       meta.addEventListener("input", function(){ x.meta = meta.value; });
       meta.addEventListener("blur", saveState);
 
+      var weight = el("input", "item-meta"); weight.type = "number"; weight.step = "0.5";
+      weight.style.width = "58px"; weight.placeholder = "kg";
+      if (!x.weightLog) x.weightLog = {};
+      weight.value = x.weightLog[activeISO()] != null ? x.weightLog[activeISO()] : "";
+      weight.title = "Peso usado hoy";
+      weight.addEventListener("change", function(){
+        if (weight.value === "") delete x.weightLog[activeISO()];
+        else x.weightLog[activeISO()] = Number(weight.value);
+        saveState();
+      });
+
       var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Eliminar ejercicio";
       del.addEventListener("click", function(){
         state.gym.exercises = state.gym.exercises.filter(function(e){ return e.id !== x.id; });
         saveState(); renderGym(); updateProgress();
       });
 
-      row.appendChild(cb); row.appendChild(name); row.appendChild(meta); row.appendChild(del);
-      row.insertBefore(makeScheduleButton(x, function(){ renderGym(); updateProgress(); }), del);
+      row.appendChild(cb); row.appendChild(name); row.appendChild(meta); row.appendChild(weight);
+      row.appendChild(makeScheduleButton(x, function(){ renderGym(); updateProgress(); }));
+      row.appendChild(del);
       list.appendChild(row);
     });
   }
+
+  // ---------- Plantillas de gimnasio ----------
+  function currentGymTemplate(){
+    return state.gymTemplates.find(function(t){ return t.id === state.activeGymTemplateId; }) || state.gymTemplates[0];
+  }
+
+  function renderGymTemplates(){
+    var select = document.getElementById("gym-template-select");
+    select.innerHTML = "";
+    state.gymTemplates.forEach(function(t){
+      var option = el("option"); option.value = t.id; option.textContent = t.name;
+      select.appendChild(option);
+    });
+    var tpl = currentGymTemplate();
+    if (!tpl) return;
+    state.activeGymTemplateId = tpl.id;
+    select.value = tpl.id;
+    document.getElementById("gym-template-name").value = tpl.name;
+
+    var list = document.getElementById("gym-template-steps-list");
+    list.innerHTML = "";
+    if (!tpl.exercises.length){
+      var hint = el("div", "empty-hint");
+      hint.textContent = "Esta plantilla no tiene ejercicios todavía.";
+      list.appendChild(hint);
+      return;
+    }
+    tpl.exercises.forEach(function(ex){
+      var row = el("div", "item-row");
+      var name = el("input", "item-name"); name.type = "text"; name.value = ex.name; name.placeholder = "Ejercicio";
+      name.addEventListener("input", function(){ ex.name = name.value; });
+      name.addEventListener("blur", saveState);
+      var meta = el("input", "item-meta"); meta.type = "text"; meta.value = ex.meta || ""; meta.placeholder = "3x10";
+      meta.addEventListener("input", function(){ ex.meta = meta.value; });
+      meta.addEventListener("blur", saveState);
+      var del = el("button", "delete-btn"); del.textContent = "×"; del.title = "Quitar de la plantilla";
+      del.addEventListener("click", function(){
+        tpl.exercises = tpl.exercises.filter(function(e){ return e.id !== ex.id; });
+        saveState(); renderGymTemplates();
+      });
+      row.appendChild(name); row.appendChild(meta); row.appendChild(del);
+      list.appendChild(row);
+    });
+  }
+
+  document.getElementById("gym-template-select").addEventListener("change", function(e){
+    state.activeGymTemplateId = e.target.value;
+    saveState(); renderGymTemplates();
+  });
+  document.getElementById("gym-template-name").addEventListener("input", function(e){
+    var tpl = currentGymTemplate();
+    if (!tpl) return;
+    tpl.name = e.target.value || "Rutina";
+    saveState();
+    var option = document.querySelector('#gym-template-select option[value="' + tpl.id + '"]');
+    if (option) option.textContent = tpl.name;
+  });
+  document.getElementById("add-gym-template-btn").addEventListener("click", function(){
+    var tpl = { id: uid(), name: "Nueva plantilla", exercises: [] };
+    state.gymTemplates.push(tpl);
+    state.activeGymTemplateId = tpl.id;
+    saveState(); renderGymTemplates();
+  });
+  document.getElementById("delete-gym-template-btn").addEventListener("click", function(){
+    if (state.gymTemplates.length <= 1){ alert("Deja al menos una plantilla."); return; }
+    var tpl = currentGymTemplate();
+    if (!tpl || !confirm('¿Eliminar la plantilla "' + tpl.name + '"?')) return;
+    state.gymTemplates = state.gymTemplates.filter(function(t){ return t.id !== tpl.id; });
+    state.activeGymTemplateId = state.gymTemplates[0].id;
+    saveState(); renderGymTemplates();
+  });
+  document.getElementById("add-gym-template-step-btn").addEventListener("click", function(){
+    var tpl = currentGymTemplate();
+    if (!tpl) return;
+    tpl.exercises.push({ id: uid(), name: "Nuevo ejercicio", meta: "3x10" });
+    saveState(); renderGymTemplates();
+  });
+
+  function applyGymTemplateToday(){
+    var tpl = currentGymTemplate();
+    if (!tpl || !tpl.exercises.length){ alert("Esta plantilla no tiene ejercicios."); return; }
+    var todayWeekday = activeDate().getDay();
+    tpl.exercises.forEach(function(tx){
+      var match = state.gym.exercises.find(function(x){
+        return x.name.trim().toLowerCase() === tx.name.trim().toLowerCase();
+      });
+      if (match){
+        if (sanitizeDays(match.days).indexOf(todayWeekday) === -1){
+          match.days = sanitizeDays(match.days.concat([todayWeekday]));
+        }
+      } else {
+        state.gym.exercises.push({
+          id: uid(), name: tx.name, meta: tx.meta || "", doneLog: {}, weightLog: {}, days: [todayWeekday]
+        });
+      }
+    });
+    state.gym.routine = tpl.name;
+    saveState();
+    renderGym();
+    updateProgress();
+  }
+  document.getElementById("apply-gym-template-btn").addEventListener("click", applyGymTemplateToday);
+
+  document.getElementById("save-gym-template-btn").addEventListener("click", function(){
+    var tpl = currentGymTemplate();
+    if (!tpl) return;
+    var todayWeekday = activeDate().getDay();
+    var todays = state.gym.exercises.filter(function(x){ return sanitizeDays(x.days).indexOf(todayWeekday) !== -1; });
+    if (!todays.length){ alert("No hay ejercicios programados hoy para guardar."); return; }
+    tpl.exercises = todays.map(function(x){ return { id: uid(), name: x.name, meta: x.meta || "" }; });
+    saveState();
+    renderGymTemplates();
+    alert('Plantilla "' + tpl.name + '" actualizada con los ejercicios de hoy.');
+  });
 
   // ---------- To-do (with memory) ----------
   function renderTodos(){
@@ -2516,6 +2721,32 @@
         list.appendChild(buildMeasurementRow(m, true));
       });
     }
+
+    checkMeasurementReminder();
+  }
+
+  function checkMeasurementReminder(){
+    var badge = document.getElementById("measurement-reminder-badge");
+    if (!badge) return;
+    var todayIsoVal = todayISO();
+    var pending = [];
+    state.measurements.forEach(function(m){
+      var days = sanitizeDays(m.days);
+      for (var i = 0; i < 7; i++){
+        var iso = shiftISO(todayIsoVal, -i);
+        if (days.indexOf(dateFromISO(iso).getDay()) !== -1){
+          var logged = m.log.some(function(e){ return e.iso === iso; });
+          if (!logged) pending.push(m.name);
+          break; // solo revisamos la ocurrencia programada más reciente
+        }
+      }
+    });
+    if (pending.length){
+      badge.style.display = "inline-block";
+      badge.textContent = "Pendiente: " + pending.join(", ");
+    } else {
+      badge.style.display = "none";
+    }
   }
 
   function addMeasurementFromForm(){
@@ -2569,6 +2800,38 @@
     document.getElementById("expense-summary").innerHTML = html;
   }
 
+  function renderExpenseCategoryBreakdown(){
+    var container = document.getElementById("expense-category-breakdown");
+    if (!container) return;
+    var entries = getActiveExpenses();
+    if (!entries.length){ container.innerHTML = ""; return; }
+    var totals = {};
+    entries.forEach(function(e){
+      totals[e.category] = (totals[e.category] || 0) + (Number(e.amount) || 0);
+    });
+    var sorted = Object.keys(totals).map(function(c){ return { cat: c, amt: totals[c] }; })
+      .sort(function(a, b){ return b.amt - a.amt; });
+    var daily = state.expenses.dailyBudget;
+
+    var html = '<div class="measurements-divider" style="margin-top:0;">Desglose de hoy por categoría</div>';
+    sorted.forEach(function(s){
+      var pctText = daily ? ' <span style="color:var(--text-tertiary); font-weight:400;">(' + Math.round((s.amt / daily) * 100) + '% del presupuesto diario)</span>' : "";
+      html += '<div class="detail-expense-row"><span>' + escapeHtml(s.cat) + '</span><b>$' + s.amt.toFixed(0) + pctText + '</b></div>';
+    });
+
+    if (daily && sorted.length){
+      var top = sorted[0];
+      var topPct = Math.round((top.amt / daily) * 100);
+      if (topPct >= 50){
+        var overBudget = topPct >= 100;
+        html += '<div class="expense-status ' + (overBudget ? "expense-over" : "expense-ok") + '" style="margin-top:8px;">' +
+          (overBudget ? ICONS.warning : ICONS.check) +
+          ' Llevas $' + top.amt.toFixed(0) + ' de $' + daily + ' en ' + escapeHtml(top.cat.toLowerCase()) + ' hoy (' + topPct + '%).</div>';
+      }
+    }
+    container.innerHTML = html;
+  }
+
   function renderExpenses(){
     document.getElementById("expense-daily-budget").value = state.expenses.dailyBudget != null ? state.expenses.dailyBudget : "";
     document.getElementById("expense-monthly-budget").value = state.expenses.monthlyBudget != null ? state.expenses.monthlyBudget : "";
@@ -2598,6 +2861,7 @@
       });
     }
     renderExpenseSummary();
+    renderExpenseCategoryBreakdown();
   }
 
   function addExpenseFromForm(){
@@ -2620,7 +2884,7 @@
   document.getElementById("expense-daily-budget").addEventListener("change", function(e){
     var v = e.target.value === "" ? null : Number(e.target.value);
     state.expenses.dailyBudget = (v && v > 0) ? v : null;
-    saveState(); renderExpenseSummary(); updateProgress();
+    saveState(); renderExpenseSummary(); renderExpenseCategoryBreakdown(); updateProgress();
   });
   document.getElementById("expense-monthly-budget").addEventListener("change", function(e){
     var v = e.target.value === "" ? null : Number(e.target.value);
@@ -3033,6 +3297,24 @@
     return best;
   }
 
+  function calculateHabitRelapses(h){
+    var keys = Object.keys(h.doneLog || {}).filter(function(k){ return h.doneLog[k]; });
+    if (!keys.length) return 0;
+    keys.sort();
+    var startIso = keys[0];
+    var end = todayISO();
+    var cursor = startIso;
+    var relapses = 0;
+    var guard = 0;
+    while (cursor <= end && guard < 3650){
+      guard++;
+      var scheduled = sanitizeDays(h.days).indexOf(dateFromISO(cursor).getDay()) !== -1;
+      if (scheduled && !isDoneOn(h, cursor)) relapses++;
+      cursor = shiftISO(cursor, 1);
+    }
+    return relapses;
+  }
+
   function renderHabitStreaks(){
     var list = document.getElementById("habit-streaks-list");
     list.innerHTML = "";
@@ -3043,15 +3325,27 @@
       return;
     }
     var rows = state.habits.map(function(h){
-      return { name: h.name, current: calculateHabitStreak(h), best: calculateHabitBestStreak(h) };
+      return {
+        name: h.name,
+        type: h.type === "avoid" ? "avoid" : "build",
+        current: calculateHabitStreak(h),
+        best: calculateHabitBestStreak(h),
+        relapses: calculateHabitRelapses(h)
+      };
     }).sort(function(a, b){ return b.current - a.current; });
 
     rows.forEach(function(r){
       var row = el("div", "habit-streak-row");
       var name = el("span", "habit-streak-name"); name.textContent = r.name;
       var current = el("span", "habit-streak-current" + (r.current === 0 ? " zero" : ""));
-      current.innerHTML = ICONS.flame + " " + r.current + (r.current === 1 ? " día" : " días");
-      var best = el("span", "habit-streak-best"); best.textContent = "Récord: " + r.best + (r.best === 1 ? " día" : " días");
+      var currentLabel = r.type === "avoid"
+        ? (r.current === 1 ? " día sin recaída" : " días sin recaída")
+        : (r.current === 1 ? " día" : " días");
+      current.innerHTML = ICONS.flame + " " + r.current + currentLabel;
+      var best = el("span", "habit-streak-best");
+      best.textContent = r.type === "avoid"
+        ? ("Récord: " + r.best + " · " + r.relapses + (r.relapses === 1 ? " recaída" : " recaídas"))
+        : ("Récord: " + r.best + (r.best === 1 ? " día" : " días"));
       row.appendChild(name); row.appendChild(current); row.appendChild(best);
       list.appendChild(row);
     });
@@ -3541,6 +3835,7 @@
     renderHabits();
     renderDiet();
     renderGym();
+    renderGymTemplates();
     renderTodos();
     renderMeasurements();
     renderExpenses();
@@ -3619,7 +3914,7 @@
 
   // ---------- Add buttons ----------
   document.getElementById("add-habit-btn").addEventListener("click", function(){
-    state.habits.push({ id: uid(), name: "Nuevo hábito", doneLog: {}, days: ALL_DAYS.slice() });
+    state.habits.push({ id: uid(), name: "Nuevo hábito", doneLog: {}, days: ALL_DAYS.slice(), type: "build" });
     saveState(); renderHabits(); updateProgress();
   });
   document.getElementById("add-diet-btn").addEventListener("click", function(){
@@ -3627,7 +3922,7 @@
     saveState(); renderDiet(); updateProgress();
   });
   document.getElementById("add-gym-btn").addEventListener("click", function(){
-    state.gym.exercises.push({ id: uid(), name: "Nuevo ejercicio", meta: "", doneLog: {}, days: ALL_DAYS.slice() });
+    state.gym.exercises.push({ id: uid(), name: "Nuevo ejercicio", meta: "", doneLog: {}, weightLog: {}, days: ALL_DAYS.slice() });
     saveState(); renderGym(); updateProgress();
   });
 
@@ -3828,8 +4123,8 @@
         background_color: "#1c1c1e",
         theme_color: "#1c1c1e",
         icons: [
-          { src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADwElEQVR42u3duXITQRCAYe+WM6WQCQlIbANvBEQcL0Hsl4CM442AiKOAiCMlJyCiXIWtkXZ3uvv7MxxJM596Z1kLhvV6cyS1NloCASSABJAAkgASQAJIAEkACSD12/EwDFZBJpAAEkACSAJIAAkgASQBJIAEkDLmWZhMIAEkgASQBJBmvQvL8TZ+Pf0c8WVfe34r+soPm81NYniqAiilm9CSwgAqQiccowCACtIJxKhrQMXphGA0bLc9vrKfTz5Bc7HrL2739pJGegLV4cr0NYHQCTeKRnqMogyA6Am6YqO1YCg2IHpCr95ID0NRAdGTYCVHehiKB4ieNKs60sPQPvleWLZm3tC5J9CPxx/tcaYVHulhKOptvBI0pvxYaLbVNoEUAZDxk3UImUDqHpDxk3gImUDqG5Dxk3sImUDaK8/C8jfpFk87gb4/+mD/Fm/SXXAJE0ACSAAJICdo52gTSC5hAkgASZd2bAnm6fezf/64Os8CyLOw+fX8/cnMhibaaJewBfT8/+fOQLqqkgSGAFpMj7swCSDjByB6ACqqJ8HfBgFED0D0AFSqNHoAWmD8ZNJz5FlYHT2ehdHjEkYPQCp+agZomft2gOTiBRA9ANEDkIMzQMaPAHLxAoiehUv1LGzSL+9F1+NZ2M4bfMDDitmTHFDuL+8BtOTRZH9Dxk/1Q/Q+hugBqN0QPQC1G6IHoMnP1MX1JAG00y5e0ZDbt1oT6LCGXLwqXsIOZYieumeg1fm++0rPzoCGyep8FDWfcoLqmWiXc96FtRlycHYb327IxQugdkP0ADT5ltNTEdChNp6euoAE0MLzw/gxgdoR0ANQOwV6AGoHQQ9A7SzouWIV/43E1XnFpxa+FyaXsCAXMtcvgNoN0QNQuyF6dj5EF3//xJhASgpo/fLM+nbSdHthAgkgASSAVLHh5GTao+63h++t8rLdeHXHBJJLmADqbX5q8fU3gdQ9IEMo6/gxgRQEkCGUcvyYQIoDyBDKN35MIIUCZAjlW+fh9HTuTf364J09nq7N67tpJ5BcwuJ9RIyfhBOIoTSrOpZ6t/SkOgMxlGAlx7LvnJ4kd2EMhV690SrQEx4QQ3FXbLQi9OzTAo8yLs2zjkAfs+HsrMfP/Zf7b1m52PbNvd5eUqeAMOqfTgBAGPVMJwygsow6pxMMUClGIeiEBJRbUiA34QHl8BRRTE5AWiq/0iqABJAAUsUq/n9hMoEEkACSABJAAkgACSAJIAEkgFQjz8JkAgkgASSAJIAEkAASQBJAAkgAKWt/ADnZHeP820RBAAAAAElFTkSuQmCC", sizes: "192x192", type: "image/png" },
-          { src: "data:image/png;base64,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", sizes: "512x512", type: "image/png" }
+          { src: document.querySelector('link[rel="apple-touch-icon"]').href, sizes: "192x192", type: "image/png" },
+          { src: document.querySelector('link[rel="apple-touch-icon"]').href, sizes: "512x512", type: "image/png" }
         ]
       };
       var manifestBlob = new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" });
