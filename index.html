@@ -1549,6 +1549,44 @@
 
 </div>
 
+<nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Navegación móvil">
+  <button data-mobile-view="dashboard" class="active" type="button"><span class="nav-ico">⌂</span>Inicio</button>
+  <button data-mobile-view="habits" type="button"><span class="nav-ico">✓</span>Hábitos</button>
+  <button data-mobile-view="content" type="button"><span class="nav-ico">🎬</span>Contenido</button>
+  <button data-mobile-view="gym" type="button"><span class="nav-ico">🏋️</span>Gym</button>
+  <button data-mobile-view="goals" type="button"><span class="nav-ico">🎯</span>Más</button>
+</nav>
+
+<div class="workout-overlay" id="gym-progress-overlay" aria-hidden="true">
+  <div class="workout-panel">
+    <div class="workout-head"><div><div class="focus-kicker">Progreso del ejercicio</div><h2 id="gym-progress-title">Ejercicio</h2><p class="subtitle" id="gym-progress-summary"></p></div><button class="delete-btn" id="gym-progress-close" type="button">×</button></div>
+    <div id="gym-progress-kpis" class="gym-progress-kpis"></div>
+    <div id="gym-progress-chart" class="gym-progress-chart"></div>
+    <div id="gym-pr-summary" class="gym-pr-banner"></div>
+    <div id="gym-history-list" class="gym-history-list"></div>
+    <div class="workout-footer"><button class="btn btn-ghost" id="gym-progress-close-bottom" type="button">Cerrar</button></div>
+  </div>
+</div>
+
+<div class="workout-pr-toast" id="workout-pr-toast" role="status" aria-live="polite"></div>
+
+<div class="workout-overlay" id="workout-overlay" aria-hidden="true">
+  <div class="workout-panel">
+    <div class="workout-head"><div><div class="focus-kicker">Entrenamiento de hoy</div><h2 id="workout-title">Rutina</h2><p class="subtitle" id="workout-subtitle"></p></div><button class="delete-btn" id="workout-close" type="button">×</button></div>
+    <div class="workout-progress" id="workout-progress" aria-label="Progreso del entrenamiento"><span></span></div>
+    <div id="workout-exercises" class="workout-exercises"></div>
+    <div class="workout-footer"><button class="btn btn-ghost" id="workout-cancel" type="button">Cancelar</button><button class="btn btn-accent" id="workout-save" type="button">✓ Terminé entrenamiento</button></div>
+  </div>
+</div>
+<div class="routine-manager-overlay" id="routine-manager-overlay" aria-hidden="true">
+  <div class="routine-manager-panel">
+    <div class="workout-head"><div><div class="focus-kicker">Configuración</div><h2>Mis rutinas</h2><p class="subtitle">Crea tus rutinas una sola vez. Después solo tendrás que seleccionarlas.</p></div><button class="delete-btn" id="routine-manager-close" type="button">×</button></div>
+    <button class="btn btn-accent" id="routine-manager-new" type="button" style="width:100%;margin-top:10px;">+ Nueva rutina</button>
+    <div id="routine-manager-list" class="routine-manager-list"></div>
+    <div id="routine-manager-editor" class="routine-manager-editor"></div>
+  </div>
+</div>
+
 <script>
 (function () {
   "use strict";
@@ -5919,44 +5957,6 @@
 })();
 </script>
 
-
-<nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Navegación móvil">
-  <button data-mobile-view="dashboard" class="active" type="button"><span class="nav-ico">⌂</span>Inicio</button>
-  <button data-mobile-view="habits" type="button"><span class="nav-ico">✓</span>Hábitos</button>
-  <button data-mobile-view="content" type="button"><span class="nav-ico">🎬</span>Contenido</button>
-  <button data-mobile-view="gym" type="button"><span class="nav-ico">🏋️</span>Gym</button>
-  <button data-mobile-view="goals" type="button"><span class="nav-ico">🎯</span>Más</button>
-</nav>
-
-<div class="workout-overlay" id="gym-progress-overlay" aria-hidden="true">
-  <div class="workout-panel">
-    <div class="workout-head"><div><div class="focus-kicker">Progreso del ejercicio</div><h2 id="gym-progress-title">Ejercicio</h2><p class="subtitle" id="gym-progress-summary"></p></div><button class="delete-btn" id="gym-progress-close" type="button">×</button></div>
-    <div id="gym-progress-kpis" class="gym-progress-kpis"></div>
-    <div id="gym-progress-chart" class="gym-progress-chart"></div>
-    <div id="gym-pr-summary" class="gym-pr-banner"></div>
-    <div id="gym-history-list" class="gym-history-list"></div>
-    <div class="workout-footer"><button class="btn btn-ghost" id="gym-progress-close-bottom" type="button">Cerrar</button></div>
-  </div>
-</div>
-
-<div class="workout-pr-toast" id="workout-pr-toast" role="status" aria-live="polite"></div>
-
-<div class="workout-overlay" id="workout-overlay" aria-hidden="true">
-  <div class="workout-panel">
-    <div class="workout-head"><div><div class="focus-kicker">Entrenamiento de hoy</div><h2 id="workout-title">Rutina</h2><p class="subtitle" id="workout-subtitle"></p></div><button class="delete-btn" id="workout-close" type="button">×</button></div>
-    <div class="workout-progress" id="workout-progress" aria-label="Progreso del entrenamiento"><span></span></div>
-    <div id="workout-exercises" class="workout-exercises"></div>
-    <div class="workout-footer"><button class="btn btn-ghost" id="workout-cancel" type="button">Cancelar</button><button class="btn btn-accent" id="workout-save" type="button">✓ Terminé entrenamiento</button></div>
-  </div>
-</div>
-<div class="routine-manager-overlay" id="routine-manager-overlay" aria-hidden="true">
-  <div class="routine-manager-panel">
-    <div class="workout-head"><div><div class="focus-kicker">Configuración</div><h2>Mis rutinas</h2><p class="subtitle">Crea tus rutinas una sola vez. Después solo tendrás que seleccionarlas.</p></div><button class="delete-btn" id="routine-manager-close" type="button">×</button></div>
-    <button class="btn btn-accent" id="routine-manager-new" type="button" style="width:100%;margin-top:10px;">+ Nueva rutina</button>
-    <div id="routine-manager-list" class="routine-manager-list"></div>
-    <div id="routine-manager-editor" class="routine-manager-editor"></div>
-  </div>
-</div>
 
 </body>
 </html>
