@@ -1096,6 +1096,168 @@
 }
 @media(max-width:420px){.gym-routine-grid{grid-template-columns:1fr}.workspace-kpi{padding:11px}.workspace-kpi .k-value{font-size:21px}.content-next-title{font-size:19px}}
 
+
+/* ---------- V4: quick expenses ---------- */
+.quick-expense{margin:4px 0 12px}
+.quick-expense-row{display:flex;gap:8px}
+.quick-expense-row input{flex:1;min-width:0;background:rgba(127,127,127,.08);border:1px solid var(--border);color:var(--text);font:inherit;font-size:15px;padding:12px 13px;border-radius:12px;outline:none}
+.quick-expense-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.quick-expense-row input.invalid{border-color:var(--danger)}
+.quick-expense-row .btn{padding:0 16px;min-height:46px}
+.quick-expense-preview{min-height:22px;margin-top:8px;font-size:12px;color:var(--text-tertiary);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.quick-expense-preview strong{color:var(--text)}
+.quick-expense-preview.ok{color:var(--success)}
+.quick-expense-preview .expense-category-select{padding:4px 6px;font-size:12px}
+.expense-chips-title{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);margin:10px 0 6px}
+.expense-chips{display:flex;flex-wrap:wrap;gap:7px}
+.expense-chip{display:inline-flex;align-items:center;border:1px solid var(--border-strong);background:rgba(127,127,127,.08);color:var(--text);border-radius:999px;overflow:hidden}
+.expense-chip:hover{border-color:var(--accent)}
+.expense-chip.suggested{border-style:dashed;color:var(--text-secondary)}
+.expense-chip .chip-main{background:none;border:none;color:inherit;font:inherit;font-size:12.5px;padding:8px 6px 8px 13px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.expense-chip .chip-amount{font-weight:700;font-variant-numeric:tabular-nums}
+.expense-chip .chip-x{background:none;border:none;color:var(--text-tertiary);font-size:14px;line-height:1;padding:8px 11px 8px 4px;cursor:pointer}
+.expense-chip .chip-x:hover{color:var(--danger)}
+.expense-chip.suggested .chip-x:hover{color:var(--warning)}
+.expense-chips-hint{font-size:11.5px;color:var(--text-tertiary);line-height:1.45}
+.quick-expense-tools{display:flex;justify-content:flex-end;margin-top:6px}
+.expense-star{background:none;border:none;color:var(--text-tertiary);cursor:pointer;font-size:15px;padding:2px 5px;flex-shrink:0}
+.expense-star:hover,.expense-star.on{color:var(--warning)}
+details.expense-manual{margin-top:12px}
+details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-tertiary);padding:6px 2px}
+.expense-batch-text{width:100%;min-height:150px;background:rgba(127,127,127,.08);border:1px solid var(--border);color:var(--text);font:inherit;font-size:14px;line-height:1.5;padding:11px;border-radius:10px;outline:none;resize:vertical}
+.expense-batch-text:focus{border-color:var(--accent)}
+.expense-batch-preview{margin-top:10px;max-height:220px;overflow:auto}
+#expense-batch-save:disabled{opacity:.45;cursor:default}
+
+/* ---------- V4: content flow ---------- */
+.idea-capture{display:flex;gap:8px;margin:4px 0 14px}
+.idea-capture input{flex:1;min-width:0;background:rgba(127,127,127,.08);border:1px solid var(--border);color:var(--text);font:inherit;font-size:15px;padding:12px 13px;border-radius:12px;outline:none}
+.idea-capture input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.idea-capture .btn{padding:0 16px;min-height:46px}
+.content-pills{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 10px}
+.content-pill{border:1px solid var(--border);background:transparent;color:var(--muted);border-radius:999px;padding:7px 12px;font:inherit;font-size:12px;cursor:pointer}
+.content-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.content-pill b{margin-left:6px;opacity:.75;font-variant-numeric:tabular-nums}
+.content-row{display:flex;align-items:center;gap:12px;border:1px solid var(--border);border-radius:13px;padding:12px;background:rgba(127,127,127,.05);cursor:pointer;margin-bottom:8px}
+.content-row:hover{border-color:var(--accent)}
+.content-row-icon{font-size:19px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(127,127,127,.12);flex-shrink:0}
+.content-row-main{flex:1;min-width:0}
+.content-row-title{font-weight:650;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.content-row-meta{font-size:11px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.content-row .btn{flex-shrink:0;padding:7px 11px;font-size:12px}
+.content-empty{border:1px dashed var(--border-strong);border-radius:13px;padding:16px;font-size:12.5px;color:var(--muted);text-align:center;line-height:1.5}
+.content-stage-row.four{grid-template-columns:repeat(4,1fr)}
+.content-details{margin-top:14px;border:1px solid var(--border);border-radius:14px;background:var(--bg-elevated);padding:0 16px}
+.content-details summary{cursor:pointer;padding:14px 0;font-weight:650;font-size:14px}
+.content-details[open] summary{border-bottom:1px solid var(--border);margin-bottom:14px}
+.content-details .details-body{padding-bottom:16px}
+[data-theme="light"] .day-detail-panel{background:var(--bg-elevated)}
+.content-editor-panel{width:min(760px,100%);max-height:92vh;overflow:auto}
+.ce-title-input{width:100%;margin-top:6px;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--text);font:inherit;font-size:20px;font-weight:700;padding:4px 0 8px;outline:none}
+.ce-title-input:focus{border-bottom-color:var(--accent)}
+.ce-stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 10px}
+.ce-step{border:1px solid var(--border);background:transparent;color:var(--muted);border-radius:12px;padding:9px 4px;font:inherit;font-size:11.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px}
+.ce-step-dot{width:22px;height:22px;border-radius:50%;background:var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text)}
+.ce-step.done .ce-step-dot,.ce-step.current .ce-step-dot{background:var(--accent);color:#fff}
+.ce-step.current{color:var(--text);font-weight:700}
+.ce-step.viewing{border-color:var(--accent);background:var(--accent-soft)}
+.ce-hint{font-size:12px;color:var(--muted);margin:0 0 14px;line-height:1.45}
+.ce-field{display:block;margin-bottom:13px}
+.ce-field>span{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+.ce-field input,.ce-field textarea{width:100%;box-sizing:border-box;background:rgba(127,127,127,.08);border:1px solid var(--border);color:var(--text);font:inherit;font-size:14px;padding:10px 12px;border-radius:10px;outline:none}
+.ce-field textarea{min-height:92px;resize:vertical;line-height:1.5}
+.ce-field input:focus,.ce-field textarea:focus{border-color:var(--accent)}
+.ce-counter{font-size:11.5px;color:var(--muted);margin-top:6px}
+.ce-counter.over{color:var(--warning)}
+.ce-section-title{font-size:13px;margin:18px 0 8px}
+.ce-actions-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ce-actions-row .add-row-btn{width:auto;margin:0;flex:1 1 170px}
+.ce-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ce-script-view{margin-bottom:6px;border:1px solid var(--border);border-radius:10px;padding:8px 12px}
+.ce-script-view summary{cursor:pointer;font-size:12.5px;color:var(--muted)}
+.ce-script-readonly{margin-top:8px;font-size:13px;line-height:1.55}
+.ce-footer{display:flex;gap:8px;align-items:center;margin-top:18px;position:sticky;bottom:-24px;background:var(--bg-elevated);padding:12px 0 2px;flex-wrap:wrap}
+.script-area:empty:before{content:attr(data-placeholder);color:var(--text-tertiary)}
+@media(max-width:560px){.ce-stats-row{grid-template-columns:1fr}.ce-footer .btn{flex:1 1 auto}}
+
+/* ---------- V4: goals ---------- */
+.goal-list{display:grid;gap:12px}
+.goal-item{border:1px solid var(--border);border-radius:16px;padding:15px;background:var(--bg-elevated)}
+.goal-item.completed{opacity:.7}
+.goal-top{display:flex;align-items:center;gap:12px}
+.goal-icon{font-size:22px;width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--accent) 14%,transparent);flex-shrink:0}
+.goal-main{flex:1;min-width:0}
+.goal-title{font-weight:720;font-size:15px;line-height:1.25}
+.goal-sub{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.goal-progress-row{display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 6px}
+.goal-big{font-size:26px;font-weight:780;font-variant-numeric:tabular-nums}
+.goal-big small{font-size:12px;font-weight:500;color:var(--muted)}
+.goal-pct{font-size:13px;font-weight:700;color:var(--muted)}
+.goal-progress{height:10px}
+.goal-warn{margin-top:10px;padding:8px 11px;border-radius:9px;background:rgba(255,159,10,.10);border:1px solid rgba(255,159,10,.25);color:var(--warning);font-size:12px}
+.goal-dots{display:flex;gap:5px;margin-top:12px}
+.goal-dot{flex:1;height:8px;border-radius:99px;background:rgba(255,69,58,.35)}
+.goal-dot.done{background:var(--success)}
+.goal-dot.off{background:rgba(127,127,127,.2)}
+.goal-dot.today{box-shadow:0 0 0 2px var(--accent)}
+.goal-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;flex-wrap:wrap}
+.goal-foot-info{font-size:11.5px;color:var(--muted)}
+.goal-foot-actions{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.goal-foot-actions .btn{padding:8px 13px;font-size:12.5px}
+.goal-foot-actions .btn:disabled{opacity:.45;cursor:default}
+.goal-templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px;margin-bottom:6px}
+.goal-tpl{position:relative;text-align:left;border:1px solid var(--border);background:rgba(127,127,127,.05);color:var(--text);border-radius:13px;padding:12px;cursor:pointer;font:inherit;display:flex;flex-direction:column;gap:3px}
+.goal-tpl:hover{border-color:var(--accent)}
+.goal-tpl.selected{border-color:var(--accent);background:var(--accent-soft)}
+.goal-tpl-icon{font-size:20px}
+.goal-tpl strong{font-size:13.5px}
+.goal-tpl small{font-size:11px;color:var(--muted);line-height:1.4}
+.goal-form{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
+.goal-form-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:15px}
+.goal-form select{width:100%;box-sizing:border-box;background:rgba(127,127,127,.08);border:1px solid var(--border);color:var(--text);font:inherit;font-size:14px;padding:10px 12px;border-radius:10px;outline:none}
+.goal-badge{border:1px solid var(--accent-border);background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:3px 9px;font:inherit;font-size:10.5px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.goal-badge:hover{background:var(--accent);color:#fff}
+
+/* ---------- V4: diet ---------- */
+.diet-week{border:1px solid var(--border);border-radius:14px;padding:11px 13px;background:rgba(127,127,127,.05);margin-bottom:12px}
+.diet-week-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.diet-week-title{font-weight:700;color:var(--text)}
+.diet-week-stats b.ok{color:var(--success)}
+.diet-week-stats b.skip{color:var(--danger)}
+.diet-cheat-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:12.5px}
+.diet-dots{display:inline-flex;gap:5px}
+.diet-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border-strong,var(--border));box-sizing:border-box}
+.diet-dot.used{background:var(--warning);border-color:var(--warning)}
+.diet-dot.over{background:var(--danger);border-color:var(--danger)}
+.diet-cheat-msg{color:var(--muted);font-size:11.5px}
+.diet-cheat-msg.over{color:var(--danger);font-weight:700}
+.diet-limit-ctl{margin-left:auto;display:inline-flex;gap:5px}
+.diet-limit-btn{width:26px;height:26px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);font:inherit;font-size:15px;line-height:1;cursor:pointer}
+.diet-limit-btn:hover{border-color:var(--accent);color:var(--accent)}
+.diet-nudge{margin-top:9px;padding:8px 11px;border-radius:9px;background:rgba(255,159,10,.10);border:1px solid rgba(255,159,10,.25);color:var(--warning);font-size:12px}
+.diet-row{border:1px solid var(--border);border-radius:14px;padding:10px 11px;margin-bottom:9px;background:rgba(127,127,127,.04)}
+.diet-row.st-ok{border-color:rgba(48,209,88,.45);background:rgba(48,209,88,.07)}
+.diet-row.st-cheat{border-color:rgba(255,159,10,.5);background:rgba(255,159,10,.08)}
+.diet-row.st-skip,.diet-row.over{border-color:rgba(255,69,58,.5);background:rgba(255,69,58,.07)}
+.diet-row.off-schedule{opacity:.5}
+.diet-head{display:flex;align-items:center;gap:8px}
+.diet-head .item-name{flex:1;min-width:0}
+.diet-plan,.diet-note{display:block;width:100%;box-sizing:border-box;margin-top:4px}
+.diet-status{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}
+.diet-st-btn{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;padding:9px 4px;font:inherit;font-size:12.5px;font-weight:650;cursor:pointer}
+.diet-st-btn:hover{border-color:var(--accent)}
+.diet-st-btn.active.st-ok{background:var(--success);border-color:var(--success);color:#fff}
+.diet-st-btn.active.st-cheat{background:var(--warning);border-color:var(--warning);color:#fff}
+.diet-st-btn.active.st-skip{background:var(--danger);border-color:var(--danger);color:#fff}
+.diet-reasons{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
+.diet-reasons-label{font-size:11.5px;color:var(--muted);margin-right:2px}
+.diet-chip{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:999px;padding:5px 11px;font:inherit;font-size:12px;cursor:pointer}
+.diet-chip.active{background:var(--danger);border-color:var(--danger);color:#fff}
+.diet-over-warn{margin-top:8px;font-size:12px;color:var(--danger)}
+.diet-future{margin-top:6px;font-size:11.5px;color:var(--muted)}
+.diet-sum-reasons{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.diet-sum-chip{border-radius:999px;padding:4px 10px;font-size:12px;background:rgba(255,69,58,.12);border:1px solid rgba(255,69,58,.3)}
+.diet-sum-cheats{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
 </style>
 </head>
 <body>
@@ -1211,7 +1373,8 @@
     <div>
       <div class="card">
         <h2><span class="dot"></span>Dieta</h2>
-        <p class="subtitle">Comidas del día y su detalle.</p>
+        <p class="subtitle">Tu plan por comida. Registra cada una: cumplí, libre o me la salté.</p>
+        <div id="diet-week-bar"></div>
         <div id="diet-list"></div>
         <button class="add-row-btn" id="add-diet-btn">+ Agregar comida</button>
       </div>
@@ -1280,7 +1443,24 @@
           </label>
         </div>
         <div class="expense-summary" id="expense-summary"></div>
+        <div class="quick-expense">
+          <div class="quick-expense-row">
+            <input type="text" id="quick-expense-input" placeholder="Escribe lo que gastaste: tacos 85" autocomplete="off" enterkeyhint="done">
+            <button class="btn btn-accent" id="quick-expense-btn" type="button">Agregar</button>
+          </div>
+          <div class="quick-expense-preview" id="quick-expense-preview">
+            <span id="quick-expense-summary"></span>
+            <select id="quick-expense-cat" class="expense-category-select" style="display:none;"></select>
+          </div>
+          <div class="expense-chips-title">Frecuentes · un toque</div>
+          <div class="expense-chips" id="expense-chips"></div>
+          <div class="quick-expense-tools">
+            <button class="gym-schedule-link" id="expense-batch-btn" type="button">📋 Registrar varios a la vez</button>
+          </div>
+        </div>
         <div id="expense-list"></div>
+        <details class="expense-manual">
+        <summary>Agregar manualmente (monto, categoría y nota)</summary>
         <div class="todo-add-row expense-add-row">
           <select id="new-expense-category" class="expense-category-select">
             <option>Comida</option>
@@ -1294,6 +1474,7 @@
           <input type="text" id="new-expense-note" placeholder="Nota (opcional)">
           <button class="btn btn-ghost" id="add-expense-btn">+</button>
         </div>
+        </details>
       </div>
     </div>
   </div>
@@ -1457,21 +1638,43 @@
   </div>
   <div id="content-view" class="workspace-view" style="display:none;">
     <div class="card">
-      <div class="workspace-head"><div><div class="focus-kicker">TikTok</div><h2 style="margin:4px 0 0;">Sistema de creación de contenido</h2><p class="subtitle">De una idea a una publicación, sin perder tomas ni pasos.</p></div><button class="btn btn-accent" id="new-content-video-btn">+ Nuevo TikTok</button></div>
+      <div class="workspace-head"><div><div class="focus-kicker">Contenido</div><h2 style="margin:4px 0 0;">De la idea a la publicación</h2><p class="subtitle">Anota la idea y la app te guía paso a paso: Idea → Guion → Grabación → Publicado.</p></div></div>
+      <div class="idea-capture">
+        <input type="text" id="quick-idea-input" placeholder="💡 Nueva idea de TikTok… y Enter" autocomplete="off" enterkeyhint="done">
+        <button class="btn btn-accent" id="quick-idea-btn" type="button">Agregar</button>
+      </div>
       <div class="workspace-kpis"><div class="workspace-kpi"><div class="k-label">Ideas</div><div class="k-value" id="c-ideas-count">0</div></div><div class="workspace-kpi"><div class="k-label">En producción</div><div class="k-value" id="c-production-count">0</div></div><div class="workspace-kpi"><div class="k-label">Publicados</div><div class="k-value" id="c-published-count">0</div></div><div class="workspace-kpi"><div class="k-label">B-roll disponible</div><div class="k-value" id="c-broll-count">0</div></div></div>
-      <div class="content-tabs" id="content-tabs"><button data-tab="pipeline" class="active">Flujo</button><button data-tab="ideas">Ideas</button><button data-tab="editor">Editor</button><button data-tab="broll">B-roll</button><button data-tab="performance">Rendimiento</button><button data-tab="calendar">Calendario</button></div>
-      <div id="content-tab-body"></div>
+      <div id="content-next-box"></div>
+      <div class="content-pills" id="content-stage-filter"></div>
+      <div id="content-list"></div>
+    </div>
+    <details class="content-details"><summary>📈 Rendimiento</summary><div class="details-body" id="content-performance-body"></div></details>
+    <details class="content-details"><summary>🎞️ B-roll reutilizable</summary><div class="details-body" id="content-broll-body"></div></details>
+    <details class="content-details"><summary>🗓️ Calendario de publicaciones</summary><div class="details-body" id="content-calendar-body"></div></details>
+  </div>
+  <div id="goals-view" class="workspace-view" style="display:none;">
+    <div class="card"><div class="workspace-head"><div><div class="focus-kicker">Metas enlazadas a tu día a día</div><h2 style="margin:4px 0 0;">Objetivos</h2><p class="subtitle">Cada objetivo vigila un hábito, tu dieta, tus gastos o tu contenido y se actualiza solo.</p></div><div class="xp-pill">⚡ <span id="goals-xp">0 XP · Nivel 1</span></div></div><div class="workspace-kpis"><div class="workspace-kpi"><div class="k-label">Activos</div><div class="k-value" id="g-active">0</div></div><div class="workspace-kpi"><div class="k-label">Completados</div><div class="k-value" id="g-completed">0</div></div><div class="workspace-kpi"><div class="k-label">XP total</div><div class="k-value" id="g-xp">0</div></div><div class="workspace-kpi"><div class="k-label">Logros</div><div class="k-value" id="g-achievements">0</div></div></div><div id="goal-list" class="goal-list"></div></div>
+    <div class="card" id="goal-create-card">
+      <h2><span class="dot"></span>Nuevo objetivo</h2>
+      <p class="subtitle">Elige qué quieres lograr:</p>
+      <div class="goal-templates" id="goal-templates"></div>
+      <div class="goal-form" id="goal-form" style="display:none;">
+        <div class="goal-form-head"><b id="goal-form-label"></b><button class="delete-btn" id="goal-form-cancel" type="button" title="Cancelar">×</button></div>
+        <label class="ce-field" id="gf-habit-wrap"><span>Hábito que vigila este objetivo</span><select id="goal-habit-select"></select></label>
+        <label class="ce-field" id="gf-newhabit-wrap" style="display:none;"><span>Nombre del hábito nuevo (se crea como diario)</span><input type="text" id="goal-new-habit-name" placeholder="Ej. Sin Coca-Cola"></label>
+        <p class="subtitle" id="gf-habit-hint" style="margin:-4px 0 12px;">Tip: para dejar algo, nombra el hábito como «Sin Coca-Cola» y márcalo cada día que lo cumplas. Si olvidas marcar un día, la racha se rompe.</p>
+        <label class="ce-field" id="gf-limit-wrap" style="display:none;"><span>Límite de gasto por día ($)</span><input type="number" id="goal-daily-limit" min="0" step="1" placeholder="Ej. 200"></label>
+        <label class="ce-field" id="gf-target-wrap"><span id="gf-target-label">Meta</span><input type="number" id="goal-target" min="1" value="30"></label>
+        <label class="ce-field" id="gf-from-wrap"><span>Empezar a contar desde</span><input type="date" id="goal-count-from"></label>
+        <label class="ce-field"><span>Nombre del objetivo (opcional)</span><input type="text" id="goal-title" placeholder="Se sugiere automáticamente"></label>
+        <div class="ce-stats-row" style="grid-template-columns:1fr 1fr;"><label class="ce-field"><span>XP al completarlo</span><input type="number" id="goal-xp" min="0" value="100"></label><label class="ce-field"><span>Fecha límite (opcional)</span><input type="date" id="goal-deadline"></label></div>
+        <button class="btn btn-accent" id="add-objective-btn" type="button" style="width:100%;min-height:46px;">Crear objetivo</button>
+      </div>
     </div>
 
   </div>
-  <div id="goals-view" class="workspace-view" style="display:none;">
-    <div class="card"><div class="workspace-head"><div><div class="focus-kicker">Sistema transversal</div><h2 style="margin:4px 0 0;">Objetivos</h2><p class="subtitle">Conecta hábitos, contenido, entrenamiento, dieta y diario con resultados medibles.</p></div><div class="xp-pill">⚡ <span id="goals-xp">0 XP · Nivel 1</span></div></div><div class="workspace-kpis"><div class="workspace-kpi"><div class="k-label">Activos</div><div class="k-value" id="g-active">0</div></div><div class="workspace-kpi"><div class="k-label">Completados</div><div class="k-value" id="g-completed">0</div></div><div class="workspace-kpi"><div class="k-label">XP total</div><div class="k-value" id="g-xp">0</div></div><div class="workspace-kpi"><div class="k-label">Logros</div><div class="k-value" id="g-achievements">0</div></div></div><div id="goal-list" class="goal-list"></div></div>
-    <div class="card"><h2><span class="dot"></span>Crear objetivo</h2><div class="content-form"><input id="goal-title" placeholder="Ej. Publicar 20 TikToks"><select id="goal-source"><option value="content_published">TikToks publicados</option><option value="content_created">TikToks creados</option><option value="broll_recorded">Tomas B-roll grabadas</option><option value="habit_completions">Hábitos completados</option><option value="journal_days">Días con diario</option><option value="gym_sessions">Sesiones de entrenamiento</option><option value="diet_completions">Comidas completadas</option><option value="habit_streak">Racha de un hábito (días seguidos)</option><option value="expense_streak">Racha sin exceder gasto diario</option><option value="manual">Progreso manual</option></select><select id="goal-habit-select" class="full" style="display:none;"></select><input id="goal-daily-limit" type="number" min="0" step="1" placeholder="Límite de gasto por día ($)" class="full" style="display:none;"><input id="goal-target" type="number" min="1" value="10" placeholder="Meta"><input id="goal-xp" type="number" min="0" value="100" placeholder="XP"><input id="goal-deadline" type="date"><button class="btn btn-accent full" id="add-objective-btn">Crear objetivo</button></div><p class="subtitle" style="margin-top:8px;">La fecha límite es opcional. El progreso automático usa los datos existentes de la aplicación. Para una racha (hábito o gasto), la Meta es el número de días seguidos que buscas.</p></div>
-
-  </div>
-
 <div class="habit-detail-overlay" id="habit-detail-overlay" aria-hidden="true"><div class="habit-detail-panel"><div class="habit-detail-head"><div><div class="focus-kicker">Analítica individual</div><h2 id="habit-detail-title">Hábito</h2><p class="subtitle" id="habit-detail-subtitle"></p></div><button class="delete-btn" id="habit-detail-close" type="button">×</button></div><div class="range-tabs" id="habit-detail-range"></div><div class="workspace-kpis" id="habit-detail-kpis"></div><div id="habit-detail-insights"></div><h3>Calendario</h3><div id="habit-detail-calendar" class="habit-calendar"></div></div></div>
-<div class="day-detail-overlay" id="content-editor-modal" aria-hidden="true"><div class="day-detail-panel" style="max-width:820px;"><div class="day-detail-head"><div><div class="focus-kicker">Crear / editar</div><h2 id="content-editor-title">Nuevo TikTok</h2></div><button class="delete-btn" id="content-editor-close" type="button">×</button></div><div class="content-form"><input id="cv-title" class="full" placeholder="Título / idea"><input id="cv-hook" placeholder="Hook"><input id="cv-duration" type="number" min="1" placeholder="Duración (s)"><textarea id="cv-cta" placeholder="CTA" class="full" style="min-height:70px;"></textarea><div class="script-editor full"><div class="script-toolbar"><button type="button" data-cmd="bold"><b>B</b></button><button type="button" data-cmd="italic"><i>I</i></button><button type="button" data-cmd="insertUnorderedList">• Lista</button><button type="button" data-cmd="createLink">🔗 Link</button></div><div id="cv-script" class="script-area" contenteditable="true" data-placeholder="Escribe el guion por bloques: hook, desarrollo y cierre..."></div></div><select id="cv-status"><option value="idea">Idea</option><option value="script">Guion</option><option value="prepare">Preparar</option><option value="record">Grabar</option><option value="edit">Editar</option><option value="scheduled">Programado</option><option value="published">Publicado</option></select><input id="cv-publish-date" type="date"><div class="full" style="margin-top:2px;"><h3 style="margin:0 0 8px;font-size:13px;color:var(--muted);">Rendimiento (llena esto cuando ya esté publicado)</h3><div class="content-form" style="grid-template-columns:repeat(3,1fr);"><input id="cv-views" type="number" min="0" placeholder="Vistas"><input id="cv-likes" type="number" min="0" placeholder="Likes"><input id="cv-comments" type="number" min="0" placeholder="Comentarios"></div></div><div class="content-card-actions"><button class="btn btn-ghost" id="cv-prev-stage-btn" type="button">← Etapa anterior</button><button class="btn btn-accent" id="cv-next-stage-btn" type="button">Siguiente etapa →</button></div><button class="btn btn-accent" id="save-content-video-btn">Guardar TikTok</button></div><div style="margin-top:18px;"><h3>Shot list</h3><div id="cv-shot-list"></div><button class="add-row-btn" id="cv-add-shot">+ Agregar toma</button></div><div style="margin-top:18px;"><h3>B-roll reutilizable disponible</h3><div id="cv-broll-selector" class="check-list"></div></div><div style="margin-top:18px;"><h3>Checklist de grabación</h3><div class="check-list"><label><input type="checkbox" id="cv-check-before"> Antes: batería, memoria, luz y micrófono</label><label><input type="checkbox" id="cv-check-during"> Durante: toma principal + B-roll</label><label><input type="checkbox" id="cv-check-after"> Después: respaldar y marcar tomas</label></div></div></div></div>
+<div class="day-detail-overlay" id="content-editor-modal" aria-hidden="true"><div class="day-detail-panel content-editor-panel"><div class="day-detail-head"><div style="flex:1;min-width:0;"><div class="focus-kicker">TikTok · se guarda solo</div><input id="ce-title" class="ce-title-input" type="text" placeholder="Título o idea"></div><button class="delete-btn" id="content-editor-close" type="button">×</button></div><div class="ce-stepper" id="ce-stepper"></div><p class="ce-hint" id="ce-hint"></p><div id="ce-body"></div><div class="ce-footer"><button class="btn btn-danger-ghost" id="ce-delete" type="button">Eliminar</button><span style="flex:1"></span><button class="btn btn-ghost" id="ce-prev" type="button">← Atrás</button><button class="btn btn-accent" id="ce-next" type="button">Siguiente →</button></div></div></div>
 
 <div class="day-detail-overlay" id="day-detail-overlay" aria-hidden="true">
   <div class="day-detail-panel">
@@ -1516,6 +1719,26 @@
   <button class="btn btn-ghost" id="manage-quotes-btn" type="button" style="width:100%; margin-bottom:8px;">✍️ Administrar frases</button>
   <button class="btn btn-ghost" id="manage-weights-btn" type="button" style="width:100%; margin-bottom:10px;">⚖️ Ponderar categorías</button>
   <button class="btn btn-ghost sp-close-btn" id="personalize-close-btn" type="button">Listo</button>
+</div>
+
+<div class="day-detail-overlay" id="expense-batch-modal" aria-hidden="true">
+  <div class="day-detail-panel">
+    <div class="day-detail-head">
+      <div>
+        <div class="focus-kicker">Gastos</div>
+        <h2>Registrar varios gastos</h2>
+      </div>
+      <button class="delete-btn" id="expense-batch-close" type="button">×</button>
+    </div>
+    <p class="subtitle">Un gasto por línea, como «tacos 85». Para otro día, escribe la fecha (2026-10-10) al inicio de la línea o en una línea sola: aplica a las siguientes. Categoría opcional con #transporte.</p>
+    <label class="expense-budget-field" style="margin-bottom:10px;">
+      <span>Día por defecto</span>
+      <input type="date" id="expense-batch-date">
+    </label>
+    <textarea id="expense-batch-text" class="expense-batch-text" placeholder="tacos 85&#10;uber 120&#10;2026-10-10&#10;cine 160&#10;farmacia 230"></textarea>
+    <div id="expense-batch-preview" class="expense-batch-preview"></div>
+    <button class="btn btn-accent" id="expense-batch-save" type="button" style="width:100%; margin-top:12px;">Guardar gastos</button>
+  </div>
 </div>
 
 <div class="day-detail-overlay" id="quotes-modal" aria-hidden="true">
@@ -1962,16 +2185,37 @@
     if (!Array.isArray(parsed.content.ideas)) parsed.content.ideas = [];
     if (!Array.isArray(parsed.content.videos)) parsed.content.videos = [];
     if (!Array.isArray(parsed.content.broll)) parsed.content.broll = [];
+    // Ideas used to live in their own list; now an idea is just a content item in the "idea" stage.
     parsed.content.ideas.forEach((x) => {
       if (!x.id) x.id = uid();
-      if (typeof x.title !== "string") x.title = "Idea";
-      if (!x.createdAt) x.createdAt = todayISO();
-      if (!x.status) x.status = "idea";
+      if (parsed.content.videos.some((v) => v.id === x.id)) return;
+      parsed.content.videos.push({
+        id: x.id,
+        title: typeof x.title === "string" && x.title ? x.title : "Idea",
+        hook: typeof x.hook === "string" ? x.hook : "",
+        status: "idea",
+        createdAt: x.createdAt || todayISO(),
+      });
     });
+    parsed.content.ideas = [];
+    // The old 7 stages collapse into 4: idea -> script -> record -> published.
+    const STAGE_MIGRATION = { prepare: "script", edit: "record", scheduled: "record" };
     parsed.content.videos.forEach((v) => {
       if (!v.id) v.id = uid();
       if (!v.title) v.title = "TikTok";
       if (!v.status) v.status = "idea";
+      if (STAGE_MIGRATION[v.status]) {
+        if (v.status === "edit") {
+          if (!v.checklist || typeof v.checklist !== "object") v.checklist = {};
+          v.checklist.before = true;
+          v.checklist.during = true;
+        }
+        v.status = STAGE_MIGRATION[v.status];
+      }
+      if (["idea", "script", "record", "published"].indexOf(v.status) === -1) v.status = "idea";
+      if (typeof v.publishDate !== "string") v.publishDate = "";
+      if (typeof v.createdAt !== "string") v.createdAt = "";
+      if (!(Number(v.duration) > 0)) v.duration = 30;
       if (typeof v.script !== "string") v.script = "";
       if (typeof v.hook !== "string") v.hook = "";
       if (typeof v.cta !== "string") v.cta = "";
@@ -2001,6 +2245,31 @@
       if (typeof o.habitId !== "string") o.habitId = o.habitId || null;
       if (o.dailyLimit != null) o.dailyLimit = Math.max(0, Number(o.dailyLimit) || 0);
       if (!o.startDate) o.startDate = "0000-01-01";
+      // countFrom: optional date from which a habit/diet streak starts counting (null = legacy behavior)
+      if (typeof o.countFrom !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(o.countFrom)) o.countFrom = null;
+      if (typeof o.deadline !== "string" || !o.deadline) o.deadline = null;
+      if (typeof o.bestStreak !== "number") o.bestStreak = 0;
+    });
+    // ---- Expenses: frequent-expense buttons + remembered categories ----
+    if (!Array.isArray(parsed.expenses.favorites)) parsed.expenses.favorites = [];
+    parsed.expenses.favorites = parsed.expenses.favorites
+      .filter((f) => f && Number(f.amount) > 0)
+      .map((f) => ({
+        id: f.id || uid(),
+        label: String(f.label || f.category || "Gasto"),
+        amount: Number(f.amount),
+        category: String(f.category || "Otros"),
+      }));
+    if (!parsed.expenses.catMemory || typeof parsed.expenses.catMemory !== "object" || Array.isArray(parsed.expenses.catMemory))
+      parsed.expenses.catMemory = {};
+    if (typeof parsed.expenses.lastCategory !== "string") parsed.expenses.lastCategory = "Comida";
+    // ---- Diet: per-meal status (done / cheat / skipped) with reasons, plus weekly cheat quota ----
+    const cheatLimit = Number(parsed.settings.cheatMealLimit);
+    parsed.settings.cheatMealLimit = cheatLimit >= 0 && cheatLimit <= 21 ? Math.round(cheatLimit) : 2;
+    parsed.diet.forEach((d) => {
+      if (!d.statusLog || typeof d.statusLog !== "object" || Array.isArray(d.statusLog)) d.statusLog = {};
+      if (!d.reasonLog || typeof d.reasonLog !== "object" || Array.isArray(d.reasonLog)) d.reasonLog = {};
+      if (!d.noteLog || typeof d.noteLog !== "object" || Array.isArray(d.noteLog)) d.noteLog = {};
     });
     if (!parsed.gamification || typeof parsed.gamification !== "object")
       parsed.gamification = { xp: 0, level: 1, claimedObjectiveIds: [], achievements: [] };
@@ -2037,7 +2306,7 @@
     });
   }
 
-  let state = defaultState();
+  let state = normalizeState(defaultState());
 
   function loadUserState(uid) {
     const docRef = db.collection("users").doc(uid);
@@ -2052,7 +2321,7 @@
       } catch (e) {
         /* sin datos viejos, sin problema */
       }
-      const initial = legacy && legacy.habits ? normalizeState(legacy) : defaultState();
+      const initial = legacy && legacy.habits ? normalizeState(legacy) : normalizeState(defaultState());
       return docRef.set(initial).then(() => {
         return initial;
       });
@@ -2644,6 +2913,17 @@
   function renderHabits() {
     renderCheckableList("habits-list", state.habits, {
       deleteTitle: "Eliminar hábito",
+      renderTag (h) {
+        const g = activeGoalForHabit(h.id);
+        if (!g) return null;
+        const b = el("button", "goal-badge");
+        b.type = "button";
+        const cur = Math.min(g.target, objectiveCurrent(g));
+        b.textContent = `🎯 ${cur}/${g.target}`;
+        b.title = `Objetivo: ${g.title}`;
+        b.addEventListener("click", () => switchWorkspace("goals"));
+        return b;
+      },
       onDelete (id) {
         state.habits = state.habits.filter((x) => {
           return x.id !== id;
@@ -2658,21 +2938,272 @@
   }
 
   // ---------- Diet ----------
-  function renderDiet() {
-    renderCheckableList("diet-list", state.diet, {
-      namePlaceholder: "Comida",
-      extraFields: [{ key: "detail", placeholder: "Qué comiste / plan..." }],
-      deleteTitle: "Eliminar comida",
-      onDelete (id) {
-        state.diet = state.diet.filter((x) => {
-          return x.id !== id;
-        });
-      },
-      afterChange () {
+  // ---------- Diet: plan per meal + "cumplí / libre / me la salté" ----------
+  const DIET_SKIP_REASONS = ["Sin tiempo", "Antojo", "Evento social", "Flojera", "No tenía qué comer", "Estrés / ánimo", "Otro"];
+
+  function weekStartISO(iso) {
+    // Monday-based week
+    const back = (dateFromISO(iso).getDay() + 6) % 7;
+    return shiftISO(iso, -back);
+  }
+  function cheatLimit() {
+    const n = Number(state.settings.cheatMealLimit);
+    return n >= 0 ? n : 2;
+  }
+  // "ok" | "cheat" | "skip" | "" (not recorded). Legacy doneLog entries count as "ok".
+  function dietStatus(d, iso) {
+    const s = d.statusLog && d.statusLog[iso];
+    if (s === "ok" || s === "cheat" || s === "skip") return s;
+    return isDoneOn(d, iso) ? "ok" : "";
+  }
+  function dietScheduledOn(d, iso) {
+    return sanitizeDays(d.days).indexOf(dateFromISO(iso).getDay()) !== -1;
+  }
+  // A cheat meal is "over the limit" when it is the Nth free meal of its week with N > weekly limit.
+  function dietCheatIsOver(d, iso) {
+    const limit = cheatLimit();
+    let n = 0;
+    for (let cur = weekStartISO(iso); cur <= iso; cur = shiftISO(cur, 1)) {
+      for (let i = 0; i < state.diet.length; i++) {
+        const x = state.diet[i];
+        if (dietStatus(x, cur) === "cheat") {
+          n++;
+          if (x === d && cur === iso) return n > limit;
+        }
+      }
+    }
+    return false;
+  }
+  function dietDone(d, iso) {
+    const s = dietStatus(d, iso);
+    return s === "ok" || (s === "cheat" && !dietCheatIsOver(d, iso));
+  }
+  function setDietStatus(d, iso, st) {
+    if (!d.statusLog) d.statusLog = {};
+    if (!d.reasonLog) d.reasonLog = {};
+    if (!d.noteLog) d.noteLog = {};
+    if (!st || dietStatus(d, iso) === st) {
+      // tapping the active state again clears it
+      delete d.statusLog[iso];
+      delete d.reasonLog[iso];
+      delete d.noteLog[iso];
+      setDoneOn(d, iso, false);
+      return;
+    }
+    d.statusLog[iso] = st;
+    setDoneOn(d, iso, st === "ok" || st === "cheat");
+    if (st !== "skip") delete d.reasonLog[iso];
+    if (st === "ok") delete d.noteLog[iso];
+  }
+  // "none" (no meals that day) | "ok" | "pending" (today, still unrecorded) | "broken" (skipped, over limit or unrecorded in the past)
+  function dietDayState(iso) {
+    const meals = state.diet.filter((d) => {
+      return dietScheduledOn(d, iso);
+    });
+    if (!meals.length) return "none";
+    let broken = false,
+      pending = false;
+    meals.forEach((d) => {
+      const s = dietStatus(d, iso);
+      if (s === "skip") broken = true;
+      else if (s === "cheat") {
+        if (dietCheatIsOver(d, iso)) broken = true;
+      } else if (!s) {
+        if (iso < todayISO()) broken = true;
+        else pending = true;
+      }
+    });
+    return broken ? "broken" : pending ? "pending" : "ok";
+  }
+  function dietUnrecordedCount(iso) {
+    return state.diet.filter((d) => {
+      return dietScheduledOn(d, iso) && !dietStatus(d, iso);
+    }).length;
+  }
+  function dietWeekStats(iso) {
+    const ws = weekStartISO(iso);
+    const t = todayISO();
+    const st = { ok: 0, cheat: 0, skip: 0, pending: 0, planned: 0, cheatOver: 0 };
+    for (let i = 0; i < 7; i++) {
+      const cur = shiftISO(ws, i);
+      state.diet.forEach((d) => {
+        const s = dietStatus(d, cur);
+        if (s === "cheat") st.cheat++;
+        if (!dietScheduledOn(d, cur)) return;
+        st.planned++;
+        if (s === "ok") st.ok++;
+        else if (s === "skip") st.skip++;
+        else if (!s && cur <= t) st.pending++;
+      });
+    }
+    st.cheatOver = Math.max(0, st.cheat - cheatLimit());
+    return st;
+  }
+
+  function renderDietWeekBar(iso) {
+    const box = document.getElementById("diet-week-bar");
+    if (!box) return;
+    const w = dietWeekStats(iso);
+    const limit = cheatLimit();
+    const dots = [];
+    const slots = Math.max(limit, w.cheat);
+    for (let i = 0; i < slots; i++) {
+      let cls = "diet-dot";
+      if (i < w.cheat) cls += i >= limit ? " over" : " used";
+      dots.push(`<span class="${cls}"></span>`);
+    }
+    const left = limit - w.cheat;
+    let cheatMsg;
+    if (w.cheat > limit) cheatMsg = `Te pasaste por ${w.cheat - limit}`;
+    else if (left === 0) cheatMsg = "Sin libres disponibles";
+    else cheatMsg = `Te quedan ${left}`;
+    const unrec = dietUnrecordedCount(iso);
+    let nudge = "";
+    if (unrec > 0 && iso <= todayISO()) {
+      nudge = `<div class="diet-nudge">📝 ${unrec} comida${unrec === 1 ? "" : "s"} sin registrar ${iso === todayISO() ? "hoy" : "ese día"}. Elige <b>Cumplí</b>, <b>Libre</b> o <b>Me la salté</b>.</div>`;
+    }
+    box.innerHTML =
+      `<div class="diet-week">` +
+      `<div class="diet-week-top"><span class="diet-week-title">Semana (lun–dom)</span>` +
+      `<span class="diet-week-stats"><b class="ok">${w.ok}</b> cumplidas · <b class="skip">${w.skip}</b> saltadas</span></div>` +
+      `<div class="diet-cheat-row"><span>🍕 Comidas libres</span><span class="diet-dots">${dots.join("")}</span>` +
+      `<span class="diet-cheat-msg${w.cheat > limit ? " over" : ""}">${w.cheat}/${limit} · ${cheatMsg}</span>` +
+      `<span class="diet-limit-ctl"><button type="button" class="diet-limit-btn" data-d="-1" title="Menos libres por semana">−</button><button type="button" class="diet-limit-btn" data-d="1" title="Más libres por semana">+</button></span></div>` +
+      `</div>${nudge}`;
+    box.querySelectorAll(".diet-limit-btn").forEach((b) => {
+      b.addEventListener("click", () => {
+        state.settings.cheatMealLimit = Math.max(0, Math.min(21, cheatLimit() + Number(b.dataset.d)));
         saveState();
         renderDiet();
         updateProgress();
-      },
+        refreshObjectives();
+      });
+    });
+  }
+
+  function afterDietChange() {
+    saveState();
+    renderDiet();
+    updateProgress();
+    refreshObjectives();
+  }
+
+  function renderDiet() {
+    const list = document.getElementById("diet-list");
+    list.innerHTML = "";
+    const iso = activeISO();
+    renderDietWeekBar(iso);
+    if (!state.diet.length) {
+      const hint = el("div", "empty-hint");
+      hint.textContent = "Agrega tus comidas del día y su plan.";
+      list.appendChild(hint);
+      return;
+    }
+    const future = iso > todayISO();
+    state.diet.forEach((d) => {
+      const scheduled = dietScheduledOn(d, iso);
+      const st = dietStatus(d, iso);
+      const over = st === "cheat" && dietCheatIsOver(d, iso);
+      const row = el("div", `diet-row${scheduled ? "" : " off-schedule"}${st ? ` st-${st}` : ""}${over ? " over" : ""}`);
+
+      const head = el("div", "diet-head");
+      const name = el("input", "item-name");
+      name.type = "text";
+      name.value = d.name;
+      name.placeholder = "Comida";
+      name.addEventListener("input", () => {
+        d.name = name.value;
+      });
+      name.addEventListener("blur", saveState);
+      head.appendChild(name);
+      head.appendChild(makeScheduleButton(d, afterDietChange));
+      const del = el("button", "delete-btn");
+      del.textContent = "×";
+      del.title = "Eliminar comida";
+      del.addEventListener("click", () => {
+        state.diet = state.diet.filter((x) => {
+          return x.id !== d.id;
+        });
+        afterDietChange();
+      });
+      head.appendChild(del);
+      row.appendChild(head);
+
+      const plan = el("input", "item-detail diet-plan");
+      plan.type = "text";
+      plan.value = d.detail || "";
+      plan.placeholder = "Plan: qué debería comer (ej. 2 huevos + avena)";
+      plan.addEventListener("input", () => {
+        d.detail = plan.value;
+      });
+      plan.addEventListener("blur", saveState);
+      row.appendChild(plan);
+
+      if (scheduled && !future) {
+        const btns = el("div", "diet-status");
+        [
+          ["ok", "✅ Cumplí"],
+          ["cheat", "🍕 Libre"],
+          ["skip", "✖ Me la salté"],
+        ].forEach((pair) => {
+          const b = el("button", `diet-st-btn st-${pair[0]}${st === pair[0] ? " active" : ""}`);
+          b.type = "button";
+          b.textContent = pair[1];
+          b.addEventListener("click", () => {
+            setDietStatus(d, iso, pair[0]);
+            afterDietChange();
+          });
+          btns.appendChild(b);
+        });
+        row.appendChild(btns);
+
+        if (st === "skip") {
+          const chips = el("div", "diet-reasons");
+          const lbl = el("span", "diet-reasons-label");
+          lbl.textContent = "¿Por qué?";
+          chips.appendChild(lbl);
+          DIET_SKIP_REASONS.forEach((r) => {
+            const c = el("button", `diet-chip${d.reasonLog && d.reasonLog[iso] === r ? " active" : ""}`);
+            c.type = "button";
+            c.textContent = r;
+            c.addEventListener("click", () => {
+              if (!d.reasonLog) d.reasonLog = {};
+              if (d.reasonLog[iso] === r) delete d.reasonLog[iso];
+              else d.reasonLog[iso] = r;
+              afterDietChange();
+            });
+            chips.appendChild(c);
+          });
+          row.appendChild(chips);
+        }
+        if (st === "skip" || st === "cheat") {
+          const note = el("input", "item-detail diet-note");
+          note.type = "text";
+          note.placeholder = st === "cheat" ? "¿Qué comiste? (opcional)" : "¿Qué pasó? (opcional)";
+          note.value = (d.noteLog && d.noteLog[iso]) || "";
+          note.addEventListener("input", () => {
+            if (!d.noteLog) d.noteLog = {};
+            if (note.value.trim()) d.noteLog[iso] = note.value;
+            else delete d.noteLog[iso];
+          });
+          note.addEventListener("blur", saveState);
+          row.appendChild(note);
+        }
+        if (over) {
+          const warn = el("div", "diet-over-warn");
+          warn.textContent = `⚠️ Ya usaste tus ${cheatLimit()} libres de la semana: esta comida no cuenta como cumplida.`;
+          row.appendChild(warn);
+        }
+      } else if (scheduled && future) {
+        const f = el("div", "diet-future");
+        f.textContent = "Se registra cuando llegue el día.";
+        row.appendChild(f);
+      } else {
+        const f = el("div", "diet-future");
+        f.textContent = "No toca ese día.";
+        row.appendChild(f);
+      }
+      list.appendChild(row);
     });
   }
 
@@ -3273,15 +3804,385 @@
           renderExpenses();
           updateProgress();
         });
+        const label = entry.note || entry.category;
+        const isFav = state.expenses.favorites.some((f) => {
+          return expenseSig(f.label, f.amount, f.category) === expenseSig(label, entry.amount, entry.category);
+        });
+        const star = el("button", `expense-star${isFav ? " on" : ""}`);
+        star.type = "button";
+        star.textContent = isFav ? "★" : "☆";
+        star.title = isFav ? "Ya está en tus frecuentes" : "Guardar como gasto frecuente";
+        star.addEventListener("click", () => {
+          if (isFav) return;
+          addFavoriteExpense(label, entry.amount, entry.category);
+          renderExpenses();
+        });
         row.appendChild(cat);
         row.appendChild(amount);
         row.appendChild(note);
+        row.appendChild(star);
         row.appendChild(del);
         list.appendChild(row);
       });
     }
     renderExpenseSummary();
+    renderExpenseChips();
   }
+
+  // ---------- Expenses: quick capture (one line, frequent chips, batch) ----------
+  const EXPENSE_CATEGORIES = ["Comida", "Transporte", "Entretenimiento", "Servicios", "Salud", "Otros"];
+  const EXPENSE_KEYWORDS = {
+    Comida: ["taco", "comida", "cafe", "desayuno", "cena", "pizza", "super", "restaurante", "hamburguesa", "torta", "antojo", "snack", "refresco", "coca", "helado", "pan", "fruta", "despensa", "mandado", "tienda", "oxxo", "starbucks", "sushi", "pollo", "carne", "almuerzo", "postre", "botana", "jugo", "elote", "tamal", "pozole", "burrito", "kfc", "mcdonalds"],
+    Transporte: ["uber", "didi", "gasolina", "gas", "camion", "taxi", "metro", "tren", "estacionamiento", "caseta", "pasaje", "transporte", "bus", "autobus", "macrobus", "peaje", "cabify", "pasajes"],
+    Entretenimiento: ["cine", "netflix", "spotify", "juego", "steam", "bar", "fiesta", "antro", "concierto", "salida", "chela", "cerveza", "disney", "hbo", "youtube", "xbox", "playstation", "ps5", "boliche", "videojuego", "evento", "boleto"],
+    Servicios: ["luz", "internet", "renta", "telefono", "celular", "recarga", "cfe", "suscripcion", "plan", "seguro", "predial", "mantenimiento", "lavanderia", "tarjeta"],
+    Salud: ["doctor", "farmacia", "medicina", "dentista", "consulta", "vitamina", "proteina", "suplemento", "creatina", "gym", "gimnasio", "lentes", "terapia", "analisis"],
+  };
+  function normText(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+  }
+  function isValidISO(iso) {
+    return /^\d{4}-\d{2}-\d{2}$/.test(iso) && !isNaN(dateFromISO(iso).getTime());
+  }
+  function matchCategoryName(name) {
+    const n = normText(name);
+    if (n.length < 3) return null;
+    return (
+      EXPENSE_CATEGORIES.find((c) => {
+        return normText(c).indexOf(n) === 0;
+      }) || null
+    );
+  }
+  function guessExpenseCategory(note) {
+    const key = normText(note);
+    if (key && state.expenses.catMemory[key]) return state.expenses.catMemory[key];
+    const tokens = key.split(/[^a-z0-9]+/).filter(Boolean);
+    for (let i = 0; i < EXPENSE_CATEGORIES.length; i++) {
+      const words = EXPENSE_KEYWORDS[EXPENSE_CATEGORIES[i]] || [];
+      const hit = tokens.some((t) => {
+        return words.indexOf(t) !== -1 || words.indexOf(t.replace(/s$/, "")) !== -1;
+      });
+      if (hit) return EXPENSE_CATEGORIES[i];
+    }
+    return "Otros";
+  }
+  // "tacos 85" -> { amount: 85, note: "tacos", category: "Comida", iso: null }
+  function parseExpenseLine(raw) {
+    let text = String(raw || "").trim();
+    if (!text) return null;
+    let iso = null;
+    const dateMatch = text.match(/^(\d{4}-\d{2}-\d{2})\s+(.*)$/);
+    if (dateMatch && isValidISO(dateMatch[1])) {
+      iso = dateMatch[1];
+      text = dateMatch[2];
+    }
+    let category = null;
+    text = text.replace(/#([A-Za-zÁÉÍÓÚáéíóúñÑ]+)/, (m, name) => {
+      const c = matchCategoryName(name);
+      if (c) {
+        category = c;
+        return "";
+      }
+      return m;
+    });
+    const re = /\$?\s*(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)/g;
+    let m,
+      last = null;
+    while ((m = re.exec(text)) !== null) last = m;
+    if (!last) return null;
+    const amount = Number(last[1].replace(/,/g, ""));
+    if (!(amount > 0)) return null;
+    const note = `${text.slice(0, last.index)} ${text.slice(last.index + last[0].length)}`
+      .replace(/\s+/g, " ")
+      .trim();
+    return { amount, note, category: category || guessExpenseCategory(note), explicit: !!category, iso };
+  }
+  function addExpenseEntry(iso, data) {
+    if (!state.expensesLog[iso]) state.expensesLog[iso] = [];
+    const entry = { id: uid(), amount: data.amount, category: data.category, note: data.note || "" };
+    state.expensesLog[iso].push(entry);
+    const key = normText(entry.note);
+    if (key) {
+      state.expenses.catMemory[key] = entry.category;
+      const keys = Object.keys(state.expenses.catMemory);
+      if (keys.length > 300) delete state.expenses.catMemory[keys[0]];
+    }
+    state.expenses.lastCategory = entry.category;
+    return entry;
+  }
+  function afterExpenseChange() {
+    saveState();
+    renderExpenses();
+    updateProgress();
+  }
+  function showExpenseMessage(html, ok) {
+    const preview = document.getElementById("quick-expense-preview");
+    preview.className = `quick-expense-preview${ok ? " ok" : ""}`;
+    document.getElementById("quick-expense-summary").innerHTML = html;
+    document.getElementById("quick-expense-cat").style.display = "none";
+  }
+
+  let quickCatTouched = false;
+  function updateQuickExpensePreview() {
+    const input = document.getElementById("quick-expense-input");
+    const sel = document.getElementById("quick-expense-cat");
+    input.classList.remove("invalid");
+    const parsed = parseExpenseLine(input.value);
+    if (!input.value.trim()) {
+      showExpenseMessage("Escribe qué fue y cuánto. Enter para guardar. Ej: «uber 120» o «tacos 85 #comida».", false);
+      return;
+    }
+    if (!parsed) {
+      showExpenseMessage("Falta el monto, por ejemplo «tacos 85».", false);
+      return;
+    }
+    showExpenseMessage(
+      `Se guardará <strong>${fmtMoney(parsed.amount)}</strong>${parsed.note ? ` · ${escapeHtml(parsed.note)}` : ""} en`,
+      false,
+    );
+    if (!quickCatTouched || parsed.explicit) {
+      sel.value = parsed.category;
+      if (parsed.explicit) quickCatTouched = false;
+    }
+    sel.style.display = "";
+  }
+  function submitQuickExpense() {
+    const input = document.getElementById("quick-expense-input");
+    const parsed = parseExpenseLine(input.value);
+    if (!parsed) {
+      input.classList.add("invalid");
+      showExpenseMessage("Falta el monto, por ejemplo «tacos 85».", false);
+      return;
+    }
+    const category = document.getElementById("quick-expense-cat").value || parsed.category;
+    const iso = parsed.iso || activeISO();
+    addExpenseEntry(iso, { amount: parsed.amount, category, note: parsed.note });
+    input.value = "";
+    quickCatTouched = false;
+    afterExpenseChange();
+    showExpenseMessage(
+      `✓ Guardado ${fmtMoney(parsed.amount)} · ${escapeHtml(category)}${iso !== activeISO() ? ` · ${formatDateLabel(iso)}` : ""}`,
+      true,
+    );
+    input.focus();
+  }
+
+  function expenseSig(label, amount, category) {
+    return `${normText(label)}|${Number(amount)}|${category}`;
+  }
+  function addFavoriteExpense(label, amount, category) {
+    const sig = expenseSig(label, amount, category);
+    if (
+      state.expenses.favorites.some((f) => {
+        return expenseSig(f.label, f.amount, f.category) === sig;
+      })
+    )
+      return;
+    if (state.expenses.favorites.length >= 12) {
+      showExpenseMessage("Máximo 12 frecuentes. Quita uno con la × para agregar otro.", false);
+      return;
+    }
+    state.expenses.favorites.push({ id: uid(), label, amount: Number(amount), category });
+    saveState();
+  }
+  function expenseSuggestions() {
+    const favSigs = {};
+    state.expenses.favorites.forEach((f) => {
+      favSigs[expenseSig(f.label, f.amount, f.category)] = true;
+    });
+    const counts = {};
+    const cutoff = shiftISO(todayISO(), -90);
+    Object.keys(state.expensesLog).forEach((iso) => {
+      if (iso < cutoff) return;
+      (state.expensesLog[iso] || []).forEach((e) => {
+        const label = e.note || e.category;
+        const sig = expenseSig(label, e.amount, e.category);
+        if (favSigs[sig]) return;
+        if (!counts[sig]) counts[sig] = { n: 0, label, amount: Number(e.amount), category: e.category };
+        counts[sig].n++;
+      });
+    });
+    return Object.keys(counts)
+      .map((k) => {
+        return counts[k];
+      })
+      .filter((c) => {
+        return c.n >= 2;
+      })
+      .sort((a, b) => {
+        return b.n - a.n;
+      })
+      .slice(0, 4);
+  }
+  function renderExpenseChips() {
+    const box = document.getElementById("expense-chips");
+    if (!box) return;
+    box.innerHTML = "";
+    const favs = state.expenses.favorites;
+    const suggestions = expenseSuggestions();
+    if (!favs.length && !suggestions.length) {
+      const hint = el("div", "expense-chips-hint");
+      hint.textContent =
+        "Cuando repitas un gasto aparecerá aquí para registrarlo con un toque. También puedes pulsar ☆ en cualquier gasto de la lista.";
+      box.appendChild(hint);
+      return;
+    }
+    function makeChip(item, isFavorite) {
+      const wrap = el("div", `expense-chip${isFavorite ? "" : " suggested"}`);
+      const main = el("button", "chip-main");
+      main.type = "button";
+      main.innerHTML = `${escapeHtml(item.label)} <span class="chip-amount">${fmtMoney(item.amount)}</span>`;
+      main.addEventListener("click", () => {
+        addExpenseEntry(activeISO(), {
+          amount: item.amount,
+          category: item.category,
+          note: item.label === item.category ? "" : item.label,
+        });
+        afterExpenseChange();
+        showExpenseMessage(`✓ Guardado ${escapeHtml(item.label)} · ${fmtMoney(item.amount)}`, true);
+      });
+      const side = el("button", "chip-x");
+      side.type = "button";
+      if (isFavorite) {
+        side.textContent = "×";
+        side.title = "Quitar de frecuentes";
+        side.addEventListener("click", () => {
+          state.expenses.favorites = state.expenses.favorites.filter((f) => {
+            return f.id !== item.id;
+          });
+          saveState();
+          renderExpenses();
+        });
+      } else {
+        side.textContent = "☆";
+        side.title = "Fijar como frecuente";
+        side.addEventListener("click", () => {
+          addFavoriteExpense(item.label, item.amount, item.category);
+          renderExpenses();
+        });
+      }
+      wrap.appendChild(main);
+      wrap.appendChild(side);
+      return wrap;
+    }
+    favs.forEach((f) => {
+      box.appendChild(makeChip(f, true));
+    });
+    suggestions.forEach((s) => {
+      box.appendChild(makeChip(s, false));
+    });
+  }
+
+  // Batch entry: one expense per line, optional date prefix / date-only lines
+  function parseExpenseBatch(text, defaultIso) {
+    const rows = [];
+    const bad = [];
+    let current = defaultIso;
+    String(text || "")
+      .split(/\r?\n/)
+      .forEach((line) => {
+        const t = line.trim();
+        if (!t) return;
+        if (isValidISO(t)) {
+          current = t;
+          return;
+        }
+        const p = parseExpenseLine(t);
+        if (!p) {
+          bad.push(t);
+          return;
+        }
+        rows.push({ amount: p.amount, note: p.note, category: p.category, iso: p.iso || current });
+      });
+    return { rows, bad };
+  }
+  function renderExpenseBatchPreview() {
+    const box = document.getElementById("expense-batch-preview");
+    const defaultIso = document.getElementById("expense-batch-date").value || activeISO();
+    const { rows, bad } = parseExpenseBatch(document.getElementById("expense-batch-text").value, defaultIso);
+    const save = document.getElementById("expense-batch-save");
+    save.disabled = !rows.length;
+    if (!rows.length && !bad.length) {
+      box.innerHTML = '<div class="empty-hint">Aquí verás cómo se interpreta cada línea antes de guardar.</div>';
+      return;
+    }
+    const total = rows.reduce((s, r) => {
+      return s + r.amount;
+    }, 0);
+    box.innerHTML =
+      rows
+        .map((r) => {
+          return `<div class="detail-expense-row"><span>${formatDateLabel(r.iso)} · ${escapeHtml(r.note || "Sin nota")} · <em>${escapeHtml(r.category)}</em></span><b>${fmtMoney(r.amount)}</b></div>`;
+        })
+        .join("") +
+      (rows.length ? `<div class="detail-expense-row"><span><b>${rows.length} gastos</b></span><b>${fmtMoney(total)}</b></div>` : "") +
+      bad
+        .map((b) => {
+          return `<div class="detail-expense-row" style="color:var(--danger)"><span>Sin monto: ${escapeHtml(b)}</span></div>`;
+        })
+        .join("");
+    save.textContent = rows.length ? `Guardar ${rows.length} gasto${rows.length === 1 ? "" : "s"}` : "Guardar gastos";
+  }
+  function openExpenseBatch() {
+    document.getElementById("expense-batch-date").value = activeISO();
+    document.getElementById("expense-batch-text").value = "";
+    renderExpenseBatchPreview();
+    const modal = document.getElementById("expense-batch-modal");
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.getElementById("expense-batch-text").focus();
+  }
+  function closeExpenseBatch() {
+    const modal = document.getElementById("expense-batch-modal");
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+  }
+  function saveExpenseBatch() {
+    const defaultIso = document.getElementById("expense-batch-date").value || activeISO();
+    const { rows } = parseExpenseBatch(document.getElementById("expense-batch-text").value, defaultIso);
+    if (!rows.length) return;
+    rows.forEach((r) => {
+      addExpenseEntry(r.iso, { amount: r.amount, category: r.category, note: r.note });
+    });
+    closeExpenseBatch();
+    afterExpenseChange();
+    showExpenseMessage(`✓ Se guardaron ${rows.length} gasto${rows.length === 1 ? "" : "s"}`, true);
+  }
+
+  (function setupQuickExpenses() {
+    const sel = document.getElementById("quick-expense-cat");
+    EXPENSE_CATEGORIES.forEach((c) => {
+      const o = document.createElement("option");
+      o.value = c;
+      o.textContent = c;
+      sel.appendChild(o);
+    });
+    sel.addEventListener("change", () => {
+      quickCatTouched = true;
+    });
+    const input = document.getElementById("quick-expense-input");
+    input.addEventListener("input", updateQuickExpensePreview);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        submitQuickExpense();
+      }
+    });
+    document.getElementById("quick-expense-btn").addEventListener("click", submitQuickExpense);
+    document.getElementById("expense-batch-btn").addEventListener("click", openExpenseBatch);
+    document.getElementById("expense-batch-close").addEventListener("click", closeExpenseBatch);
+    document.getElementById("expense-batch-save").addEventListener("click", saveExpenseBatch);
+    document.getElementById("expense-batch-text").addEventListener("input", renderExpenseBatchPreview);
+    document.getElementById("expense-batch-date").addEventListener("change", renderExpenseBatchPreview);
+    document.getElementById("expense-batch-modal").addEventListener("click", (e) => {
+      if (e.target.id === "expense-batch-modal") closeExpenseBatch();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && document.getElementById("expense-batch-modal").classList.contains("active"))
+        closeExpenseBatch();
+    });
+    updateQuickExpensePreview();
+  })();
 
   function addExpenseFromForm() {
     const amountInput = document.getElementById("new-expense-amount");
@@ -3289,17 +4190,14 @@
     const noteInput = document.getElementById("new-expense-note");
     const amount = Number(amountInput.value);
     if (!amount || amount <= 0) return;
-    getActiveExpenses().push({
-      id: uid(),
+    addExpenseEntry(activeISO(), {
       amount,
       category: categorySelect.value,
       note: noteInput.value.trim(),
     });
     amountInput.value = "";
     noteInput.value = "";
-    saveState();
-    renderExpenses();
-    updateProgress();
+    afterExpenseChange();
   }
 
   document.getElementById("add-expense-btn").addEventListener("click", addExpenseFromForm);
@@ -3441,7 +4339,7 @@
         return { done: isDoneOn(h, iso) };
       }),
       dieta: state.diet.filter(scheduledOn).map((d) => {
-        return { done: isDoneOn(d, iso) };
+        return { done: dietDone(d, iso) };
       }),
       gimnasio: gymDay
         ? (state.gym.routineCompletionLog || []).some(r => r.iso === iso)
@@ -3982,6 +4880,43 @@
       }
     });
 
+    const dietSum = { planned: 0, ok: 0, cheat: 0, skip: 0, unrecorded: 0, reasons: [], cheats: [], limit: cheatLimit() };
+    const reasonCounts = {};
+    isos.forEach((iso) => {
+      if (iso > todayIsoVal) return;
+      // Only count days where the diet (or the day) was actually used, so empty days don't inflate "sin registrar"
+      const touched =
+        !!map[iso] ||
+        state.diet.some((x) => {
+          return !!dietStatus(x, iso);
+        });
+      if (!touched) return;
+      state.diet.forEach((d) => {
+        const s = dietStatus(d, iso);
+        const sched = dietScheduledOn(d, iso);
+        if (s === "cheat") {
+          dietSum.cheat++;
+          const note = d.noteLog && d.noteLog[iso];
+          dietSum.cheats.push(note ? `${d.name}: ${note}` : d.name);
+        }
+        if (!sched) return;
+        dietSum.planned++;
+        if (s === "ok") dietSum.ok++;
+        else if (s === "skip") {
+          dietSum.skip++;
+          const r = (d.reasonLog && d.reasonLog[iso]) || "Sin razón";
+          reasonCounts[r] = (reasonCounts[r] || 0) + 1;
+        } else if (!s) dietSum.unrecorded++;
+      });
+    });
+    dietSum.reasons = Object.keys(reasonCounts)
+      .map((r) => {
+        return { reason: r, count: reasonCounts[r] };
+      })
+      .sort((a, b) => {
+        return b.count - a.count;
+      });
+
     const trainedDaysSet = {};
     const routineNameCounts = {};
     isos.forEach((iso) => {
@@ -4037,7 +4972,36 @@
       trainedDays,
       routineBreakdown,
       measurementAverages,
+      diet: dietSum,
     };
+  }
+
+  function dietSummaryHTML(ds) {
+    if (!ds || (!ds.planned && !ds.cheat)) return "";
+    const over = ds.cheat > ds.limit;
+    const reasons = ds.reasons.length
+      ? `<div class="diet-sum-reasons">${ds.reasons
+          .map((r) => {
+            return `<span class="diet-sum-chip">${escapeHtml(r.reason)} ×${r.count}</span>`;
+          })
+          .join("")}</div>`
+      : `<div class="diet-sum-cheats">${ds.skip ? "" : "Sin comidas saltadas. 💪"}</div>`;
+    const cheats = ds.cheats.length
+      ? `<div class="diet-sum-cheats">${ds.cheats
+          .map((c) => {
+            return escapeHtml(c);
+          })
+          .join(" · ")}</div>`
+      : "";
+    return (
+      `<div class="weekly-stat"><div class="metric-label">Dieta cumplida</div><div class="metric-value">${ds.ok}/${ds.planned}` +
+      `<span class="metric-sub"> comidas</span></div></div>` +
+      `<div class="weekly-stat"><div class="metric-label">Veces que te saltaste la dieta</div><div class="metric-value" style="color:${ds.skip ? "var(--danger)" : "inherit"};">${ds.skip}` +
+      `${ds.unrecorded ? `<span class="metric-sub"> (+${ds.unrecorded} sin registrar)</span>` : ""}</div></div>` +
+      `<div class="weekly-stat"><div class="metric-label">Cheat meals</div><div class="metric-value" style="color:${over ? "var(--danger)" : "inherit"};">${ds.cheat}` +
+      `<span class="metric-sub"> de ${ds.limit} permitidas</span></div>${cheats}</div>` +
+      `<div class="weekly-stat"><div class="metric-label">Razones para saltarte la dieta</div>${reasons}</div>`
+    );
   }
 
   function weeklySummaryHTML(summary) {
@@ -4125,6 +5089,7 @@
       `<div class="weekly-stat"><div class="metric-label">Rutinas de la semana</div><div class="metric-value" style="font-size:13px;">${ 
       routineHtml 
       }</div></div>` +
+      dietSummaryHTML(summary.diet) +
       `<div class="weekly-stat" style="grid-column:1/-1;"><div class="metric-label">Medidas corporales</div>${ 
       measurementsHtml 
       }</div>` +
@@ -4918,85 +5883,568 @@
   }
 
   // ---------- Sprint: content ----------
-  let contentTab = "pipeline",
-    editingContentId = null;
-  const contentStatuses = [
-    ["idea", "Idea"],
-    ["script", "Guion"],
-    ["prepare", "Preparar"],
-    ["record", "Grabar"],
-    ["edit", "Editar"],
-    ["scheduled", "Programado"],
-    ["published", "Publicado"],
+  // ---------- Content: one flow (Idea -> Guion -> Grabación -> Publicado) ----------
+  let editingContentId = null;
+  let contentFilter = "active";
+  let editorView = "idea";
+  const CONTENT_STAGES = [
+    { key: "idea", label: "Idea", icon: "💡", short: "Guion", next: "Pasar a Guion", hint: "Define el ángulo y el hook. Cuando la idea te convenza, pásala a Guion." },
+    { key: "script", label: "Guion", icon: "✍️", short: "Grabar", next: "Pasar a Grabación", hint: "Escribe el guion y el CTA. Luego crea la lista de tomas desde el guion." },
+    { key: "record", label: "Grabación", icon: "🎬", short: "Publicar", next: "Marcar como publicado", hint: "Prepara las tomas, graba y edita. Marca el checklist conforme avances." },
+    { key: "published", label: "Publicado", icon: "✅", short: "", next: "", hint: "Registra el rendimiento y lo que aprendiste para la próxima vez." },
   ];
+  function stageIndex(key) {
+    return Math.max(
+      0,
+      CONTENT_STAGES.findIndex((s) => {
+        return s.key === key;
+      }),
+    );
+  }
+  function stageInfo(key) {
+    return CONTENT_STAGES[stageIndex(key)];
+  }
+  function contentById(id) {
+    return (
+      state.content.videos.find((v) => {
+        return v.id === id;
+      }) || null
+    );
+  }
+  function newContentItem(title) {
+    return {
+      id: uid(),
+      title,
+      hook: "",
+      notes: "",
+      script: "",
+      cta: "",
+      duration: 30,
+      status: "idea",
+      publishDate: "",
+      createdAt: todayISO(),
+      shots: [],
+      brollIds: [],
+      checklist: { before: false, during: false, after: false },
+      stats: { views: 0, likes: 0, comments: 0 },
+      url: "",
+      learning: "",
+    };
+  }
+  function setContentStage(v, key) {
+    v.status = key;
+    if (key === "published" && !v.publishDate) v.publishDate = todayISO();
+    saveState();
+    refreshObjectives();
+  }
+  function plainTextFromHtml(html) {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = String(html || "")
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<\/(div|p|li|h\d)>/gi, "\n");
+    return (tmp.textContent || "").replace(/ /g, " ");
+  }
+  function stageStripHTML(v) {
+    const idx = stageIndex(v.status);
+    return `<div class="content-stage-row four">${CONTENT_STAGES.map((st, i) => {
+      return `<div class="content-stage-step ${i < idx ? "done " : ""}${i === idx ? "current" : ""}"><span></span>${st.label}</div>`;
+    }).join("")}</div>`;
+  }
+
+  const CONTENT_FILTERS = [
+    { key: "active", label: "En proceso", test: (v) => v.status !== "published", empty: "No tienes contenido en proceso. Anota una idea arriba y empieza." },
+    { key: "idea", label: "💡 Ideas", test: (v) => v.status === "idea", empty: "No hay ideas guardadas todavía." },
+    { key: "script", label: "✍️ Guion", test: (v) => v.status === "script", empty: "Nada en etapa de guion." },
+    { key: "record", label: "🎬 Grabación", test: (v) => v.status === "record", empty: "Nada en grabación." },
+    { key: "published", label: "✅ Publicados", test: (v) => v.status === "published", empty: "Aún no has publicado ninguno." },
+  ];
+
   function renderContent() {
-    document.getElementById("c-ideas-count").textContent = state.content.ideas.length;
-    document.getElementById("c-production-count").textContent = state.content.videos.filter(
-      (v) => {
-        return v.status !== "published";
-      },
-    ).length;
-    document.getElementById("c-published-count").textContent = state.content.videos.filter(
-      (v) => {
-        return v.status === "published";
-      },
-    ).length;
+    const videos = state.content.videos;
+    const count = (k) => {
+      return videos.filter((v) => v.status === k).length;
+    };
+    document.getElementById("c-ideas-count").textContent = count("idea");
+    document.getElementById("c-production-count").textContent = count("script") + count("record");
+    document.getElementById("c-published-count").textContent = count("published");
     document.getElementById("c-broll-count").textContent = state.content.broll.filter((b) => {
       return b.done;
     }).length;
-    const body = document.getElementById("content-tab-body");
-    if (!body) return;
-    body.innerHTML = "";
-    if (contentTab === "pipeline") renderContentPipeline(body);
-    else if (contentTab === "ideas") renderContentIdeas(body);
-    else if (contentTab === "editor") renderContentEditorList(body);
-    else if (contentTab === "broll") renderBroll(body);
-    else if (contentTab === "performance") renderContentPerformance(body);
-    else renderContentCalendar(body);
+    renderContentNext();
+    renderContentFilter();
+    renderContentList();
+    [
+      ["content-performance-body", renderContentPerformance],
+      ["content-broll-body", renderBroll],
+      ["content-calendar-body", renderContentCalendar],
+    ].forEach((pair) => {
+      const box = document.getElementById(pair[0]);
+      if (!box) return;
+      box.innerHTML = "";
+      pair[1](box);
+    });
   }
-  function contentCard(v) {
-    const d = el("div", "content-card");
-    const idx = contentStatuses.findIndex(x => x[0] === v.status);
-    const next = contentStatuses[idx + 1];
-    const prev = contentStatuses[idx - 1];
-    const dots = contentStatuses.map((st, i) => `<span class="stage-dot ${i <= idx ? "active" : ""}" title="${st[1]}"></span>`).join("");
-    d.innerHTML = `<b>${escapeHtml(v.title || "TikTok")}</b><div class="content-meta">${(contentStatuses[idx] || ["", ""])[1]} · ${v.publishDate || "Sin fecha"}</div><div class="stage-progress">${dots}</div><div class="content-card-actions"><button class="btn btn-ghost edit-content-btn" type="button">Editar</button>${next ? `<button class="btn btn-accent next-content-btn" type="button">${next[1]} →</button>` : ""}</div>`;
-    d.addEventListener("click", (e) => { if (!e.target.closest("button")) openContentEditor(v.id); });
-    d.querySelector(".edit-content-btn").addEventListener("click", () => openContentEditor(v.id));
-    const nextBtn = d.querySelector(".next-content-btn");
-    if (nextBtn) nextBtn.addEventListener("click", () => moveContentStage(v.id, 1));
-    return d;
-  }
-  function moveContentStage(id, direction) {
-    const v = state.content.videos.find(x => x.id === id);
-    if (!v) return;
-    const idx = contentStatuses.findIndex(x => x[0] === v.status);
-    const target = contentStatuses[idx + direction];
-    if (!target) return;
-    v.status = target[0];
-    if (v.status === "published" && !v.publishDate) v.publishDate = todayISO();
-    saveState(); renderContent(); refreshObjectives();
-  }
-  function renderContentPipeline(body) {
-    const flow=el("div","content-flow");
-    const videos=state.content.videos||[];
-    const active=videos.find(v=>v.status!=="published") || videos[0];
-    if(!active){
-      flow.innerHTML='<div class="content-next-card"><div class="content-next-stage">Primer paso</div><div class="content-next-title">Crea tu primer TikTok</div><p class="subtitle">Empieza con una idea. Después la app te irá guiando por cada etapa.</p><button class="btn btn-accent" id="empty-new-tiktok" type="button">+ Crear TikTok</button></div>';
-      body.appendChild(flow); document.getElementById("empty-new-tiktok").addEventListener("click",()=>document.getElementById("new-content-video-btn").click()); return;
+
+  function renderContentNext() {
+    const box = document.getElementById("content-next-box");
+    box.innerHTML = "";
+    const pending = state.content.videos
+      .filter((v) => {
+        return v.status !== "published";
+      })
+      .sort((a, b) => {
+        return stageIndex(b.status) - stageIndex(a.status);
+      });
+    if (!pending.length) {
+      box.innerHTML =
+        '<div class="content-empty">Escribe tu primera idea arriba. Después la app te dirá siempre qué sigue.</div>';
+      return;
     }
-    const idx=contentStatuses.findIndex(x=>x[0]===active.status), current=contentStatuses[idx]; const next=contentStatuses[idx+1];
-    const card=el("div","content-next-card");
-    const steps=contentStatuses.map((st,i)=>`<div class="content-stage-step ${i<idx?"done ":""}${i===idx?"current":""}"><span></span>${st[1]}</div>`).join("");
-    card.innerHTML=`<div class="content-next-stage">Estás aquí · ${current[1]}</div><div class="content-next-title">${escapeHtml(active.title||"TikTok")}</div><p class="subtitle">${next ? `Tu siguiente paso es <b>${next[1]}</b>.` : "Este TikTok ya está publicado."}</p><div class="content-stage-row">${steps}</div><div class="content-next-actions"><button class="btn btn-ghost" id="guided-edit" type="button">Editar TikTok</button>${next?`<button class="btn btn-accent" id="guided-next" type="button">${next[1]} →</button>`:""}</div>`;
-    flow.appendChild(card);
-    if(next) card.querySelector("#guided-next").addEventListener("click",()=>moveContentStage(active.id,1));
-    card.querySelector("#guided-edit").addEventListener("click",()=>openContentEditor(active.id));
-    const others=videos.filter(v=>v.id!==active.id);
-    if(others.length){const list=el("div","card"); list.innerHTML='<h3 style="margin:0 0 10px;">Otros TikToks</h3>'; const rows=el("div","content-list-simple"); others.forEach(v=>{const r=el("div","content-simple-row");const ix=contentStatuses.findIndex(x=>x[0]===v.status);r.innerHTML=`<div><b>${escapeHtml(v.title||"TikTok")}</b><div class="content-meta">${contentStatuses[ix]?.[1]||"Idea"}${v.publishDate?` · ${v.publishDate}`:""}</div></div><button class="btn btn-ghost" type="button">Abrir</button>`;r.querySelector("button").addEventListener("click",()=>openContentEditor(v.id));rows.appendChild(r)});list.appendChild(rows);flow.appendChild(list);}
-    const hint=el("div"); hint.className="empty-hint"; hint.textContent="¿Quieres ver el tablero completo? Usa la pestaña Flujo para revisar todas las etapas."; flow.appendChild(hint);
-    body.appendChild(flow);
+    const v = pending[0];
+    const st = stageInfo(v.status);
+    const card = el("div", "content-next-card");
+    card.innerHTML =
+      `<div class="content-next-stage">Lo que sigue · ${st.icon} ${st.label}</div>` +
+      `<div class="content-next-title">${escapeHtml(v.title || "TikTok")}</div>` +
+      `<p class="subtitle">${escapeHtml(st.hint)}</p>${stageStripHTML(v)}` +
+      `<div class="content-next-actions"><button class="btn btn-accent" type="button">Continuar</button></div>`;
+    card.querySelector("button").addEventListener("click", () => {
+      openContentEditor(v.id);
+    });
+    box.appendChild(card);
   }
+
+  function renderContentFilter() {
+    const box = document.getElementById("content-stage-filter");
+    box.innerHTML = "";
+    CONTENT_FILTERS.forEach((f) => {
+      const n = state.content.videos.filter(f.test).length;
+      const b = el("button", `content-pill${f.key === contentFilter ? " active" : ""}`);
+      b.type = "button";
+      b.innerHTML = `${f.label}<b>${n}</b>`;
+      b.addEventListener("click", () => {
+        contentFilter = f.key;
+        renderContentFilter();
+        renderContentList();
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function renderContentList() {
+    const box = document.getElementById("content-list");
+    box.innerHTML = "";
+    const def =
+      CONTENT_FILTERS.find((f) => {
+        return f.key === contentFilter;
+      }) || CONTENT_FILTERS[0];
+    const items = state.content.videos.filter(def.test).slice();
+    items.sort((a, b) => {
+      if (def.key === "published") return (b.publishDate || "").localeCompare(a.publishDate || "");
+      const diff = stageIndex(b.status) - stageIndex(a.status);
+      return diff || (b.createdAt || "").localeCompare(a.createdAt || "");
+    });
+    if (!items.length) {
+      const empty = el("div", "content-empty");
+      empty.textContent = def.empty;
+      box.appendChild(empty);
+      return;
+    }
+    items.forEach((v) => {
+      const st = stageInfo(v.status);
+      const next = CONTENT_STAGES[stageIndex(v.status) + 1];
+      const row = el("div", "content-row");
+      let meta = v.hook ? `“${v.hook}”` : "Sin hook todavía";
+      if (v.status === "record") {
+        const total = v.shots.length;
+        const done = v.shots.filter((s) => s.status === "done").length;
+        meta = total ? `${done}/${total} tomas grabadas` : "Aún sin lista de tomas";
+      } else if (v.status === "published") {
+        meta = `${v.publishDate || "Sin fecha"} · 👁 ${(v.stats.views || 0).toLocaleString("es-MX")}`;
+      }
+      row.innerHTML =
+        `<div class="content-row-icon">${st.icon}</div>` +
+        `<div class="content-row-main"><div class="content-row-title">${escapeHtml(v.title || "TikTok")}</div>` +
+        `<div class="content-row-meta">${escapeHtml(meta)}</div></div>`;
+      if (next) {
+        const adv = el("button", "btn btn-ghost");
+        adv.type = "button";
+        adv.textContent = `${stageInfo(v.status).short} →`;
+        adv.title = stageInfo(v.status).next;
+        adv.addEventListener("click", (e) => {
+          e.stopPropagation();
+          setContentStage(v, next.key);
+          renderContent();
+        });
+        row.appendChild(adv);
+      }
+      row.addEventListener("click", () => {
+        openContentEditor(v.id);
+      });
+      box.appendChild(row);
+    });
+  }
+
+  function addQuickIdea() {
+    const input = document.getElementById("quick-idea-input");
+    const title = input.value.trim();
+    if (!title) return;
+    state.content.videos.unshift(newContentItem(title));
+    input.value = "";
+    contentFilter = "active";
+    saveState();
+    renderContent();
+    refreshObjectives();
+    input.focus();
+  }
+
+  // ----- Editor: one modal, stage-aware -----
+  function openContentEditor(id, view) {
+    const v = contentById(id);
+    if (!v) return;
+    editingContentId = id;
+    editorView = view || v.status;
+    renderContentEditor();
+    const modal = document.getElementById("content-editor-modal");
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+  }
+  function closeContentEditor() {
+    const v = contentById(editingContentId);
+    if (v && !String(v.title || "").trim()) v.title = "TikTok";
+    editingContentId = null;
+    const modal = document.getElementById("content-editor-modal");
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    saveState();
+    renderContent();
+    refreshObjectives();
+  }
+
+  function ceField(labelText, node) {
+    const w = el("label", "ce-field");
+    const s = el("span");
+    s.textContent = labelText;
+    w.appendChild(s);
+    w.appendChild(node);
+    return w;
+  }
+  function ceTextInput(v, key, placeholder, tag) {
+    const input = el(tag || "input");
+    if (!tag) input.type = "text";
+    input.placeholder = placeholder || "";
+    input.value = v[key] || "";
+    input.addEventListener("input", () => {
+      v[key] = input.value;
+      saveState();
+    });
+    return input;
+  }
+
+  function renderContentEditor() {
+    const v = contentById(editingContentId);
+    if (!v) return;
+    const titleInput = document.getElementById("ce-title");
+    if (document.activeElement !== titleInput) titleInput.value = v.title || "";
+    const idx = stageIndex(v.status);
+
+    const stepper = document.getElementById("ce-stepper");
+    stepper.innerHTML = "";
+    CONTENT_STAGES.forEach((st, i) => {
+      const b = el(
+        "button",
+        `ce-step${i < idx ? " done" : ""}${i === idx ? " current" : ""}${st.key === editorView ? " viewing" : ""}`,
+      );
+      b.type = "button";
+      b.innerHTML = `<span class="ce-step-dot">${i < idx ? "✓" : i + 1}</span><span>${st.label}</span>`;
+      b.addEventListener("click", () => {
+        editorView = st.key;
+        renderContentEditor();
+      });
+      stepper.appendChild(b);
+    });
+
+    const hint = document.getElementById("ce-hint");
+    const viewing = stageInfo(editorView);
+    hint.textContent =
+      editorView === v.status
+        ? viewing.hint
+        : `Estás viendo la etapa «${viewing.label}». Este contenido está en «${stageInfo(v.status).label}».`;
+
+    const body = document.getElementById("ce-body");
+    body.innerHTML = "";
+    if (editorView === "idea") renderEditorIdea(body, v);
+    else if (editorView === "script") renderEditorScript(body, v);
+    else if (editorView === "record") renderEditorRecord(body, v);
+    else renderEditorPublished(body, v);
+
+    const prev = document.getElementById("ce-prev");
+    const next = document.getElementById("ce-next");
+    prev.style.display = idx > 0 ? "" : "none";
+    prev.textContent = idx > 0 ? `← Volver a ${CONTENT_STAGES[idx - 1].label}` : "";
+    const st = CONTENT_STAGES[idx];
+    next.style.display = st.next ? "" : "none";
+    next.textContent = st.next ? `${st.next} →` : "";
+  }
+
+  function renderEditorIdea(body, v) {
+    body.appendChild(ceField("Hook (la primera frase que engancha)", ceTextInput(v, "hook", "Ej. Nadie te dice esto de…")));
+    body.appendChild(ceField("Ángulo / notas", ceTextInput(v, "notes", "¿De qué trata? ¿Para quién? Referencias…", "textarea")));
+  }
+
+  function renderEditorScript(body, v) {
+    body.appendChild(ceField("Hook", ceTextInput(v, "hook", "Primera frase del video")));
+
+    const wrap = el("div", "script-editor");
+    const toolbar = el("div", "script-toolbar");
+    toolbar.innerHTML =
+      '<button type="button" data-cmd="bold"><b>B</b></button><button type="button" data-cmd="italic"><i>I</i></button><button type="button" data-cmd="insertUnorderedList">• Lista</button><button type="button" data-cmd="template">✨ Plantilla</button>';
+    const area = el("div", "script-area");
+    area.id = "cv-script";
+    area.contentEditable = "true";
+    area.setAttribute("data-placeholder", "Escribe el guion por bloques: hook, desarrollo y cierre…");
+    area.innerHTML = v.script || "";
+    const counter = el("div", "ce-counter");
+    function updateCounter() {
+      const words = (plainTextFromHtml(area.innerHTML).match(/\S+/g) || []).length;
+      const seconds = Math.round((words / 130) * 60);
+      const target = Number(v.duration) || 30;
+      counter.textContent = words
+        ? `≈ ${words} palabras · ~${seconds}s hablando (meta ${target}s)`
+        : `Meta: ${target}s (≈ ${Math.round((target / 60) * 130)} palabras)`;
+      counter.classList.toggle("over", words > 0 && seconds > target * 1.15);
+    }
+    area.addEventListener("input", () => {
+      v.script = area.innerHTML;
+      saveState();
+      updateCounter();
+    });
+    toolbar.querySelectorAll("button").forEach((b) => {
+      b.addEventListener("click", () => {
+        const cmd = b.dataset.cmd;
+        if (cmd === "template") {
+          if (plainTextFromHtml(area.innerHTML).trim()) {
+            if (!confirm("Esto reemplazará el guion actual con la plantilla. ¿Continuar?")) return;
+          }
+          area.innerHTML =
+            `<b>Hook:</b> ${escapeHtml(v.hook || "…")}<br><br><b>Desarrollo:</b> …<br><br><b>Cierre / CTA:</b> ${escapeHtml(v.cta || "…")}`;
+          v.script = area.innerHTML;
+          saveState();
+          updateCounter();
+          return;
+        }
+        document.execCommand(cmd, false, null);
+        area.focus();
+        v.script = area.innerHTML;
+        saveState();
+      });
+    });
+    wrap.appendChild(toolbar);
+    wrap.appendChild(area);
+    const scriptField = el("div", "ce-field");
+    const label = el("span");
+    label.textContent = "Guion";
+    scriptField.appendChild(label);
+    scriptField.appendChild(wrap);
+    scriptField.appendChild(counter);
+    body.appendChild(scriptField);
+
+    body.appendChild(ceField("CTA (qué quieres que hagan al final)", ceTextInput(v, "cta", "Ej. Sígueme para la parte 2")));
+    const dur = el("input");
+    dur.type = "number";
+    dur.min = "5";
+    dur.value = v.duration || 30;
+    dur.addEventListener("input", () => {
+      v.duration = Math.max(5, Number(dur.value) || 30);
+      saveState();
+      updateCounter();
+    });
+    body.appendChild(ceField("Duración objetivo (segundos)", dur));
+    updateCounter();
+  }
+
+  function renderEditorRecord(body, v) {
+    if (v.script && plainTextFromHtml(v.script).trim()) {
+      const det = el("details", "ce-script-view");
+      const sum = el("summary");
+      sum.textContent = "Ver guion";
+      const content = el("div", "ce-script-readonly");
+      content.innerHTML = v.script;
+      det.appendChild(sum);
+      det.appendChild(content);
+      body.appendChild(det);
+    }
+
+    const shotsTitle = el("h3", "ce-section-title");
+    shotsTitle.textContent = "Lista de tomas";
+    body.appendChild(shotsTitle);
+    const shotBox = el("div");
+    shotBox.id = "cv-shot-list";
+    body.appendChild(shotBox);
+    const shotActions = el("div", "ce-actions-row");
+    const addShot = el("button", "add-row-btn");
+    addShot.type = "button";
+    addShot.textContent = "+ Agregar toma";
+    addShot.addEventListener("click", () => {
+      v.shots.push({ id: uid(), name: "", shot: "", action: "", duration: 5, status: "pending" });
+      saveState();
+      renderShotList(v);
+    });
+    const fromScript = el("button", "add-row-btn");
+    fromScript.type = "button";
+    fromScript.textContent = "✨ Crear tomas desde el guion";
+    fromScript.addEventListener("click", () => {
+      const lines = plainTextFromHtml(v.script)
+        .split("\n")
+        .map((l) => l.trim())
+        .filter(Boolean)
+        .slice(0, 15);
+      if (!lines.length) {
+        alert("Primero escribe el guion en la etapa Guion.");
+        return;
+      }
+      lines.forEach((line) => {
+        const words = (line.match(/\S+/g) || []).length;
+        v.shots.push({
+          id: uid(),
+          name: `Toma ${v.shots.length + 1}`,
+          shot: "",
+          action: line.slice(0, 140),
+          duration: Math.max(3, Math.round((words / 130) * 60)),
+          status: "pending",
+        });
+      });
+      saveState();
+      renderShotList(v);
+    });
+    shotActions.appendChild(addShot);
+    shotActions.appendChild(fromScript);
+    body.appendChild(shotActions);
+
+    const brollTitle = el("h3", "ce-section-title");
+    brollTitle.textContent = "B-roll reutilizable";
+    body.appendChild(brollTitle);
+    const brollBox = el("div", "check-list");
+    brollBox.id = "cv-broll-selector";
+    body.appendChild(brollBox);
+
+    const checkTitle = el("h3", "ce-section-title");
+    checkTitle.textContent = "Checklist";
+    body.appendChild(checkTitle);
+    const checks = el("div", "check-list");
+    [
+      ["before", "Preparado: batería, memoria, luz y micrófono"],
+      ["during", "Grabado: toma principal + B-roll"],
+      ["after", "Editado y respaldado"],
+    ].forEach((pair) => {
+      const lab = el("label");
+      const cb = el("input");
+      cb.type = "checkbox";
+      cb.checked = !!v.checklist[pair[0]];
+      cb.addEventListener("change", () => {
+        v.checklist[pair[0]] = cb.checked;
+        saveState();
+      });
+      lab.appendChild(cb);
+      lab.appendChild(document.createTextNode(` ${pair[1]}`));
+      checks.appendChild(lab);
+    });
+    body.appendChild(checks);
+
+    renderShotList(v);
+    renderBrollSelector(v);
+  }
+
+  function renderEditorPublished(body, v) {
+    const date = el("input");
+    date.type = "date";
+    date.value = v.publishDate || "";
+    date.addEventListener("change", () => {
+      v.publishDate = date.value;
+      saveState();
+    });
+    body.appendChild(ceField("Fecha de publicación", date));
+    body.appendChild(ceField("Link del TikTok (opcional)", ceTextInput(v, "url", "https://www.tiktok.com/…")));
+
+    const statsRow = el("div", "ce-stats-row");
+    [
+      ["views", "Vistas"],
+      ["likes", "Likes"],
+      ["comments", "Comentarios"],
+    ].forEach((pair) => {
+      const input = el("input");
+      input.type = "number";
+      input.min = "0";
+      input.placeholder = "0";
+      input.value = v.stats[pair[0]] ? v.stats[pair[0]] : "";
+      input.addEventListener("input", () => {
+        v.stats[pair[0]] = Math.max(0, Number(input.value) || 0);
+        saveState();
+      });
+      statsRow.appendChild(ceField(pair[1], input));
+    });
+    body.appendChild(statsRow);
+    body.appendChild(ceField("¿Qué aprendiste? (para el siguiente)", ceTextInput(v, "learning", "Qué funcionó, qué cambiarías…", "textarea")));
+  }
+
+  (function setupContentFlow() {
+    document.getElementById("quick-idea-btn").addEventListener("click", addQuickIdea);
+    document.getElementById("quick-idea-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addQuickIdea();
+      }
+    });
+    document.getElementById("content-editor-close").addEventListener("click", closeContentEditor);
+    document.getElementById("content-editor-modal").addEventListener("click", (e) => {
+      if (e.target.id === "content-editor-modal") closeContentEditor();
+    });
+    document.getElementById("ce-title").addEventListener("input", (e) => {
+      const v = contentById(editingContentId);
+      if (!v) return;
+      v.title = e.target.value;
+      saveState();
+    });
+    document.getElementById("ce-prev").addEventListener("click", () => {
+      const v = contentById(editingContentId);
+      if (!v) return;
+      const idx = stageIndex(v.status);
+      if (idx <= 0) return;
+      setContentStage(v, CONTENT_STAGES[idx - 1].key);
+      editorView = v.status;
+      renderContentEditor();
+    });
+    document.getElementById("ce-next").addEventListener("click", () => {
+      const v = contentById(editingContentId);
+      if (!v) return;
+      const idx = stageIndex(v.status);
+      if (idx >= CONTENT_STAGES.length - 1) return;
+      setContentStage(v, CONTENT_STAGES[idx + 1].key);
+      editorView = v.status;
+      renderContentEditor();
+      document.getElementById("content-editor-modal").scrollTop = 0;
+    });
+    document.getElementById("ce-delete").addEventListener("click", () => {
+      const v = contentById(editingContentId);
+      if (!v) return;
+      if (!confirm(`¿Eliminar «${v.title || "este contenido"}»? No se puede deshacer.`)) return;
+      state.content.videos = state.content.videos.filter((x) => {
+        return x.id !== v.id;
+      });
+      editingContentId = null;
+      const modal = document.getElementById("content-editor-modal");
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+      saveState();
+      renderContent();
+      refreshObjectives();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && document.getElementById("content-editor-modal").classList.contains("active"))
+        closeContentEditor();
+    });
+  })();
+
 
   function renderContentPerformance(body) {
     const published = state.content.videos.filter((v) => v.status === "published").slice();
@@ -5054,78 +6502,6 @@
     body.appendChild(listCard);
   }
 
-  function renderContentIdeas(body) {
-    body.innerHTML = "";
-    const add = el("div", "content-form");
-    add.innerHTML =
-      '<input id="new-idea-title" class="full" placeholder="Nueva idea de TikTok"><input id="new-idea-hook" placeholder="Hook opcional"><button class="btn btn-accent" id="add-idea-btn">Guardar idea</button>';
-    body.appendChild(add);
-    const list = el("div");
-    list.style.marginTop = "14px";
-    state.content.ideas.forEach((i) => {
-      const c = el("div", "content-card");
-      c.innerHTML =
-        `<b>${ 
-        escapeHtml(i.title) 
-        }</b><div class="content-meta">${ 
-        escapeHtml(i.hook || "Sin hook") 
-        }</div><div style="display:flex;gap:6px;margin-top:8px;"><button class="btn btn-ghost use-idea">Convertir en TikTok</button><button class="btn btn-danger-ghost del-idea">×</button></div>`;
-      c.querySelector(".use-idea").addEventListener("click", () => {
-        const v = {
-          id: uid(),
-          title: i.title,
-          hook: i.hook || "",
-          script: "",
-          cta: "",
-          duration: 30,
-          status: "script",
-          publishDate: "",
-          shots: [],
-          brollIds: [],
-          checklist: { before: false, during: false, after: false },
-        };
-        state.content.videos.push(v);
-        state.content.ideas = state.content.ideas.filter((x) => {
-          return x.id !== i.id;
-        });
-        saveState();
-        renderContent();
-        openContentEditor(v.id);
-      });
-      c.querySelector(".del-idea").addEventListener("click", () => {
-        state.content.ideas = state.content.ideas.filter((x) => {
-          return x.id !== i.id;
-        });
-        saveState();
-        renderContent();
-      });
-      list.appendChild(c);
-    });
-    body.appendChild(list);
-    const addBtn = document.getElementById("add-idea-btn");
-    addBtn.addEventListener("click", () => {
-      const t = document.getElementById("new-idea-title").value.trim();
-      if (!t) return;
-      state.content.ideas.unshift({
-        id: uid(),
-        title: t,
-        hook: document.getElementById("new-idea-hook").value.trim(),
-        createdAt: todayISO(),
-        status: "idea",
-      });
-      saveState();
-      renderContent();
-    });
-  }
-  function renderContentEditorList(body) {
-    const info = el("div");
-    info.innerHTML =
-      '<p class="subtitle">Selecciona un TikTok para editar su guion, estado, shot list y checklist.</p>';
-    body.appendChild(info);
-    state.content.videos.forEach((v) => {
-      body.appendChild(contentCard(v));
-    });
-  }
   function renderBroll(body) {
     const add = el("div", "content-form");
     add.innerHTML =
@@ -5216,32 +6592,6 @@
     }
     body.appendChild(grid);
   }
-  function openContentEditor(id) {
-    const v = state.content.videos.find((x) => {
-      return x.id === id;
-    });
-    if (!v) return;
-    editingContentId = id;
-    document.getElementById("content-editor-title").textContent = v.title || "TikTok";
-    document.getElementById("cv-title").value = v.title || "";
-    document.getElementById("cv-hook").value = v.hook || "";
-    document.getElementById("cv-duration").value = v.duration || 30;
-    document.getElementById("cv-cta").value = v.cta || "";
-    document.getElementById("cv-script").innerHTML = v.script || "";
-    document.getElementById("cv-status").value = v.status || "idea";
-    document.getElementById("cv-publish-date").value = v.publishDate || "";
-    document.getElementById("cv-views").value = v.stats && v.stats.views ? v.stats.views : "";
-    document.getElementById("cv-likes").value = v.stats && v.stats.likes ? v.stats.likes : "";
-    document.getElementById("cv-comments").value = v.stats && v.stats.comments ? v.stats.comments : "";
-    document.getElementById("cv-check-before").checked = !!v.checklist.before;
-    document.getElementById("cv-check-during").checked = !!v.checklist.during;
-    document.getElementById("cv-check-after").checked = !!v.checklist.after;
-    renderShotList(v);
-    renderBrollSelector(v);
-    document.getElementById("cv-add-shot").disabled = false;
-    document.getElementById("content-editor-modal").classList.add("active");
-    document.getElementById("content-editor-modal").setAttribute("aria-hidden", "false");
-  }
   function renderShotList(v) {
     const box = document.getElementById("cv-shot-list");
     box.innerHTML = "";
@@ -5294,7 +6644,7 @@
     });
     if (!available.length) {
       box.innerHTML =
-        '<span class="muted">Aún no tienes tomas reutilizables. Agrégalas desde la pestaña B-roll.</span>';
+        '<span class="muted">Aún no tienes tomas reutilizables. Agrégalas en la sección B-roll de la pestaña Contenido.</span>';
       return;
     }
     available.forEach((b) => {
@@ -5317,20 +6667,58 @@
     });
   }
 
-  function renderContentEditorButtons() {
-    document.querySelectorAll(".script-toolbar button").forEach((b) => {
-      b.onclick = function () {
-        const cmd = b.dataset.cmd;
-        if (cmd === "createLink") {
-          const u = prompt("URL");
-          if (u) document.execCommand(cmd, false, u);
-        } else document.execCommand(cmd, false, null);
-        document.getElementById("cv-script").focus();
-      };
-    });
+
+  // ---------- Objectives (linked to habits, diet, expenses and content) ----------
+  const GOAL_TEMPLATES = [
+    { key: "habit_streak", icon: "🔥", name: "Racha de un hábito", desc: "Días seguidos cumpliendo un hábito. Ej: 30 días sin Coca-Cola.", unit: "días seguidos", streak: true },
+    { key: "habit_completions", icon: "✅", name: "Veces que cumplo un hábito", desc: "Suma cada vez que lo marcas.", unit: "veces" },
+    { key: "diet_streak", icon: "🥗", name: "Racha de dieta", desc: "Días seguidos sin saltarte la dieta.", unit: "días seguidos", streak: true },
+    { key: "expense_streak", icon: "💸", name: "Racha de gasto", desc: "Días seguidos sin pasarte de tu límite diario.", unit: "días seguidos", streak: true },
+    { key: "content_published", icon: "🎬", name: "TikToks publicados", desc: "Cuenta los que marques como publicados.", unit: "publicados" },
+    { key: "content_created", icon: "💡", name: "Ideas y TikToks creados", desc: "Cada idea nueva cuenta.", unit: "creados" },
+    { key: "gym_sessions", icon: "🏋️", name: "Sesiones de gym", desc: "Días que completas un entrenamiento.", unit: "sesiones" },
+    { key: "journal_days", icon: "📔", name: "Días con diario", desc: "Días en que escribes una nota.", unit: "días" },
+    { key: "broll_recorded", icon: "🎞️", name: "Tomas B-roll grabadas", desc: "Tomas que marques como grabadas.", unit: "tomas" },
+    { key: "manual", icon: "✏️", name: "Progreso manual", desc: "Tú actualizas el avance con +1 / −1.", unit: "avance" },
+  ];
+  const GOAL_META = {};
+  GOAL_TEMPLATES.forEach((t) => {
+    GOAL_META[t.key] = t;
+  });
+  GOAL_META.diet_completions = { key: "diet_completions", icon: "🍽️", name: "Comidas cumplidas", unit: "comidas" };
+
+  function isStreakGoal(src) {
+    return src === "habit_streak" || src === "diet_streak" || src === "expense_streak";
+  }
+  function goalHabit(o) {
+    if (!o.habitId) return null;
+    return (
+      state.habits.find((x) => {
+        return x.id === o.habitId;
+      }) || null
+    );
+  }
+  // Consecutive scheduled days with the habit done, counting back from today.
+  // Days the habit is not scheduled are skipped; today does not break the streak until it is over.
+  function habitGoalStreak(h, fromIso) {
+    const days = sanitizeDays(h.days);
+    const scheduled = (iso) => days.indexOf(dateFromISO(iso).getDay()) !== -1;
+    let streak = 0;
+    let cur = todayISO();
+    let guard = 0;
+    if (scheduled(cur) && !isDoneOn(h, cur)) cur = shiftISO(cur, -1);
+    while (guard < 3650) {
+      if (fromIso && cur < fromIso) break;
+      if (scheduled(cur)) {
+        if (isDoneOn(h, cur)) streak++;
+        else break;
+      }
+      cur = shiftISO(cur, -1);
+      guard++;
+    }
+    return streak;
   }
 
-  // ---------- Sprint: objectives + XP ----------
   function objectiveCurrent(o) {
     const start = o.startDate || "0000-01-01",
       end = o.deadline || todayISO(),
@@ -5354,6 +6742,7 @@
       case "habit_completions": {
         let n = 0;
         state.habits.forEach((h) => {
+          if (o.habitId && h.id !== o.habitId) return;
           Object.keys(h.doneLog || {}).forEach((iso) => {
             if (h.doneLog[iso] && inWindow(iso)) n++;
           });
@@ -5383,13 +6772,25 @@
         return dc;
       }
       case "habit_streak": {
-        const h = state.habits.find((x) => {
-          return x.id === o.habitId;
-        });
+        const h = goalHabit(o);
         if (!h) return 0;
-        let streak = 0, cur = todayISO(), guard = 0;
-        while (isDoneOn(h, cur) && guard < 3650) {
-          streak++;
+        return habitGoalStreak(h, o.countFrom);
+      }
+      case "diet_streak": {
+        const from = o.countFrom || o.startDate || now;
+        let streak = 0,
+          cur = now,
+          guard = 0,
+          first = true;
+        while (guard < 3650 && cur >= from) {
+          const st = dietDayState(cur);
+          if (st === "ok") streak++;
+          else if (st === "none") {
+            /* no scheduled meals that day: neither breaks nor adds */
+          } else if (st === "pending" && first) {
+            /* today is still in progress */
+          } else break;
+          first = false;
           cur = shiftISO(cur, -1);
           guard++;
         }
@@ -5398,7 +6799,8 @@
       case "expense_streak": {
         const limit = Math.max(0, Number(o.dailyLimit) || 0);
         const goalStart = o.startDate || now;
-        let streak = 0, cur = now;
+        let streak = 0,
+          cur = now;
         while (cur >= goalStart) {
           const total = (state.expensesLog[cur] || []).reduce((s, e) => {
             return s + (Number(e.amount) || 0);
@@ -5416,7 +6818,9 @@
   function refreshObjectives() {
     if (!state.objectives) return;
     state.objectives.forEach((o) => {
-      const cur = Math.min(o.target, objectiveCurrent(o));
+      const raw = objectiveCurrent(o);
+      if (isStreakGoal(o.source) && raw > (o.bestStreak || 0)) o.bestStreak = raw;
+      const cur = Math.min(o.target, raw);
       if (cur >= o.target && !o.completed) {
         o.completed = true;
         if (state.gamification.claimedObjectiveIds.indexOf(o.id) === -1) {
@@ -5442,67 +6846,126 @@
     if (days <= 3) return `<span style="color:var(--warning);font-weight:700;">Quedan ${days} días</span>`;
     return `<span>Quedan ${days} días</span>`;
   }
+  // Active goal (if any) linked to a habit: used for the badge in the habits list
+  function activeGoalForHabit(habitId) {
+    return (
+      (state.objectives || []).find((o) => {
+        return !o.completed && o.habitId === habitId && (o.source === "habit_streak" || o.source === "habit_completions");
+      }) || null
+    );
+  }
+
   function goalItem(o) {
-    const cur = Math.min(o.target, objectiveCurrent(o)),
-      pct = Math.round((cur / o.target) * 100),
-      d = el("div", "goal-item" + (o.completed ? " completed" : ""));
-    let contextLine = "";
-    if (o.source === "habit_streak") {
-      const h = state.habits.find((x) => {
-        return x.id === o.habitId;
-      });
-      contextLine = `Racha de "${escapeHtml(h ? h.name : "hábito eliminado")}"`;
-    } else if (o.source === "expense_streak") {
-      contextLine = `Sin gastar más de ${fmtMoney(o.dailyLimit)} / día`;
+    const meta = GOAL_META[o.source] || { icon: "🎯", name: "Objetivo", unit: "" };
+    const raw = objectiveCurrent(o);
+    const cur = Math.min(o.target, raw);
+    const pct = Math.round((cur / o.target) * 100);
+    const h = goalHabit(o);
+    const card = el("div", `goal-item${o.completed ? " completed" : ""}`);
+
+    let sub = meta.name;
+    if (o.source === "habit_streak") sub = `Racha de «${h ? h.name : "hábito eliminado"}»`;
+    else if (o.source === "habit_completions") sub = h ? `Veces que cumples «${h.name}»` : "Veces que cumples cualquier hábito";
+    else if (o.source === "expense_streak") sub = `Sin gastar más de ${fmtMoney(o.dailyLimit)} al día`;
+    else if (o.source === "diet_streak") sub = "Sin saltarte la dieta";
+    const deadline = o.deadline ? goalDeadlineBadge(o) || `Límite: ${o.deadline}` : "";
+
+    card.innerHTML =
+      `<div class="goal-top"><div class="goal-icon">${o.completed ? "🏆" : meta.icon}</div>` +
+      `<div class="goal-main"><div class="goal-title">${escapeHtml(o.title)}</div>` +
+      `<div class="goal-sub">${escapeHtml(sub)}${deadline ? ` · ${deadline}` : ""}</div></div>` +
+      `<span class="xp-pill">+${o.xp} XP</span></div>` +
+      `<div class="goal-progress-row"><div class="goal-big">${cur}<small> / ${o.target} ${escapeHtml(meta.unit || "")}</small></div><div class="goal-pct">${pct}%</div></div>` +
+      `<div class="goal-progress"><span style="width:${pct}%"></span></div>`;
+
+    if (isStreakGoal(o.source) && !o.completed && raw === 0 && (o.bestStreak || 0) > 0) {
+      const warn = el("div", "goal-warn");
+      warn.textContent = `La racha se reinició. Tu mejor fue ${o.bestStreak}. Vuelve a empezar hoy.`;
+      card.appendChild(warn);
     }
-    d.innerHTML =
-      `<div style="display:flex;justify-content:space-between;gap:8px;"><b>${
-      o.completed ? "✓ " : ""
-      }${
-      escapeHtml(o.title)
-      }</b><span class="xp-pill">+${
-      o.xp
-      } XP</span></div><div class="content-meta">${
-      contextLine ? `${contextLine} · ` : ""
-      }${
-      o.deadline ? goalDeadlineBadge(o) || `Límite: ${o.deadline}` : "Sin fecha límite"
-      }</div><div style="margin:10px 0 5px;display:flex;justify-content:space-between;font-size:11px;"><span>${
-      cur
-      } / ${
-      o.target
-      }</span><span>${
-      pct
-      }%</span></div><div class="goal-progress"><span style="width:${
-      pct
-      }%"></span></div><div style="display:flex;justify-content:flex-end;margin-top:8px;"><button class="btn btn-danger-ghost">Eliminar</button></div>`;
-    d.querySelector("button").addEventListener("click", () => {
+
+    if (h) {
+      const dots = el("div", "goal-dots");
+      const days = sanitizeDays(h.days);
+      for (let i = 13; i >= 0; i--) {
+        const iso = shiftISO(todayISO(), -i);
+        const scheduled = days.indexOf(dateFromISO(iso).getDay()) !== -1;
+        const done = isDoneOn(h, iso);
+        const dot = el(
+          "span",
+          `goal-dot${done ? " done" : ""}${!scheduled ? " off" : ""}${iso === todayISO() ? " today" : ""}`,
+        );
+        dot.title = `${formatDateLabel(iso)}${done ? " · cumplido" : scheduled ? " · sin marcar" : " · no toca"}`;
+        dots.appendChild(dot);
+      }
+      card.appendChild(dots);
+    }
+
+    const footer = el("div", "goal-footer");
+    const info = el("div", "goal-foot-info");
+    if (isStreakGoal(o.source)) info.textContent = `Mejor racha: ${o.bestStreak || 0}`;
+    footer.appendChild(info);
+
+    const actions = el("div", "goal-foot-actions");
+    if (o.source === "manual" && !o.completed) {
+      [
+        ["−1", -1],
+        ["+1", 1],
+      ].forEach((pair) => {
+        const b = el("button", "btn btn-ghost");
+        b.type = "button";
+        b.textContent = pair[0];
+        b.addEventListener("click", () => {
+          o.manualCurrent = Math.max(0, (Number(o.manualCurrent) || 0) + pair[1]);
+          saveState();
+          renderObjectives();
+        });
+        actions.appendChild(b);
+      });
+    }
+    if (h && !o.completed) {
+      const today = todayISO();
+      const scheduledToday = sanitizeDays(h.days).indexOf(dateFromISO(today).getDay()) !== -1;
+      const doneToday = isDoneOn(h, today);
+      const b = el("button", `btn ${doneToday ? "btn-ghost" : "btn-accent"}`);
+      b.type = "button";
+      b.textContent = !scheduledToday ? "Hoy no toca" : doneToday ? "✓ Hecho hoy" : "Marcar hoy";
+      b.disabled = !scheduledToday;
+      b.addEventListener("click", () => {
+        setDoneOn(h, today, !doneToday);
+        saveState();
+        renderHabits();
+        updateProgress();
+        renderObjectives();
+      });
+      actions.appendChild(b);
+    }
+    const del = el("button", "btn btn-danger-ghost");
+    del.type = "button";
+    del.textContent = "Eliminar";
+    del.addEventListener("click", () => {
+      if (!confirm(`¿Eliminar el objetivo «${o.title}»?`)) return;
       state.objectives = state.objectives.filter((x) => {
         return x.id !== o.id;
       });
       saveState();
+      renderHabits();
       renderObjectives();
     });
-    return d;
+    actions.appendChild(del);
+    footer.appendChild(actions);
+    card.appendChild(footer);
+    return card;
   }
-  function refreshGoalHabitSelect() {
-    const sel = document.getElementById("goal-habit-select");
-    if (!sel) return;
-    const prev = sel.value;
-    sel.innerHTML = state.habits.length
-      ? state.habits.map((h) => {
-          return `<option value="${h.id}">${escapeHtml(h.name)}</option>`;
-        }).join("")
-      : '<option value="">(Crea un hábito primero)</option>';
-    if (prev && state.habits.some((h) => { return h.id === prev; })) sel.value = prev;
-  }
+
   function renderObjectives() {
     refreshObjectives();
-    refreshGoalHabitSelect();
     const list = document.getElementById("goal-list");
     if (!list) return;
     list.innerHTML = "";
     if (!state.objectives.length) {
-      list.innerHTML = '<div class="content-next-card"><div class="content-next-stage">Primer paso</div><div class="content-next-title">Crea tu primer objetivo</div><p class="subtitle">Conecta una meta con lo que ya registras — hábitos, TikToks, gimnasio o diario — y la app la actualiza sola.</p></div>';
+      list.innerHTML =
+        '<div class="content-empty">Todavía no tienes objetivos. Elige abajo qué quieres lograr — por ejemplo «30 días sin Coca-Cola» — y la app lo enlaza con tus hábitos.</div>';
     } else {
       const active = state.objectives
         .filter((o) => !o.completed)
@@ -5531,6 +6994,165 @@
     document.getElementById("goals-xp").textContent =
       `${state.gamification.xp  } XP · Nivel ${  state.gamification.level}`;
   }
+
+  // ----- Goal creation form -----
+  let goalFormTpl = null;
+  let goalXpTouched = false;
+  function renderGoalTemplates() {
+    const box = document.getElementById("goal-templates");
+    box.innerHTML = "";
+    GOAL_TEMPLATES.forEach((t) => {
+      const b = el("button", `goal-tpl${t.key === goalFormTpl ? " selected" : ""}`);
+      b.type = "button";
+      b.innerHTML = `<span class="goal-tpl-icon">${t.icon}</span><strong>${escapeHtml(t.name)}</strong><small>${escapeHtml(t.desc || "")}</small>`;
+      b.addEventListener("click", () => {
+        openGoalForm(t.key);
+      });
+      box.appendChild(b);
+    });
+  }
+  function goalShow(id, on) {
+    document.getElementById(id).style.display = on ? "" : "none";
+  }
+  function goalDefaultXp(key, target) {
+    return Math.max(50, Math.min(1000, Math.round(target * (isStreakGoal(key) ? 10 : 5))));
+  }
+  function openGoalForm(key) {
+    goalFormTpl = key;
+    goalXpTouched = false;
+    const t = GOAL_META[key];
+    renderGoalTemplates();
+    document.getElementById("goal-form").style.display = "";
+    document.getElementById("goal-form-label").textContent = `${t.icon} ${t.name}`;
+    const habitKind = key === "habit_streak" || key === "habit_completions";
+    goalShow("gf-habit-wrap", habitKind);
+    goalShow("gf-newhabit-wrap", false);
+    goalShow("gf-limit-wrap", key === "expense_streak");
+    goalShow("gf-from-wrap", key === "habit_streak" || key === "diet_streak");
+    document.getElementById("gf-target-label").textContent = `Meta (${t.unit || "avance"})`;
+
+    const sel = document.getElementById("goal-habit-select");
+    const opts = state.habits.map((h) => {
+      return `<option value="${h.id}">${escapeHtml(h.name)}</option>`;
+    });
+    sel.innerHTML =
+      key === "habit_completions"
+        ? `<option value="">Cualquier hábito</option>${opts.join("")}`
+        : `${opts.join("")}<option value="__new__">＋ Crear hábito nuevo…</option>`;
+    if (key === "habit_streak" && !state.habits.length) {
+      sel.value = "__new__";
+      goalShow("gf-newhabit-wrap", true);
+    }
+    document.getElementById("goal-new-habit-name").value = "";
+    const target = isStreakGoal(key) ? 30 : key === "manual" ? 10 : 10;
+    document.getElementById("goal-target").value = target;
+    document.getElementById("goal-count-from").value = todayISO();
+    document.getElementById("goal-count-from").max = todayISO();
+    document.getElementById("goal-daily-limit").value = state.expenses.dailyBudget || "";
+    document.getElementById("goal-title").value = "";
+    document.getElementById("goal-xp").value = goalDefaultXp(key, target);
+    document.getElementById("goal-deadline").value = "";
+    updateGoalSuggestion();
+    document.getElementById("goal-form").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  function closeGoalForm() {
+    goalFormTpl = null;
+    document.getElementById("goal-form").style.display = "none";
+    renderGoalTemplates();
+  }
+  function goalSelectedHabitName() {
+    const sel = document.getElementById("goal-habit-select");
+    if (sel.value === "__new__") return document.getElementById("goal-new-habit-name").value.trim();
+    const h = state.habits.find((x) => {
+      return x.id === sel.value;
+    });
+    return h ? h.name : "";
+  }
+  function goalSuggestedTitle() {
+    const key = goalFormTpl;
+    if (!key) return "";
+    const target = Math.max(1, Number(document.getElementById("goal-target").value) || 1);
+    const habitName = goalSelectedHabitName();
+    if (key === "habit_streak") return `${target} días: ${habitName || "mi hábito"}`;
+    if (key === "habit_completions") return `${target} veces: ${habitName || "mis hábitos"}`;
+    if (key === "diet_streak") return `${target} días siguiendo la dieta`;
+    if (key === "expense_streak") {
+      const limit = Number(document.getElementById("goal-daily-limit").value) || 0;
+      return `${target} días sin pasar de ${fmtMoney(limit)}`;
+    }
+    return `${GOAL_META[key].name}: ${target}`;
+  }
+  function updateGoalSuggestion() {
+    if (!goalFormTpl) return;
+    document.getElementById("goal-title").placeholder = goalSuggestedTitle();
+    if (!goalXpTouched) {
+      const target = Math.max(1, Number(document.getElementById("goal-target").value) || 1);
+      document.getElementById("goal-xp").value = goalDefaultXp(goalFormTpl, target);
+    }
+  }
+  function createGoalFromForm() {
+    const key = goalFormTpl;
+    if (!key) return;
+    const target = Math.max(1, Number(document.getElementById("goal-target").value) || 1);
+    let habitId = null;
+    if (key === "habit_streak" || key === "habit_completions") {
+      const value = document.getElementById("goal-habit-select").value;
+      if (value === "__new__") {
+        const name = document.getElementById("goal-new-habit-name").value.trim();
+        if (!name) {
+          document.getElementById("goal-new-habit-name").focus();
+          return;
+        }
+        const habit = { id: uid(), name, doneLog: {}, days: ALL_DAYS.slice() };
+        state.habits.push(habit);
+        habitId = habit.id;
+      } else if (value) {
+        habitId = value;
+      } else if (key === "habit_streak") {
+        alert("Elige el hábito que quieres vigilar.");
+        return;
+      }
+    }
+    const streakFrom = key === "habit_streak" || key === "diet_streak";
+    const title = document.getElementById("goal-title").value.trim() || goalSuggestedTitle();
+    state.objectives.unshift({
+      id: uid(),
+      title,
+      source: key,
+      target,
+      xp: Math.max(0, Number(document.getElementById("goal-xp").value) || 0),
+      deadline: document.getElementById("goal-deadline").value || null,
+      startDate: todayISO(),
+      countFrom: streakFrom ? document.getElementById("goal-count-from").value || todayISO() : null,
+      manualCurrent: 0,
+      completed: false,
+      habitId,
+      dailyLimit: key === "expense_streak" ? Math.max(0, Number(document.getElementById("goal-daily-limit").value) || 0) : null,
+      bestStreak: 0,
+    });
+    saveState();
+    renderHabits();
+    closeGoalForm();
+    renderObjectives();
+  }
+
+  (function setupGoalForm() {
+    document.getElementById("goal-form-cancel").addEventListener("click", closeGoalForm);
+    document.getElementById("add-objective-btn").addEventListener("click", createGoalFromForm);
+    document.getElementById("goal-habit-select").addEventListener("change", (e) => {
+      const isNew = e.target.value === "__new__";
+      goalShow("gf-newhabit-wrap", isNew);
+      if (isNew) document.getElementById("goal-new-habit-name").focus();
+      updateGoalSuggestion();
+    });
+    ["goal-new-habit-name", "goal-target", "goal-daily-limit"].forEach((id) => {
+      document.getElementById(id).addEventListener("input", updateGoalSuggestion);
+    });
+    document.getElementById("goal-xp").addEventListener("input", () => {
+      goalXpTouched = true;
+    });
+    renderGoalTemplates();
+  })();
 
   function switchWorkspace(view) {
     const views = ["dashboard", "analytics", "content", "goals"];
@@ -5579,125 +7201,6 @@
     document.getElementById("habit-detail-overlay").classList.remove("open");
   });
   document.querySelectorAll("#habit-detail-range").forEach(() => {});
-  document.getElementById("new-content-video-btn").addEventListener("click", () => {
-    editingContentId = null;
-    document.getElementById("content-editor-title").textContent = "Nuevo TikTok";
-    document.getElementById("cv-title").value = "";
-    document.getElementById("cv-hook").value = "";
-    document.getElementById("cv-duration").value = 30;
-    document.getElementById("cv-cta").value = "";
-    document.getElementById("cv-script").innerHTML = "";
-    document.getElementById("cv-status").value = "idea";
-    document.getElementById("cv-publish-date").value = "";
-    document.getElementById("cv-check-before").checked = false;
-    document.getElementById("cv-check-during").checked = false;
-    document.getElementById("cv-check-after").checked = false;
-    document.getElementById("cv-shot-list").innerHTML = '<div class="empty-hint">Guarda el TikTok primero para agregar tomas y B-roll.</div>';
-    document.getElementById("cv-broll-selector").innerHTML = '<div class="empty-hint">Guarda el TikTok primero para vincular B-roll.</div>';
-    document.getElementById("cv-add-shot").disabled = true;
-    document.getElementById("content-editor-modal").classList.add("active");
-    document.getElementById("content-editor-modal").setAttribute("aria-hidden", "false");
-  });
-  document.getElementById("content-editor-close").addEventListener("click", () => {
-    document.getElementById("content-editor-modal").classList.remove("active");
-  });
-  document.getElementById("cv-add-shot").addEventListener("click", () => {
-    const v = state.content.videos.find((x) => {
-      return x.id === editingContentId;
-    });
-    if (!v) return;
-    v.shots.push({ id: uid(), name: "", shot: "", action: "", duration: 5, status: "pending" });
-    saveState();
-    renderShotList(v);
-  });
-  document.getElementById("save-content-video-btn").addEventListener("click", () => {
-    let v = state.content.videos.find((x) => x.id === editingContentId);
-    if (!v) {
-      v = { id: uid(), title: "TikTok", hook: "", script: "", cta: "", duration: 30, status: "idea", publishDate: "", createdAt: todayISO(), shots: [], brollIds: [], checklist: { before: false, during: false, after: false }, stats: { views: 0, likes: 0, comments: 0 } };
-      state.content.videos.unshift(v);
-      editingContentId = v.id;
-    }
-    const title = document.getElementById("cv-title").value.trim();
-    if (!title) { alert("Ponle un nombre o título al TikTok antes de guardarlo."); return; }
-    v.title = title;
-    v.hook = document.getElementById("cv-hook").value.trim();
-    v.duration = Number(document.getElementById("cv-duration").value) || 30;
-    v.cta = document.getElementById("cv-cta").value;
-    v.script = document.getElementById("cv-script").innerHTML;
-    v.status = document.getElementById("cv-status").value;
-    v.publishDate = document.getElementById("cv-publish-date").value;
-    v.stats = {
-      views: Math.max(0, Number(document.getElementById("cv-views").value) || 0),
-      likes: Math.max(0, Number(document.getElementById("cv-likes").value) || 0),
-      comments: Math.max(0, Number(document.getElementById("cv-comments").value) || 0),
-    };
-    v.checklist = {
-      before: document.getElementById("cv-check-before").checked,
-      during: document.getElementById("cv-check-during").checked,
-      after: document.getElementById("cv-check-after").checked,
-    };
-    saveState();
-    renderContent();
-    refreshObjectives();
-    document.getElementById("cv-add-shot").disabled = false;
-    document.getElementById("content-editor-modal").classList.remove("active");
-  });
-  document.getElementById("cv-next-stage-btn").addEventListener("click", () => {
-    const v = state.content.videos.find(x => x.id === editingContentId);
-    if (!v) return;
-    moveContentStage(v.id, 1);
-    openContentEditor(v.id);
-  });
-  document.getElementById("cv-prev-stage-btn").addEventListener("click", () => {
-    const v = state.content.videos.find(x => x.id === editingContentId);
-    if (!v) return;
-    moveContentStage(v.id, -1);
-    openContentEditor(v.id);
-  });
-  document.querySelectorAll("#content-tabs button").forEach((b) => {
-    b.addEventListener("click", () => {
-      contentTab = b.dataset.tab;
-      document.querySelectorAll("#content-tabs button").forEach((x) => {
-        x.classList.remove("active");
-      });
-      b.classList.add("active");
-      renderContent();
-    });
-  });
-  renderContentEditorButtons();
-  function updateGoalSourceFields() {
-    const src = document.getElementById("goal-source").value;
-    const habitSel = document.getElementById("goal-habit-select");
-    const limitInp = document.getElementById("goal-daily-limit");
-    const targetInp = document.getElementById("goal-target");
-    habitSel.style.display = src === "habit_streak" ? "" : "none";
-    limitInp.style.display = src === "expense_streak" ? "" : "none";
-    targetInp.placeholder = src === "habit_streak" || src === "expense_streak" ? "Días seguidos" : "Meta";
-  }
-  document.getElementById("goal-source").addEventListener("change", updateGoalSourceFields);
-  updateGoalSourceFields();
-  document.getElementById("add-objective-btn").addEventListener("click", () => {
-    const title = document.getElementById("goal-title").value.trim();
-    if (!title) return;
-    const source = document.getElementById("goal-source").value;
-    state.objectives.unshift({
-      id: uid(),
-      title,
-      source,
-      target: Math.max(1, Number(document.getElementById("goal-target").value) || 1),
-      xp: Math.max(0, Number(document.getElementById("goal-xp").value) || 100),
-      deadline: document.getElementById("goal-deadline").value || null,
-      startDate: todayISO(),
-      manualCurrent: 0,
-      completed: false,
-      habitId: source === "habit_streak" ? (document.getElementById("goal-habit-select").value || null) : null,
-      dailyLimit: source === "expense_streak" ? Math.max(0, Number(document.getElementById("goal-daily-limit").value) || 0) : null,
-    });
-    saveState();
-    renderObjectives();
-    document.getElementById("goal-title").value = "";
-  });
-
   function renderAll() {
     renderHabits();
     renderDiet();
@@ -5809,6 +7312,9 @@
       name: "Nueva comida",
       detail: "",
       doneLog: {},
+      statusLog: {},
+      reasonLog: {},
+      noteLog: {},
       days: ALL_DAYS.slice(),
     });
     saveState();
@@ -5883,7 +7389,11 @@
         } con ${ 
         pct 
         }% completado?\nEsto actualiza el registro histórico de ese día.`;
-    if (!confirm(confirmMsg)) return;
+    const unrecordedMeals = dietUnrecordedCount(iso);
+    const dietWarn = unrecordedMeals
+      ? `⚠️ Tienes ${unrecordedMeals} comida${unrecordedMeals === 1 ? "" : "s"} sin registrar (cumplí / libre / me la salté). Cuentan como no cumplidas.\n\n`
+      : "";
+    if (!confirm(dietWarn + confirmMsg)) return;
 
     const entry = {
       iso,
@@ -5977,7 +7487,7 @@
       )
     )
       return;
-    state = defaultState();
+    state = normalizeState(defaultState());
     applyTheme(state.settings.theme);
     applyAccent(state.settings.accentColor);
     applyQuoteFont(state.settings.quoteFont);
