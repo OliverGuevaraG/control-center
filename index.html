@@ -28,19 +28,22 @@
     --accent-soft: rgba(10,132,255,0.16);
     --accent-border: rgba(10,132,255,0.4);
     --accent-light: #6cb6ff;
-    --success: #30d158;
-    --warning: #ff9f0a;
-    --danger: #ff453a;
+    --accent-dark: #0a5fb8;
+    --accent-rgb: 10,132,255;
+    /* One-hue system: every "state" color is a tone of the chosen accent */
+    --success: var(--accent-light);
+    --warning: var(--accent-light);
+    --danger: #ff453a; /* only for delete / errors */
     --radius: 14px;
     --radius-sm: 9px;
     --muted: var(--text-secondary);
     /* Categorical series (fixed order — color follows category identity, never rank) */
-    --viz-1: #3987e5; /* blue */
-    --viz-2: #d95926; /* orange */
-    --viz-3: #199e70; /* aqua */
-    --viz-4: #c98500; /* yellow */
-    --viz-5: #d55181; /* magenta */
-    --viz-6: #008300; /* green */
+    --viz-1: #0a84ff;
+    --viz-2: #0a5fb8;
+    --viz-3: #6cb6ff;
+    --viz-4: #064a8f;
+    --viz-5: #a7d3ff;
+    --viz-6: #3d9bff;
   }
 
   * { box-sizing: border-box; }
@@ -182,8 +185,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    background: rgba(255,159,10,0.12);
-    border: 1px solid rgba(255,159,10,0.3);
+    background: rgba(var(--accent-rgb),0.12);
+    border: 1px solid rgba(var(--accent-rgb),0.3);
     color: var(--text);
     border-radius: var(--radius-sm);
     padding: 10px 14px;
@@ -217,7 +220,7 @@
   .day-nav-flag {
     display: none;
     font-size: 12px; color: var(--warning);
-    background: rgba(255,159,10,0.1); border: 1px solid rgba(255,159,10,0.25);
+    background: rgba(var(--accent-rgb),0.1); border: 1px solid rgba(var(--accent-rgb),0.25);
     padding: 5px 10px; border-radius: 999px;
   }
   .day-nav.past .day-nav-flag { display: inline-block; }
@@ -237,8 +240,8 @@
   .progress-pill b { color: var(--text); font-variant-numeric: tabular-nums; font-size: 14px; }
   .streak-pill {
     display: flex; align-items: center; gap: 8px;
-    background: rgba(255,159,10,0.12);
-    border: 1px solid rgba(255,159,10,0.28);
+    background: rgba(var(--accent-rgb),0.12);
+    border: 1px solid rgba(var(--accent-rgb),0.28);
     padding: 8px 12px;
     border-radius: 999px;
     color: var(--text-secondary);
@@ -423,7 +426,7 @@
   .weight-row .weight-label { flex: 1; font-size: 13px; }
   .weight-row input[type="range"] { flex: 1.4; accent-color: var(--accent); }
   .weight-row .weight-value {
-    width: 34px; text-align: right; font-size: 12.5px; font-variant-numeric: tabular-nums;
+    min-width: 104px; text-align: right; font-size: 12px; font-variant-numeric: tabular-nums;
     color: var(--text-secondary);
   }
 
@@ -512,12 +515,8 @@
     --text: #1c1c1e;
     --text-secondary: rgba(28,28,30,0.62);
     --text-tertiary: rgba(28,28,30,0.4);
-    --viz-1: #2a78d6;
-    --viz-2: #eb6834;
-    --viz-3: #1baf7a;
-    --viz-4: #eda100;
-    --viz-5: #e87ba4;
-    --viz-6: #008300;
+    --success: var(--accent-dark);
+    --warning: var(--accent-dark);
   }
   [data-theme="light"] #progress-track { background: rgba(0,0,0,0.06); }
   [data-theme="light"] .day-detail-overlay { background: rgba(0,0,0,0.5); }
@@ -577,7 +576,7 @@
 
   .gym-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; flex-wrap: wrap; gap: 6px; }
   .rest-day-banner {
-    background: rgba(255,159,10,0.1); border: 1px solid rgba(255,159,10,0.25);
+    background: rgba(var(--accent-rgb),0.1); border: 1px solid rgba(var(--accent-rgb),0.25);
     color: var(--warning); font-size: 12.5px; padding: 9px 12px; border-radius: var(--radius-sm);
     margin-bottom: 12px;
   }
@@ -616,7 +615,7 @@
   .expense-total-line b { font-variant-numeric: tabular-nums; }
   .expense-status { font-size: 11.5px; margin-top: 4px; }
   .expense-ok { color: var(--success); }
-  .expense-over { color: var(--danger); }
+  .expense-over { color: var(--accent-light); font-weight:700; }
   .expense-month-line { font-size: 11.5px; color: var(--text-tertiary); margin-top: 8px; }
   .expense-bar-track {
     height: 5px; border-radius: 999px; background: rgba(255,255,255,0.06);
@@ -906,9 +905,9 @@
   .cal-cell .cal-day-num { font-weight: 600; }
   .cal-cell .cal-day-pct { font-size: 9px; opacity: 0.85; }
   .cal-cell.cal-empty { opacity: 0.55; }
-  .cal-cell.cal-low { background: rgba(255,69,58,0.55); border-color: rgba(255,69,58,0.2); color: #fff; }
-  .cal-cell.cal-mid { background: rgba(255,159,10,0.55); border-color: rgba(255,159,10,0.2); color: #fff; }
-  .cal-cell.cal-good { background: rgba(48,209,88,0.6); border-color: rgba(48,209,88,0.25); color: #fff; }
+  .cal-cell.cal-low { background: rgba(var(--accent-rgb),0.2); border-color: rgba(var(--accent-rgb),0.12); }
+  .cal-cell.cal-mid { background: rgba(var(--accent-rgb),0.45); border-color: rgba(var(--accent-rgb),0.25); color: #fff; }
+  .cal-cell.cal-good { background: rgba(var(--accent-rgb),0.85); border-color: rgba(var(--accent-rgb),0.5); color: #fff; }
   .cal-cell.cal-today { box-shadow: 0 0 0 1.5px var(--accent) inset; }
   .cal-legend {
     display: flex; align-items: center; justify-content: flex-end;
@@ -954,8 +953,8 @@
   }
   .history-date-btn:hover { color: var(--text); border-color: var(--border-strong); }
   .h-good { color: var(--success); }
-  .h-mid { color: var(--warning); }
-  .h-low { color: var(--danger); }
+  .h-mid { color: var(--accent-light); opacity:.8; }
+  .h-low { color: var(--text-tertiary); }
   .empty-hint { font-size: 12.5px; color: var(--text-tertiary); padding: 10px 2px; }
 
   .footer-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
@@ -1052,8 +1051,8 @@
 .gym-schedule-link{border:0;background:none;color:var(--accent);font:inherit;font-size:12px;font-weight:650;cursor:pointer;padding:4px 0}
 .gym-today-card{border:1px solid var(--border);background:var(--bg-elevated);border-radius:18px;padding:17px;margin-top:0}
 .gym-session-status{display:none;padding:10px 12px;border-radius:11px;margin-bottom:13px;font-size:12px}
-.gym-session-status.done{display:block;background:rgba(48,209,88,.10);border:1px solid rgba(48,209,88,.22);color:var(--success)}
-.gym-session-status.rest{display:block;background:rgba(255,159,10,.10);border:1px solid rgba(255,159,10,.22);color:var(--warning)}
+.gym-session-status.done{display:block;background:rgba(var(--accent-rgb),.10);border:1px solid rgba(var(--accent-rgb),.22);color:var(--success)}
+.gym-session-status.rest{display:block;background:rgba(var(--accent-rgb),.10);border:1px solid rgba(var(--accent-rgb),.22);color:var(--warning)}
 .gym-today-kicker{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:750}
 .gym-today-title{font-size:21px;font-weight:760;margin:5px 0 2px}
 .gym-routine-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:13px}
@@ -1071,7 +1070,7 @@
 .gym-hidden-legacy{display:none!important}
 .gym-progress-link{margin-top:8px;border:0;background:none;color:var(--accent);font:inherit;font-size:11px;font-weight:700;cursor:pointer;padding:0;text-align:left}.gym-progress-link:hover{text-decoration:underline}
 .gym-pr-banner{display:none;margin-top:10px;padding:10px 12px;border-radius:11px;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));background:color-mix(in srgb,var(--accent) 10%,transparent);font-size:12px}.gym-pr-banner.show{display:block}.gym-pr-banner strong{font-weight:800}.gym-history-list{display:grid;gap:7px;margin-top:10px}.gym-history-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--border);border-radius:10px;background:rgba(127,127,127,.04)}.gym-history-date{font-size:11px;color:var(--muted)}.gym-history-value{font-size:12px;font-weight:750}.gym-progress-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.gym-progress-kpi{border:1px solid var(--border);border-radius:11px;padding:9px 10px;background:rgba(127,127,127,.04)}.gym-progress-kpi small{display:block;color:var(--muted);font-size:9.5px}.gym-progress-kpi strong{display:block;margin-top:3px;font-size:14px}.gym-progress-kpi .positive{color:var(--success)}.gym-progress-kpi .neutral{color:var(--muted)}
-.workout-pr-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,18px);opacity:0;pointer-events:none;z-index:300;max-width:min(560px,calc(100vw - 24px));padding:12px 15px;border-radius:13px;background:var(--bg-elevated);border:1px solid rgba(255,159,10,.35);box-shadow:0 14px 40px rgba(0,0,0,.25);font-size:12px;transition:.2s}.workout-pr-toast.show{opacity:1;transform:translate(-50%,0)}.workout-pr-toast strong{color:var(--warning)}
+.workout-pr-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,18px);opacity:0;pointer-events:none;z-index:300;max-width:min(560px,calc(100vw - 24px));padding:12px 15px;border-radius:13px;background:var(--bg-elevated);border:1px solid rgba(var(--accent-rgb),.35);box-shadow:0 14px 40px rgba(0,0,0,.25);font-size:12px;transition:.2s}.workout-pr-toast.show{opacity:1;transform:translate(-50%,0)}.workout-pr-toast strong{color:var(--warning)}
 @media(max-width:560px){.gym-progress-kpis{grid-template-columns:1fr 1fr}.gym-progress-kpi:last-child{grid-column:1/-1}.workout-pr-toast{bottom:78px}}
 .gym-progress-chart{margin-top:12px;border:1px solid var(--border);border-radius:12px;padding:10px;background:rgba(127,127,127,.035)}.gym-progress-chart svg{display:block;width:100%;height:150px}.gym-progress-chart .chart-label{font-size:9px;fill:var(--muted)}.gym-progress-chart .chart-grid{stroke:var(--border);stroke-width:1}.gym-progress-chart .chart-line{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.gym-progress-chart .chart-dot{fill:var(--accent)}.gym-pr-xp{display:inline-flex;margin-top:6px;padding:4px 7px;border-radius:999px;background:color-mix(in srgb,var(--accent) 14%,transparent);font-size:10px;font-weight:800}
 .workout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(14px);z-index:150;display:none;align-items:center;justify-content:center;padding:14px}.workout-overlay.open{display:flex}.workout-panel{width:min(720px,100%);max-height:92vh;overflow:auto;background:var(--bg-elevated);border:1px solid var(--border);border-radius:18px;padding:18px}
@@ -1194,10 +1193,10 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
 .goal-big small{font-size:12px;font-weight:500;color:var(--muted)}
 .goal-pct{font-size:13px;font-weight:700;color:var(--muted)}
 .goal-progress{height:10px}
-.goal-warn{margin-top:10px;padding:8px 11px;border-radius:9px;background:rgba(255,159,10,.10);border:1px solid rgba(255,159,10,.25);color:var(--warning);font-size:12px}
+.goal-warn{margin-top:10px;padding:8px 11px;border-radius:9px;background:rgba(var(--accent-rgb),.10);border:1px solid rgba(var(--accent-rgb),.25);color:var(--warning);font-size:12px}
 .goal-dots{display:flex;gap:5px;margin-top:12px}
-.goal-dot{flex:1;height:8px;border-radius:99px;background:rgba(255,69,58,.35)}
-.goal-dot.done{background:var(--success)}
+.goal-dot{flex:1;height:8px;border-radius:99px;background:rgba(var(--accent-rgb),.22)}
+.goal-dot.done{background:var(--accent)}
 .goal-dot.off{background:rgba(127,127,127,.2)}
 .goal-dot.today{box-shadow:0 0 0 2px var(--accent)}
 .goal-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;flex-wrap:wrap}
@@ -1223,22 +1222,22 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
 .diet-week-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
 .diet-week-title{font-weight:700;color:var(--text)}
 .diet-week-stats b.ok{color:var(--success)}
-.diet-week-stats b.skip{color:var(--danger)}
+.diet-week-stats b.skip{color:var(--text-secondary)}
 .diet-cheat-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:12.5px}
 .diet-dots{display:inline-flex;gap:5px}
 .diet-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border-strong,var(--border));box-sizing:border-box}
 .diet-dot.used{background:var(--warning);border-color:var(--warning)}
-.diet-dot.over{background:var(--danger);border-color:var(--danger)}
+.diet-dot.over{background:var(--accent-dark);border-color:var(--accent-dark)}
 .diet-cheat-msg{color:var(--muted);font-size:11.5px}
-.diet-cheat-msg.over{color:var(--danger);font-weight:700}
+.diet-cheat-msg.over{color:var(--accent-light);font-weight:700}
 .diet-limit-ctl{margin-left:auto;display:inline-flex;gap:5px}
 .diet-limit-btn{width:26px;height:26px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);font:inherit;font-size:15px;line-height:1;cursor:pointer}
 .diet-limit-btn:hover{border-color:var(--accent);color:var(--accent)}
-.diet-nudge{margin-top:9px;padding:8px 11px;border-radius:9px;background:rgba(255,159,10,.10);border:1px solid rgba(255,159,10,.25);color:var(--warning);font-size:12px}
+.diet-nudge{margin-top:9px;padding:8px 11px;border-radius:9px;background:rgba(var(--accent-rgb),.10);border:1px solid rgba(var(--accent-rgb),.25);color:var(--warning);font-size:12px}
 .diet-row{border:1px solid var(--border);border-radius:14px;padding:10px 11px;margin-bottom:9px;background:rgba(127,127,127,.04)}
-.diet-row.st-ok{border-color:rgba(48,209,88,.45);background:rgba(48,209,88,.07)}
-.diet-row.st-cheat{border-color:rgba(255,159,10,.5);background:rgba(255,159,10,.08)}
-.diet-row.st-skip,.diet-row.over{border-color:rgba(255,69,58,.5);background:rgba(255,69,58,.07)}
+.diet-row.st-ok{border-color:rgba(var(--accent-rgb),.45);background:rgba(var(--accent-rgb),.07)}
+.diet-row.st-cheat{border-color:rgba(var(--accent-rgb),.5);background:rgba(var(--accent-rgb),.08)}
+.diet-row.st-skip,.diet-row.over{border-color:var(--border-strong);background:rgba(127,127,127,.10)}
 .diet-row.off-schedule{opacity:.5}
 .diet-head{display:flex;align-items:center;gap:8px}
 .diet-head .item-name{flex:1;min-width:0}
@@ -1247,17 +1246,87 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
 .diet-st-btn{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;padding:9px 4px;font:inherit;font-size:12.5px;font-weight:650;cursor:pointer}
 .diet-st-btn:hover{border-color:var(--accent)}
 .diet-st-btn.active.st-ok{background:var(--success);border-color:var(--success);color:#fff}
-.diet-st-btn.active.st-cheat{background:var(--warning);border-color:var(--warning);color:#fff}
-.diet-st-btn.active.st-skip{background:var(--danger);border-color:var(--danger);color:#fff}
+.diet-st-btn.active.st-cheat{background:var(--accent-light);border-color:var(--accent-light);color:#08213d}
+.diet-st-btn.active.st-skip{background:var(--accent-dark);border-color:var(--accent-dark);color:#fff}
 .diet-reasons{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
 .diet-reasons-label{font-size:11.5px;color:var(--muted);margin-right:2px}
 .diet-chip{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:999px;padding:5px 11px;font:inherit;font-size:12px;cursor:pointer}
-.diet-chip.active{background:var(--danger);border-color:var(--danger);color:#fff}
-.diet-over-warn{margin-top:8px;font-size:12px;color:var(--danger)}
+.diet-chip.active{background:var(--accent-dark);border-color:var(--accent-dark);color:#fff}
+.diet-over-warn{margin-top:8px;font-size:12px;color:var(--text-secondary)}
 .diet-future{margin-top:6px;font-size:11.5px;color:var(--muted)}
 .diet-sum-reasons{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.diet-sum-chip{border-radius:999px;padding:4px 10px;font-size:12px;background:rgba(255,69,58,.12);border:1px solid rgba(255,69,58,.3)}
+.diet-sum-chip{border-radius:999px;padding:4px 10px;font-size:12px;background:var(--accent-soft);border:1px solid var(--accent-border)}
 .diet-sum-cheats{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* ---------- V5: layout + routines ---------- */
+.section-label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-tertiary);margin:6px 2px 10px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:"";flex:1;height:1px;background:var(--border)}
+.grid > div{min-width:0}
+.card{margin-bottom:16px}
+details.fold{margin-top:12px}
+details.fold > summary,.embedded-section.fold > summary{cursor:pointer;font-size:12.5px;font-weight:650;color:var(--text-secondary);padding:8px 2px;list-style:none;display:flex;align-items:center;gap:6px}
+details.fold > summary::-webkit-details-marker,.embedded-section.fold > summary::-webkit-details-marker,.account-card > summary::-webkit-details-marker{display:none}
+details.fold > summary::after,.embedded-section.fold > summary::after,.account-card > summary::after{content:"▾";margin-left:auto;font-size:11px;color:var(--text-tertiary);transition:transform .15s}
+details[open].fold > summary::after,details[open].embedded-section.fold > summary::after,.account-card[open] > summary::after{transform:rotate(180deg)}
+details.fold > summary:hover,.embedded-section.fold > summary:hover{color:var(--text)}
+details.embedded-section.fold{margin-top:14px}
+details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
+.dream-card .carousel{aspect-ratio:16/7;max-height:230px}
+.analytics-split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:start}
+.analytics-cal .cal-cell{aspect-ratio:auto;min-height:38px;padding:4px 0}
+.analytics-trend .trend-toolbar{margin-top:0}
+.account-card{padding:0;margin-top:4px}
+.account-card > summary{cursor:pointer;padding:15px 18px;font-size:13px;font-weight:650;color:var(--text-secondary);list-style:none;display:flex;align-items:center}
+.account-card[open] > summary{border-bottom:1px solid var(--border)}
+.account-inner{padding:14px 18px 16px}
+.account-inner h2{display:none}
+
+/* Routines */
+.routine-card .routine-run-head{margin-bottom:10px}
+.routine-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.routine-tab{border:1px solid var(--border);background:transparent;color:var(--text-secondary);border-radius:999px;padding:6px 14px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.routine-tab:hover{border-color:var(--accent);color:var(--text)}
+.routine-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.routine-tab small{font-weight:500;opacity:.75}
+.routine-hero{border:1px solid var(--border);border-radius:14px;padding:13px 14px;background:linear-gradient(135deg,rgba(var(--accent-rgb),.14),rgba(var(--accent-rgb),.03));margin-bottom:14px}
+.routine-hero-top{display:flex;align-items:center;gap:10px}
+.routine-hero .routine-name{flex:1;min-width:0;background:transparent;border:none;border-bottom:1px dashed transparent;border-radius:0;font-size:18px;font-weight:720;padding:2px 0;margin:0;letter-spacing:-.01em}
+.routine-hero .routine-name:hover,.routine-hero .routine-name:focus{border-bottom-color:var(--accent-border)}
+.routine-status{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(127,127,127,.14);color:var(--text-secondary);white-space:nowrap}
+.routine-status.done{background:var(--accent);color:#fff}
+.routine-meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:12px;color:var(--text-secondary)}
+.routine-meta b{color:var(--text);font-variant-numeric:tabular-nums}
+.routine-timeline{position:relative;margin-bottom:10px}
+.rt-step{display:grid;grid-template-columns:34px minmax(0,1fr) auto auto;gap:10px;align-items:center;position:relative;padding:5px 0}
+.rt-step::before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(var(--accent-rgb),.25)}
+.rt-step:first-child::before{top:50%}
+.rt-step:last-child::before{bottom:50%}
+.rt-step:only-child::before{display:none}
+.rt-num{width:32px;height:32px;border-radius:50%;background:var(--bg-elevated);border:2px solid var(--accent);color:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:750;position:relative;z-index:1}
+.rt-body{border:1px solid var(--border);border-radius:12px;padding:8px 11px;background:rgba(127,127,127,.05);min-width:0}
+.rt-body:focus-within{border-color:var(--accent)}
+.rt-name{width:100%;background:transparent;border:none;outline:none;color:var(--text);font:inherit;font-size:14px;font-weight:600;padding:0}
+.rt-time{font-size:11px;color:var(--text-tertiary);margin-top:1px;font-variant-numeric:tabular-nums}
+.rt-mins{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+.rt-mins button{border:none;background:transparent;color:var(--text-secondary);width:26px;height:28px;font-size:15px;cursor:pointer;line-height:1}
+.rt-mins button:hover{background:var(--accent-soft);color:var(--accent-light)}
+.rt-mins input{width:34px;text-align:center;background:transparent;border:none;outline:none;color:var(--text);font:inherit;font-size:13px;font-weight:700;padding:0;-moz-appearance:textfield}
+.rt-mins input::-webkit-outer-spin-button,.rt-mins input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.rt-mins span{font-size:10.5px;color:var(--text-tertiary);padding-right:8px}
+.rt-actions{display:flex;flex-direction:column;gap:0}
+.rt-actions .step-order-btn{width:22px;height:15px;font-size:8px;padding:0}
+.rt-del{margin-left:2px}
+.routine-foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.routine-foot .btn{padding:8px 13px;font-size:12.5px}
+.routine-foot .btn-danger-ghost{margin-left:auto}
+@media (max-width:760px){
+  .analytics-split{grid-template-columns:1fr}
+  .rt-step{grid-template-columns:30px minmax(0,1fr) auto}
+  .rt-actions{display:none}
+}
+
+/* Emojis are neutral (grayscale) so the only hue on screen is the accent */
+.emo,.nav-ico,.goal-icon,.goal-tpl-icon,.content-row-icon,.gym-routine-card .emoji{filter:grayscale(1) brightness(1.15)}
 </style>
 </head>
 <body>
@@ -1324,20 +1393,20 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
   </div>
 
   <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
-    <button class="main-nav-btn active" data-view="dashboard" type="button">🏠 Dashboard</button>
-    <button class="main-nav-btn" data-view="habits" type="button">✅ Hábitos</button>
-    <button class="main-nav-btn" data-view="analytics" type="button">📊 Analíticas</button>
-    <button class="main-nav-btn" data-view="content" type="button">🎬 Contenido</button>
-    <button class="main-nav-btn" data-view="goals" type="button">🎯 Objetivos</button>
-    <button class="main-nav-btn" data-view="gym" type="button">🏋️ Entrenamiento</button>
-    <button class="main-nav-btn" data-view="diet" type="button">🥗 Dieta</button>
-    <button class="main-nav-btn" data-view="journal" type="button">📔 Diario</button>
-    <button class="main-nav-btn" data-view="settings" type="button">⚙️ Configuración</button>
+    <button class="main-nav-btn active" data-view="dashboard" type="button"><span class="emo">🏠</span> Dashboard</button>
+    <button class="main-nav-btn" data-view="habits" type="button"><span class="emo">✅</span> Hábitos</button>
+    <button class="main-nav-btn" data-view="analytics" type="button"><span class="emo">📊</span> Analíticas</button>
+    <button class="main-nav-btn" data-view="content" type="button"><span class="emo">🎬</span> Contenido</button>
+    <button class="main-nav-btn" data-view="goals" type="button"><span class="emo">🎯</span> Objetivos</button>
+    <button class="main-nav-btn" data-view="gym" type="button"><span class="emo">🏋️</span> Entrenamiento</button>
+    <button class="main-nav-btn" data-view="diet" type="button"><span class="emo">🥗</span> Dieta</button>
+    <button class="main-nav-btn" data-view="journal" type="button"><span class="emo">📔</span> Diario</button>
+    <button class="main-nav-btn" data-view="settings" type="button"><span class="emo">⚙️</span> Configuración</button>
   </nav>
 
   <div id="dashboard-view">
 
-
+  <div class="section-label">Hoy</div>
   <div class="grid">
     <!-- LEFT COLUMN -->
     <div>
@@ -1346,6 +1415,14 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         <p class="subtitle">Marca, edita o agrega los que quieras rastrear.</p>
         <div id="habits-list"></div>
         <button class="add-row-btn" id="add-habit-btn">+ Agregar hábito</button>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span>Dieta</h2>
+        <p class="subtitle">Tu plan por comida. Registra cada una: cumplí, libre o me la salté.</p>
+        <div id="diet-week-bar"></div>
+        <div id="diet-list"></div>
+        <button class="add-row-btn" id="add-diet-btn">+ Agregar comida</button>
       </div>
 
       <div class="card">
@@ -1371,14 +1448,6 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
 
     <!-- RIGHT COLUMN -->
     <div>
-      <div class="card">
-        <h2><span class="dot"></span>Dieta</h2>
-        <p class="subtitle">Tu plan por comida. Registra cada una: cumplí, libre o me la salté.</p>
-        <div id="diet-week-bar"></div>
-        <div id="diet-list"></div>
-        <button class="add-row-btn" id="add-diet-btn">+ Agregar comida</button>
-      </div>
-
       <div class="card">
         <div class="gym-simple-head">
           <div>
@@ -1410,8 +1479,8 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         <div id="gym-routine-editor" class="gym-hidden-legacy"></div>
         <div id="gym-list" class="gym-list gym-hidden-legacy"></div>
         <button class="add-row-btn gym-hidden-legacy" id="add-gym-btn">+ Agregar ejercicio</button>
-        <div class="embedded-section">
-          <h3>Medidas corporales</h3>
+        <details class="embedded-section fold">
+          <summary>Medidas corporales</summary>
           <p class="subtitle">Registro de medidas dentro de tu entrenamiento. No cuenta en la racha.</p>
           <div id="primary-measurements-list"></div>
           <div class="measurements-divider">Otras medidas (bíceps, pierna, cintura...)</div>
@@ -1422,7 +1491,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
             <input type="number" id="new-measurement-value" placeholder="Valor de hoy" step="0.1" style="max-width:110px;">
             <button class="btn btn-ghost" id="add-measurement-btn" type="button">+</button>
           </div>
-        </div>
+        </details>
       </div>
 
       <div class="card">
@@ -1432,16 +1501,6 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
           <input type="checkbox" id="expenses-done-check" disabled>
           <span>Gastos registrados para la jornada</span>
         </label>
-        <div class="expense-budgets">
-          <label class="expense-budget-field">
-            <span>Presupuesto diario</span>
-            <input type="number" id="expense-daily-budget" placeholder="$ opcional" min="0" step="1">
-          </label>
-          <label class="expense-budget-field">
-            <span>Presupuesto mensual</span>
-            <input type="number" id="expense-monthly-budget" placeholder="$ opcional" min="0" step="1">
-          </label>
-        </div>
         <div class="expense-summary" id="expense-summary"></div>
         <div class="quick-expense">
           <div class="quick-expense-row">
@@ -1455,10 +1514,21 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
           <div class="expense-chips-title">Frecuentes · un toque</div>
           <div class="expense-chips" id="expense-chips"></div>
           <div class="quick-expense-tools">
-            <button class="gym-schedule-link" id="expense-batch-btn" type="button">📋 Registrar varios a la vez</button>
+            <button class="gym-schedule-link" id="expense-batch-btn" type="button">Registrar varios a la vez</button>
           </div>
         </div>
         <div id="expense-list"></div>
+        <details class="expense-manual fold"><summary>Presupuestos (diario y mensual)</summary><div class="expense-budgets">
+          <label class="expense-budget-field">
+            <span>Presupuesto diario</span>
+            <input type="number" id="expense-daily-budget" placeholder="$ opcional" min="0" step="1">
+          </label>
+          <label class="expense-budget-field">
+            <span>Presupuesto mensual</span>
+            <input type="number" id="expense-monthly-budget" placeholder="$ opcional" min="0" step="1">
+          </label>
+        </div>
+        </details>
         <details class="expense-manual">
         <summary>Agregar manualmente (monto, categoría y nota)</summary>
         <div class="todo-add-row expense-add-row">
@@ -1476,53 +1546,36 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         </div>
         </details>
       </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <h2><span class="dot"></span>Hazlo por ellos</h2>
-    <p class="subtitle">Tus metas y las personas que amas — un recordatorio antes de empezar el día.</p>
-    <div class="carousel" id="goal-carousel">
-      <button class="carousel-arrow prev" id="goal-prev-btn" type="button">‹</button>
-      <button class="carousel-arrow next" id="goal-next-btn" type="button">›</button>
-    </div>
-    <div class="carousel-dots" id="goal-dots"></div>
-    <div class="carousel-footer">
-      <span class="carousel-count" id="goal-count"></span>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <button class="add-row-btn" id="add-goal-toggle-btn" type="button" style="width:auto; margin:0; padding:6px 14px;">+</button>
-        <button class="delete-current-btn" id="delete-goal-btn" type="button">Eliminar esta imagen</button>
+      <div class="card routine-card">
+      <div class="routine-run-head">
+        <div>
+          <h2><span class="dot"></span>Rutinas</h2>
+          <p class="subtitle">Secuencias paso a paso con temporizador.</p>
+        </div>
+        <button class="btn btn-accent" id="start-routine-btn">▶ Comenzar</button>
+      </div>
+      <input type="checkbox" id="routine-done-check" disabled style="display:none">
+      <div class="routine-tabs" id="routine-tabs"></div>
+      <select id="routine-select" class="routine-select" style="display:none"></select>
+      <div class="routine-hero">
+        <div class="routine-hero-top">
+          <input type="text" class="routine-name" id="custom-routine-name" placeholder="Nombre de la rutina">
+          <span class="routine-status" id="routine-status"></span>
+        </div>
+        <div class="routine-meta" id="routine-meta"></div>
+      </div>
+      <div id="routine-steps-list" class="routine-timeline"></div>
+      <button class="add-row-btn" id="add-routine-step-btn">+ Agregar actividad</button>
+      <div class="routine-foot">
+        <button class="btn btn-ghost" id="add-routine-btn">+ Nueva rutina</button>
+        <button class="btn btn-danger-ghost" id="delete-routine-btn">Eliminar rutina</button>
       </div>
     </div>
-    <div class="todo-add-row" id="goal-add-fields" style="margin-top:10px; display:none;">
-      <input type="text" id="new-goal-url" placeholder="Link de la imagen (opcional)">
-      <input type="text" id="new-goal-caption" placeholder="Texto corto, ej. 'Mi hija' o 'Correr un maratón'">
-      <button class="btn btn-accent" id="add-goal-btn" type="button">Agregar</button>
     </div>
   </div>
 
-  <div class="card">
-    <div class="routine-run-head">
-      <div>
-        <h2><span class="dot"></span>Rutinas</h2>
-        <p class="subtitle">Crea secuencias tipo Routinery y ejecútalas actividad por actividad.</p>
-      </div>
-      <button class="btn btn-accent" id="start-routine-btn">Comenzar rutina</button>
-    </div>
-    <label class="section-check-row">
-      <input type="checkbox" id="routine-done-check" disabled>
-      <span>Rutina completada hoy</span>
-    </label>
-    <div class="routine-toolbar">
-      <select id="routine-select" class="routine-select"></select>
-      <button class="btn btn-ghost" id="add-routine-btn">Nueva rutina</button>
-      <button class="btn btn-danger-ghost" id="delete-routine-btn">Eliminar rutina</button>
-    </div>
-    <input type="text" class="routine-name" id="custom-routine-name" placeholder="Nombre de la rutina">
-    <div id="routine-steps-list"></div>
-    <button class="add-row-btn" id="add-routine-step-btn">+ Agregar actividad</button>
-  </div>
-
+  <div class="section-label">Seguimiento</div>
   <div class="card">
     <div class="analytics-head">
       <div>
@@ -1552,7 +1605,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         <div class="metric-value" id="metric-best-streak">0 días</div>
       </div>
     </div>
-    <div class="calendar-toolbar">
+    <div class="analytics-split"><div class="analytics-cal"><div class="calendar-toolbar">
       <button class="cal-nav-btn" id="cal-prev" type="button">‹</button>
       <div class="cal-month-label" id="cal-month-label">—</div>
       <button class="cal-nav-btn" id="cal-next" type="button">›</button>
@@ -1566,7 +1619,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       <span>Meta</span><span class="legend-swatch cal-good"></span>
     </div>
 
-    <div class="trend-toolbar">
+    </div><div class="analytics-trend"><div class="trend-toolbar">
       <div class="card-subtitle-inline">Tendencia</div>
       <div class="trend-range-toggle">
         <button class="trend-range-btn active" data-range="30" type="button">30 días</button>
@@ -1574,9 +1627,12 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       </div>
     </div>
     <div id="trend-chart"></div>
+  </div></div>
   </div>
 
-  <div class="card">
+  <div class="grid">
+    <div>
+      <div class="card">
     <div class="weekly-nav">
       <div>
         <h2 style="margin:0;"><span class="dot"></span>Resumen semanal</h2>
@@ -1589,13 +1645,39 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     </div>
     <div id="weekly-summary-body"></div>
   </div>
-
-  <div class="card">
+    </div>
+    <div>
+      <div class="card">
     <h2><span class="dot"></span>Historial reciente</h2>
     <div class="history-list" id="history-list"></div>
   </div>
 
-  <div class="card">
+      <div class="card dream-card">
+    <h2><span class="dot"></span>Hazlo por ellos</h2>
+    <p class="subtitle">Tus metas y las personas que amas — un recordatorio antes de empezar el día.</p>
+    <div class="carousel" id="goal-carousel">
+      <button class="carousel-arrow prev" id="goal-prev-btn" type="button">‹</button>
+      <button class="carousel-arrow next" id="goal-next-btn" type="button">›</button>
+    </div>
+    <div class="carousel-dots" id="goal-dots"></div>
+    <div class="carousel-footer">
+      <span class="carousel-count" id="goal-count"></span>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button class="add-row-btn" id="add-goal-toggle-btn" type="button" style="width:auto; margin:0; padding:6px 14px;">+</button>
+        <button class="delete-current-btn" id="delete-goal-btn" type="button">Eliminar esta imagen</button>
+      </div>
+    </div>
+    <div class="todo-add-row" id="goal-add-fields" style="margin-top:10px; display:none;">
+      <input type="text" id="new-goal-url" placeholder="Link de la imagen (opcional)">
+      <input type="text" id="new-goal-caption" placeholder="Texto corto, ej. 'Mi hija' o 'Correr un maratón'">
+      <button class="btn btn-accent" id="add-goal-btn" type="button">Agregar</button>
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <details class="card account-card"><summary>Cuenta y respaldo</summary>
+    <div class="account-inner">
     <h2><span class="dot"></span>Cuenta y respaldo</h2>
     <p class="subtitle" id="account-email-line">Tu progreso se sincroniza automáticamente en la nube.</p>
     <div class="footer-actions">
@@ -1609,6 +1691,20 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     </div>
     <div class="footer-note">Sincronizado con tu cuenta · funciona sin internet y se pone al día al reconectar</div>
   </div>
+  </details>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 </div>
 
   <div id="analytics-view" class="workspace-view" style="display:none;">
@@ -1640,7 +1736,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     <div class="card">
       <div class="workspace-head"><div><div class="focus-kicker">Contenido</div><h2 style="margin:4px 0 0;">De la idea a la publicación</h2><p class="subtitle">Anota la idea y la app te guía paso a paso: Idea → Guion → Grabación → Publicado.</p></div></div>
       <div class="idea-capture">
-        <input type="text" id="quick-idea-input" placeholder="💡 Nueva idea de TikTok… y Enter" autocomplete="off" enterkeyhint="done">
+        <input type="text" id="quick-idea-input" placeholder="Nueva idea de TikTok… y Enter" autocomplete="off" enterkeyhint="done">
         <button class="btn btn-accent" id="quick-idea-btn" type="button">Agregar</button>
       </div>
       <div class="workspace-kpis"><div class="workspace-kpi"><div class="k-label">Ideas</div><div class="k-value" id="c-ideas-count">0</div></div><div class="workspace-kpi"><div class="k-label">En producción</div><div class="k-value" id="c-production-count">0</div></div><div class="workspace-kpi"><div class="k-label">Publicados</div><div class="k-value" id="c-published-count">0</div></div><div class="workspace-kpi"><div class="k-label">B-roll disponible</div><div class="k-value" id="c-broll-count">0</div></div></div>
@@ -1648,9 +1744,9 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       <div class="content-pills" id="content-stage-filter"></div>
       <div id="content-list"></div>
     </div>
-    <details class="content-details"><summary>📈 Rendimiento</summary><div class="details-body" id="content-performance-body"></div></details>
-    <details class="content-details"><summary>🎞️ B-roll reutilizable</summary><div class="details-body" id="content-broll-body"></div></details>
-    <details class="content-details"><summary>🗓️ Calendario de publicaciones</summary><div class="details-body" id="content-calendar-body"></div></details>
+    <details class="content-details"><summary>Rendimiento</summary><div class="details-body" id="content-performance-body"></div></details>
+    <details class="content-details"><summary>B-roll reutilizable</summary><div class="details-body" id="content-broll-body"></div></details>
+    <details class="content-details"><summary>Calendario de publicaciones</summary><div class="details-body" id="content-calendar-body"></div></details>
   </div>
   <div id="goals-view" class="workspace-view" style="display:none;">
     <div class="card"><div class="workspace-head"><div><div class="focus-kicker">Metas enlazadas a tu día a día</div><h2 style="margin:4px 0 0;">Objetivos</h2><p class="subtitle">Cada objetivo vigila un hábito, tu dieta, tus gastos o tu contenido y se actualiza solo.</p></div><div class="xp-pill">⚡ <span id="goals-xp">0 XP · Nivel 1</span></div></div><div class="workspace-kpis"><div class="workspace-kpi"><div class="k-label">Activos</div><div class="k-value" id="g-active">0</div></div><div class="workspace-kpi"><div class="k-label">Completados</div><div class="k-value" id="g-completed">0</div></div><div class="workspace-kpi"><div class="k-label">XP total</div><div class="k-value" id="g-xp">0</div></div><div class="workspace-kpi"><div class="k-label">Logros</div><div class="k-value" id="g-achievements">0</div></div></div><div id="goal-list" class="goal-list"></div></div>
@@ -1926,7 +2022,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         accentColor: "#0a84ff",
         quoteFont: "system",
         quotesEnabled: true,
-        categoryWeights: { habitos: 1, dieta: 1, gimnasio: 1, notas: 1, gastos: 1, rutina: 1, contenido: 1 },
+        categoryWeights: { habitos: 1, dieta: 1, gimnasio: 1, pendientes: 1, notas: 1, gastos: 1, rutina: 1, contenido: 1 },
         lastWeeklySummaryWeek: null,
       },
       bestStreak: 0,
@@ -2005,7 +2101,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     if (typeof parsed.settings.categoryWeights !== "object" || !parsed.settings.categoryWeights) {
       parsed.settings.categoryWeights = {};
     }
-    ["habitos", "dieta", "gimnasio", "notas", "gastos", "rutina", "contenido"].forEach((key) => {
+    ["habitos", "dieta", "gimnasio", "pendientes", "notas", "gastos", "rutina", "contenido"].forEach((key) => {
       const w = Number(parsed.settings.categoryWeights[key]);
       parsed.settings.categoryWeights[key] = w >= 0 && w <= 5 ? w : 1;
     });
@@ -2215,6 +2311,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       if (["idea", "script", "record", "published"].indexOf(v.status) === -1) v.status = "idea";
       if (typeof v.publishDate !== "string") v.publishDate = "";
       if (typeof v.createdAt !== "string") v.createdAt = "";
+      if (!v.activityLog || typeof v.activityLog !== "object" || Array.isArray(v.activityLog)) v.activityLog = {};
       if (!(Number(v.duration) > 0)) v.duration = 30;
       if (typeof v.script !== "string") v.script = "";
       if (typeof v.hook !== "string") v.hook = "";
@@ -2492,6 +2589,27 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     root.style.setProperty("--accent-soft", `rgba(${  rgb.join(",")  },0.16)`);
     root.style.setProperty("--accent-border", `rgba(${  rgb.join(",")  },0.4)`);
     root.style.setProperty("--accent-light", `rgb(${  mixWithWhite(rgb, 0.42).join(",")  })`);
+    root.style.setProperty("--accent-rgb", rgb.join(","));
+    const dark = rgb.map((c) => {
+      return Math.round(c * 0.68);
+    });
+    root.style.setProperty("--accent-dark", `rgb(${  dark.join(",")  })`);
+    // Categorical series: six tones of the same hue (dark → light), never other hues
+    const tones = [
+      rgb,
+      rgb.map((c) => {
+        return Math.round(c * 0.62);
+      }),
+      mixWithWhite(rgb, 0.45),
+      rgb.map((c) => {
+        return Math.round(c * 0.42);
+      }),
+      mixWithWhite(rgb, 0.7),
+      mixWithWhite(rgb, 0.2),
+    ];
+    tones.forEach((t, i) => {
+      root.style.setProperty(`--viz-${i + 1}`, `rgb(${  t.join(",")  })`);
+    });
   }
 
   function applyTheme(theme) {
@@ -2919,7 +3037,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         const b = el("button", "goal-badge");
         b.type = "button";
         const cur = Math.min(g.target, objectiveCurrent(g));
-        b.textContent = `🎯 ${cur}/${g.target}`;
+        b.textContent = `◎ ${cur}/${g.target}`;
         b.title = `Objetivo: ${g.title}`;
         b.addEventListener("click", () => switchWorkspace("goals"));
         return b;
@@ -3060,13 +3178,13 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     const unrec = dietUnrecordedCount(iso);
     let nudge = "";
     if (unrec > 0 && iso <= todayISO()) {
-      nudge = `<div class="diet-nudge">📝 ${unrec} comida${unrec === 1 ? "" : "s"} sin registrar ${iso === todayISO() ? "hoy" : "ese día"}. Elige <b>Cumplí</b>, <b>Libre</b> o <b>Me la salté</b>.</div>`;
+      nudge = `<div class="diet-nudge">${unrec} comida${unrec === 1 ? "" : "s"} sin registrar ${iso === todayISO() ? "hoy" : "ese día"}. Elige <b>Cumplí</b>, <b>Libre</b> o <b>Me la salté</b>.</div>`;
     }
     box.innerHTML =
       `<div class="diet-week">` +
       `<div class="diet-week-top"><span class="diet-week-title">Semana (lun–dom)</span>` +
       `<span class="diet-week-stats"><b class="ok">${w.ok}</b> cumplidas · <b class="skip">${w.skip}</b> saltadas</span></div>` +
-      `<div class="diet-cheat-row"><span>🍕 Comidas libres</span><span class="diet-dots">${dots.join("")}</span>` +
+      `<div class="diet-cheat-row"><span>○ Comidas libres</span><span class="diet-dots">${dots.join("")}</span>` +
       `<span class="diet-cheat-msg${w.cheat > limit ? " over" : ""}">${w.cheat}/${limit} · ${cheatMsg}</span>` +
       `<span class="diet-limit-ctl"><button type="button" class="diet-limit-btn" data-d="-1" title="Menos libres por semana">−</button><button type="button" class="diet-limit-btn" data-d="1" title="Más libres por semana">+</button></span></div>` +
       `</div>${nudge}`;
@@ -3142,8 +3260,8 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       if (scheduled && !future) {
         const btns = el("div", "diet-status");
         [
-          ["ok", "✅ Cumplí"],
-          ["cheat", "🍕 Libre"],
+          ["ok", "✓ Cumplí"],
+          ["cheat", "○ Libre"],
           ["skip", "✖ Me la salté"],
         ].forEach((pair) => {
           const b = el("button", `diet-st-btn st-${pair[0]}${st === pair[0] ? " active" : ""}`);
@@ -4353,11 +4471,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       }),
       notas: [{ done: !!(state.notesLog[iso] || "").trim() }],
       gastos: [{ done: (state.expensesLog[iso] || []).length > 0 }],
-      contenido: [{
-        done: state.content.videos.some((v) => {
-          return v.createdAt === iso || v.publishDate === iso;
-        }),
-      }],
+      contenido: [{ done: contentActiveOn(iso) }],
       rutina: state.routines.some((r) => {
         return r.steps.length > 0;
       })
@@ -4371,6 +4485,18 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         : [],
     };
     return cats;
+  }
+
+  // Content counts for a day when you create, move, edit or publish any piece that day.
+  function contentActiveOn(iso) {
+    return state.content.videos.some((v) => {
+      return v.createdAt === iso || v.publishDate === iso || !!(v.activityLog && v.activityLog[iso]);
+    });
+  }
+  function touchContent(v) {
+    if (!v) return;
+    if (!v.activityLog || typeof v.activityLog !== "object") v.activityLog = {};
+    v.activityLog[todayISO()] = true;
   }
 
   function categoryRate(items) {
@@ -4985,7 +5111,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
             return `<span class="diet-sum-chip">${escapeHtml(r.reason)} ×${r.count}</span>`;
           })
           .join("")}</div>`
-      : `<div class="diet-sum-cheats">${ds.skip ? "" : "Sin comidas saltadas. 💪"}</div>`;
+      : `<div class="diet-sum-cheats">${ds.skip ? "" : "Sin comidas saltadas."}</div>`;
     const cheats = ds.cheats.length
       ? `<div class="diet-sum-cheats">${ds.cheats
           .map((c) => {
@@ -4996,9 +5122,9 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     return (
       `<div class="weekly-stat"><div class="metric-label">Dieta cumplida</div><div class="metric-value">${ds.ok}/${ds.planned}` +
       `<span class="metric-sub"> comidas</span></div></div>` +
-      `<div class="weekly-stat"><div class="metric-label">Veces que te saltaste la dieta</div><div class="metric-value" style="color:${ds.skip ? "var(--danger)" : "inherit"};">${ds.skip}` +
+      `<div class="weekly-stat"><div class="metric-label">Veces que te saltaste la dieta</div><div class="metric-value" style="color:${ds.skip ? "var(--accent-light)" : "inherit"};">${ds.skip}` +
       `${ds.unrecorded ? `<span class="metric-sub"> (+${ds.unrecorded} sin registrar)</span>` : ""}</div></div>` +
-      `<div class="weekly-stat"><div class="metric-label">Cheat meals</div><div class="metric-value" style="color:${over ? "var(--danger)" : "inherit"};">${ds.cheat}` +
+      `<div class="weekly-stat"><div class="metric-label">Cheat meals</div><div class="metric-value" style="color:${over ? "var(--accent-light)" : "inherit"};">${ds.cheat}` +
       `<span class="metric-sub"> de ${ds.limit} permitidas</span></div>${cheats}</div>` +
       `<div class="weekly-stat"><div class="metric-label">Razones para saltarte la dieta</div>${reasons}</div>`
     );
@@ -5147,10 +5273,29 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
   function buildWeightsModal() {
     const list = document.getElementById("weights-list");
     list.innerHTML = "";
+    const iso = activeISO();
+    const cats = getCategorizedCheckable(iso);
+    const rows = [];
+    function refreshShares() {
+      let total = 0;
+      rows.forEach((r) => {
+        if (r.applies) total += Number(r.range.value);
+      });
+      rows.forEach((r) => {
+        const w = Number(r.range.value);
+        const share = r.applies && total ? Math.round((w / total) * 100) : 0;
+        r.valueLabel.textContent = r.applies ? `x${w} · ${share}% del día` : `x${w} · no aplica hoy`;
+      });
+    }
     CATEGORY_ORDER.forEach((key) => {
+      const items = cats[key] || [];
+      const applies = items.length > 0;
+      const done = items.filter((i) => {
+        return i.done;
+      }).length;
       const row = el("div", "weight-row");
       const label = el("span", "weight-label");
-      label.textContent = CATEGORY_LABELS[key];
+      label.textContent = applies ? `${CATEGORY_LABELS[key]} (${done}/${items.length})` : CATEGORY_LABELS[key];
       const range = el("input");
       range.type = "range";
       range.min = "0";
@@ -5158,16 +5303,15 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       range.step = "0.5";
       range.value = state.settings.categoryWeights[key];
       const valueLabel = el("span", "weight-value");
-      valueLabel.textContent = `x${  state.settings.categoryWeights[key]}`;
-      range.addEventListener("input", () => {
-        valueLabel.textContent = `x${  range.value}`;
-      });
+      range.addEventListener("input", refreshShares);
       range.dataset.key = key;
       row.appendChild(label);
       row.appendChild(range);
       row.appendChild(valueLabel);
       list.appendChild(row);
+      rows.push({ range, valueLabel, applies });
     });
+    refreshShares();
   }
 
   document.getElementById("manage-weights-btn").addEventListener("click", () => {
@@ -5215,8 +5359,14 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     );
   }
 
+  function fmtMinutes(total) {
+    const h = Math.floor(total / 60),
+      m = total % 60;
+    return h ? `${h} h${m ? ` ${m} min` : ""}` : `${m} min`;
+  }
   function renderRoutines() {
-    document.getElementById("routine-done-check").checked = routineCompletedToday();
+    const doneToday = routineCompletedToday();
+    document.getElementById("routine-done-check").checked = doneToday;
     const select = document.getElementById("routine-select");
     select.innerHTML = "";
     state.routines.forEach((r) => {
@@ -5231,6 +5381,41 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     select.value = routine.id;
     document.getElementById("custom-routine-name").value = routine.name;
 
+    // Tabs (one chip per routine)
+    const tabs = document.getElementById("routine-tabs");
+    tabs.innerHTML = "";
+    state.routines.forEach((r) => {
+      const total = r.steps.reduce((sum, st) => {
+        return sum + (Number(st.minutes) || 0);
+      }, 0);
+      const b = el("button", `routine-tab${r.id === routine.id ? " active" : ""}`);
+      b.type = "button";
+      b.id = `routine-tab-${r.id}`;
+      b.innerHTML = `<span class="rt-tab-name">${escapeHtml(r.name)}</span><small>${total} min</small>`;
+      b.addEventListener("click", () => {
+        state.activeRoutineId = r.id;
+        saveState();
+        renderRoutines();
+      });
+      tabs.appendChild(b);
+    });
+
+    const totalMin = routine.steps.reduce((sum, st) => {
+      return sum + (Number(st.minutes) || 0);
+    }, 0);
+    const status = document.getElementById("routine-status");
+    status.textContent = doneToday ? "✓ Hecha hoy" : "Pendiente hoy";
+    status.classList.toggle("done", doneToday);
+    const meta = document.getElementById("routine-meta");
+    if (routine.steps.length) {
+      const end = new Date(Date.now() + totalMin * 60000);
+      const hh = String(end.getHours()).padStart(2, "0"),
+        mm = String(end.getMinutes()).padStart(2, "0");
+      meta.innerHTML = `<span><b>${routine.steps.length}</b> actividad${routine.steps.length === 1 ? "" : "es"}</span><span>Duración <b>${fmtMinutes(totalMin)}</b></span><span>Si empiezas ahora terminas <b>${hh}:${mm}</b></span>`;
+    } else {
+      meta.innerHTML = "<span>Sin actividades todavía</span>";
+    }
+
     const list = document.getElementById("routine-steps-list");
     list.innerHTML = "";
     if (!routine.steps.length) {
@@ -5239,10 +5424,59 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       list.appendChild(hint);
       return;
     }
+    let offset = 0;
     routine.steps.forEach((step, index) => {
-      const row = el("div", "routine-step-row");
+      const row = el("div", "rt-step");
+      const num = el("div", "rt-num");
+      num.textContent = index + 1;
 
-      const orderBtns = el("div", "step-order-btns");
+      const body = el("div", "rt-body");
+      const name = el("input", "rt-name");
+      name.type = "text";
+      name.value = step.name;
+      name.placeholder = "Actividad";
+      name.addEventListener("input", () => {
+        step.name = name.value;
+      });
+      name.addEventListener("blur", saveState);
+      const time = el("div", "rt-time");
+      const startAt = offset;
+      offset += Math.max(1, Number(step.minutes) || 1);
+      time.textContent = `min ${startAt} → ${offset}`;
+      body.appendChild(name);
+      body.appendChild(time);
+
+      const mins = el("div", "rt-mins");
+      const minus = el("button");
+      minus.type = "button";
+      minus.textContent = "−";
+      minus.title = "Menos tiempo";
+      const minutes = el("input", "routine-step-minutes");
+      minutes.type = "number";
+      minutes.min = "1";
+      minutes.step = "1";
+      minutes.value = step.minutes;
+      minutes.title = "Minutos";
+      const plus = el("button");
+      plus.type = "button";
+      plus.textContent = "+";
+      plus.title = "Más tiempo";
+      const unit = el("span");
+      unit.textContent = "min";
+      const setMinutes = (v) => {
+        step.minutes = Math.max(1, Math.round(Number(v) || 1));
+        saveState();
+        renderRoutines();
+      };
+      minus.addEventListener("click", () => setMinutes((Number(step.minutes) || 1) - 5 > 0 ? (Number(step.minutes) || 1) - 5 : 1));
+      plus.addEventListener("click", () => setMinutes((Number(step.minutes) || 1) + 5));
+      minutes.addEventListener("change", () => setMinutes(minutes.value));
+      mins.appendChild(minus);
+      mins.appendChild(minutes);
+      mins.appendChild(unit);
+      mins.appendChild(plus);
+
+      const side = el("div", "rt-actions");
       const upBtn = el("button", "step-order-btn");
       upBtn.type = "button";
       upBtn.textContent = "▲";
@@ -5269,31 +5503,10 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         saveState();
         renderRoutines();
       });
-      orderBtns.appendChild(upBtn);
-      orderBtns.appendChild(downBtn);
+      side.appendChild(upBtn);
+      side.appendChild(downBtn);
 
-      const name = el("input", "routine-step-name");
-      name.type = "text";
-      name.value = step.name;
-      name.placeholder = "Actividad";
-      name.addEventListener("input", () => {
-        step.name = name.value;
-      });
-      name.addEventListener("blur", saveState);
-
-      const minutes = el("input", "routine-step-minutes");
-      minutes.type = "number";
-      minutes.min = "1";
-      minutes.step = "1";
-      minutes.value = step.minutes;
-      minutes.title = "Minutos";
-      minutes.addEventListener("change", () => {
-        step.minutes = Math.max(1, Number(minutes.value) || 1);
-        minutes.value = step.minutes;
-        saveState();
-      });
-
-      const del = el("button", "delete-btn");
+      const del = el("button", "delete-btn rt-del");
       del.type = "button";
       del.textContent = "×";
       del.title = "Eliminar actividad";
@@ -5305,10 +5518,15 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
         renderRoutines();
       });
 
-      row.appendChild(orderBtns);
-      row.appendChild(name);
-      row.appendChild(minutes);
-      row.appendChild(del);
+      // layout: number | body | minutes | (reorder + delete)
+      const right = el("div");
+      right.style.cssText = "display:flex;align-items:center;gap:4px;";
+      right.appendChild(mins);
+      right.appendChild(side);
+      right.appendChild(del);
+      row.appendChild(num);
+      row.appendChild(body);
+      row.appendChild(right);
       list.appendChild(row);
     });
   }
@@ -5326,6 +5544,8 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     saveState();
     const option = document.querySelector(`#routine-select option[value="${  routine.id  }"]`);
     if (option) option.textContent = routine.name;
+    const tabName = document.querySelector(`#routine-tab-${routine.id} .rt-tab-name`);
+    if (tabName) tabName.textContent = routine.name;
   });
 
   document.getElementById("add-routine-btn").addEventListener("click", () => {
@@ -5742,7 +5962,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     const monthEl = document.getElementById("exp-a-month");
     monthEl.textContent = fmtMoney(monthTotal);
     if (state.expenses.monthlyBudget) {
-      monthEl.style.color = monthTotal > state.expenses.monthlyBudget ? "var(--danger)" : "";
+      monthEl.style.color = monthTotal > state.expenses.monthlyBudget ? "var(--accent-light)" : "";
     }
 
     const catEntries = Object.keys(byCategory)
@@ -5934,8 +6154,10 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
   function setContentStage(v, key) {
     v.status = key;
     if (key === "published" && !v.publishDate) v.publishDate = todayISO();
+    touchContent(v);
     saveState();
     refreshObjectives();
+    updateProgress();
   }
   function plainTextFromHtml(html) {
     const tmp = document.createElement("div");
@@ -5953,10 +6175,10 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
 
   const CONTENT_FILTERS = [
     { key: "active", label: "En proceso", test: (v) => v.status !== "published", empty: "No tienes contenido en proceso. Anota una idea arriba y empieza." },
-    { key: "idea", label: "💡 Ideas", test: (v) => v.status === "idea", empty: "No hay ideas guardadas todavía." },
-    { key: "script", label: "✍️ Guion", test: (v) => v.status === "script", empty: "Nada en etapa de guion." },
-    { key: "record", label: "🎬 Grabación", test: (v) => v.status === "record", empty: "Nada en grabación." },
-    { key: "published", label: "✅ Publicados", test: (v) => v.status === "published", empty: "Aún no has publicado ninguno." },
+    { key: "idea", label: "Ideas", test: (v) => v.status === "idea", empty: "No hay ideas guardadas todavía." },
+    { key: "script", label: "Guion", test: (v) => v.status === "script", empty: "Nada en etapa de guion." },
+    { key: "record", label: "Grabación", test: (v) => v.status === "record", empty: "Nada en grabación." },
+    { key: "published", label: "Publicados", test: (v) => v.status === "published", empty: "Aún no has publicado ninguno." },
   ];
 
   function renderContent() {
@@ -6004,7 +6226,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     const st = stageInfo(v.status);
     const card = el("div", "content-next-card");
     card.innerHTML =
-      `<div class="content-next-stage">Lo que sigue · ${st.icon} ${st.label}</div>` +
+      `<div class="content-next-stage">Lo que sigue · <span class="emo">${st.icon}</span> ${st.label}</div>` +
       `<div class="content-next-title">${escapeHtml(v.title || "TikTok")}</div>` +
       `<p class="subtitle">${escapeHtml(st.hint)}</p>${stageStripHTML(v)}` +
       `<div class="content-next-actions"><button class="btn btn-accent" type="button">Continuar</button></div>`;
@@ -6095,6 +6317,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     saveState();
     renderContent();
     refreshObjectives();
+    updateProgress();
     input.focus();
   }
 
@@ -6119,6 +6342,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
     saveState();
     renderContent();
     refreshObjectives();
+    updateProgress();
   }
 
   function ceField(labelText, node) {
@@ -6396,6 +6620,15 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       }
     });
     document.getElementById("content-editor-close").addEventListener("click", closeContentEditor);
+    // Any edit inside the editor counts as content work for today
+    ["input", "change", "click"].forEach((evt) => {
+      document.getElementById("content-editor-modal").addEventListener(evt, (e) => {
+        if (!editingContentId) return;
+        if (evt === "click" && !e.target.closest("button, input, label")) return;
+        if (e.target.id === "content-editor-close") return;
+        touchContent(contentById(editingContentId));
+      });
+    });
     document.getElementById("content-editor-modal").addEventListener("click", (e) => {
       if (e.target.id === "content-editor-modal") closeContentEditor();
     });
@@ -6438,6 +6671,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
       saveState();
       renderContent();
       refreshObjectives();
+      updateProgress();
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && document.getElementById("content-editor-modal").classList.contains("active"))
@@ -6841,7 +7075,7 @@ details.expense-manual summary{cursor:pointer;font-size:12px;color:var(--text-te
   function goalDeadlineBadge(o) {
     if (!o.deadline || o.completed) return "";
     const days = Math.ceil((dateFromISO(o.deadline) - dateFromISO(todayISO())) / 86400000);
-    if (days < 0) return '<span style="color:var(--danger);font-weight:700;">Vencido</span>';
+    if (days < 0) return '<span style="color:var(--accent-light);font-weight:700;">Vencido</span>';
     if (days === 0) return '<span style="color:var(--warning);font-weight:700;">Vence hoy</span>';
     if (days <= 3) return `<span style="color:var(--warning);font-weight:700;">Quedan ${days} días</span>`;
     return `<span>Quedan ${days} días</span>`;
