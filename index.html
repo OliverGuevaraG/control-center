@@ -1390,6 +1390,351 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
 #habits-list .schedule-btn{width:78px;padding:5px 6px}
 #habits-list .item-row{padding-right:8px}
 #habits-list .delete-btn{flex-shrink:0}
+
+/* =====================================================================
+   V7 — piel estilo Hexis (acento azul por defecto), dashboard compacto,
+   tarjetas de hábitos con swipe, hoja de edición y toast con deshacer
+   ===================================================================== */
+:root{
+  --bg:#0c0b0a; --bg-elevated:#15130f; --bg-elevated-2:#1e1b16;
+  --border:rgba(255,244,228,.09); --border-strong:rgba(255,244,228,.17);
+  --text:#f5f0e8; --text-secondary:rgba(245,240,232,.62); --text-tertiary:rgba(245,240,232,.38);
+  --radius:24px; --radius-sm:12px;
+  --serif:ui-serif,"New York","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+  --dots:rgba(255,244,228,.085);
+}
+[data-theme="light"]{
+  --bg:#f3efe8; --bg-elevated:#fffdf9; --bg-elevated-2:#ebe6dc;
+  --border:rgba(40,30,18,.10); --border-strong:rgba(40,30,18,.19);
+  --text:#1e1a15; --text-secondary:rgba(30,26,21,.62); --text-tertiary:rgba(30,26,21,.42);
+  --dots:rgba(40,30,18,.10);
+}
+html,body{background-color:var(--bg)}
+body{
+  background-image:radial-gradient(var(--dots) 1.1px,transparent 1.3px);
+  background-size:22px 22px;background-attachment:fixed;
+}
+.wrap{max-width:720px;padding:18px 16px 96px}
+@media (min-width:900px){.wrap{padding-top:30px}}
+
+/* ---- tarjetas base ---- */
+.card{
+  border-radius:26px;border:1px solid var(--border-strong);
+  background:linear-gradient(180deg,rgba(255,244,228,.035),rgba(255,244,228,0) 60%),var(--bg-elevated);
+  box-shadow:none;
+}
+[data-theme="light"] .card{background:var(--bg-elevated)}
+.card h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:21px;letter-spacing:-.01em}
+.card h2 .dot{display:none}
+.card .subtitle{font-size:12.5px}
+.section-label{display:none}
+
+/* ---- encabezado ---- */
+header{margin-bottom:14px;gap:10px}
+.title-block h1{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-tertiary);margin:0 0 6px}
+.title-block .date-line{font-family:var(--serif);font-style:italic;font-weight:500;font-size:27px;line-height:1.1;color:var(--text);text-transform:none;letter-spacing:-.015em}
+.quote-line{font-size:12px;opacity:.75;margin-top:6px}
+.header-right{gap:8px;flex-wrap:wrap}
+.threshold-control{display:none}
+.streak-pill,.progress-pill{border-radius:999px}
+@media (max-width:760px){
+  header{flex-direction:column;align-items:stretch}
+  .header-right{width:100%}
+  .header-right .btn-accent{margin-left:auto}
+}
+.day-nav{margin-bottom:12px}
+.main-nav{padding:8px 0 12px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.main-nav-btn{background:transparent}
+.mobile-bottom-nav{background:color-mix(in srgb,var(--bg) 88%,transparent)!important}
+
+/* ---- hábitos: contenedor ---- */
+#habits-card.glass-card{background:transparent;border:0;box-shadow:none;padding:0;overflow:visible;margin-bottom:18px}
+#habits-card .glass-orb{display:none!important}
+#habits-card .gl-head{align-items:flex-end;margin:6px 2px 14px}
+#habits-card h2{font-size:30px;color:var(--text);margin:0 0 2px}
+#habits-card .subtitle{color:var(--text-tertiary);margin:0;font-size:13px}
+.gl-ring{width:54px;height:54px}
+.gl-ring circle{stroke-width:3.2}
+.gl-ring .bgc{stroke:var(--border-strong)}
+.gl-ring .fgc{stroke:var(--accent);filter:none}
+.gl-ring span{color:var(--text);font-family:var(--serif);font-style:italic;font-size:13px;font-weight:600}
+.gl-ring.pulse{animation:hb-pulse .9s ease}
+@keyframes hb-pulse{0%{transform:scale(1)}35%{transform:scale(1.16)}100%{transform:scale(1)}}
+.hb-tools{display:flex;align-items:center;gap:8px;margin:0 2px 12px;min-height:30px}
+.hb-markall{border:1px solid var(--border-strong);background:transparent;color:var(--text);border-radius:999px;padding:7px 14px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.hb-markall:active{transform:scale(.96)}
+.hb-markall[hidden]{display:none}
+.hb-hint{font-size:11.5px;color:var(--text-tertiary);margin-left:auto}
+#habits-card .add-row-btn{background:transparent;border:1.5px dashed var(--border-strong);color:var(--text-secondary);border-radius:22px;padding:16px;font-family:var(--serif);font-style:italic;font-size:16px;backdrop-filter:none}
+#habits-card .add-row-btn:hover{border-color:var(--accent);color:var(--text)}
+
+/* ---- tarjeta de hábito ---- */
+.hb{position:relative;margin-bottom:12px;border-radius:26px;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+.hb-swipe{position:absolute;inset:0;border-radius:26px;display:flex;align-items:center;gap:10px;padding:0 26px;background:rgba(var(--accent-rgb),.20);color:var(--accent-light);font-size:13px;font-weight:700;letter-spacing:.02em;opacity:0;transition:opacity .15s}
+.hb-swipe svg{width:26px;height:26px}
+.hb-swipe.undo{background:rgba(127,127,127,.18);color:var(--text-secondary)}
+.hb-swipe.armed{background:rgba(var(--accent-rgb),.42);color:#fff}
+.hb-swipe.undo.armed{background:rgba(127,127,127,.34);color:var(--text)}
+.hb-face{position:relative;border-radius:26px;border:1px solid var(--border-strong);background:var(--bg-elevated);padding:18px 18px 16px;transition:transform .26s cubic-bezier(.2,.9,.25,1),border-color .2s,background .2s;will-change:transform;cursor:pointer}
+.hb.dragging .hb-face{transition:none}
+.hb.done .hb-face{border-color:rgba(var(--accent-rgb),.5);background:linear-gradient(135deg,rgba(var(--accent-rgb),.13),rgba(var(--accent-rgb),.03) 55%),var(--bg-elevated)}
+.hb.off .hb-face{opacity:.55}
+.hb-top{display:flex;align-items:center;gap:14px}
+.hb-ico{width:48px;height:48px;border-radius:16px;border:1px solid var(--border-strong);display:grid;place-items:center;color:var(--accent-light);flex-shrink:0;background:rgba(var(--accent-rgb),.07)}
+.hb-ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hb-txt{flex:1;min-width:0}
+.hb-name{font-size:17px;font-weight:650;letter-spacing:-.01em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb.done .hb-name{color:var(--text)}
+.hb-sub{font-size:13px;color:var(--text-secondary);margin-top:2px;display:flex;gap:8px;align-items:center;min-width:0}
+.hb-sub span.t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-chip{border:1px solid var(--accent-border);background:var(--accent-soft);color:var(--accent-light);border-radius:999px;font:inherit;font-size:11px;font-weight:700;padding:2px 8px;cursor:pointer;flex-shrink:0}
+.hb-check{width:36px;height:36px;border-radius:50%;border:1.6px solid var(--border-strong);background:transparent;display:grid;place-items:center;cursor:pointer;flex-shrink:0;padding:0;color:#fff;transition:background .18s,border-color .18s,transform .12s}
+.hb-check:active{transform:scale(.88)}
+.hb-check svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.5);transition:.18s}
+.hb.done .hb-check{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px rgba(var(--accent-rgb),.18)}
+.hb.done .hb-check svg{opacity:1;transform:scale(1)}
+.hb-more{border:0;background:transparent;color:var(--text-tertiary);font-size:20px;line-height:1;padding:6px 2px 6px 4px;cursor:pointer;flex-shrink:0;letter-spacing:1px}
+.hb-week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:16px}
+.hb-d{display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:transparent;font:inherit;color:inherit;padding:0;cursor:pointer}
+.hb-d i{font-style:normal;font-size:10.5px;font-weight:650;color:var(--text-tertiary);letter-spacing:.04em}
+.hb-d.today i{color:var(--accent-light)}
+.hb-d b{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border-strong);display:grid;place-items:center;transition:.15s}
+.hb-d b svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.hb-d.on b{background:var(--accent);border-color:var(--accent)}
+.hb-d.on b svg{opacity:1}
+.hb-d.miss b{border-style:dashed}
+.hb-d.off b{border-color:transparent;background:radial-gradient(circle,var(--border-strong) 2px,transparent 2.5px)}
+.hb-d.future{cursor:default}
+.hb-d.future b{border-color:var(--border)}
+.hb-d.today b{box-shadow:0 0 0 3px rgba(var(--accent-rgb),.28)}
+.hb-d:active:not(.future):not(.off) b{transform:scale(.88)}
+.hb-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:16px;min-height:44px}
+.hb-tally{display:flex;gap:9px;align-items:flex-end;flex-wrap:wrap;padding-bottom:6px;max-width:62%}
+.hb-g{position:relative;display:inline-flex;gap:3.5px;align-items:flex-end;height:20px}
+.hb-g u{display:block;width:2.4px;height:20px;border-radius:2px;background:var(--text-secondary);text-decoration:none}
+.hb-g.five::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:2.4px;border-radius:2px;background:var(--text-secondary);transform:rotate(-24deg)}
+.hb-tally .none{font-size:12px;color:var(--text-tertiary);font-style:italic;font-family:var(--serif)}
+.hb-big{font-family:var(--serif);font-style:italic;font-weight:500;font-size:44px;line-height:.9;letter-spacing:-.03em;color:var(--text);text-align:right;white-space:nowrap}
+.hb-big small{font-size:17px;margin-left:6px;color:var(--text-secondary);letter-spacing:0}
+.hb-prog{display:flex;align-items:center;gap:12px;margin-top:12px}
+.hb-bar{flex:1;height:4px;border-radius:999px;background:var(--border-strong);overflow:hidden}
+.hb-bar span{display:block;height:100%;border-radius:inherit;background:var(--accent);transition:width .4s ease}
+.hb-pct{font-size:12.5px;color:var(--text-secondary);font-variant-numeric:tabular-nums;min-width:34px;text-align:right}
+.hb.pop .hb-face{animation:hb-pop .4s ease}
+@keyframes hb-pop{0%{transform:scale(1)}40%{transform:scale(1.015)}100%{transform:scale(1)}}
+.hb-empty{border:1.5px dashed var(--border-strong);border-radius:22px;padding:22px;text-align:center;color:var(--text-secondary);font-family:var(--serif);font-style:italic;margin-bottom:12px}
+
+/* ---- dashboard compacto (filas plegables) ---- */
+#cc-stack{margin-top:6px}
+.cc-fold{padding:0!important;overflow:hidden;margin-bottom:10px}
+.cc-sum{display:flex;width:100%;align-items:center;gap:14px;padding:14px 16px;background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cc-sum:active{background:rgba(127,127,127,.07)}
+.cc-ico{width:40px;height:40px;border-radius:14px;border:1px solid var(--border-strong);display:grid;place-items:center;color:var(--accent-light);flex-shrink:0;background:rgba(var(--accent-rgb),.07)}
+.cc-ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cc-tx{flex:1;min-width:0}
+.cc-t{font-family:var(--serif);font-style:italic;font-size:19px;font-weight:500;letter-spacing:-.01em;line-height:1.15}
+.cc-s{font-size:12.5px;color:var(--text-secondary);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-ring{--p:0;width:26px;height:26px;border-radius:50%;flex-shrink:0;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--border-strong) 0);display:grid;place-items:center}
+.cc-ring::after{content:"";width:18px;height:18px;border-radius:50%;background:var(--bg-elevated)}
+.cc-ring.full{background:var(--accent)}
+.cc-ring.full::after{width:12px;height:7px;border-radius:0;background:none;border-left:2.4px solid #fff;border-bottom:2.4px solid #fff;transform:translateY(-1px) rotate(-45deg) scale(.9)}
+.cc-ring.na{background:none;border:1.5px dashed var(--border-strong)}
+.cc-ring.na::after{display:none}
+.cc-chev{width:18px;height:18px;stroke:var(--text-tertiary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s;flex-shrink:0}
+.cc-fold.open .cc-chev{transform:rotate(180deg)}
+.cc-fold:not(.open) > :not(.cc-sum){display:none!important}
+.cc-fold.open > .cc-sum{border-bottom:1px solid var(--border)}
+.cc-fold.open > :not(.cc-sum){margin-left:16px;margin-right:16px}
+.cc-fold.open > :last-child{margin-bottom:16px}
+.cc-fold > h2,.cc-fold > .subtitle,.cc-fold > .gym-simple-head,.cc-fold .routine-run-head h2,.cc-fold .routine-run-head .subtitle{display:none}
+.cc-fold .routine-run-head{justify-content:flex-end}
+.cc-fold .card{background:transparent;border:0;border-radius:0;padding:0;margin:0 0 18px;box-shadow:none}
+.cc-fold .card h2{font-size:18px}
+.cc-fold .card:last-child{margin-bottom:0}
+.cc-fold.open > .card{margin-top:14px}
+.cc-fold-group > .card:not(:first-of-type){border-top:1px solid var(--border);padding-top:16px}
+details.account-card{border-radius:26px}
+details.account-card > summary{font-family:var(--serif);font-style:italic;font-size:19px;padding:16px}
+.cc-hap{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary);margin:12px 0 2px}
+
+/* ---- toast con deshacer ---- */
+.cc-toast{position:fixed;left:0;right:0;margin:0 auto;bottom:96px;z-index:340;width:max-content;max-width:calc(100vw - 32px);display:flex;align-items:center;gap:14px;background:#15130f;color:#f5f0e8;border:1px solid rgba(255,244,228,.16);padding:12px 16px;border-radius:16px;font-size:14px;box-shadow:0 12px 34px rgba(0,0,0,.5);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
+.cc-toast.show{opacity:1;transform:none;pointer-events:auto}
+.cc-toast button{border:0;background:none;color:var(--accent-light);font:inherit;font-weight:750;cursor:pointer;padding:0}
+.cc-toast[hidden]{display:none}
+
+/* ---- hoja inferior (editar hábito) ---- */
+.cc-backdrop{position:fixed;inset:0;z-index:320;background:rgba(0,0,0,.55);opacity:0;transition:opacity .2s}
+.cc-backdrop.open{opacity:1}
+.cc-backdrop[hidden],.cc-sheet[hidden]{display:none}
+.cc-sheet{position:fixed;left:50%;bottom:0;z-index:330;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;background:var(--bg-elevated);color:var(--text);border:1px solid var(--border-strong);border-bottom:0;border-radius:28px 28px 0 0;padding:10px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -14px 44px rgba(0,0,0,.5);transform:translate(-50%,100%);transition:transform .26s cubic-bezier(.2,.9,.25,1)}
+.cc-sheet.open{transform:translate(-50%,0)}
+.cc-grab{width:40px;height:4px;border-radius:99px;background:var(--border-strong);margin:0 auto 12px}
+.cc-sh-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cc-sh-head h3{margin:0;font-family:var(--serif);font-style:italic;font-weight:500;font-size:24px}
+.cc-x{border:0;background:var(--bg-elevated-2);color:var(--text-secondary);border-radius:12px;padding:6px 12px;font-size:20px;line-height:1;cursor:pointer}
+.cc-lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin:16px 2px 8px}
+.cc-in{width:100%;font:inherit;font-size:16px;padding:13px 14px;border-radius:14px;outline:none;background:var(--bg-elevated-2);border:1px solid var(--border);color:var(--text)}
+.cc-in:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cc-icons{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.cc-icbtn{aspect-ratio:1;border-radius:14px;border:1px solid var(--border);background:var(--bg-elevated-2);color:var(--text-secondary);display:grid;place-items:center;cursor:pointer;padding:0}
+.cc-icbtn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cc-icbtn.sel{border-color:var(--accent);color:var(--accent-light);background:var(--accent-soft)}
+.cc-icbtn.auto{font-size:11px;font-weight:700;letter-spacing:.04em}
+.cc-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cc-day{border-radius:12px;border:1px solid var(--border);background:var(--bg-elevated-2);color:var(--text-secondary);font:inherit;font-weight:700;padding:11px 0;cursor:pointer}
+.cc-day.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.cc-presets{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.cc-chipb{border:1px solid var(--border-strong);background:transparent;color:var(--text-secondary);border-radius:999px;font:inherit;font-size:12.5px;padding:6px 12px;cursor:pointer}
+.cc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.cc-stat{border:1px solid var(--border);border-radius:16px;padding:10px 12px;background:var(--bg-elevated-2)}
+.cc-stat b{display:block;font-family:var(--serif);font-style:italic;font-weight:500;font-size:26px;line-height:1.1}
+.cc-stat span{font-size:11px;color:var(--text-tertiary)}
+.cc-actions{display:flex;gap:8px;margin-top:20px}
+.cc-actions .btn{flex:1;min-height:46px;border-radius:14px}
+.cc-del{color:var(--danger)!important;border-color:rgba(255,69,58,.35)!important}
+
+/* ---- ajustes de compactación (encabezado y herramientas de hábitos) ---- */
+header{margin-bottom:10px}
+.header-right{flex-wrap:nowrap;align-items:center;gap:8px;width:100%}
+.header-right .streak-pill,.header-right .progress-pill{flex:0 0 auto;padding:7px 13px;font-size:13px;white-space:nowrap}
+.header-right #personalize-btn{flex:0 0 auto;padding:7px 11px;min-height:0}
+.header-right #finish-day-btn{flex:0 0 auto;margin-left:auto;padding:8px 14px;font-size:13px;white-space:nowrap}
+.quote-line{margin-top:4px;font-size:11.5px;line-height:1.35}
+.hb-tools{flex-wrap:nowrap}
+.hb-markall{white-space:nowrap;flex:0 0 auto}
+.hb-hint{font-size:11px;line-height:1.3;text-align:right}
+@media (max-width:380px){.hb-hint{display:none}}
+.header-right{gap:6px;min-width:0}
+.header-right .streak-pill,.header-right .progress-pill{padding:7px 11px;font-size:12.5px}
+.header-right #personalize-btn{padding:7px 10px}
+.header-right #finish-day-btn{padding:8px 12px;font-size:12.5px}
+@media (max-width:760px){.header-right .progress-pill,.header-right .streak-pill{flex:0 0 auto;min-width:0}}
+.hb-swipe svg{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+  /* ---------- Captura rápida (botón +) ---------- */
+  .qc-fab, .qc-backdrop, .qc-sheet, .qc-toast { -webkit-tap-highlight-color: transparent; }
+  .qc-fab[hidden], .qc-backdrop[hidden], .qc-sheet[hidden], .qc-toast[hidden], .qc-view[hidden], .qc-hint[hidden], #qc-meal-body[hidden], #qc-meal-empty[hidden], #qc-fav-edit[hidden] { display: none !important; }
+  .qc-fab {
+    position: fixed; right: 18px; bottom: 22px; z-index: 90;
+    width: 58px; height: 58px; padding: 0; border-radius: 50%; border: none;
+    background: var(--accent); color: #fff; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px var(--accent-border);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .qc-fab:active { transform: scale(0.92); }
+  .qc-fab.qc-away { opacity: 0; pointer-events: none; transform: scale(0.8); }
+  .routine-overlay.active ~ .qc-fab { display: none; }
+
+  .qc-backdrop {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.2s ease;
+  }
+  .qc-backdrop.open { opacity: 1; }
+  .qc-sheet {
+    position: fixed; left: 50%; bottom: 0; z-index: 310;
+    width: 100%; max-width: 520px; max-height: min(88vh, 680px); overflow-y: auto;
+    background: var(--bg-elevated); color: var(--text);
+    border: 1px solid var(--border-strong); border-bottom: none;
+    border-radius: 22px 22px 0 0;
+    padding: 16px 18px calc(20px + env(safe-area-inset-bottom));
+    box-shadow: 0 -12px 40px rgba(0,0,0,0.45);
+    transform: translate(-50%, 100%); transition: transform 0.22s ease;
+  }
+  .qc-sheet.open { transform: translate(-50%, 0); }
+  .qc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+  .qc-head h2 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .qc-day { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+  .qc-day.past { color: var(--warning); }
+  .qc-x, .qc-back {
+    border: none; cursor: pointer; font-family: inherit;
+    background: var(--bg-elevated-2); color: var(--text-secondary);
+    border-radius: 10px; padding: 7px 12px; font-size: 14px; line-height: 1;
+  }
+  .qc-x { font-size: 20px; padding: 6px 12px; }
+  .qc-head .qc-back + h2 { flex: 1; }
+
+  .qc-water {
+    background: rgba(255,255,255,0.035); border: 1px solid var(--border);
+    border-radius: 14px; padding: 12px 14px; margin-bottom: 12px;
+  }
+  [data-theme="light"] .qc-water { background: rgba(0,0,0,0.03); }
+  .qc-water-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; font-weight: 600; }
+  .qc-water-top b { font-size: 12.5px; color: var(--text-secondary); font-variant-numeric: tabular-nums; font-weight: 600; }
+  .qc-bar { height: 5px; border-radius: 999px; background: var(--border-strong); margin: 8px 0 10px; overflow: hidden; }
+  .qc-bar-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 999px; transition: width 0.3s ease; }
+
+  .qc-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .qc-tile {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+    padding: 14px 12px; border-radius: 14px; cursor: pointer; font-family: inherit; text-align: left;
+    background: rgba(255,255,255,0.035); border: 1px solid var(--border); color: var(--text);
+    transition: transform 0.12s ease, border-color 0.15s ease;
+  }
+  [data-theme="light"] .qc-tile { background: rgba(0,0,0,0.03); }
+  .qc-tile:hover { border-color: var(--accent); }
+  .qc-tile:active { transform: scale(0.96); }
+  .qc-tile-ico { font-size: 24px; line-height: 1; }
+  .qc-tile b { font-size: 14px; margin-top: 4px; }
+  .qc-tile small { font-size: 11px; color: var(--text-tertiary); min-height: 13px; }
+
+  .qc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; align-items: center; }
+  .qc-chip {
+    border: 1px solid var(--border-strong); background: rgba(255,255,255,0.05); color: var(--text);
+    font-family: inherit; font-size: 14px; padding: 9px 14px; border-radius: 999px; cursor: pointer;
+    transition: transform 0.1s ease, background 0.15s ease;
+  }
+  [data-theme="light"] .qc-chip { background: rgba(0,0,0,0.04); }
+  .qc-chip:active { transform: scale(0.95); }
+  .qc-chip.sel { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .qc-chip.editing { border-color: rgba(255,69,58,0.5); color: var(--danger); }
+  .qc-chips .qc-chip:only-child { margin: 0; }
+  .qc-water .qc-chips { margin: 0; }
+
+  .qc-big {
+    width: 100%; text-align: center; font-family: inherit; font-size: 34px; font-weight: 700;
+    font-variant-numeric: tabular-nums; padding: 12px 14px; border-radius: 14px; outline: none;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border-strong); color: var(--text);
+  }
+  [data-theme="light"] .qc-big { background: rgba(0,0,0,0.03); }
+  .qc-big:focus, .qc-in:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .qc-in {
+    width: 100%; font-family: inherit; font-size: 16px; padding: 12px 14px; border-radius: 12px; outline: none; margin-bottom: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
+  }
+  [data-theme="light"] .qc-in { background: rgba(0,0,0,0.03); }
+  .qc-save { width: 100%; margin-top: 6px; padding: 14px 16px; font-size: 16px; font-weight: 700; border-radius: 14px; }
+  .qc-lbl { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-tertiary); margin: 10px 0 0; }
+  .qc-hint { font-size: 12.5px; color: var(--text-tertiary); }
+  .qc-link { border: none; background: none; color: var(--accent); font-family: inherit; font-size: 12.5px; cursor: pointer; padding: 2px 4px; }
+  .qc-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); margin: 2px 0 6px; }
+  .qc-weight-row { display: flex; align-items: center; gap: 6px; }
+  .qc-weight-row .qc-big { flex: 1; min-width: 0; font-size: 30px; padding: 10px 6px; }
+  .qc-step {
+    flex: 0 0 auto; min-width: 42px; padding: 12px 6px; border-radius: 12px; cursor: pointer; font-family: inherit;
+    font-size: 14px; font-weight: 600; background: var(--bg-elevated-2); color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .qc-step:active { transform: scale(0.94); }
+  .qc-shake { animation: qc-shake 0.35s ease; border-color: var(--danger) !important; }
+  @keyframes qc-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+  .qc-toast {
+    position: fixed; left: 0; right: 0; margin: 0 auto; bottom: 92px; z-index: 320;
+    width: max-content; max-width: calc(100vw - 32px);
+    transform: translateY(12px); opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex; align-items: center; gap: 14px;
+    background: #111114; color: #fff; border: 1px solid rgba(255,255,255,0.14);
+    padding: 12px 16px; border-radius: 14px; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .qc-toast.show { opacity: 1; transform: translateY(0); }
+  .qc-toast-undo { border: none; background: none; color: var(--accent-light); font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; padding: 0; }
+  .qc-fab{box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 1px var(--accent-border)}
+  body:has(#app-shell:not(.active)) .qc-fab{display:none}
+  @media (max-width:760px){ .qc-fab{bottom:calc(84px + env(safe-area-inset-bottom));right:16px} .qc-toast{bottom:calc(150px + env(safe-area-inset-bottom))} }
+  .qc-sheet{border-radius:28px 28px 0 0}
+  .qc-sheet h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:22px}
 </style>
 </head>
 <body>
@@ -1482,6 +1827,7 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
           </div>
           <div class="gl-ring" id="habits-ring" title="Hábitos de hoy"><svg viewBox="0 0 44 44"><circle class="bgc" cx="22" cy="22" r="18"/><circle class="fgc" id="habits-ring-fg" cx="22" cy="22" r="18"/></svg><span id="habits-ring-label">0/0</span></div>
         </div>
+        <div class="hb-tools"><button class="hb-markall" id="hb-markall" type="button" hidden>✓ <span>Marcar pendientes</span></button><span class="hb-hint" id="hb-hint"></span></div>
         <div id="habits-list"></div>
         <button class="add-row-btn" id="add-habit-btn">+ Agregar hábito</button>
       </div>
@@ -1988,6 +2334,92 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
     <div class="workout-footer"><button class="btn btn-ghost" id="gym-progress-close-bottom" type="button">Cerrar</button></div>
   </div>
 </div>
+
+<!-- ===== Captura rápida (botón +) ===== -->
+<button class="qc-fab" id="qc-fab" type="button" aria-label="Captura rápida" aria-expanded="false" title="Captura rápida (tecla N)">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button>
+<div class="qc-backdrop" id="qc-backdrop" hidden></div>
+<section class="qc-sheet" id="qc-sheet" role="dialog" aria-modal="true" aria-label="Captura rápida" hidden>
+
+  <div class="qc-view" data-view="menu">
+    <div class="qc-head">
+      <div><h2>Captura rápida</h2><div class="qc-day" id="qc-day"></div></div>
+      <button class="qc-x" type="button" data-qc-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="qc-water">
+      <div class="qc-water-top"><span>💧 Agua</span><b id="qc-water-label"></b></div>
+      <div class="qc-bar"><div class="qc-bar-fill" id="qc-water-bar"></div></div>
+      <div class="qc-chips">
+        <button class="qc-chip" type="button" data-qc-water="250">+250 ml</button>
+        <button class="qc-chip" type="button" data-qc-water="500">+500 ml</button>
+        <button class="qc-chip" type="button" data-qc-water="750">+750 ml</button>
+      </div>
+    </div>
+    <div class="qc-tiles">
+      <button class="qc-tile" type="button" data-qc-go="gasto"><span class="qc-tile-ico">💸</span><b>Gasto</b><small id="qc-stat-gasto"></small></button>
+      <button class="qc-tile" type="button" data-qc-go="comida"><span class="qc-tile-ico">🍽️</span><b>Comida</b><small id="qc-stat-comida"></small></button>
+      <button class="qc-tile" type="button" data-qc-go="peso"><span class="qc-tile-ico">⚖️</span><b>Peso</b><small id="qc-stat-peso"></small></button>
+    </div>
+  </div>
+
+  <div class="qc-view" data-view="gasto" hidden>
+    <div class="qc-head">
+      <button class="qc-back" type="button" data-qc-go="menu">‹ Atrás</button>
+      <h2>💸 Gasto</h2>
+      <button class="qc-x" type="button" data-qc-close aria-label="Cerrar">×</button>
+    </div>
+    <input class="qc-big" id="qc-amount" type="text" inputmode="decimal" placeholder="$0" autocomplete="off" enterkeyhint="done">
+    <div class="qc-chips">
+      <button class="qc-chip" type="button" data-qc-add="20">+20</button>
+      <button class="qc-chip" type="button" data-qc-add="50">+50</button>
+      <button class="qc-chip" type="button" data-qc-add="100">+100</button>
+      <button class="qc-chip" type="button" data-qc-add="200">+200</button>
+    </div>
+    <div class="qc-chips" id="qc-cats"></div>
+    <input class="qc-in" id="qc-note" type="text" placeholder="Nota (opcional)" autocomplete="off" enterkeyhint="done">
+    <button class="btn btn-accent qc-save" type="button" data-qc-save="gasto">Guardar gasto</button>
+  </div>
+
+  <div class="qc-view" data-view="peso" hidden>
+    <div class="qc-head">
+      <button class="qc-back" type="button" data-qc-go="menu">‹ Atrás</button>
+      <h2>⚖️ Peso</h2>
+      <button class="qc-x" type="button" data-qc-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="qc-weight-row">
+      <button class="qc-step" type="button" data-qc-step="-1">−1</button>
+      <button class="qc-step" type="button" data-qc-step="-0.1">−0.1</button>
+      <input class="qc-big" id="qc-weight" type="text" inputmode="decimal" placeholder="0.0" autocomplete="off" enterkeyhint="done">
+      <button class="qc-step" type="button" data-qc-step="0.1">+0.1</button>
+      <button class="qc-step" type="button" data-qc-step="1">+1</button>
+    </div>
+    <div class="qc-lbl"><span id="qc-weight-hint"></span><span id="qc-weight-unit">kg</span></div>
+    <button class="btn btn-accent qc-save" type="button" data-qc-save="peso">Guardar peso</button>
+  </div>
+
+  <div class="qc-view" data-view="comida" hidden>
+    <div class="qc-head">
+      <button class="qc-back" type="button" data-qc-go="menu">‹ Atrás</button>
+      <h2>🍽️ Comida</h2>
+      <button class="qc-x" type="button" data-qc-close aria-label="Cerrar">×</button>
+    </div>
+    <div id="qc-meal-empty" class="qc-hint" hidden>No tienes comidas programadas para este día. Agrégalas en la tarjeta de Dieta.</div>
+    <div id="qc-meal-body">
+      <div class="qc-lbl"><span>¿Cuál comida?</span></div>
+      <div class="qc-chips" id="qc-slots"></div>
+      <button class="btn btn-ghost qc-save" type="button" id="qc-meal-mark" style="margin:0 0 4px;">✓ Solo marcar como hecha</button>
+      <div class="qc-lbl"><span>Tus favoritas (un toque)</span><button class="qc-link" type="button" id="qc-fav-edit">Editar</button></div>
+      <div class="qc-chips" id="qc-favs"></div>
+      <div class="qc-lbl"><span>O escribe qué comiste</span></div>
+      <input class="qc-in" id="qc-meal-text" type="text" placeholder="Ej. Pollo con arroz" autocomplete="off" enterkeyhint="done" style="margin-top:6px;">
+      <label class="qc-check"><input type="checkbox" id="qc-meal-savefav" checked> Guardar como favorita</label>
+      <button class="btn btn-accent qc-save" type="button" data-qc-save="comida">Guardar comida</button>
+    </div>
+  </div>
+
+</section>
+<div class="qc-toast" id="qc-toast" role="status" aria-live="polite" hidden></div>
 
 <div class="workout-pr-toast" id="workout-pr-toast" role="status" aria-live="polite"></div>
 
@@ -2511,8 +2943,8 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
   function flashSaved() {
     const indEl = document.getElementById("save-indicator");
     indEl.textContent = "Guardado";
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => {
+    clearTimeout(flashSaved.t);
+    flashSaved.t = setTimeout(() => {
       indEl.textContent = "";
     }, 1200);
   }
@@ -3098,7 +3530,7 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
   }
 
   // ---------- Habits ----------
-  function renderHabits() {
+  function renderHabitsLegacy() {
     renderCheckableList("habits-list", state.habits, {
       deleteTitle: "Eliminar hábito",
       renderTag (h) {
@@ -5478,6 +5910,7 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
       document.getElementById("progress-fill").style.width = `${pct  }%`;
       document.getElementById("progress-label").textContent = `${pct  }%`;
       renderAnalytics();
+      ccRefresh();
     }
     return pct;
   }
@@ -7553,6 +7986,7 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
     if (view === "settings") target = document.getElementById("personalize-btn");
     if (target) {
       document.getElementById("dashboard-view").style.display = "";
+      ccReveal(target);
       setTimeout(() => {
         target.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 20);
@@ -7605,9 +8039,8 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
       weekday: "long",
       day: "numeric",
       month: "long",
-      year: "numeric",
     });
-    document.getElementById("today-date").textContent = `Jornada de ${  formatted}`;
+    document.getElementById("today-date").textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
   }
 
   // ---------- Day navigator ----------
@@ -7679,10 +8112,12 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
 
   // ---------- Add buttons ----------
   document.getElementById("add-habit-btn").addEventListener("click", () => {
-    state.habits.push({ id: uid(), name: "Nuevo hábito", doneLog: {}, days: ALL_DAYS.slice() });
+    const nh = { id: uid(), name: "", doneLog: {}, days: ALL_DAYS.slice() };
+    state.habits.push(nh);
     saveState();
     renderHabits();
     updateProgress();
+    openHabitSheet(nh, true);
   });
   document.getElementById("add-diet-btn").addEventListener("click", () => {
     state.diet.push({
@@ -8038,6 +8473,1361 @@ details.expense-manual.fold{border-top:1px solid var(--border);padding-top:4px}
     document.getElementById("auth-gate").classList.remove("active");
     document.getElementById("app-shell").classList.add("active");
   }
+
+
+  // =====================================================================
+  // V7 — hápticos, toast con deshacer, tarjetas de hábitos (swipe),
+  //      hoja de edición y dashboard compacto
+  // =====================================================================
+  const V7_ICONS = {
+    check: "M5 12.5l4.5 4.5L19 7.5",
+    drop: "M12 3.5c3.2 4 6 7 6 10.2a6 6 0 0 1-12 0C6 10.5 8.8 7.5 12 3.5z",
+    dumbbell: "M3.5 9.5v5M6.5 7v10M17.5 7v10M20.5 9.5v5M6.5 12h11",
+    book: "M5 4.5h10.5a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3V4.5zM5 17a3 3 0 0 1 3-3h10.5",
+    moon: "M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z",
+    sun: "M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8M12 8.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z",
+    bolt: "M13 2.5L5 13.5h6l-1 8 8-11h-6l1-8z",
+    heart: "M12 20s-7.5-4.6-7.5-10A4.4 4.4 0 0 1 12 7.4 4.4 4.4 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z",
+    idea: "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z",
+    leaf: "M5 19c0-8 5-13 14-14 0 9-5 14-13 14zM5 19c3-5 6-8 10-10",
+    coffee: "M5 8h11v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5V8zM16 9.5h1.5a2.5 2.5 0 0 1 0 5H16M8 3.5v2M12 3.5v2",
+    pencil: "M4 20l1-4.5L16.5 4a2 2 0 0 1 3 3L8 18.5 4 20zM14.5 6l3 3",
+    apple: "M12 7.5c-1.5-1.5-6-1.5-6 3.5 0 4 2.5 8.5 5 8.5.6 0 .7-.4 1-.4s.4.4 1 .4c2.5 0 5-4.5 5-8.5 0-5-4.5-5-6-3.5zM12 7.5c0-2 1-3.5 3-4",
+    pill: "M10.5 20.5a4.5 4.5 0 0 1-6.4-6.4l9.9-9.9a4.5 4.5 0 0 1 6.4 6.4l-9.9 9.9zM8.5 8.5l7 7",
+    phone: "M8 3.5h8a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H8A1.5 1.5 0 0 1 6.5 19V5A1.5 1.5 0 0 1 8 3.5zM11 17.5h2",
+    wallet: "M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3M4 7.5V17a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H6.5A2.5 2.5 0 0 1 4 7.5zM16 13.5h.01",
+    music: "M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM19 16a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z",
+    code: "M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14",
+    smile: "M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17zM8.5 14c1 1.5 2.2 2.2 3.5 2.2s2.5-.7 3.5-2.2M9 9.5h.01M15 9.5h.01",
+    star: "M12 3l2.2 5.6L20 9.5l-4.4 3.9L17 19.5 12 16.4 7 19.5l1.4-6.1L4 9.5l5.8-.9L12 3z",
+    chart: "M4 20V10M10 20V4M16 20v-7M22 20H2",
+    list: "M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01",
+    chev: "M6 9l6 6 6-6",
+  };
+  const V7_PICKER = ["dumbbell", "drop", "book", "leaf", "moon", "sun", "bolt", "heart", "idea", "coffee", "pencil", "apple", "pill", "phone", "wallet", "music", "code", "smile", "star", "check"];
+  function v7Icon(name, extra) {
+    const d = V7_ICONS[name] || V7_ICONS.star;
+    return `<svg viewBox="0 0 24 24" aria-hidden="true"${extra || ""}><path d="${d}"/></svg>`;
+  }
+  function v7AutoIcon(name) {
+    const n = String(name || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "");
+    const rules = [
+      [/(ejerc|gym|entren|corre|run|camin|pesas|fuerza|cardio|yoga|estir)/, "dumbbell"],
+      [/(agua|water|hidrat|litro)/, "drop"],
+      [/(leer|lectur|libro|read|estud)/, "book"],
+      [/(medit|respir|mindful|calma|gratitud)/, "leaf"],
+      [/(dorm|sueno|sleep|acost|descans)/, "moon"],
+      [/(vitamin|pastilla|medic|suplement|creatin|proteina)/, "pill"],
+      [/(escrib|diario|journal|gratit|nota)/, "pencil"],
+      [/(cafe|te |desayun)/, "coffee"],
+      [/(sol |manana|madrug|despert|levant)/, "sun"],
+      [/(celular|pantalla|redes|scroll|tiktok|insta|telefono)/, "phone"],
+      [/(ahorr|gasto|dinero|finanz|presupuest)/, "wallet"],
+      [/(music|guitarr|piano|cantar)/, "music"],
+      [/(codigo|program|proyecto|trabajo|deep)/, "code"],
+      [/(fruta|verdura|dieta|comer|comida|ayuno)/, "apple"],
+      [/(sonre|ingles|idioma|idea|crea)/, "idea"],
+    ];
+    for (let i = 0; i < rules.length; i++) if (rules[i][0].test(n + " ")) return rules[i][1];
+    return "star";
+  }
+  function habitIconName(h) {
+    return h.icon && V7_ICONS[h.icon] ? h.icon : v7AutoIcon(h.name);
+  }
+
+  // ---------- Hápticos ----------
+  // Android/Chrome: navigator.vibrate. iOS Safari no tiene Vibration API; el truco es
+  // un <input type="checkbox" switch"> (iOS 17.4+) cuyo toggle da un golpe háptico del sistema.
+  const Haptics = (function () {
+    let sw = null;
+    const hasVibrate = typeof navigator !== "undefined" && typeof navigator.vibrate === "function";
+    function ensure() {
+      if (sw || !document.body) return;
+      const lab = document.createElement("label");
+      lab.setAttribute("aria-hidden", "true");
+      lab.style.cssText = "position:fixed;left:-99px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden";
+      const inp = document.createElement("input");
+      inp.type = "checkbox";
+      inp.setAttribute("switch", "");
+      inp.tabIndex = -1;
+      lab.appendChild(inp);
+      document.body.appendChild(lab);
+      sw = lab;
+    }
+    function iosTick() {
+      ensure();
+      if (sw) sw.click();
+    }
+    const PATTERNS = {
+      tick: [10],
+      success: [14, 40, 22],
+      undo: [8],
+      full: [28, 50, 28, 50, 90],
+      warn: [30, 40, 30],
+    };
+    function buzz(kind) {
+      if (state && state.settings && state.settings.haptics === false) return;
+      const p = PATTERNS[kind] || PATTERNS.tick;
+      try {
+        if (hasVibrate) {
+          navigator.vibrate(p);
+          return;
+        }
+        // iOS: un "tick" por cada segmento de vibración (los silencios son esperas)
+        let t = 0;
+        p.forEach((ms, i) => {
+          if (i % 2 === 0) {
+            if (t === 0) iosTick();
+            else setTimeout(iosTick, t);
+          }
+          t += ms;
+        });
+      } catch (e) {
+        /* sin háptico: no pasa nada */
+      }
+    }
+    return { buzz, supported: hasVibrate };
+  })();
+
+  // ---------- Toast con "Deshacer" ----------
+  const V7Toast = (function () {
+    let node = null,
+      timer = null,
+      undoFn = null;
+    function build() {
+      if (node) return;
+      node = document.createElement("div");
+      node.className = "cc-toast";
+      node.id = "cc-toast";
+      node.setAttribute("role", "status");
+      node.setAttribute("aria-live", "polite");
+      node.hidden = true;
+      node.innerHTML = '<span class="cc-toast-msg"></span><button type="button" class="cc-toast-undo">Deshacer</button>';
+      document.body.appendChild(node);
+      node.querySelector(".cc-toast-undo").addEventListener("click", () => {
+        const fn = undoFn;
+        hide();
+        if (fn) fn();
+      });
+    }
+    function hide() {
+      if (!node) return;
+      clearTimeout(timer);
+      undoFn = null;
+      node.classList.remove("show");
+      setTimeout(() => {
+        if (!node.classList.contains("show")) node.hidden = true;
+      }, 220);
+    }
+    function show(msg, undo, ms) {
+      build();
+      clearTimeout(timer);
+      undoFn = undo || null;
+      node.querySelector(".cc-toast-msg").textContent = msg;
+      node.querySelector(".cc-toast-undo").style.display = undo ? "" : "none";
+      node.hidden = false;
+      void node.offsetWidth;
+      node.classList.add("show");
+      timer = setTimeout(hide, ms || 5000);
+    }
+    return { show, hide };
+  })();
+
+  // ---------- Semana, rachas y tarjetas de hábitos ----------
+  const WEEK_LETTERS = ["L", "M", "M", "J", "V", "S", "D"];
+  function weekDatesOf(iso) {
+    const dow = dateFromISO(iso).getDay();
+    const monday = shiftISO(iso, -((dow + 6) % 7));
+    const out = [];
+    for (let i = 0; i < 7; i++) out.push(shiftISO(monday, i));
+    return out;
+  }
+  function habitScheduleText(h) {
+    const days = sanitizeDays(h.days);
+    if (days.length === 7) return "Todos los días";
+    return `${days.length}× por semana · ${scheduleLabel(h.days)}`;
+  }
+  function tallyHTML(n) {
+    if (!n) return '<span class="none">Aún sin racha</span>';
+    const shown = Math.min(n, 20);
+    let html = "";
+    let left = shown;
+    while (left > 0) {
+      const g = Math.min(5, left);
+      html += `<span class="hb-g${g === 5 ? " five" : ""}">${"<u></u>".repeat(g === 5 ? 4 : g)}</span>`;
+      left -= g;
+    }
+    if (n > shown) html += `<span class="none">+${n - shown}</span>`;
+    return html;
+  }
+
+  const habitCards = new Map();
+
+  function paintHabit(card, h) {
+    const iso = activeISO();
+    const today = todayISO();
+    const scheduled = isScheduledToday(h);
+    const done = isDoneOn(h, iso);
+    card.classList.toggle("done", done && scheduled);
+    card.classList.toggle("off", !scheduled);
+    const face = card.querySelector(".hb-face");
+    face.querySelector(".hb-ico").innerHTML = v7Icon(habitIconName(h));
+    face.querySelector(".hb-name").textContent = h.name || "Sin nombre";
+    const sub = face.querySelector(".hb-sub");
+    const g = typeof activeGoalForHabit === "function" ? activeGoalForHabit(h.id) : null;
+    let subHtml = `<span class="t">${escapeHtml(scheduled ? h.goal || habitScheduleText(h) : "No toca hoy")}</span>`;
+    if (g) {
+      const cur = Math.min(g.target, objectiveCurrent(g));
+      subHtml += `<button type="button" class="hb-chip" title="Objetivo: ${escapeHtml(g.title)}">◎ ${cur}/${g.target}</button>`;
+    }
+    sub.innerHTML = subHtml;
+    const chip = sub.querySelector(".hb-chip");
+    if (chip) chip.addEventListener("click", (e) => { e.stopPropagation(); switchWorkspace("goals"); });
+    const chk = face.querySelector(".hb-check");
+    chk.setAttribute("aria-pressed", done ? "true" : "false");
+    chk.setAttribute("aria-label", (done ? "Desmarcar " : "Marcar ") + (h.name || "hábito"));
+    chk.disabled = !scheduled;
+    // tira semanal
+    const days = sanitizeDays(h.days);
+    const week = weekDatesOf(iso);
+    face.querySelector(".hb-week").innerHTML = week
+      .map((d, i) => {
+        const sch = days.indexOf(dateFromISO(d).getDay()) !== -1;
+        const on = isDoneOn(h, d) && sch;
+        const future = d > today;
+        const cls = ["hb-d"];
+        if (on) cls.push("on");
+        else if (!sch) cls.push("off");
+        else if (!future) cls.push("miss");
+        if (future) cls.push("future");
+        if (d === iso) cls.push("today");
+        const label = `${DAY_FULL[dateFromISO(d).getDay()]} ${d.slice(8)}`;
+        return `<button type="button" class="${cls.join(" ")}" data-iso="${d}" aria-label="${label}"${!sch || future ? " disabled" : ""}><i>${WEEK_LETTERS[i]}</i><b>${v7Icon("check")}</b></button>`;
+      })
+      .join("");
+    // racha + progreso
+    const streak = habitGoalStreak(h);
+    face.querySelector(".hb-tally").innerHTML = tallyHTML(streak);
+    face.querySelector(".hb-big").innerHTML = `${streak}<small>${streak === 1 ? "día" : "días"}</small>`;
+    const st = habitStats(h, 30);
+    face.querySelector(".hb-bar span").style.width = `${st.pct}%`;
+    face.querySelector(".hb-pct").textContent = `${st.pct}%`;
+  }
+
+  function buildHabitCard(h) {
+    const card = document.createElement("div");
+    card.className = "hb";
+    card.dataset.id = h.id;
+    card.innerHTML =
+      `<div class="hb-swipe" aria-hidden="true">${v7Icon("check")}<span class="hb-swipe-t">Hecho</span></div>` +
+      '<div class="hb-face">' +
+      '<div class="hb-top"><div class="hb-ico"></div>' +
+      '<div class="hb-txt"><div class="hb-name"></div><div class="hb-sub"></div></div>' +
+      `<button type="button" class="hb-check">${v7Icon("check")}</button>` +
+      '<button type="button" class="hb-more" aria-label="Editar hábito" title="Editar">⋯</button></div>' +
+      '<div class="hb-week"></div>' +
+      '<div class="hb-foot"><div class="hb-tally"></div><div class="hb-big"></div></div>' +
+      '<div class="hb-prog"><div class="hb-bar"><span></span></div><span class="hb-pct">0%</span></div>' +
+      "</div>";
+    paintHabit(card, h);
+    attachHabitGestures(card, h);
+    card.querySelector(".hb-check").addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleHabit(h);
+    });
+    card.querySelector(".hb-more").addEventListener("click", (e) => {
+      e.stopPropagation();
+      openHabitSheet(h);
+    });
+    card.querySelector(".hb-week").addEventListener("click", (e) => {
+      const b = e.target.closest(".hb-d");
+      if (!b || b.disabled) return;
+      e.stopPropagation();
+      const d = b.dataset.iso;
+      const val = !isDoneOn(h, d);
+      setDoneOn(h, d, val);
+      Haptics.buzz(val ? "tick" : "undo");
+      commitHabits([h]);
+      V7Toast.show(`${h.name || "Hábito"} · ${DAY_FULL[dateFromISO(d).getDay()].toLowerCase()} ${val ? "marcado" : "desmarcado"}`, () => {
+        setDoneOn(h, d, !val);
+        commitHabits([h]);
+      });
+    });
+    return card;
+  }
+
+  function renderHabits() {
+    const list = document.getElementById("habits-list");
+    if (!list) return;
+    habitCards.clear();
+    list.innerHTML = "";
+    if (!state.habits.length) {
+      const e = document.createElement("div");
+      e.className = "hb-empty";
+      e.textContent = "Aún no tienes hábitos. Agrega el primero.";
+      list.appendChild(e);
+    }
+    state.habits.forEach((h) => {
+      const c = buildHabitCard(h);
+      habitCards.set(h.id, c);
+      list.appendChild(c);
+    });
+    refreshHabitTools();
+  }
+
+  function scheduledHabits() {
+    return state.habits.filter((h) => isScheduledToday(h));
+  }
+  function pendingHabits() {
+    const iso = activeISO();
+    return scheduledHabits().filter((h) => !isDoneOn(h, iso));
+  }
+  function refreshHabitTools() {
+    const btn = document.getElementById("hb-markall");
+    const hint = document.getElementById("hb-hint");
+    if (!btn) return;
+    const pend = pendingHabits().length;
+    btn.hidden = pend < 2;
+    btn.querySelector("span").textContent = `Marcar todo (${pend})`;
+    if (hint) hint.textContent = state.habits.length ? "Desliza → marca · mantén edita" : "";
+  }
+
+  function commitHabits(list) {
+    saveState();
+    list.forEach((h) => {
+      const c = habitCards.get(h.id);
+      if (c) paintHabit(c, h);
+    });
+    updateProgress();
+    refreshHabitTools();
+  }
+
+  function dayAllDone() {
+    const s = scheduledHabits();
+    const iso = activeISO();
+    return s.length > 0 && s.every((h) => isDoneOn(h, iso));
+  }
+
+  function celebrateHabits() {
+    const r = document.getElementById("habits-ring");
+    if (r) {
+      r.classList.remove("pulse");
+      void r.offsetWidth;
+      r.classList.add("pulse");
+    }
+  }
+
+  function applyMark(list, val, message) {
+    const iso = activeISO();
+    const changed = list.filter((h) => isScheduledToday(h) && isDoneOn(h, iso) !== val);
+    if (!changed.length) return;
+    const wasAllDone = dayAllDone();
+    changed.forEach((h) => setDoneOn(h, iso, val));
+    commitHabits(changed);
+    changed.forEach((h) => {
+      const c = habitCards.get(h.id);
+      if (c) {
+        c.classList.remove("pop");
+        void c.offsetWidth;
+        c.classList.add("pop");
+      }
+    });
+    const nowAll = dayAllDone();
+    if (val && nowAll && !wasAllDone) {
+      Haptics.buzz("full");
+      celebrateHabits();
+      V7Toast.show("¡Hábitos del día completos!", () => {
+        changed.forEach((h) => setDoneOn(h, iso, !val));
+        commitHabits(changed);
+      }, 4500);
+    } else {
+      Haptics.buzz(val ? "success" : "undo");
+      V7Toast.show(
+        message || (changed.length === 1 ? `${changed[0].name || "Hábito"} ${val ? "marcado" : "desmarcado"}` : `${changed.length} hábitos ${val ? "marcados" : "desmarcados"}`),
+        () => {
+          changed.forEach((h) => setDoneOn(h, iso, !val));
+          commitHabits(changed);
+        }
+      );
+    }
+  }
+
+  function toggleHabit(h) {
+    if (!isScheduledToday(h)) {
+      V7Toast.show("Hoy no toca este hábito.", null, 2200);
+      return;
+    }
+    applyMark([h], !isDoneOn(h, activeISO()));
+  }
+
+  // ---------- Gestos: deslizar, tocar, mantener ----------
+  function attachHabitGestures(card, h) {
+    const face = card.querySelector(".hb-face");
+    const layer = card.querySelector(".hb-swipe");
+    const layerText = layer.querySelector(".hb-swipe-t");
+    let sx = 0, sy = 0, dx = 0, id = null, lock = null, armed = false, lpTimer = null, lpFired = false, W = 320;
+    const LP_MS = 480;
+    function clearLP() {
+      clearTimeout(lpTimer);
+      lpTimer = null;
+    }
+    function reset(animated) {
+      card.classList.remove("dragging");
+      face.style.transform = "";
+      layer.style.opacity = "0";
+      layer.classList.remove("armed");
+      armed = false;
+      dx = 0;
+      lock = null;
+      if (!animated) face.style.transition = "none";
+    }
+    card.addEventListener("pointerdown", (e) => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (e.target.closest(".hb-check,.hb-more,.hb-d,.hb-chip")) return;
+      id = e.pointerId;
+      sx = e.clientX;
+      sy = e.clientY;
+      dx = 0;
+      lock = null;
+      lpFired = false;
+      armed = false;
+      W = card.getBoundingClientRect().width || 320;
+      const done = isDoneOn(h, activeISO());
+      layer.classList.toggle("undo", done);
+      layerText.textContent = done ? "Desmarcar" : "Hecho";
+      clearLP();
+      lpTimer = setTimeout(() => {
+        lpFired = true;
+        lock = "lp";
+        Haptics.buzz("tick");
+        openHabitSheet(h);
+      }, LP_MS);
+    });
+    card.addEventListener("pointermove", (e) => {
+      if (id === null || e.pointerId !== id || lpFired) return;
+      const mx = e.clientX - sx;
+      const my = e.clientY - sy;
+      if (!lock) {
+        if (Math.abs(mx) < 8 && Math.abs(my) < 8) return;
+        clearLP();
+        lock = Math.abs(mx) > Math.abs(my) * 1.2 ? "x" : "y";
+        if (lock === "x") {
+          if (!isScheduledToday(h)) {
+            lock = "y";
+            return;
+          }
+          try { card.setPointerCapture(id); } catch (err) { /* ignore */ }
+          card.classList.add("dragging");
+          face.style.transition = "";
+        }
+      }
+      if (lock !== "x") return;
+      e.preventDefault();
+      dx = Math.max(0, mx);
+      const T = Math.min(120, W * 0.32);
+      // resistencia pasado el umbral
+      const shown = dx <= T ? dx : T + (dx - T) * 0.35;
+      face.style.transform = `translateX(${shown}px)`;
+      layer.style.opacity = String(Math.min(1, dx / (T * 0.8)));
+      const now = dx >= T;
+      if (now !== armed) {
+        armed = now;
+        layer.classList.toggle("armed", armed);
+        Haptics.buzz("tick");
+      }
+    });
+    function end(e, cancelled) {
+      if (id === null || (e && e.pointerId !== id)) return;
+      clearLP();
+      const wasLock = lock;
+      const fire = armed && !cancelled;
+      const target = e && e.target;
+      try { card.releasePointerCapture(id); } catch (err) { /* ignore */ }
+      id = null;
+      if (wasLock === "lp") {
+        reset(true);
+        return;
+      }
+      if (wasLock === "x") {
+        reset(true);
+        if (fire) toggleHabit(h);
+        return;
+      }
+      reset(true);
+      // toque simple (sin movimiento): alterna
+      if (!cancelled && wasLock === null && !lpFired && target && card.contains(target)) toggleHabit(h);
+    }
+    card.addEventListener("pointerup", (e) => end(e, false));
+    card.addEventListener("pointercancel", (e) => end(e, true));
+    card.addEventListener("contextmenu", (e) => e.preventDefault());
+    // accesibilidad: Enter / Espacio sobre la tarjeta
+    card.tabIndex = 0;
+    card.addEventListener("keydown", (e) => {
+      if (e.target !== card) return;
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleHabit(h);
+      }
+    });
+  }
+
+  // ---------- Hoja de edición del hábito ----------
+  const sheetState = { habit: null, isNew: false, delArmed: false };
+  function ensureSheet() {
+    if (document.getElementById("cc-sheet")) return;
+    const bd = document.createElement("div");
+    bd.className = "cc-backdrop";
+    bd.id = "cc-backdrop";
+    bd.hidden = true;
+    const sh = document.createElement("section");
+    sh.className = "cc-sheet";
+    sh.id = "cc-sheet";
+    sh.hidden = true;
+    sh.setAttribute("role", "dialog");
+    sh.setAttribute("aria-modal", "true");
+    sh.setAttribute("aria-label", "Editar hábito");
+    sh.innerHTML =
+      '<div class="cc-grab"></div>' +
+      '<div class="cc-sh-head"><h3 id="cc-sh-title">Hábito</h3><button type="button" class="cc-x" id="cc-sh-x" aria-label="Cerrar">×</button></div>' +
+      '<span class="cc-lbl" style="margin-top:0">Nombre</span><input class="cc-in" id="cc-h-name" type="text" placeholder="Ej. Leer 20 min" autocomplete="off" enterkeyhint="done">' +
+      '<span class="cc-lbl">Meta o detalle (opcional)</span><input class="cc-in" id="cc-h-goal" type="text" placeholder="Ej. 2 litros · 10,000 pasos" autocomplete="off" enterkeyhint="done">' +
+      '<span class="cc-lbl">Ícono</span><div class="cc-icons" id="cc-h-icons"></div>' +
+      '<span class="cc-lbl">Días que toca</span><div class="cc-days" id="cc-h-days"></div>' +
+      '<div class="cc-presets" id="cc-h-presets"></div>' +
+      '<span class="cc-lbl">Tu avance</span><div class="cc-stats" id="cc-h-stats"></div>' +
+      '<div class="cc-actions"><button type="button" class="btn btn-ghost" id="cc-h-analytics">Ver analítica</button><button type="button" class="btn btn-ghost cc-del" id="cc-h-del">Eliminar</button></div>' +
+      '<div class="cc-actions"><button type="button" class="btn btn-accent" id="cc-h-done">Listo</button></div>';
+    document.body.appendChild(bd);
+    document.body.appendChild(sh);
+    bd.addEventListener("click", closeHabitSheet);
+    document.getElementById("cc-sh-x").addEventListener("click", closeHabitSheet);
+    document.getElementById("cc-h-done").addEventListener("click", closeHabitSheet);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && sheetState.habit) closeHabitSheet();
+    });
+    const nameIn = document.getElementById("cc-h-name");
+    nameIn.addEventListener("input", () => {
+      if (!sheetState.habit) return;
+      sheetState.habit.name = nameIn.value;
+      sheetRepaint(false);
+    });
+    nameIn.addEventListener("keydown", (e) => { if (e.key === "Enter") nameIn.blur(); });
+    const goalIn = document.getElementById("cc-h-goal");
+    goalIn.addEventListener("input", () => {
+      if (!sheetState.habit) return;
+      sheetState.habit.goal = goalIn.value;
+      sheetRepaint(false);
+    });
+    goalIn.addEventListener("keydown", (e) => { if (e.key === "Enter") goalIn.blur(); });
+    // íconos
+    const icons = document.getElementById("cc-h-icons");
+    icons.innerHTML =
+      '<button type="button" class="cc-icbtn auto" data-icon="" title="Automático">Auto</button>' +
+      V7_PICKER.map((k) => `<button type="button" class="cc-icbtn" data-icon="${k}" aria-label="${k}">${v7Icon(k)}</button>`).join("");
+    icons.addEventListener("click", (e) => {
+      const b = e.target.closest(".cc-icbtn");
+      if (!b || !sheetState.habit) return;
+      if (b.dataset.icon) sheetState.habit.icon = b.dataset.icon;
+      else delete sheetState.habit.icon;
+      Haptics.buzz("tick");
+      sheetRepaint(true);
+    });
+    // días
+    const daysBox = document.getElementById("cc-h-days");
+    daysBox.innerHTML = DAY_ORDER.map((d) => `<button type="button" class="cc-day" data-d="${d}">${DAY_SHORT[d]}</button>`).join("");
+    daysBox.addEventListener("click", (e) => {
+      const b = e.target.closest(".cc-day");
+      if (!b || !sheetState.habit) return;
+      const d = Number(b.dataset.d);
+      const cur = sanitizeDays(sheetState.habit.days).slice();
+      const i = cur.indexOf(d);
+      if (i === -1) cur.push(d);
+      else if (cur.length > 1) cur.splice(i, 1);
+      sheetState.habit.days = cur.sort();
+      Haptics.buzz("tick");
+      sheetRepaint(true);
+    });
+    const pre = document.getElementById("cc-h-presets");
+    pre.innerHTML = SCHEDULE_PRESETS.map((p, i) => `<button type="button" class="cc-chipb" data-p="${i}">${p.label}</button>`).join("");
+    pre.addEventListener("click", (e) => {
+      const b = e.target.closest(".cc-chipb");
+      if (!b || !sheetState.habit) return;
+      sheetState.habit.days = SCHEDULE_PRESETS[Number(b.dataset.p)].days.slice();
+      sheetRepaint(true);
+    });
+    document.getElementById("cc-h-analytics").addEventListener("click", () => {
+      const h = sheetState.habit;
+      if (!h) return;
+      closeHabitSheet();
+      setTimeout(() => openHabitAnalytics(h.id), 260);
+    });
+    const del = document.getElementById("cc-h-del");
+    del.addEventListener("click", () => {
+      const h = sheetState.habit;
+      if (!h) return;
+      if (!sheetState.delArmed) {
+        sheetState.delArmed = true;
+        del.textContent = "¿Seguro? Toca otra vez";
+        setTimeout(() => {
+          sheetState.delArmed = false;
+          del.textContent = "Eliminar";
+        }, 3500);
+        return;
+      }
+      state.habits = state.habits.filter((x) => x.id !== h.id);
+      sheetState.habit = null;
+      sheetState.isNew = false;
+      closeHabitSheet(true);
+      saveState();
+      renderHabits();
+      updateProgress();
+      Haptics.buzz("warn");
+    });
+  }
+
+  function sheetRepaint(full) {
+    const h = sheetState.habit;
+    if (!h) return;
+    const card = habitCards.get(h.id);
+    if (card) paintHabit(card, h);
+    saveState();
+    refreshHabitTools();
+    if (!full) return;
+    document.querySelectorAll("#cc-h-icons .cc-icbtn").forEach((b) => {
+      const cur = h.icon && V7_ICONS[h.icon] ? h.icon : "";
+      b.classList.toggle("sel", b.dataset.icon === cur);
+    });
+    const days = sanitizeDays(h.days);
+    document.querySelectorAll("#cc-h-days .cc-day").forEach((b) => b.classList.toggle("sel", days.indexOf(Number(b.dataset.d)) !== -1));
+    document.querySelectorAll("#cc-h-presets .cc-chipb").forEach((b) => b.classList.toggle("sel", sameDays(SCHEDULE_PRESETS[Number(b.dataset.p)].days, days)));
+    updateProgress();
+    const st = habitStats(h, 30);
+    document.getElementById("cc-h-stats").innerHTML =
+      `<div class="cc-stat"><b>${habitGoalStreak(h)}</b><span>Racha actual</span></div>` +
+      `<div class="cc-stat"><b>${habitStats(h, 90).best}</b><span>Mejor (90 d)</span></div>` +
+      `<div class="cc-stat"><b>${st.pct}%</b><span>Últimos 30 d</span></div>`;
+  }
+
+  function openHabitSheet(h, isNew) {
+    ensureSheet();
+    V7Toast.hide();
+    sheetState.habit = h;
+    sheetState.isNew = !!isNew;
+    sheetState.delArmed = false;
+    document.getElementById("cc-h-del").textContent = "Eliminar";
+    document.getElementById("cc-sh-title").textContent = isNew ? "Nuevo hábito" : "Editar hábito";
+    document.getElementById("cc-h-name").value = h.name || "";
+    document.getElementById("cc-h-goal").value = h.goal || "";
+    document.getElementById("cc-h-analytics").style.display = isNew ? "none" : "";
+    document.getElementById("cc-h-del").style.display = isNew ? "none" : "";
+    sheetRepaint(true);
+    const bd = document.getElementById("cc-backdrop");
+    const sh = document.getElementById("cc-sheet");
+    bd.hidden = false;
+    sh.hidden = false;
+    void sh.offsetWidth;
+    bd.classList.add("open");
+    sh.classList.add("open");
+    if (isNew) setTimeout(() => document.getElementById("cc-h-name").focus(), 280);
+  }
+
+  function closeHabitSheet(skipCleanup) {
+    const sh = document.getElementById("cc-sheet");
+    const bd = document.getElementById("cc-backdrop");
+    if (!sh) return;
+    const h = sheetState.habit;
+    if (h && skipCleanup !== true) {
+      h.name = (h.name || "").trim();
+      if (!h.name) {
+        if (sheetState.isNew) {
+          state.habits = state.habits.filter((x) => x.id !== h.id);
+        } else {
+          h.name = "Hábito";
+        }
+      }
+      if (h.goal != null) h.goal = String(h.goal).trim();
+      if (!h.goal) delete h.goal;
+      saveState();
+      renderHabits();
+      updateProgress();
+    }
+    sheetState.habit = null;
+    sheetState.isNew = false;
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    sh.classList.remove("open");
+    bd.classList.remove("open");
+    setTimeout(() => {
+      if (!sh.classList.contains("open")) {
+        sh.hidden = true;
+        bd.hidden = true;
+      }
+    }, 280);
+  }
+
+  document.getElementById("hb-markall").addEventListener("click", () => {
+    const pend = pendingHabits();
+    if (!pend.length) return;
+    applyMark(pend, true, `${pend.length} hábitos marcados`);
+  });
+
+  // ---------- Dashboard compacto ----------
+  function money(n) {
+    return typeof fmtMoney === "function" ? fmtMoney(n) : `$${Math.round(n).toLocaleString("es-MX")}`;
+  }
+  function ratio(items) {
+    return { done: items.filter((i) => i.done).length, total: items.length };
+  }
+  function frac(done, total) {
+    return total ? Math.max(0, Math.min(100, Math.round((done / total) * 100))) : null;
+  }
+  const CC_FOLDS = [
+    {
+      key: "pend", title: "Pendientes", icon: "list", find: "#todos-list",
+      sum() {
+        const r = ratio(getCategorizedCheckable().pendientes);
+        if (!r.total) return { t: "Nada pendiente", p: null };
+        return { t: r.done === r.total ? "Todo hecho" : `${r.done} de ${r.total} hechos`, p: frac(r.done, r.total) };
+      },
+    },
+    {
+      key: "diet", title: "Dieta", icon: "apple", find: "#diet-list",
+      sum() {
+        const r = ratio(getCategorizedCheckable().dieta);
+        if (!r.total) return { t: "Sin comidas hoy", p: null };
+        return { t: `${r.done} de ${r.total} comidas`, p: frac(r.done, r.total) };
+      },
+    },
+    {
+      key: "gym", title: "Gimnasio", icon: "dumbbell", find: "#gym-routine-choices",
+      sum() {
+        const r = ratio(getCategorizedCheckable().gimnasio);
+        if (!r.total) return { t: "Día de descanso", p: null };
+        if (r.total === 1) return { t: r.done ? "Entrenamiento hecho" : "Entrenamiento pendiente", p: r.done ? 100 : 0 };
+        return { t: `${r.done} de ${r.total} ejercicios`, p: frac(r.done, r.total) };
+      },
+    },
+    {
+      key: "exp", title: "Gastos", icon: "wallet", find: "#expense-summary",
+      sum() {
+        const list = state.expensesLog[activeISO()] || [];
+        const total = list.reduce((s, e) => s + (Number(e.amount) || 0), 0);
+        if (!list.length) return { t: "Sin gastos registrados", p: 0 };
+        return { t: `${money(total)} · ${list.length} ${list.length === 1 ? "gasto" : "gastos"}`, p: 100 };
+      },
+    },
+    {
+      key: "notes", title: "Notas", icon: "pencil", find: "#journal-notes",
+      sum() {
+        const has = !!getActiveNote().trim();
+        return { t: has ? "Nota escrita" : "Sin escribir", p: has ? 100 : 0 };
+      },
+    },
+    {
+      key: "rout", title: "Rutinas", icon: "sun", find: "#routine-tabs",
+      sum() {
+        const r = getCategorizedCheckable().rutina;
+        if (!r.length) return { t: "Sin rutinas", p: null };
+        const rt = currentRoutine();
+        return { t: `${rt ? rt.name : "Rutina"} · ${r[0].done ? "hecha" : "pendiente"}`, p: r[0].done ? 100 : 0 };
+      },
+    },
+    {
+      key: "track", title: "Seguimiento", icon: "chart", group: ["#metric-streak", "#weekly-summary-body", "#history-list"],
+      sum() {
+        const st = (document.getElementById("metric-streak") || {}).textContent || "0 días";
+        const av = (document.getElementById("metric-avg7") || {}).textContent || "0%";
+        return { t: `Racha ${st} · 7 días ${av}`, p: parseInt(av, 10) || 0 };
+      },
+    },
+    {
+      key: "dream", title: "Hazlo por ellos", icon: "heart", find: "#goal-carousel",
+      sum() {
+        const n = (state.goalImages || []).length;
+        return { t: n ? `${n} ${n === 1 ? "recordatorio" : "recordatorios"}` : "Agrega tus metas", p: null };
+      },
+    },
+  ];
+  const ccFolds = [];
+
+  function ccStoredOpen() {
+    try {
+      return JSON.parse(localStorage.getItem("cc_open") || "{}") || {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function ccStoreOpen(key, val) {
+    try {
+      const m = ccStoredOpen();
+      m[key] = val ? 1 : 0;
+      localStorage.setItem("cc_open", JSON.stringify(m));
+    } catch (e) {
+      /* sin almacenamiento: no pasa nada */
+    }
+  }
+
+  function setFoldOpen(f, open) {
+    f.node.classList.toggle("open", open);
+    f.btn.setAttribute("aria-expanded", open ? "true" : "false");
+    ccStoreOpen(f.key, open);
+    if (open && f.key === "track") {
+      try { renderAnalytics(); } catch (e) { /* ignore */ }
+    }
+  }
+
+  function initCompactDashboard() {
+    const dash = document.getElementById("dashboard-view");
+    if (!dash || document.getElementById("cc-stack")) return;
+    const stack = document.createElement("div");
+    stack.id = "cc-stack";
+    const habitsCard = document.getElementById("habits-card");
+    // hábitos arriba (fuera de la cuadrícula), luego las filas plegables
+    dash.insertBefore(habitsCard, dash.firstChild);
+    dash.insertBefore(stack, habitsCard.nextSibling);
+    const stored = ccStoredOpen();
+    const cardOf = (sel) => {
+      const n = document.querySelector(sel);
+      return n ? n.closest(".card") : null;
+    };
+    CC_FOLDS.forEach((cfg) => {
+      let node;
+      if (cfg.group) {
+        node = document.createElement("div");
+        node.className = "card cc-fold cc-fold-group";
+        cfg.group.map(cardOf).filter(Boolean).forEach((c) => {
+          if (!node.contains(c)) node.appendChild(c);
+        });
+        if (!node.children.length) return;
+      } else {
+        node = cardOf(cfg.find);
+        if (!node) return;
+      }
+      node.classList.add("cc-fold");
+      node.dataset.cc = cfg.key;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "cc-sum";
+      btn.innerHTML =
+        `<span class="cc-ico">${v7Icon(cfg.icon)}</span>` +
+        '<span class="cc-tx"><div class="cc-t"></div><div class="cc-s"></div></span>' +
+        '<span class="cc-ring na"></span>' +
+        `<svg class="cc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="${V7_ICONS.chev}"/></svg>`;
+      btn.querySelector(".cc-t").textContent = cfg.title;
+      node.insertBefore(btn, node.firstChild);
+      const f = { key: cfg.key, cfg, node, btn };
+      btn.addEventListener("click", () => setFoldOpen(f, !node.classList.contains("open")));
+      stack.appendChild(node);
+      ccFolds.push(f);
+      if (stored[cfg.key]) {
+        node.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      } else btn.setAttribute("aria-expanded", "false");
+    });
+    // cuenta y respaldo al final
+    const acc = dash.querySelector("details.account-card");
+    if (acc) stack.appendChild(acc);
+    // cuadrículas / etiquetas que quedaron vacías
+    dash.querySelectorAll(":scope > .grid").forEach((g) => {
+      if (!g.querySelector(".card")) g.style.display = "none";
+    });
+    // "Meta racha" vive en Cuenta (el encabezado queda limpio)
+    const thr = document.querySelector(".threshold-control");
+    const inner = dash.querySelector(".account-inner");
+    if (thr && inner) {
+      thr.style.display = "flex";
+      thr.style.margin = "10px 0 0";
+      inner.insertBefore(thr, inner.querySelector(".footer-actions"));
+      const hap = document.createElement("label");
+      hap.className = "cc-hap";
+      hap.innerHTML = '<input type="checkbox" id="cc-haptics"> Vibración al marcar hábitos';
+      inner.insertBefore(hap, inner.querySelector(".footer-actions"));
+      hap.querySelector("input").addEventListener("change", (e) => {
+        state.settings.haptics = e.target.checked;
+        saveState();
+        if (e.target.checked) Haptics.buzz("success");
+      });
+    }
+  }
+
+  function ccRefresh() {
+    if (!state || !ccFolds.length) return;
+    ccFolds.forEach((f) => {
+      let r;
+      try { r = f.cfg.sum(); } catch (e) { r = { t: "", p: null }; }
+      f.btn.querySelector(".cc-s").textContent = r.t;
+      const ring = f.btn.querySelector(".cc-ring");
+      ring.classList.remove("na", "full");
+      if (r.p === null) ring.classList.add("na");
+      else if (r.p >= 100) ring.classList.add("full");
+      ring.style.setProperty("--p", String(r.p || 0));
+    });
+    const hc = document.getElementById("cc-haptics");
+    if (hc) hc.checked = state.settings.haptics !== false;
+  }
+
+  // abre la fila que contiene un elemento (para los atajos de la navegación)
+  function ccReveal(target) {
+    const node = target && target.closest ? target.closest(".cc-fold") : null;
+    if (!node) return;
+    const f = ccFolds.find((x) => x.node === node);
+    if (f && !node.classList.contains("open")) setFoldOpen(f, true);
+  }
+
+  initCompactDashboard();
+  // los módulos viejos no siempre llaman updateProgress: refresca los resúmenes tras cualquier interacción
+  (function () {
+    const dash = document.getElementById("dashboard-view");
+    let t = null;
+    ["click", "change", "input", "keyup"].forEach((ev) => {
+      dash.addEventListener(ev, () => {
+        clearTimeout(t);
+        t = setTimeout(ccRefresh, 80);
+      });
+    });
+  })();
+
+  // ---------- Captura rápida (botón +) ----------
+  // Registra agua, gastos, comida y peso en 1-2 toques, usando los mismos datos que el resto de la app.
+  (function(){
+    var fab = document.getElementById("qc-fab");
+    var sheet = document.getElementById("qc-sheet");
+    var backdrop = document.getElementById("qc-backdrop");
+    var toastEl = document.getElementById("qc-toast");
+    if (!fab || !sheet || !backdrop || !toastEl) return;
+
+    var isOpen = false;
+    var mealSlotId = null;
+    var expenseCat = null;
+    var editingFavs = false;
+    var toastTimer = null;
+
+    function $(id){ return document.getElementById(id); }
+    function num(v){
+      var n = parseFloat(String(v == null ? "" : v).replace(",", ".").replace(/[^0-9.\-]/g, ""));
+      return isNaN(n) ? 0 : n;
+    }
+    function round(n, d){ var f = Math.pow(10, d); return Math.round(n * f) / f; }
+    function buzz(){ Haptics.buzz("success"); }
+    function lsGet(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function lsSet(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
+    function flash(node){
+      node.classList.remove("qc-shake");
+      void node.offsetWidth;
+      node.classList.add("qc-shake");
+      setTimeout(function(){ node.classList.remove("qc-shake"); }, 400);
+    }
+    function ensureData(){
+      if (!state.waterLog || typeof state.waterLog !== "object") state.waterLog = {};
+      if (!Array.isArray(state.mealFavorites)) state.mealFavorites = [];
+      if (!(state.settings.waterGoalMl > 0)) state.settings.waterGoalMl = 2000;
+    }
+    function refreshApp(){
+      saveState();
+      renderHabits();
+      renderDiet();
+      renderExpenses();
+      renderMeasurements();
+      updateProgress();
+    }
+
+    // ---- Aviso con "Deshacer" ----
+    function hideToast(){
+      toastEl.classList.remove("show");
+      setTimeout(function(){ if (!toastEl.classList.contains("show")) toastEl.hidden = true; }, 220);
+    }
+    function toast(msg, undoFn){
+      clearTimeout(toastTimer);
+      toastEl.innerHTML = "";
+      var span = el("span", "qc-toast-msg");
+      span.textContent = msg;
+      toastEl.appendChild(span);
+      if (undoFn){
+        var b = el("button", "qc-toast-undo");
+        b.type = "button";
+        b.textContent = "Deshacer";
+        b.addEventListener("click", function(){
+          try { undoFn(); refreshApp(); span.textContent = "Deshecho"; }
+          catch (err){ console.error("No se pudo deshacer.", err); span.textContent = "No se pudo deshacer"; }
+          b.remove();
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(hideToast, 1800);
+        });
+        toastEl.appendChild(b);
+      }
+      toastEl.hidden = false;
+      void toastEl.offsetHeight;
+      toastEl.classList.add("show");
+      toastTimer = setTimeout(hideToast, undoFn ? 6000 : 2800);
+    }
+
+    // ---- Abrir / cerrar ----
+    function openSheet(view){
+      if (isOpen) return;
+      isOpen = true;
+      ensureData();
+      clearTimeout(toastTimer);
+      toastEl.classList.remove("show");
+      toastEl.hidden = true;
+      backdrop.hidden = false;
+      sheet.hidden = false;
+      void sheet.offsetHeight;
+      backdrop.classList.add("open");
+      sheet.classList.add("open");
+      fab.classList.add("qc-away");
+      fab.setAttribute("aria-expanded", "true");
+      showView(view || "menu");
+    }
+    function closeSheet(){
+      if (!isOpen) return;
+      isOpen = false;
+      backdrop.classList.remove("open");
+      sheet.classList.remove("open");
+      fab.classList.remove("qc-away");
+      fab.setAttribute("aria-expanded", "false");
+      if (document.activeElement && sheet.contains(document.activeElement)) document.activeElement.blur();
+      setTimeout(function(){ if (!isOpen){ sheet.hidden = true; backdrop.hidden = true; } }, 240);
+    }
+    function showView(name){
+      var views = sheet.querySelectorAll(".qc-view");
+      for (var i = 0; i < views.length; i++){
+        views[i].hidden = views[i].getAttribute("data-view") !== name;
+      }
+      if (name === "menu") refreshMenu();
+      if (name === "gasto") setupExpense();
+      if (name === "peso") setupWeight();
+      if (name === "comida") setupMeal();
+    }
+
+    // ---- Menú principal ----
+    function primaryMeasure(){
+      for (var i = 0; i < state.measurements.length; i++){
+        if (state.measurements[i].primary) return state.measurements[i];
+      }
+      return state.measurements[0] || null;
+    }
+    function mealSlots(){
+      return state.diet.filter(function(d){ return isScheduledToday(d); });
+    }
+    function refreshMenu(){
+      var iso = activeISO();
+      var isToday = iso === todayISO();
+      var dayEl = $("qc-day");
+      dayEl.textContent = isToday ? "Hoy" : "Registrando en " + formatDateLabel(iso);
+      dayEl.classList.toggle("past", !isToday);
+
+      var goal = state.settings.waterGoalMl || 2000;
+      var water = state.waterLog[iso] || 0;
+      $("qc-water-label").textContent = water + " / " + goal + " ml";
+      $("qc-water-bar").style.width = Math.min(100, Math.round(water / goal * 100)) + "%";
+
+      var spent = activeExpenseTotal();
+      $("qc-stat-gasto").textContent = spent ? "$" + spent.toFixed(0) + " gastados" : "Sin gastos";
+
+      var slots = mealSlots();
+      var done = slots.filter(function(s){ return dietDone(s, iso); }).length;
+      $("qc-stat-comida").textContent = slots.length ? done + "/" + slots.length + " hechas" : "";
+
+      var m = primaryMeasure();
+      var pesoTxt = "";
+      if (m){
+        var today = measurementEntryForToday(m);
+        var last = lastMeasurementEntry(m);
+        var shown = today || last;
+        if (shown) pesoTxt = shown.value + (m.unit ? " " + m.unit : "");
+      }
+      $("qc-stat-peso").textContent = pesoTxt;
+    }
+
+    // ---- Agua (un toque) ----
+    function findWaterHabit(){
+      for (var i = 0; i < state.habits.length; i++){
+        if (/agua/i.test(state.habits[i].name || "")) return state.habits[i];
+      }
+      return null;
+    }
+    function addWater(ml){
+      ensureData();
+      var iso = activeISO();
+      var goal = state.settings.waterGoalMl;
+      var before = state.waterLog[iso] || 0;
+      var after = before + ml;
+      state.waterLog[iso] = after;
+      var habit = findWaterHabit();
+      var autoMarked = false;
+      if (habit && after >= goal && isScheduledToday(habit) && !isDoneOn(habit, iso)){
+        setDoneOn(habit, iso, true);
+        autoMarked = true;
+      }
+      refreshApp();
+      buzz();
+      closeSheet();
+      var reached = after >= goal ? " 🎉 meta" : "";
+      toast("💧 +" + ml + " ml · " + after + " / " + goal + reached, function(){
+        var now = (state.waterLog[iso] || 0) - ml;
+        if (now > 0) state.waterLog[iso] = now; else delete state.waterLog[iso];
+        if (autoMarked && habit) setDoneOn(habit, iso, false);
+      });
+    }
+
+    // ---- Gasto ----
+    function expenseCategories(){
+      var sel = $("new-expense-category");
+      var out = [];
+      if (sel){
+        for (var i = 0; i < sel.options.length; i++) out.push(sel.options[i].value);
+      }
+      return out.length ? out : ["Comida", "Transporte", "Otros"];
+    }
+    function renderExpenseCats(){
+      var cats = expenseCategories();
+      var box = $("qc-cats");
+      box.innerHTML = "";
+      cats.forEach(function(c){
+        var b = el("button", "qc-chip" + (c === expenseCat ? " sel" : ""));
+        b.type = "button";
+        b.textContent = c;
+        b.setAttribute("data-qc-cat", c);
+        box.appendChild(b);
+      });
+    }
+    function setupExpense(){
+      var cats = expenseCategories();
+      var saved = lsGet("qc_expense_cat");
+      if (!expenseCat || cats.indexOf(expenseCat) === -1){
+        expenseCat = (saved && cats.indexOf(saved) !== -1) ? saved : cats[0];
+      }
+      renderExpenseCats();
+      $("qc-amount").value = "";
+      $("qc-note").value = "";
+      $("qc-amount").focus();
+    }
+    function saveExpense(){
+      var amountInput = $("qc-amount");
+      var amount = round(num(amountInput.value), 2);
+      if (!(amount > 0)){ flash(amountInput); amountInput.focus(); return; }
+      var iso = activeISO();
+      var entry = addExpenseEntry(iso, { amount: amount, category: expenseCat, note: $("qc-note").value.trim() });
+      lsSet("qc_expense_cat", expenseCat);
+      refreshApp();
+      buzz();
+      closeSheet();
+      toast("💸 $" + amount + " · " + entry.category + (entry.note ? " · " + entry.note : ""), function(){
+        state.expensesLog[iso] = (state.expensesLog[iso] || []).filter(function(x){ return x.id !== entry.id; });
+      });
+    }
+
+    // ---- Peso ----
+    function setupWeight(){
+      var m = primaryMeasure();
+      $("qc-weight-unit").textContent = (m && m.unit) ? m.unit : "kg";
+      var today = m ? measurementEntryForToday(m) : null;
+      var last = m ? lastMeasurementEntry(m) : null;
+      var v = today ? today.value : (last ? last.value : "");
+      $("qc-weight").value = (v === "" || v == null) ? "" : String(v);
+      $("qc-weight-hint").textContent = today
+        ? "Ya registraste este día; se actualizará."
+        : (last ? "Último: " + last.value + " (" + formatDateLabel(last.iso) + ")" : "Sin registros aún");
+      $("qc-weight").focus();
+      try { $("qc-weight").select(); } catch (e) {}
+    }
+    function saveWeight(){
+      var input = $("qc-weight");
+      var m = primaryMeasure();
+      var value = round(num(input.value), 1);
+      if (!m || !(value > 0 && value < 1000)){ flash(input); input.focus(); return; }
+      var iso = activeISO();
+      var existing = null;
+      for (var i = 0; i < m.log.length; i++){ if (m.log[i].iso === iso){ existing = m.log[i]; break; } }
+      var prevValue = existing ? existing.value : null;
+      if (existing) existing.value = value; else m.log.push({ iso: iso, value: value });
+      refreshApp();
+      buzz();
+      closeSheet();
+      toast("⚖️ " + value + (m.unit ? " " + m.unit : ""), function(){
+        if (prevValue === null){
+          m.log = m.log.filter(function(e){ return e.iso !== iso; });
+        } else {
+          for (var j = 0; j < m.log.length; j++){ if (m.log[j].iso === iso) m.log[j].value = prevValue; }
+        }
+      });
+    }
+
+    // ---- Comida ----
+    function findSlot(){
+      for (var i = 0; i < state.diet.length; i++){
+        if (state.diet[i].id === mealSlotId) return state.diet[i];
+      }
+      return null;
+    }
+    function renderMeal(){
+      var iso = activeISO();
+      var slots = mealSlots();
+      $("qc-meal-empty").hidden = slots.length > 0;
+      $("qc-meal-body").hidden = slots.length === 0;
+
+      var slotBox = $("qc-slots");
+      slotBox.innerHTML = "";
+      slots.forEach(function(s){
+        var b = el("button", "qc-chip" + (s.id === mealSlotId ? " sel" : ""));
+        b.type = "button";
+        b.textContent = (dietDone(s, iso) ? "✓ " : "") + (s.name || "Comida");
+        b.setAttribute("data-qc-slot", s.id);
+        slotBox.appendChild(b);
+      });
+
+      var favBox = $("qc-favs");
+      favBox.innerHTML = "";
+      var favs = state.mealFavorites;
+      if (!favs.length){
+        var hint = el("span", "qc-hint");
+        hint.textContent = "Aún no tienes favoritas. Guarda una abajo.";
+        favBox.appendChild(hint);
+      }
+      favs.forEach(function(f){
+        var b = el("button", "qc-chip" + (editingFavs ? " editing" : ""));
+        b.type = "button";
+        b.textContent = f.name + (editingFavs ? "  ✕" : "");
+        b.setAttribute("data-qc-fav", f.id);
+        favBox.appendChild(b);
+      });
+      $("qc-fav-edit").textContent = editingFavs ? "Listo" : "Editar";
+      $("qc-fav-edit").hidden = !favs.length;
+    }
+    function setupMeal(){
+      editingFavs = false;
+      var iso = activeISO();
+      var slots = mealSlots();
+      var next = null;
+      for (var i = 0; i < slots.length; i++){
+        if (!dietDone(slots[i], iso)){ next = slots[i]; break; }
+      }
+      if (!next) next = slots[0] || null;
+      mealSlotId = next ? next.id : null;
+      $("qc-meal-text").value = "";
+      renderMeal();
+    }
+    function logMeal(name, saveFav){
+      var slot = findSlot();
+      if (!slot){ toast("Elige primero cuál comida es."); return; }
+      ensureData();
+      var iso = activeISO();
+      var prevDetail = slot.detail || "";
+      var prevStatus = dietStatus(slot, iso);
+      var favAdded = null;
+      if (name) slot.detail = name;
+      if (prevStatus !== "ok") setDietStatus(slot, iso, "ok");
+      if (name && saveFav && state.mealFavorites.length < 12){
+        var exists = state.mealFavorites.some(function(f){ return f.name.toLowerCase() === name.toLowerCase(); });
+        if (!exists){
+          favAdded = { id: uid(), name: name };
+          state.mealFavorites.push(favAdded);
+        }
+      }
+      refreshApp();
+      buzz();
+      closeSheet();
+      toast("🍽️ " + (slot.name || "Comida") + (name ? ": " + name : " ✓"), function(){
+        slot.detail = prevDetail;
+        if (dietStatus(slot, iso) !== prevStatus) setDietStatus(slot, iso, prevStatus);
+        if (favAdded) state.mealFavorites = state.mealFavorites.filter(function(f){ return f.id !== favAdded.id; });
+      });
+    }
+    function saveMealText(){
+      var input = $("qc-meal-text");
+      var name = input.value.trim();
+      if (!name){ flash(input); input.focus(); return; }
+      logMeal(name, $("qc-meal-savefav").checked);
+      input.value = "";
+    }
+
+    // ---- Eventos ----
+    fab.addEventListener("click", function(){ openSheet("menu"); });
+    backdrop.addEventListener("click", closeSheet);
+
+    sheet.addEventListener("click", function(e){
+      var t = e.target.closest ? e.target.closest("button") : null;
+      if (!t || !sheet.contains(t)) return;
+      if (t.hasAttribute("data-qc-close")) return closeSheet();
+
+      var go = t.getAttribute("data-qc-go");
+      if (go) return showView(go);
+
+      var water = t.getAttribute("data-qc-water");
+      if (water) return addWater(Number(water));
+
+      var add = t.getAttribute("data-qc-add");
+      if (add){
+        var amountInput = $("qc-amount");
+        amountInput.value = String(round(num(amountInput.value) + Number(add), 2));
+        amountInput.focus();
+        return;
+      }
+
+      var cat = t.getAttribute("data-qc-cat");
+      if (cat !== null){ expenseCat = cat; renderExpenseCats(); return; }
+
+      var step = t.getAttribute("data-qc-step");
+      if (step){
+        var weightInput = $("qc-weight");
+        weightInput.value = round((num(weightInput.value) || 0) + Number(step), 1).toFixed(1);
+        return;
+      }
+
+      var save = t.getAttribute("data-qc-save");
+      if (save === "gasto") return saveExpense();
+      if (save === "peso") return saveWeight();
+      if (save === "comida") return saveMealText();
+
+      var slotId = t.getAttribute("data-qc-slot");
+      if (slotId){ mealSlotId = slotId; renderMeal(); return; }
+
+      var favId = t.getAttribute("data-qc-fav");
+      if (favId){
+        var fav = null;
+        for (var i = 0; i < state.mealFavorites.length; i++){
+          if (state.mealFavorites[i].id === favId) fav = state.mealFavorites[i];
+        }
+        if (!fav) return;
+        if (editingFavs){
+          state.mealFavorites = state.mealFavorites.filter(function(f){ return f.id !== favId; });
+          saveState();
+          renderMeal();
+        } else {
+          logMeal(fav.name, false);
+        }
+        return;
+      }
+
+      if (t.id === "qc-fav-edit"){ editingFavs = !editingFavs; renderMeal(); return; }
+      if (t.id === "qc-meal-mark"){ logMeal("", false); return; }
+    });
+
+    sheet.addEventListener("keydown", function(e){
+      if (e.key !== "Enter" || e.isComposing) return;
+      var id = e.target.id;
+      if (id === "qc-amount" || id === "qc-note"){ e.preventDefault(); saveExpense(); }
+      else if (id === "qc-weight"){ e.preventDefault(); saveWeight(); }
+      else if (id === "qc-meal-text"){ e.preventDefault(); saveMealText(); }
+    });
+
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape" && isOpen){ closeSheet(); return; }
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      var a = document.activeElement;
+      var tag = (a && a.tagName) || "";
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag) || (a && a.isContentEditable)) return;
+      if ((e.key === "n" || e.key === "N") && !isOpen){
+        if (!document.getElementById("app-shell").classList.contains("active")) return;
+        if (document.querySelector(".day-detail-overlay.active, .routine-overlay.active")) return;
+        e.preventDefault();
+        openSheet("menu");
+      }
+    });
+  })();
+
 
   function initApp(loadedState) {
     state = loadedState;
